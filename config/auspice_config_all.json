@@ -1,0 +1,52 @@
+{
+  "title": "Real-time tracking of dengue virus evolution",
+  "color_options": {
+    "gt": {
+      "menuItem": "genotype",
+      "legendTitle": "Genotype",
+      "type": "discrete",
+      "key": "genotype"
+    },
+    "num_date": {
+      "menuItem": "date",
+      "legendTitle": "Sampling date",
+      "type": "continuous",
+      "key": "num_date"
+    },
+    "country": {
+      "menuItem": "country",
+      "legendTitle": "Country",
+      "type": "discrete",
+      "key": "country"
+    },
+    "region": {
+      "menuItem": "region",
+      "legendTitle": "Region",
+      "type": "discrete",
+      "key": "region"
+    },
+    "clade_membership": {
+      "key": "clade_membership",
+      "legendTitle": "Serotype",
+      "menuItem": "serotype",
+      "type": "discrete"
+    }
+  },
+  "geo": [
+    "country",
+    "region"
+  ],
+  "defaults": {
+    "mapTriplicate": true,
+    "colorBy": "clade_membership"
+  },
+  "maintainer": [
+    "Trevor Bedford",
+    "http://bedford.io/team/trevor-bedford/"
+  ],
+  "filters": [
+    "country",
+    "region",
+    "authors"
+  ]
+}
