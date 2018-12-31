@@ -15,7 +15,7 @@ rule files:
 files = rules.files.params
 
 def serotype_integer(w):
-    serotypes = {'denv1': '1', 'denv2': '2', 'denv3': '3', 'denv4': '4'}
+    serotypes = {'all': 'all', 'denv1': '1', 'denv2': '2', 'denv3': '3', 'denv4': '4'}
     return serotypes[w.serotype]
 
 rule download:
@@ -25,34 +25,26 @@ rule download:
     params:
         fasta_fields = "strain virus accession collection_date region country division location source locus authors url title journal puburl",
         serotype_integer = serotype_integer
-    shell:
-        """
-        python3 ../fauna/vdb/download.py \
-            --database vdb \
-            --virus dengue \
-            --fasta_fields {params.fasta_fields} \
-            --select serotype:{params.serotype_integer} \
-            --path $(dirname {output.sequences}) \
-            --fstem $(basename {output.sequences} .fasta)
-        """
-
-rule concat:
-    message: "Concatenating serotype sequences"
-    input:
-        denv1_sequences = "data/dengue_denv1.fasta",
-        denv2_sequences = "data/dengue_denv2.fasta",
-        denv3_sequences = "data/dengue_denv3.fasta",
-        denv4_sequences = "data/dengue_denv4.fasta"
-    output:
-        sequences = "data/dengue_all.fasta"
-    shell:
-        """
-        cat {input.denv1_sequences} \
-            {input.denv2_sequences} \
-            {input.denv3_sequences} \
-            {input.denv4_sequences} \
-            > {output.sequences}
-        """
+    run:
+        if wildcards.serotype == 'all':
+            shell("""
+                python3 ../fauna/vdb/download.py \
+                    --database vdb \
+                    --virus dengue \
+                    --fasta_fields {params.fasta_fields} \
+                    --path $(dirname {output.sequences}) \
+                    --fstem $(basename {output.sequences} .fasta)
+            """)
+        else:
+            shell("""
+                python3 ../fauna/vdb/download.py \
+                    --database vdb \
+                    --virus dengue \
+                    --fasta_fields {params.fasta_fields} \
+                    --select serotype:{params.serotype_integer} \
+                    --path $(dirname {output.sequences}) \
+                    --fstem $(basename {output.sequences} .fasta)
+            """)
 
 rule parse:
     message: "Parsing fasta into sequences and metadata"
