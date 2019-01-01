@@ -38,7 +38,8 @@
   ],
   "defaults": {
     "mapTriplicate": true,
-    "colorBy": "clade_membership"
+    "colorBy": "clade_membership",
+    "distanceMeasure": "div"
   },
   "maintainer": [
     "Trevor Bedford",

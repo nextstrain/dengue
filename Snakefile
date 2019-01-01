@@ -14,9 +14,35 @@ rule files:
 
 files = rules.files.params
 
-def serotype_integer(w):
-    serotypes = {'all': 'all', 'denv1': '1', 'denv2': '2', 'denv3': '3', 'denv4': '4'}
-    return serotypes[w.serotype]
+def download_serotype_integer(w):
+    serotype_integer = {
+        'all': 'all',
+        'denv1': '1',
+        'denv2': '2',
+        'denv3': '3',
+        'denv4': '4'
+    }
+    return serotype_integer[w.serotype]
+
+def filter_sequences_per_group(w):
+    sequences_per_group = {
+        'all': '10',
+        'denv1': '30',
+        'denv2': '30',
+        'denv3': '30',
+        'denv4': '30'
+    }
+    return sequences_per_group[w.serotype]
+
+def traits_columns(w):
+    traits = {
+        'all': 'region',
+        'denv1': 'country region',
+        'denv2': 'country region',
+        'denv3': 'country region',
+        'denv4': 'country region'
+    }
+    return traits[w.serotype]
 
 rule download:
     message: "Downloading sequences from fauna"
@@ -24,7 +50,7 @@ rule download:
         sequences = "data/dengue_{serotype}.fasta"
     params:
         fasta_fields = "strain virus accession collection_date region country division location source locus authors url title journal puburl",
-        serotype_integer = serotype_integer
+        serotype_integer = download_serotype_integer
     run:
         if wildcards.serotype == 'all':
             shell("""
@@ -79,8 +105,8 @@ rule filter:
     output:
         sequences = "results/filtered_{serotype}.fasta"
     params:
-        group_by = "year",
-        sequences_per_group = 30,
+        group_by = "year region",
+        sequences_per_group = filter_sequences_per_group,
         min_length = 5000
     shell:
         """
@@ -112,7 +138,8 @@ rule align:
             --reference-sequence {input.reference} \
             --output {output.alignment} \
             --fill-gaps \
-            --remove-reference
+            --remove-reference \
+            --nthreads auto
         """
 
 rule tree:
@@ -125,7 +152,8 @@ rule tree:
         """
         augur tree \
             --alignment {input.alignment} \
-            --output {output.tree}
+            --output {output.tree} \
+            --nthreads auto
         """
 
 rule refine:
@@ -210,7 +238,7 @@ rule traits:
     output:
         node_data = "results/traits_{serotype}.json",
     params:
-        columns = "region country",
+        columns = traits_columns,
         sampling_bias_correction = 3
     shell:
         """
