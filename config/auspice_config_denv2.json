@@ -24,6 +24,12 @@
       "legendTitle": "Region",
       "type": "discrete",
       "key": "region"
+    },
+    "clade_membership": {
+      "key": "clade_membership",
+      "legendTitle": "DENV genotype",
+      "menuItem": "DENV genotype",
+      "type": "discrete"
     }
   },
   "geo": [
@@ -32,7 +38,7 @@
   ],
   "defaults": {
     "mapTriplicate": true,
-    "colorBy": "region"
+    "colorBy": "clade_membership"
   },
   "maintainer": [
     "Trevor Bedford",

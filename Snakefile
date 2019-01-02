@@ -9,7 +9,6 @@ rule files:
     params:
         dropped_strains = "config/dropped_strains.txt",
         reference = "config/reference_dengue_{serotype}.gb",
-        clades = "config/clades.tsv",
         auspice_config = "config/auspice_config_{serotype}.json"
 
 files = rules.files.params
@@ -43,6 +42,16 @@ def traits_columns(w):
         'denv4': 'country region'
     }
     return traits[w.serotype]
+
+def clade_defs(w):
+    defs = {
+        'all': 'config/clades_serotypes.tsv',
+        'denv1': 'config/clades_genotypes.tsv',
+        'denv2': 'config/clades_genotypes.tsv',
+        'denv3': 'config/clades_genotypes.tsv',
+        'denv4': 'config/clades_genotypes.tsv'
+    }
+    return defs[w.serotype]
 
 rule download:
     message: "Downloading sequences from fauna"
@@ -97,6 +106,7 @@ rule filter:
           - {params.sequences_per_group} sequence(s) per {params.group_by!s}
           - excluding strains in {input.exclude}
           - minimum genome length of {params.min_length}
+          - excluding strains with missing region, country or date metadata
         """
     input:
         sequences = rules.parse.output.sequences,
@@ -117,7 +127,8 @@ rule filter:
             --output {output.sequences} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
-            --min-length {params.min_length}
+            --min-length {params.min_length} \
+            --exclude-where country=? region=? date=? \
         """
 
 rule align:
@@ -252,12 +263,12 @@ rule traits:
         """
 
 rule clades:
-    message: "Annotating clades"
+    message: "Annotating serotypes / genotypes"
     input:
         tree = rules.refine.output.tree,
         nt_muts = rules.ancestral.output,
         aa_muts = rules.translate.output,
-        clades = files.clades
+        clade_defs = clade_defs,
     output:
         clades = "results/clades_{serotype}.json"
     shell:
@@ -265,7 +276,7 @@ rule clades:
         augur clades \
             --tree {input.tree} \
             --mutations {input.nt_muts} {input.aa_muts} \
-            --clades {input.clades} \
+            --clades {input.clade_defs} \
             --output {output.clades}
         """
 

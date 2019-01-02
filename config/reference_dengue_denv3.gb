@@ -56,11 +56,6 @@ FEATURES             Location/Qualifiers
                      /note="peptide pr"
                      /product="protein pr"
                      /protein_id="YP_009164955.1"
-     CDS             710..934
-                     /gene="flavivirus polyprotein gene"
-                     /note="protein M"
-                     /product="membrane glycoprotein M"
-                     /protein_id="YP_001531167.1"
      CDS             935..2413
                      /gene="E"
                      /note="protein E"
