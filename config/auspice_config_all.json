@@ -27,8 +27,8 @@
     },
     "clade_membership": {
       "key": "clade_membership",
-      "legendTitle": "Serotype",
-      "menuItem": "serotype",
+      "legendTitle": "DENV genotype",
+      "menuItem": "DENV genotype",
       "type": "discrete"
     }
   },
