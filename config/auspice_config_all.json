@@ -46,6 +46,7 @@
     "http://bedford.io/team/trevor-bedford/"
   ],
   "filters": [
+  	"clade_membership",
     "country",
     "region",
     "authors"
