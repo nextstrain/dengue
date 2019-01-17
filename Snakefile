@@ -25,7 +25,7 @@ def download_serotype_integer(w):
 
 def filter_sequences_per_group(w):
     sequences_per_group = {
-        'all': '10',
+        'all': '1000',
         'denv1': '30',
         'denv2': '30',
         'denv3': '30',
@@ -45,7 +45,7 @@ def traits_columns(w):
 
 def clade_defs(w):
     defs = {
-        'all': 'config/clades_serotypes.tsv',
+        'all': 'config/clades_genotypes.tsv',
         'denv1': 'config/clades_genotypes.tsv',
         'denv2': 'config/clades_genotypes.tsv',
         'denv3': 'config/clades_genotypes.tsv',
@@ -129,6 +129,7 @@ rule filter:
             --sequences-per-group {params.sequences_per_group} \
             --min-length {params.min_length} \
             --exclude-where country=? region=? date=? \
+            --include-where region=southeast_asia
         """
 
 rule align:
