@@ -291,7 +291,7 @@ rule tip_frequencies:
         proportion_wide = 0.0,
         min_date = 1970,
         max_date = 2015,
-        pivot_interval = 3
+        pivot_interval = 3 # 3 months between pivots or 4 pivots per year
     output:
         tip_freq = "auspice/dengue_{serotype}_tip-frequencies.json",
     shell:
@@ -317,7 +317,8 @@ rule tree_frequencies:
         min_date = 1970,
         max_date = 2015,
         pivot_interval = 3,
-        regions = ['southeast_asia']
+        regions = ['southeast_asia'],
+        stiffness = 2
     output:
         "results/tree-frequencies_{serotype}.json",
     shell:
@@ -329,6 +330,7 @@ rule tree_frequencies:
             --regions {params.regions} \
             --metadata {input.metadata} \
             --pivot-interval {params.pivot_interval} \
+            --stiffness {params.stiffness} \
             --min-date {params.min_date} \
             --max-date {params.max_date} \
             --output {output}
