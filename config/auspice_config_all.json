@@ -36,6 +36,12 @@
     "country",
     "region"
   ],
+  "panels": [
+    "tree",
+    "map",
+    "entropy",
+    "frequencies"
+  ],  
   "defaults": {
     "mapTriplicate": true,
     "colorBy": "clade_membership",

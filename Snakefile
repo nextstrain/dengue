@@ -281,6 +281,59 @@ rule clades:
             --output {output.clades}
         """
 
+rule tip_frequencies:
+    input:
+        tree = rules.refine.output.tree,
+        metadata = rules.parse.output.metadata
+    params:
+        narrow_bandwidth = 3 / 12.0,
+        wide_bandwidth = 3 / 12.0,
+        proportion_wide = 0.0,
+        min_date = 1970,
+        max_date = 2015,
+        pivot_interval = 3
+    output:
+        tip_freq = "auspice/dengue_{serotype}_tip-frequencies.json",
+    shell:
+        """
+        augur frequencies \
+            --method kde \
+            --tree {input.tree} \
+            --metadata {input.metadata} \
+            --narrow-bandwidth {params.narrow_bandwidth} \
+            --wide-bandwidth {params.wide_bandwidth} \
+            --proportion-wide {params.proportion_wide} \
+            --pivot-interval {params.pivot_interval} \
+            --min-date {params.min_date} \
+            --max-date {params.max_date} \
+            --output {output}
+        """
+
+rule tree_frequencies:
+    input:
+        tree = rules.refine.output.tree,
+        metadata = rules.parse.output.metadata,
+    params:
+        min_date = 1970,
+        max_date = 2015,
+        pivot_interval = 3,
+        regions = ['southeast_asia']
+    output:
+        "results/tree-frequencies_{serotype}.json",
+    shell:
+        """
+        augur frequencies \
+            --method diffusion \
+            --include-internal-nodes \
+            --tree {input.tree} \
+            --regions {params.regions} \
+            --metadata {input.metadata} \
+            --pivot-interval {params.pivot_interval} \
+            --min-date {params.min_date} \
+            --max-date {params.max_date} \
+            --output {output}
+        """
+
 rule export:
     message: "Exporting data files for for auspice"
     input:
