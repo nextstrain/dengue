@@ -289,7 +289,7 @@ rule tip_frequencies:
         narrow_bandwidth = 3 / 12.0,
         wide_bandwidth = 3 / 12.0,
         proportion_wide = 0.0,
-        min_date = 1970,
+        min_date = 1900,
         max_date = 2015,
         pivot_interval = 3 # 3 months between pivots or 4 pivots per year
     output:
@@ -314,7 +314,7 @@ rule tree_frequencies:
         tree = rules.refine.output.tree,
         metadata = rules.parse.output.metadata,
     params:
-        min_date = 1970,
+        min_date = 1900,
         max_date = 2015,
         pivot_interval = 3,
         regions = ['southeast_asia'],
