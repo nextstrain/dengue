@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+language: python
+python:
+  - "3.6"
+install:
+  - pip3 install git+https://github.com/nextstrain/cli
+  - nextstrain version
+  - nextstrain check-setup
+  - nextstrain update
+script:
+  - mkdir -p data/
+  - cp -v example_data/zika.fasta data/
+  - nextstrain build . auspice/dengue_all_tree.json
