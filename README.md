@@ -52,7 +52,7 @@ example data provided in this repository.  Before running the build, copy the
 example sequences into the `data/` directory like so:
 
     mkdir -p data/
-    cp example_data/zika.fasta data/
+    cp example_data/dengue* data/
 
 
 [Nextstrain]: https://nextstrain.org
