@@ -13,23 +13,23 @@ rule files:
 
 files = rules.files.params
 
-def download_serotype_integer(w):
-    serotype_integer = {
+def download_serotype(w):
+    serotype = {
         'all': 'all',
-        'denv1': '1',
-        'denv2': '2',
-        'denv3': '3',
-        'denv4': '4'
+        'denv1': 'Dengue_virus_1',
+        'denv2': 'Dengue_virus_2',
+        'denv3': 'Dengue_virus_3',
+        'denv4': 'Dengue_virus_4'
     }
-    return serotype_integer[w.serotype]
+    return serotype[w.serotype]
 
 def filter_sequences_per_group(w):
     sequences_per_group = {
         'all': '10',
-        'denv1': '30',
-        'denv2': '30',
-        'denv3': '30',
-        'denv4': '30'
+        'denv1': '36',
+        'denv2': '36',
+        'denv3': '36',
+        'denv4': '36'
     }
     return sequences_per_group[w.serotype]
 
@@ -59,7 +59,7 @@ rule download:
         sequences = "data/dengue_{serotype}.fasta"
     params:
         fasta_fields = "strain virus accession collection_date region country division location source locus authors url title journal puburl",
-        serotype_integer = download_serotype_integer
+        download_serotype = download_serotype
     run:
         if wildcards.serotype == 'all':
             shell("""
@@ -76,7 +76,7 @@ rule download:
                     --database vdb \
                     --virus dengue \
                     --fasta_fields {params.fasta_fields} \
-                    --select serotype:{params.serotype_integer} \
+                    --select serotype:{params.download_serotype} \
                     --path $(dirname {output.sequences}) \
                     --fstem $(basename {output.sequences} .fasta)
             """)
@@ -150,7 +150,7 @@ rule align:
             --output {output.alignment} \
             --fill-gaps \
             --remove-reference \
-            --nthreads auto
+            --nthreads 1
         """
 
 rule tree:
@@ -164,7 +164,7 @@ rule tree:
         augur tree \
             --alignment {input.alignment} \
             --output {output.tree} \
-            --nthreads auto
+            --nthreads 1
         """
 
 rule refine:

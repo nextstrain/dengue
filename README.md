@@ -54,6 +54,11 @@ example sequences into the `data/` directory like so:
     mkdir -p data/
     cp example_data/dengue* data/
 
+## AWS
+
+With access to AWS, this can be more quickly run as:
+
+    nextstrain build --aws-batch --aws-batch-cpus 4 --aws-batch-memory 7200 . --jobs 4
 
 [Nextstrain]: https://nextstrain.org
 [fauna]: https://github.com/nextstrain/fauna
