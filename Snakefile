@@ -296,7 +296,7 @@ rule export:
         auspice_meta = "auspice/dengue_{serotype}_meta.json"
     shell:
         """
-        augur export \
+        augur export v1 \
             --tree {input.tree} \
             --metadata {input.metadata} \
             --node-data {input.branch_lengths} {input.traits} {input.clades} {input.nt_muts} {input.aa_muts} \
