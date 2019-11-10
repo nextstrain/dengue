@@ -2,8 +2,7 @@ serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 
 rule all:
     input:
-        auspice_tree = expand("auspice/dengue_{serotype}_tree.json", serotype=serotypes),
-        auspice_meta = expand("auspice/dengue_{serotype}_meta.json", serotype=serotypes),
+        auspice_json = expand("auspice/dengue_{serotype}.json", serotype=serotypes)
 
 rule files:
     params:
@@ -89,14 +88,16 @@ rule parse:
         sequences = "results/sequences_{serotype}.fasta",
         metadata = "results/metadata_{serotype}.tsv"
     params:
-        fasta_fields = "strain virus accession date region country division city db segment authors url title journal paper_url"
+        fasta_fields = "strain virus accession date region country division city db segment authors url title journal paper_url",
+        prettify_fields = "region country division city"
     shell:
         """
         augur parse \
             --sequences {input.sequences} \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
-            --fields {params.fasta_fields}
+            --fields {params.fasta_fields} \
+            --prettify-fields {params.prettify_fields}
         """
 
 rule filter:
@@ -292,17 +293,15 @@ rule export:
         aa_muts = rules.translate.output.node_data,
         auspice_config = files.auspice_config
     output:
-        auspice_tree = "auspice/dengue_{serotype}_tree.json",
-        auspice_meta = "auspice/dengue_{serotype}_meta.json"
+        auspice_json = "auspice/dengue_{serotype}.json"
     shell:
         """
-        augur export v1 \
+        augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
             --node-data {input.branch_lengths} {input.traits} {input.clades} {input.nt_muts} {input.aa_muts} \
             --auspice-config {input.auspice_config} \
-            --output-tree {output.auspice_tree} \
-            --output-meta {output.auspice_meta}
+            --output {output.auspice_json}
         """
 
 rule clean:
