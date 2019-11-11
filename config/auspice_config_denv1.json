@@ -1,27 +1,32 @@
 {
   "title": "Real-time tracking of DENV1 dengue virus evolution",
-  "colorings": {
-    "gt": {
+  "colorings": [
+    {
+      "key": "gt",
       "title": "Genotype",
       "type": "categorical"
     },
-    "num_date": {
+    {
+      "key": "num_date",
       "title": "Date",
       "type": "continuous"
     },
-    "country": {
+    {
+      "key": "country",
       "title": "Country",
       "type": "categorical"
     },
-    "region": {
+    {
+      "key": "region",
       "title": "Region",
       "type": "categorical"
     },
-    "clade_membership": {
+    {
+      "key": "clade_membership",
       "title": "DENV genotype",
       "type": "categorical"
     }
-  },
+  ],
   "geo_resolutions": [
     "country",
     "region"
