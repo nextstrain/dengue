@@ -32,7 +32,7 @@
     "distance_measure": "div"
   },
   "maintainers": [
-    ["Trevor Bedford", "http://bedford.io/team/trevor-bedford/"]
+    {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"}
   ],
   "filters": [
     "country",
