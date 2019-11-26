@@ -1,5 +1,9 @@
 {
   "title": "Real-time tracking of DENV2 dengue virus evolution",
+  "maintainers": [
+    {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"}
+  ],
+  "build_url": "https://github.com/nextstrain/dengue",
   "colorings": [
     {
       "key": "gt",
@@ -35,9 +39,6 @@
     "map_triplicate": true,
     "color_by": "clade_membership"
   },
-  "maintainers": [
-    {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"}
-  ],
   "filters": [
     "country",
     "region",
