@@ -1,52 +1,47 @@
 {
   "title": "Real-time tracking of DENV3 dengue virus evolution",
-  "color_options": {
-    "gt": {
-      "menuItem": "genotype",
-      "legendTitle": "Genotype",
-      "type": "discrete",
-      "key": "genotype"
+  "maintainers": [
+    {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"}
+  ],
+  "build_url": "https://github.com/nextstrain/dengue",
+  "colorings": [
+    {
+      "key": "gt",
+      "title": "Genotype",
+      "type": "categorical"
     },
-    "num_date": {
-      "menuItem": "date",
-      "legendTitle": "Sampling date",
-      "type": "continuous",
-      "key": "num_date"
+    {
+      "key": "num_date",
+      "title": "Date",
+      "type": "continuous"
     },
-    "country": {
-      "menuItem": "country",
-      "legendTitle": "Country",
-      "type": "discrete",
-      "key": "country"
+    {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
     },
-    "region": {
-      "menuItem": "region",
-      "legendTitle": "Region",
-      "type": "discrete",
-      "key": "region"
+    {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
     },
-    "clade_membership": {
+    {
       "key": "clade_membership",
-      "legendTitle": "DENV genotype",
-      "menuItem": "DENV genotype",
-      "type": "discrete"
+      "title": "DENV genotype",
+      "type": "categorical"
     }
-  },
-  "geo": [
+  ],
+  "geo_resolutions": [
     "country",
     "region"
   ],
-  "defaults": {
-    "mapTriplicate": true,
-    "colorBy": "clade_membership"
+  "display_defaults": {
+    "map_triplicate": true,
+    "color_by": "clade_membership"
   },
-  "maintainer": [
-    "Trevor Bedford",
-    "http://bedford.io/team/trevor-bedford/"
-  ],
   "filters": [
     "country",
     "region",
-    "authors"
+    "author"
   ]
 }

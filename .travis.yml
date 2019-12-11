@@ -12,4 +12,4 @@ install:
 script:
   - mkdir -p data/
   - cp -v example_data/dengue* data/
-  - nextstrain build . auspice/dengue_all_tree.json
+  - nextstrain build . auspice/dengue_all.json
