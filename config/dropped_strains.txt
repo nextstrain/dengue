@@ -48,3 +48,5 @@ P73_1120 # sylvatic
 P75_215 # sylvatic
 DKD811 # sylvatic
 ZS01/01 # metadata issue
+Vero # cell line
+MS13002673 # too divergent

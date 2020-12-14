@@ -217,7 +217,7 @@ rule ancestral:
         augur ancestral \
             --tree {input.tree} \
             --alignment {input.alignment} \
-            --output {output.node_data} \
+            --output-node-data {output.node_data} \
             --inference {params.inference}
         """
 
@@ -301,6 +301,7 @@ rule export:
             --metadata {input.metadata} \
             --node-data {input.branch_lengths} {input.traits} {input.clades} {input.nt_muts} {input.aa_muts} \
             --auspice-config {input.auspice_config} \
+            --include-root-sequence \
             --output {output.auspice_json}
         """
 
