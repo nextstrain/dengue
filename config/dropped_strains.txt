@@ -50,3 +50,6 @@ DKD811 # sylvatic
 ZS01/01 # metadata issue
 Vero # cell line
 MS13002673 # too divergent
+MS11011405 # too divergent
+V43257 # too divergent
+KDC0574A2_06/02/2011 # too divergent
