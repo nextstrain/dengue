@@ -53,3 +53,17 @@ MS13002673 # too divergent
 MS11011405 # too divergent
 V43257 # too divergent
 KDC0574A2_06/02/2011 # too divergent
+00178/03 # too divergent
+00759/12 # too divergent
+00988/11 # too divergent
+01113/10 # too divergent
+01224/04 # too divergent
+01231/10 # too divergent
+01488/09 # too divergent
+01542/04 # too divergent
+dev1 # too divergent
+DKE_121 # too divergent
+SENDAK_HD_10674 # sylvatic
+DENV2_1_DAK_HD_76395 # sylvatic
+DENV3/PUERTORICO/1963/PRS_228762_AC27 # too divergent
+PR_6 # too divergent
