@@ -53,51 +53,32 @@ def clade_defs(w):
     return defs[w.serotype]
 
 rule download:
-    message: "Downloading sequences from fauna"
+    message: "Downloading sequences and metadata from data.nextstrain.org"
     output:
-        sequences = "data/dengue_{serotype}.fasta"
-    params:
-        fasta_fields = "strain virus accession collection_date region country division location source locus authors url title journal puburl",
-        download_serotype = download_serotype
-    run:
-        if wildcards.serotype == 'all':
-            shell("""
-                python3 ../fauna/vdb/download.py \
-                    --database vdb \
-                    --virus dengue \
-                    --fasta_fields {params.fasta_fields} \
-                    --path $(dirname {output.sequences}) \
-                    --fstem $(basename {output.sequences} .fasta)
-            """)
-        else:
-            shell("""
-                python3 ../fauna/vdb/download.py \
-                    --database vdb \
-                    --virus dengue \
-                    --fasta_fields {params.fasta_fields} \
-                    --select serotype:{params.download_serotype} \
-                    --path $(dirname {output.sequences}) \
-                    --fstem $(basename {output.sequences} .fasta)
-            """)
+        sequences = "data/sequences_{serotype}.fasta.zst",
+        metadata = "data/metadata_{serotype}.tsv.zst"
 
-rule parse:
+    params:
+        sequences_url = "https://data.nextstrain.org/files/dengue/sequences_{serotype}.fasta.zst",
+        metadata_url = "https://data.nextstrain.org/files/dengue/metadata_{serotype}.tsv.zst"
+    shell:
+        """
+        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
+        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
+        """
+
+rule decompress:
     message: "Parsing fasta into sequences and metadata"
     input:
-        sequences = rules.download.output.sequences
+        sequences = rules.download.output.sequences,
+        metadata = rules.download.output.metadata
     output:
         sequences = "results/sequences_{serotype}.fasta",
         metadata = "results/metadata_{serotype}.tsv"
-    params:
-        fasta_fields = "strain virus accession date region country division city db segment authors url title journal paper_url",
-        prettify_fields = "region country division city"
     shell:
         """
-        augur parse \
-            --sequences {input.sequences} \
-            --output-sequences {output.sequences} \
-            --output-metadata {output.metadata} \
-            --fields {params.fasta_fields} \
-            --prettify-fields {params.prettify_fields}
+        zstd -d -c {input.sequences} > {output.sequences}
+        zstd -d -c {input.metadata} > {output.metadata}
         """
 
 rule filter:
@@ -110,8 +91,8 @@ rule filter:
           - excluding strains with missing region, country or date metadata
         """
     input:
-        sequences = rules.parse.output.sequences,
-        metadata = rules.parse.output.metadata,
+        sequences = rules.decompress.output.sequences,
+        metadata = rules.decompress.output.metadata,
         exclude = files.dropped_strains
     output:
         sequences = "results/filtered_{serotype}.fasta"
@@ -180,7 +161,7 @@ rule refine:
     input:
         tree = rules.tree.output.tree,
         alignment = rules.align.output,
-        metadata = rules.parse.output.metadata
+        metadata = rules.decompress.output.metadata
     output:
         tree = "results/tree_{serotype}.nwk",
         node_data = "results/branch-lengths_{serotype}.json"
@@ -246,7 +227,7 @@ rule traits:
         """
     input:
         tree = rules.refine.output.tree,
-        metadata = rules.parse.output.metadata
+        metadata = rules.decompress.output.metadata
     output:
         node_data = "results/traits_{serotype}.json",
     params:
@@ -285,7 +266,7 @@ rule export:
     message: "Exporting data files for for auspice"
     input:
         tree = rules.refine.output.tree,
-        metadata = rules.parse.output.metadata,
+        metadata = rules.decompress.output.metadata,
         branch_lengths = rules.refine.output.node_data,
         traits = rules.traits.output.node_data,
         clades = rules.clades.output.clades,
