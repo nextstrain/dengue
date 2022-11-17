@@ -13,7 +13,7 @@ transform:
   # Back up strain name field if 'strain' doesn't match regex above
   strain_backup_fields: ['accession']
   # List of date fields to standardize
-  date_fields: ['date', 'date_submitted']
+  date_fields: ['date', 'date_submitted', 'updated']
   # Expected date formats present in date fields
   # These date formats should use directives expected by datetime
   # See https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
@@ -54,6 +54,7 @@ transform:
     'genbank_accession_rev',
     'strain',
     'date',
+    'updated',
     'region',
     'country',
     'division',

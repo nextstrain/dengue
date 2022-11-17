@@ -38,6 +38,9 @@ def build_query_url(ncbi_taxon_id: str):
         'fq': [
             '{!tag=SeqType_s}SeqType_s:("Nucleotide")', # Nucleotide sequences (as opposed to protein)
             f'VirusLineageId_ss:({ncbi_taxon_id})', # NCBI Taxon id for virus
+            'Division_s:("VRL")', # Restrict to viral sequences, avoid PAT
+            '{!tag=SLen_i}SLen_i:([5000 TO 15000])', # Longer than 5K bp, shorter than 15k bp
+            #'{!tag=UpdateDate_dt}UpdateDate_dt:([2022-01-01T00:00:00.00Z TO 2022-12-01T00:00:00.00Z ])', # recent
         ],
 
         # Unclear, but seems necessary.
@@ -57,6 +60,7 @@ def build_query_url(ncbi_taxon_id: str):
                 ('location',                'CountryFull_s'),
                 ('collected',               'CollectionDate_s'),
                 ('submitted',               'CreateDate_dt'),
+                ('updated',                 'UpdateDate_dt'), # Check for recent updates to the record
                 ('length',                  'SLen_i'),
                 ('host',                    'Host_s'),
                 ('isolation_source',        'Isolation_csv'),
