@@ -9,8 +9,8 @@ to expected upload flag files.
 rule trigger_build:
     message: "Triggering monekypox builds via repository action type `rebuild`."
     input:
-        metadata_upload = "data/upload/s3/metadata.tsv-to-metadata.tsv.gz.done",
-        fasta_upload = "data/upload/s3/sequences.fasta-to-sequences.fasta.xz.done"
+        metadata_upload = "data/upload/s3/metadata_{serotype}.tsv-to-metadata_{serotype}.tsv.gz.done",
+        fasta_upload = "data/upload/s3/sequences_{serotype}.fasta-to-sequences_{serotype}.fasta.xz.done"
     output:
         touch("data/trigger/rebuild.done")
     params:

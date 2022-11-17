@@ -5,10 +5,11 @@ if not config:
 
 send_slack_notifications = config.get("send_slack_notifications", False)
 
+serotypes = ['all']
 
 def _get_all_targets(wildcards):
     # Default targets are the metadata TSV and sequences FASTA files
-    all_targets = ["data/sequences.fasta", "data/metadata.tsv"]
+    all_targets = expand(["data/sequences_{serotype}.fasta", "data/metadata_{serotype}.tsv"], serotype=serotypes)
 
     # Add additional targets based on upload config
     upload_config = config.get("upload", {})

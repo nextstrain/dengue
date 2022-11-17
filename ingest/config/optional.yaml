@@ -7,13 +7,13 @@ upload:
     dst: 's3://nextstrain-data/files/workflows/dengue'
     # Files to upload to S3 that are in the `data` directory
     files_to_upload: [
-      'metadata.tsv',
-      'sequences.fasta',
+      'metadata_all.tsv',
+      'sequences_all.fasta',
     ]
     # Remote file names for the files to upload, must be in the same order as local files above
     remote_file_names: [
-      'metadata.tsv.zst',
-      'sequences.fasta.zst',
+      'metadata_all.tsv.zst',
+      'sequences_all.fasta.zst',
     ]
     cloudfront_domain: 'data.nextstrain.org'
 
