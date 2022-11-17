@@ -23,11 +23,12 @@ S3_SRC = "s3://nextstrain-data/files/workflows/dengue"
 
 rule notify_on_genbank_record_change:
     input:
-        genbank_ndjson="data/genbank.ndjson",
+        genbank_ndjson="data/genbank_{serotype}.ndjson",
     output:
         touch("data/notify/genbank-record-change.done"),
     params:
         s3_src=S3_SRC,
+        genbank_filename="genbank_{serotype}.ndjson.xz",
         notify_on_record_change_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/notify-on-record-change",
     shell:
         """
@@ -47,17 +48,18 @@ rule notify_on_genbank_record_change:
         chmod +x bin/*
 
         # (3) Run the script
-        ./bin/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/genbank.ndjson.xz Genbank
+        ./bin/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/{params.genbank_filename:q} Genbank
         """
 
 
 rule notify_on_metadata_diff:
     input:
-        metadata="data/metadata.tsv",
+        metadata="data/metadata_{serotype}.tsv",
     output:
-        touch("data/notify/metadata-diff.done"),
+        touch("data/notify/metadata_{serotype}-diff.done"),
     params:
         s3_src=S3_SRC,
+        metadata_filename="metadata_{serotype}.tsv.gz",
         notify_on_diff_url = "https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/notify-on-diff",
     shell:
         """
@@ -77,7 +79,7 @@ rule notify_on_metadata_diff:
         chmod +x bin/*
 
         # (3) Run the script
-        ./bin/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.gz
+        ./bin/notify-on-diff {input.metadata} {params.s3_src:q}/{params.metadata_filename:q}
         """
 
 

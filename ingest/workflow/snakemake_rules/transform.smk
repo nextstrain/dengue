@@ -2,12 +2,12 @@
 This part of the workflow handles transforming the data into standardized
 formats and expects input file
 
-    sequences_ndjson = "data/sequences.ndjson"
+    sequences_ndjson = "data/sequences_{serotype}.ndjson"
 
 This will produce output files as
 
-    metadata = "data/metadata.tsv"
-    sequences = "data/sequences.fasta"
+    metadata = "data/metadata_{serotype}.tsv"
+    sequences = "data/sequences_{serotype}.fasta"
 
 Parameters are expected to be defined in `config.transform`.
 """
@@ -38,13 +38,13 @@ rule concat_geolocation_rules:
 
 rule transform:
     input:
-        sequences_ndjson="data/sequences.ndjson",
+        sequences_ndjson="data/sequences_{serotype}.ndjson",
         all_geolocation_rules="data/all-geolocation-rules.tsv",
     output:
-        metadata="data/metadata.tsv",
-        sequences="data/sequences.fasta",
+        metadata="data/metadata_{serotype}.tsv",
+        sequences="data/sequences_{serotype}.fasta",
     log:
-        "logs/transform.txt",
+        "logs/transform_{serotype}.txt",
     params:
         field_map=config["transform"]["field_map"],
         strain_regex=config["transform"]["strain_regex"],
