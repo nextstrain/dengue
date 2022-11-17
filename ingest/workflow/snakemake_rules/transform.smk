@@ -41,7 +41,7 @@ rule transform:
         sequences_ndjson="data/sequences.ndjson",
         all_geolocation_rules="data/all-geolocation-rules.tsv",
     output:
-        metadata="data/metadata_raw.tsv",
+        metadata="data/metadata.tsv",
         sequences="data/sequences.fasta",
     log:
         "logs/transform.txt",
