@@ -1,11 +1,11 @@
-# nextstrain.org/monkeypox/ingest
+# nextstrain.org/dengue/ingest
 
-This is the ingest pipeline for Monkeypox virus sequences.
+This is the ingest pipeline for Dengue virus sequences.
 
 ## Usage
 
 > NOTE: All command examples assume you are within the `ingest` directory.
-> If running commands from the outer `monkeypox` directory, please replace the `.` with `ingest`
+> If running commands from the outer `dengue` directory, please replace the `.` with `ingest`
 
 Fetch sequences with
 

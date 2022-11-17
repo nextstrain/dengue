@@ -16,7 +16,7 @@ main() {
 fetch() {
     curl "$("$bin"/genbank-url --ncbi-taxon-id "$1")" \
         --fail --silent --show-error --http1.1 \
-        --header 'User-Agent: https://github.com/nextstrain/monkeypox (hello@nextstrain.org)'
+        --header 'User-Agent: https://github.com/nextstrain/dengue (hello@nextstrain.org)'
 }
 
 main "$@"
