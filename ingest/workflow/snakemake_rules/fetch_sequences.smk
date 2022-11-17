@@ -9,14 +9,23 @@ file must exist as a static file in the repo.
 
 Produces final output as
 
-    sequences_ndjson = "data/sequences.ndjson"
+    sequences_ndjson = "data/sequences_{serotype}.ndjson"
 
 """
 
+def download_serotype(w):
+    serotype = {
+        'all': '12637',
+        # 'denv1': '11053',
+        # 'denv2': '11060',
+        # 'denv3': '11069',
+        # 'denv4': '11070'
+    }
+    return serotype[w.serotype]
 
 rule fetch_from_genbank:
     output:
-        genbank_ndjson="data/genbank.ndjson",
+        genbank_ndjson="data/genbank_{serotype}.ndjson",
     params:
         serotype_tax_id=download_serotype,
         csv_to_ndjson_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/csv-to-ndjson",
@@ -43,14 +52,14 @@ rule fetch_from_genbank:
 
 
 def _get_all_sources(wildcards):
-    return [f"data/{source}.ndjson" for source in config["sources"]]
+    return [f"data/{source}_{wildcards.serotype}.ndjson" for source in config["sources"]]
 
 
 rule fetch_all_sequences:
     input:
         all_sources=_get_all_sources,
     output:
-        sequences_ndjson="data/sequences.ndjson",
+        sequences_ndjson="data/sequences_{serotype}.ndjson",
     shell:
         """
         cat {input.all_sources} > {output.sequences_ndjson}
