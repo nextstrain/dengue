@@ -56,6 +56,8 @@ def build_query_url(ncbi_taxon_id: str):
                 ('genbank_accession_rev',   'AccVer_s'),
                 ('database',                'SourceDB_s'),
                 ('strain',                  'Isolate_s'),
+                ('strain_s',               'Strain_s'), # Derive strain name if Isolate_s is empty
+                ('viruslineage_ids',        'VirusLineageId_ss'), # Derive denv1 to 4 based on lineage ID
                 ('region',                  'Region_s'),
                 ('location',                'CountryFull_s'),
                 ('collected',               'CollectionDate_s'),
@@ -67,7 +69,7 @@ def build_query_url(ncbi_taxon_id: str):
                 ('bioproject_accession',    'BioProject_s'),
                 ('biosample_accession',     'BioSample_s'),
                 ('sra_accession',           'SRALink_csv'),
-                ('title',                   'Definition_s'),
+                ('title',                   'Definition_s'), # Should be PubMed title, not Definition
                 ('authors',                 'Authors_csv'),
                 ('submitting_organization', 'SubmitterAffilFull_s'),
                 ('publications',            'PubMed_csv'),

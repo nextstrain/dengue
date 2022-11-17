@@ -53,6 +53,8 @@ transform:
     'accession',
     'genbank_accession_rev',
     'strain',
+    'strain_s',
+    'viruslineage_ids',
     'date',
     'updated',
     'region',
@@ -65,5 +67,7 @@ transform:
     'abbr_authors',
     'reverse',
     'authors',
-    'institution'
+    'institution',
+    'title',
+    'publications'
   ]

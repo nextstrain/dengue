@@ -41,7 +41,7 @@ rule transform:
         sequences_ndjson="data/sequences_{serotype}.ndjson",
         all_geolocation_rules="data/all-geolocation-rules.tsv",
     output:
-        metadata="data/metadata_{serotype}.tsv",
+        metadata="data/raw_metadata_{serotype}.tsv",
         sequences="data/sequences_{serotype}.fasta",
     log:
         "logs/transform_{serotype}.txt",
@@ -128,3 +128,13 @@ rule transform:
                 --id-field {params.id_field} \
                 --sequence-field {params.sequence_field} ) 2>> {log}
         """
+
+rule post_process_metadata:
+    input:
+        metadata="data/raw_metadata_{serotype}.tsv",
+    output:
+        metadata="data/metadata_{serotype}.tsv",
+    shell:
+       """
+       ./bin/post_process_metadata.R {input.metadata} {output.metadata}
+       """
