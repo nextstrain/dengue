@@ -54,8 +54,29 @@ rule upload_to_s3:
         quiet="" if send_notifications else "--quiet",
         s3_dst=config["upload"].get("s3", {}).get("dst", ""),
         cloudfront_domain=config["upload"].get("s3", {}).get("cloudfront_domain", ""),
+        upload_to_s3_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/upload-to-s3",
+        sha256sum_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/sha256sum",
+        cloudfront_invalidate_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/cloudfront-invalidate"
     shell:
         """
+        # (1) Pick curl or wget based on availability    
+        if which curl > /dev/null; then
+            download_cmd="curl -fsSL --output"
+        elif which wget > /dev/null; then
+            download_cmd="wget -O"
+        else
+            echo "ERROR: Neither curl nor wget found. Please install one of them."
+            exit 1
+        fi
+
+        # (2) Download the required scripts if not already present
+        [[ -d bin ]] || mkdir bin
+        [[ -f bin/upload-to-s3 ]]          || $download_cmd bin/upload-to-s3 {params.upload_to_s3_url}
+        [[ -f bin/sha256sum ]]             || $download_cmd bin/sha256sum {params.sha256sum_url}
+        [[ -f bin/cloudfront-invalidate ]] || $download_cmd bin/cloudfront-invalidate {params.cloudfront_invalidate_url}
+        chmod +x bin/*
+
+        # (3) Run the upload script
         ./bin/upload-to-s3 \
             {params.quiet} \
             {input.file_to_upload:q} \
