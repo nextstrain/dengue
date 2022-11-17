@@ -20,7 +20,18 @@ rule fetch_general_geolocation_rules:
         geolocation_rules_url=config["transform"]["geolocation_rules_url"],
     shell:
         """
-        curl {params.geolocation_rules_url} > {output.general_geolocation_rules}
+        # (1) Pick curl or wget based on availability    
+        if which curl > /dev/null; then
+            download_cmd="curl -fsSL --output"
+        elif which wget > /dev/null; then
+            download_cmd="wget -O"
+        else
+            echo "ERROR: Neither curl nor wget found. Please install one of them."
+            exit 1
+        fi
+
+        # (2) Fetch general geolocation rules
+        $download_cmd {output.general_geolocation_rules} {params.geolocation_rules_url}
         """
 
 
@@ -62,8 +73,41 @@ rule transform:
         metadata_columns=config["transform"]["metadata_columns"],
         id_field=config["transform"]["id_field"],
         sequence_field=config["transform"]["sequence_field"],
+        transform_field_names_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/transform-field-names",
+        transform_string_fields_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/transform-string-fields",
+        transform_strain_names_url="https://raw.githubusercontent.com/nextstrain/monkeypox/b54768ec17872eb0d898e29527785642f6b98c0d/ingest/bin/transform-strain-names",
+        transform_date_fields_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/transform-date-fields",
+        transform_genbank_location_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/transform-genbank-location",
+        transform_authors_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/transform-authors",
+        apply_geolocation_rules_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/apply-geolocation-rules",
+        merge_user_metadata_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/merge-user-metadata",
+        ndjson_to_tsv_and_fasta_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/ingest/bin/ndjson-to-tsv-and-fasta",
     shell:
         """
+        # (1) Pick curl or wget based on availability    
+        if which curl > /dev/null; then
+            download_cmd="curl -fsSL --output"
+        elif which wget > /dev/null; then
+            download_cmd="wget -O"
+        else
+            echo "ERROR: Neither curl nor wget found. Please install one of them."
+            exit 1
+        fi
+
+        # (2) Download the required scripts if not already present
+        [[ -d bin ]] || mkdir bin
+        [[ -f bin/transform-field-names ]]      || $download_cmd bin/transform-field-names {params.transform_field_names_url}
+        [[ -f bin/transform-string-fields ]]    || $download_cmd bin/transform-string-fields {params.transform_string_fields_url}
+        [[ -f bin/transform-strain-names ]]     || $download_cmd bin/transform-strain-names {params.transform_strain_names_url}
+        [[ -f bin/transform-date-fields ]]      || $download_cmd bin/transform-date-fields {params.transform_date_fields_url}
+        [[ -f bin/transform-genbank-location ]] || $download_cmd bin/transform-genbank-location {params.transform_genbank_location_url}
+        [[ -f bin/transform-authors ]]          || $download_cmd bin/transform-authors {params.transform_authors_url}
+        [[ -f bin/apply-geolocation-rules ]]    || $download_cmd bin/apply-geolocation-rules {params.apply_geolocation_rules_url}
+        [[ -f bin/merge-user-metadata ]]        || $download_cmd bin/merge-user-metadata {params.merge_user_metadata_url}
+        [[ -f bin/ndjson-to-tsv-and-fasta ]]    || $download_cmd bin/ndjson-to-tsv-and-fasta {params.ndjson_to_tsv_and_fasta_url}
+        chmod +x bin/*
+
+        # (3) Transform the sequences
         (cat {input.sequences_ndjson} \
             | ./bin/transform-field-names \
                 --field-map {params.field_map} \
