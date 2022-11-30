@@ -136,5 +136,5 @@ rule post_process_metadata:
         metadata="data/metadata_{serotype}.tsv",
     shell:
        """
-       ./bin/post_process_metadata.R {input.metadata} {output.metadata}
+       ./bin/post_process_metadata.py --metadata {input.metadata} --outfile {output.metadata}
        """
