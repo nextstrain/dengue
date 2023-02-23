@@ -1,3 +1,5 @@
+configfile: "config/config_dengue.yaml"
+
 serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 
 rule all:
@@ -73,12 +75,25 @@ rule decompress:
         sequences = "data/sequences_{serotype}.fasta.zst",
         metadata = "data/metadata_{serotype}.tsv.zst"
     output:
-        sequences = "results/sequences_{serotype}.fasta",
-        metadata = "results/metadata_{serotype}.tsv"
+        sequences = "data/sequences_{serotype}.fasta",
+        metadata = "data/metadata_{serotype}.tsv"
     shell:
         """
         zstd -d -c {input.sequences} > {output.sequences}
         zstd -d -c {input.metadata} > {output.metadata}
+        """
+
+rule wrangle_metadata:
+    input:
+        metadata="data/metadata_{serotype}.tsv",
+    output:
+        metadata="results/wrangled_metadata_{serotype}.tsv",
+    params:
+        strain_id=config.get("strain_id_field", "strain"), #accession
+    shell:
+        """
+        csvtk -t rename -f strain -n strain_original {input.metadata} \
+          | csvtk -t mutate -f {params.strain_id} -n strain > {output.metadata}
         """
 
 rule filter:
@@ -90,8 +105,8 @@ rule filter:
       - excluding strains with missing region, country or date metadata
     """
     input:
-        sequences = "results/sequences_{serotype}.fasta",
-        metadata = "results/metadata_{serotype}.tsv",
+        sequences = "data/sequences_{serotype}.fasta",
+        metadata = "results/wrangled_metadata_{serotype}.tsv",
         exclude = files.dropped_strains
     output:
         sequences = "results/filtered_{serotype}.fasta"
@@ -130,7 +145,7 @@ rule align:
             --output {output.alignment} \
             --fill-gaps \
             --remove-reference \
-            --nthreads 1
+            --nthreads 8
         """
 
 rule tree:
@@ -158,7 +173,7 @@ rule refine:
     input:
         tree = "results/tree-raw_{serotype}.nwk",
         alignment = "results/aligned_{serotype}.fasta",
-        metadata = "results/metadata_{serotype}.tsv"
+        metadata = "results/wrangled_metadata_{serotype}.tsv"
     output:
         tree = "results/tree_{serotype}.nwk",
         node_data = "results/branch-lengths_{serotype}.json"
@@ -223,7 +238,7 @@ rule traits:
     """
     input:
         tree = "results/tree_{serotype}.nwk",
-        metadata = "results/metadata_{serotype}.tsv"
+        metadata = "results/wrangled_metadata_{serotype}.tsv"
     output:
         node_data = "results/traits_{serotype}.json",
     params:
@@ -262,7 +277,7 @@ rule export:
     """Exporting data files for for auspice"""
     input:
         tree = "results/tree_{serotype}.nwk",
-        metadata = "results/metadata_{serotype}.tsv",
+        metadata = "results/wrangled_metadata_{serotype}.tsv",
         branch_lengths = "results/branch-lengths_{serotype}.json",
         traits = "results/traits_{serotype}.json",
         clades = "results/clades_{serotype}.json",
@@ -270,7 +285,8 @@ rule export:
         aa_muts = "results/aa-muts_{serotype}.json",
         auspice_config = files.auspice_config
     output:
-        auspice_json = "auspice/dengue_{serotype}.json"
+        auspice_json = "results/raw_dengue_{serotype}.json",
+        root_sequence = "results/raw_dengue_{serotype}_root-sequence.json",
     shell:
         """
         augur export v2 \
@@ -280,6 +296,41 @@ rule export:
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
             --output {output.auspice_json}
+        """
+
+rule final_strain_name:
+    input:
+        auspice_json="results/raw_dengue_{serotype}.json",
+        metadata="results/wrangled_metadata_{serotype}.tsv",
+        root_sequence="results/raw_dengue_{serotype}_root-sequence.json",
+    output:
+        auspice_json="auspice/dengue_{serotype}.json",
+        root_sequence="auspice/dengue_{serotype}_root-sequence.json",
+    params:
+        display_strain_field=config.get("display_strain_field", "strain"),
+        set_final_strain_name_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/scripts/set_final_strain_name.py",
+    shell:
+        """
+        # (1) Pick curl or wget based on availability
+        if which curl > /dev/null; then
+            download_cmd="curl -fsSL --output"
+        elif which wget > /dev/null; then
+            download_cmd="wget -O"
+        else
+            echo "ERROR: Neither curl nor wget found. Please install one of them."
+            exit 1
+        fi
+        # (2) Download the required scripts if not already present
+        [[ -d bin ]] || mkdir bin
+        [[ -f bin/set_final_strain_name.py ]] || $download_cmd bin/set_final_strain_name.py {params.set_final_strain_name_url}
+        chmod +x bin/*
+        # (3) Run the script
+        python3 bin/set_final_strain_name.py \
+            --metadata {input.metadata} \
+            --input-auspice-json {input.auspice_json} \
+            --display-strain-name {params.display_strain_field} \
+            --output {output.auspice_json}
+        cp {input.root_sequence} {output.root_sequence}
         """
 
 rule clean:

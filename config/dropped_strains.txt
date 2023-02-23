@@ -26,44 +26,44 @@ DENV2/TRINIDAD_AND_TOBAGO/NA/1953
 DENV4/MALAYSIA/P215/1975
 DENV4/MALAYSIA/P514/1975
 DENV4/MALAYSIA/P731120/1973
-D2Sab2015 # miscategorized
-QML22 # miscategorized
-DAK_Ar_A1247 # sylvatic
-Dak_Ar_2039 # sylvatic
-Dak_Ar_578 # sylvatic
-DAK_Ar_510 # sylvatic
-PM33974 # sylvatic
-Dak_Ar_A2022 # sylvatic
-Dak_Ar_141069 # sylvatic
-Dak_Ar_141070 # sylvatic
-Dak_Ar_D75505 # sylvatic
-Dak_HD_10674 # sylvatic
-Dak_Ar_D20761 # sylvatic
-IBH11664 # sylvatic
-IBH11208 # sylvatic
-IBH11234 # sylvatic
-P8_1407 # sylvatic
-P75_514 # sylvatic
-P73_1120 # sylvatic
-P75_215 # sylvatic
-DKD811 # sylvatic
-ZS01/01 # metadata issue
-Vero # cell line
-MS13002673 # too divergent
-MS11011405 # too divergent
-V43257 # too divergent
-KDC0574A2_06/02/2011 # too divergent
-00178/03 # too divergent
-00759/12 # too divergent
-00988/11 # too divergent
-01113/10 # too divergent
-01224/04 # too divergent
-01231/10 # too divergent
-01488/09 # too divergent
-01542/04 # too divergent
-dev1 # too divergent
-DKE_121 # too divergent
-SENDAK_HD_10674 # sylvatic
-DENV2_1_DAK_HD_76395 # sylvatic
-DENV3/PUERTORICO/1963/PRS_228762_AC27 # too divergent
-PR_6 # too divergent
+KY923048 # D2Sab2015 # miscategorized
+KX274130 # QML22 # miscategorized
+EF105383 # DAK_Ar_A1247 # sylvatic
+EF105382 # Dak_Ar_2039 # sylvatic
+EF105380 # Dak_Ar_578 # sylvatic
+EF105381 # DAK_Ar_510 # sylvatic
+EF105378 # PM33974 # sylvatic
+EF105386 # Dak_Ar_A2022 # sylvatic
+EF105389 # Dak_Ar_141069 # sylvatic
+EF105390 # Dak_Ar_141070 # sylvatic
+EF457904 # Dak_Ar_D75505 # sylvatic
+EF105384 # Dak_HD_10674 # sylvatic
+EF105385 # Dak_Ar_D20761 # sylvatic
+EF105388 # IBH11664 # sylvatic
+EF105387 # IBH11208 # sylvatic
+EU003591 # IBH11234 # sylvatic
+EF105379 # P8_1407 # sylvatic
+JF262779 # P75_514 # sylvatic
+JF262780 # P73_1120 # sylvatic
+EF457906 # P75_215 # sylvatic
+FJ467493 # DKD811 # sylvatic
+EF051521 # ZS01/01 # metadata issue
+MT929160 # Vero # cell line
+MH048676 # MS13002673 # too divergent
+MH048674 # MS11011405 # too divergent
+MT597439 # V43257 # too divergent
+MN448607 # KDC0574A2_06/02/2011 # too divergent
+ON046268 # 00178/03 # too divergent
+ON046278 # 00759/12 # too divergent
+ON046276 # 00988/11 # too divergent
+ON046273 # 01113/10 # too divergent
+ON046270 # 01224/04 # too divergent
+ON046274 # 01231/10 # too divergent
+ON046272 # 01488/09 # too divergent
+ON046271 # 01542/04 # too divergent
+MZ284953 # dev1 # too divergent
+MZ215848 # DKE_121 # too divergent
+MW946564 # SENDAK_HD_10674 # sylvatic
+OK605757 # DENV2_1_DAK_HD_76395 # sylvatic
+MW945427 # DENV3/PUERTORICO/1963/PRS_228762_AC27 # too divergent
+OM258630 # PR_6 # too divergent

@@ -1,0 +1,2 @@
+strain_id_field: "accession"
+display_strain_field: "strain_original"
