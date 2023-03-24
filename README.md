@@ -39,7 +39,7 @@ specifies its file inputs and output and also its parameters. There is little re
 rule should be able to be reasoned with on its own.
 
 
-### GenBank Dataset
+### Using GenBank data
 
 This build starts by pulling preprocessed sequence and metadata files from: 
 
@@ -56,7 +56,7 @@ This build starts by pulling preprocessed sequence and metadata files from:
 
 The above datasets have been preprocessed and cleaned from GenBank and are updated at regular intervals. 
 
-### Example Dataset
+### Using example data
 
 Alternatively, you can run the build using the
 example data provided in this repository.  Before running the build, copy the
