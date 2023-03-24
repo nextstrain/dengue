@@ -25,9 +25,6 @@ command-line tool:
 
     nextstrain build .
 
-<!--Alternatively, you should be able to [run the build using `snakemake` within a
-suitably-configured local environment][nextstrain-snakemake]. --> 
-
 Build output goes into the directories `data/`, `results/` and `auspice/`.
 
 Once you've run the build, you can view the results in auspice:
