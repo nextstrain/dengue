@@ -308,23 +308,8 @@ rule final_strain_name:
         root_sequence="auspice/dengue_{serotype}_root-sequence.json",
     params:
         display_strain_field=config.get("display_strain_field", "strain"),
-        set_final_strain_name_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/scripts/set_final_strain_name.py",
     shell:
         """
-        # (1) Pick curl or wget based on availability
-        if which curl > /dev/null; then
-            download_cmd="curl -fsSL --output"
-        elif which wget > /dev/null; then
-            download_cmd="wget -O"
-        else
-            echo "ERROR: Neither curl nor wget found. Please install one of them."
-            exit 1
-        fi
-        # (2) Download the required scripts if not already present
-        [[ -d bin ]] || mkdir bin
-        [[ -f bin/set_final_strain_name.py ]] || $download_cmd bin/set_final_strain_name.py {params.set_final_strain_name_url}
-        chmod +x bin/*
-        # (3) Run the script
         python3 bin/set_final_strain_name.py \
             --metadata {input.metadata} \
             --input-auspice-json {input.auspice_json} \
