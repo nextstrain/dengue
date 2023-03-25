@@ -5,8 +5,8 @@ This is the [Nextstrain](https://nextstrain.org) build for dengue, visible at
 
 The build encompasses fetching data, preparing it for analysis, doing quality
 control, performing analyses, and saving the results in a format suitable for
-visualization (with [auspice][]).  This involves running components of
-Nextstrain such as [fauna][] and [augur][].
+visualization (with [auspice][]).  These steps involves running 
+[augur][] subcommands.
 
 All dengue-specific steps and functionality for the Nextstrain pipeline should be
 housed in this repository.
@@ -15,18 +15,15 @@ housed in this repository.
 
 ## Usage
 
+See the [Installing Nextstrain guide][] for how to install the `nextstrain` command.
+
 If you're unfamiliar with Nextstrain builds, you may want to follow our
-[quickstart guide][] first and then come back here.
+[Running a Pathogen Workflow guide][] first and then come back here.
 
 The easiest way to run this pathogen build is using the Nextstrain
 command-line tool:
 
     nextstrain build .
-
-See the [nextstrain-cli README][nextstrain-cli] for how to install the `nextstrain` command.
-
-Alternatively, you should be able to [run the build using `snakemake` within a
-suitably-configured local environment][nextstrain-snakemake].
 
 Build output goes into the directories `data/`, `results/` and `auspice/`.
 
@@ -42,12 +39,26 @@ specifies its file inputs and output and also its parameters. There is little re
 rule should be able to be reasoned with on its own.
 
 
-### fauna / RethinkDB credentials
+### Using GenBank data
 
-This build starts by pulling sequences from our live [fauna][] database (a RethinkDB instance). This
-requires environment variables `RETHINK_HOST` and `RETHINK_AUTH_KEY` to be set.
+This build starts by pulling preprocessed sequence and metadata files from: 
 
-If you don't have access to our database, you can run the build using the
+* https://data.nextstrain.org/files/dengue/sequences_all.fasta.zst
+* https://data.nextstrain.org/files/dengue/metadata_all.tsv.zst
+* https://data.nextstrain.org/files/dengue/sequences_denv1.fasta.zst
+* https://data.nextstrain.org/files/dengue/metadata_denv1.tsv.zst
+* https://data.nextstrain.org/files/dengue/sequences_denv2.fasta.zst
+* https://data.nextstrain.org/files/dengue/metadata_denv2.tsv.zst
+* https://data.nextstrain.org/files/dengue/sequences_denv3.fasta.zst
+* https://data.nextstrain.org/files/dengue/metadata_denv3.tsv.zst
+* https://data.nextstrain.org/files/dengue/sequences_denv4.fasta.zst
+* https://data.nextstrain.org/files/dengue/metadata_denv4.tsv.zst
+
+The above datasets have been preprocessed and cleaned from GenBank and are updated at regular intervals. 
+
+### Using example data
+
+Alternatively, you can run the build using the
 example data provided in this repository.  Before running the build, copy the
 example sequences into the `data/` directory like so:
 
@@ -61,10 +72,7 @@ With access to AWS, this can be more quickly run as:
     nextstrain build --aws-batch --aws-batch-cpus 4 --aws-batch-memory 7200 . --jobs 4
 
 [Nextstrain]: https://nextstrain.org
-[fauna]: https://github.com/nextstrain/fauna
-[augur]: https://github.com/nextstrain/augur
-[auspice]: https://github.com/nextstrain/auspice
-[snakemake cli]: https://snakemake.readthedocs.io/en/stable/executable.html#all-options
-[nextstrain-cli]: https://nextstrain.org/docs/getting-started/container-installation
-[nextstrain-snakemake]: https://nextstrain.org/docs/getting-started/local-installation
-[quickstart guide]: https://nextstrain.org/docs/getting-started/quickstart
+[augur]: https://docs.nextstrain.org/projects/augur/en/stable/
+[auspice]: https://docs.nextstrain.org/projects/auspice/en/stable/index.html
+[Installing Nextstrain guide]: https://docs.nextstrain.org/en/latest/install.html
+[Running a Pathogen Workflow guide]: https://docs.nextstrain.org/en/latest/tutorials/running-a-workflow.html
