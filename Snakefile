@@ -89,28 +89,11 @@ rule wrangle_metadata:
     output:
         metadata="results/wrangled_metadata_{serotype}.tsv",
     params:
-        strain_id=config.get("strain_id_field", "strain"),
-        wrangle_metadata_url="https://raw.githubusercontent.com/nextstrain/monkeypox/644d07ebe3fa5ded64d27d0964064fb722797c5d/scripts/wrangle_metadata.py",
+        strain_id=config.get("strain_id_field", "strain"), #accession
     shell:
         """
-        # (1) Pick curl or wget based on availability    
-        if which curl > /dev/null; then
-            download_cmd="curl -fsSL --output"
-        elif which wget > /dev/null; then
-            download_cmd="wget -O"
-        else
-            echo "ERROR: Neither curl nor wget found. Please install one of them."
-            exit 1
-        fi
-        # (2) Download the required scripts if not already present
-        [[ -d bin ]] || mkdir bin
-        [[ -f bin/wrangle_metadata.py ]] || $download_cmd bin/wrangle_metadata.py {params.wrangle_metadata_url}
-        chmod +x bin/*
-        
-        # (3) Run the script
-        python3 ./bin/wrangle_metadata.py --metadata {input.metadata} \
-            --strain-id {params.strain_id} \
-            --output {output.metadata}
+        csvtk -t rename -f strain -n strain_original {input.metadata} \
+          | csvtk -t mutate -f {params.strain_id} -n strain > {output.metadata}
         """
 
 rule filter:
