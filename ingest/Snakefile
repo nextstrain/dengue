@@ -5,7 +5,8 @@ if not config:
 
 send_slack_notifications = config.get("send_slack_notifications", False)
 
-serotypes = ['all']
+serotypes = ["all", "denv1", "denv2", "denv3", "denv4"]
+
 
 def _get_all_targets(wildcards):
     # Default targets are the metadata TSV and sequences FASTA files

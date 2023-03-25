@@ -11,6 +11,10 @@ Fetch sequences with
 
 ```sh
 nextstrain build --cpus 1 . data/sequences_all.ndjson
+nextstrain build --cpus 1 . data/sequences_denv1.ndjson
+nextstrain build --cpus 1 . data/sequences_denv2.ndjson
+nextstrain build --cpus 1 . data/sequences_denv3.ndjson
+nextstrain build --cpus 1 . data/sequences_denv4.ndjson
 ```
 
 Run the complete ingest pipeline with
@@ -19,10 +23,19 @@ Run the complete ingest pipeline with
 nextstrain build --cpus 1 .
 ```
 
-This will produce two files (within the `ingest` directory):
+This will produce ten files (within the `ingest` directory):
 
 - data/metadata_all.tsv
 - data/sequences_all.fasta
+- data/metadata_denv1.tsv
+- data/sequences_denv1.fasta
+- data/metadata_denv2.tsv
+- data/sequences_denv2.fasta
+- data/metadata_denv3.tsv
+- data/sequences_denv3.fasta
+- data/metadata_denv4.tsv
+- data/sequences_denv4.fasta
+
 
 Run the complete ingest pipeline and upload results to AWS S3 with
 
