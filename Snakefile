@@ -137,6 +137,8 @@ rule align:
         reference = files.reference
     output:
         alignment = "results/aligned_{serotype}.fasta"
+    params:
+        threads = 1
     shell:
         """
         augur align \
@@ -145,7 +147,7 @@ rule align:
             --output {output.alignment} \
             --fill-gaps \
             --remove-reference \
-            --nthreads 8
+            --nthreads {params.threads}
         """
 
 rule tree:
