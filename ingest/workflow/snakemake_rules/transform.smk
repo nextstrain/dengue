@@ -139,15 +139,13 @@ rule post_process_metadata:
        ./bin/post_process_metadata.py --metadata {input.metadata} --outfile {output.metadata}
        """
 
+
 rule compress:
     input:
-        sequences="data/sequences_{serotype}.fasta",
-        metadata="data/metadata_{serotype}.tsv",
+        file="{a_file}",
     output:
-        sequences="data/sequences_{serotype}.fasta.zst",
-        metadata="data/metadata_{serotype}.tsv.zst",
+        file_compressed="{a_file}.zst",
     shell:
         """
-        zstd -T0 -o {output.sequences} {input.sequences}
-        zstd -T0 -o {output.metadata} {input.metadata}
+        zstd -T0 -o {output.file_compressed} {input.file}
         """
