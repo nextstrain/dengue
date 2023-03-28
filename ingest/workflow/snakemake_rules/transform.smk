@@ -20,18 +20,7 @@ rule fetch_general_geolocation_rules:
         geolocation_rules_url=config["transform"]["geolocation_rules_url"],
     shell:
         """
-        # (1) Pick curl or wget based on availability    
-        if which curl > /dev/null; then
-            download_cmd="curl -fsSL --output"
-        elif which wget > /dev/null; then
-            download_cmd="wget -O"
-        else
-            echo "ERROR: Neither curl nor wget found. Please install one of them."
-            exit 1
-        fi
-
-        # (2) Fetch general geolocation rules
-        $download_cmd {output.general_geolocation_rules} {params.geolocation_rules_url}
+        curl -fsSL --output {output.general_geolocation_rules} {params.geolocation_rules_url}
         """
 
 
