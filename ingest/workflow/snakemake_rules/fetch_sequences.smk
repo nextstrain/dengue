@@ -13,7 +13,7 @@ Produces final output as
 
 """
 
-def download_serotype(w):
+def download_serotype(wildcards):
     serotype = {
         'all': '12637',
         # 'denv1': '11053',
@@ -21,7 +21,7 @@ def download_serotype(w):
         # 'denv3': '11069',
         # 'denv4': '11070'
     }
-    return serotype[w.serotype]
+    return serotype[wildcards.serotype]
 
 rule fetch_from_genbank:
     output:
