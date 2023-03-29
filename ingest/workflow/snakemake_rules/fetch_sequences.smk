@@ -12,6 +12,7 @@ Produces final output as
     sequences_ndjson = "data/sequences_{serotype}.ndjson"
 
 """
+workflow.global_resources.setdefault("concurrent_deploys", 2)
 
 def download_serotype(wildcards):
     serotype = {
@@ -24,6 +25,8 @@ def download_serotype(wildcards):
     return serotype[wildcards.serotype]
 
 rule fetch_from_genbank:
+    resources:
+        concurrent_deploys=1,
     output:
         genbank_ndjson="data/genbank_{serotype}.ndjson",
     params:
