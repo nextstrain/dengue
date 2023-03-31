@@ -31,9 +31,12 @@ rule fetch_from_genbank:
         genbank_ndjson="data/genbank_{serotype}.ndjson",
     params:
         serotype_tax_id=download_serotype,
+    log:
+        "logs/fetch_from_genbank_{serotype}.txt",
     shell:
         """
-        ./bin/fetch-from-genbank {params.serotype_tax_id} > {output.genbank_ndjson}
+        ./bin/fetch-from-genbank {params.serotype_tax_id} > {output.genbank_ndjson}_temp
+        ( cat {output.genbank_ndjson}_temp | ./bin/transform-citations.py > {output.genbank_ndjson} ) 2>> {log}
         """
 
 
