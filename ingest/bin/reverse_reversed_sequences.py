@@ -2,28 +2,41 @@ import pandas as pd
 import argparse
 from Bio import SeqIO
 
-if __name__=="__main__":
+
+def parse_args():
     parser = argparse.ArgumentParser(
         description="Reverse-complement reverse-complemented sequence",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
-    parser.add_argument('--metadata', type=str, required=True, help="input metadata")
-    parser.add_argument('--sequences', type=str, required=True, help="input sequences")
-    parser.add_argument('--output', type=str, required=True, help="output sequences")
-    args = parser.parse_args()
+    parser.add_argument("--metadata", type=str, required=True, help="input metadata")
+    parser.add_argument("--sequences", type=str, required=True, help="input sequences")
+    parser.add_argument("--output", type=str, required=True, help="output sequences")
 
-    metadata = pd.read_csv(args.metadata, sep='\t')
-    
+    return parser.parse_args()
+
+
+def main():
+    args = parse_args()
+
+    metadata = pd.read_csv(args.metadata, sep="\t")
+
     # Read in fasta file
-    with open(args.sequences, 'r') as f_in:
-        with open(args.output, 'w') as f_out:
-            for seq in SeqIO.parse(f_in, 'fasta'):
+    with open(args.sequences, "r") as f_in:
+        with open(args.output, "w") as f_out:
+            for seq in SeqIO.parse(f_in, "fasta"):
                 # Check if metadata['reverse'] is True
-                if metadata.loc[metadata['accession'] == seq.id, 'reverse'].values[0] == True:
+                if (
+                    metadata.loc[metadata["accession"] == seq.id, "reverse"].values[0]
+                    == True
+                ):
                     # Reverse-complement sequence
                     seq.seq = seq.seq.reverse_complement()
                     print("Reverse-complementing sequence:", seq.id)
-                    
+
                 # Write sequences to file
-                SeqIO.write(seq, f_out, 'fasta')
+                SeqIO.write(seq, f_out, "fasta")
+
+
+if __name__ == "__main__":
+    main()

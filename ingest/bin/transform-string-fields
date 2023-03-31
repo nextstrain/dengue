@@ -10,7 +10,30 @@ from sys import stdin, stdout
 from typing import Optional, Set, Union
 
 
-def titlecase(text: Union[str, None], articles: Set[str] = {}, abbreviations: Set[str] = {}) -> Optional[str]:
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument(
+        "--titlecase-fields", nargs="*", help="List of fields to convert to titlecase."
+    )
+    parser.add_argument(
+        "--articles",
+        nargs="*",
+        help="List of articles that should not be cast to titlecase.",
+    )
+    parser.add_argument(
+        "--abbreviations",
+        nargs="*",
+        help="List of abbreviations that should not be cast to titlecase, keeps uppercase.",
+    )
+
+    return parser.parse_args()
+
+
+def titlecase(
+    text: Union[str, None], articles: Set[str] = {}, abbreviations: Set[str] = {}
+) -> Optional[str]:
     """
     Originally from nextstrain/ncov-ingest
 
@@ -36,7 +59,7 @@ def titlecase(text: Union[str, None], articles: Set[str] = {}, abbreviations: Se
     if not isinstance(text, str):
         return
 
-    words = enumerate(re.split(r'\b', text))
+    words = enumerate(re.split(r"\b", text))
 
     def changecase(index, word):
         casefold = word.casefold()
@@ -49,23 +72,11 @@ def titlecase(text: Union[str, None], articles: Set[str] = {}, abbreviations: Se
         else:
             return word.title()
 
-    return ''.join(changecase(i, w) for i, w in words)
+    return "".join(changecase(i, w) for i, w in words)
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description=__doc__,
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
-    )
-    parser.add_argument("--titlecase-fields", nargs="*",
-        help="List of fields to convert to titlecase.")
-    parser.add_argument("--articles", nargs="*",
-        help="List of articles that should not be cast to titlecase.")
-    parser.add_argument("--abbreviations", nargs="*",
-        help="List of abbreviations that should not be cast to titlecase, keeps uppercase.")
-
-
-    args = parser.parse_args()
+def main():
+    args = parse_args()
 
     if args.articles:
         articles = set(args.articles)
@@ -78,7 +89,13 @@ if __name__ == '__main__':
 
         if args.titlecase_fields:
             for field in args.titlecase_fields:
-                record[field] = titlecase(record.get(field, ""), articles, abbreviations)
+                record[field] = titlecase(
+                    record.get(field, ""), articles, abbreviations
+                )
 
-        json.dump(record, stdout, allow_nan=False, indent=None, separators=',:')
+        json.dump(record, stdout, allow_nan=False, indent=None, separators=",:")
         print()
+
+
+if __name__ == "__main__":
+    main()

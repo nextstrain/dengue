@@ -9,9 +9,15 @@ import csv
 import json
 from sys import stdin, stdout
 
-# 200 MiB; default is 128 KiB
-csv.field_size_limit(200 * 1024 * 1024)
 
-for row in csv.DictReader(stdin):
-    json.dump(row, stdout, allow_nan = False, indent = None, separators = ',:')
-    print()
+def main():
+    # Increase the maximum field size limit to 200 MiB; default is 128 KiB
+    csv.field_size_limit(200 * 1024 * 1024)
+
+    for row in csv.DictReader(stdin):
+        json.dump(row, stdout, allow_nan=False, indent=None, separators=",:")
+        print()
+
+
+if __name__ == "__main__":
+    main()

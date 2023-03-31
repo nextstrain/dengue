@@ -14,30 +14,33 @@ def parse_location(record: dict) -> dict:
     # Expected pattern for the location field is "<country_value>[:<region>][, <locality>]"
     # See GenBank docs for their "country" field:
     # https://www.ncbi.nlm.nih.gov/genbank/collab/country/
-    geographic_data = record['location'].split(':')
+    geographic_data = record["location"].split(":")
 
     country = geographic_data[0]
-    division = ''
-    location = ''
+    division = ""
+    location = ""
 
     if len(geographic_data) == 2:
-        division , _ , location = geographic_data[1].partition(',')
+        division, _, location = geographic_data[1].partition(",")
 
-    record['country'] = country.strip()
-    record['division'] = division.strip()
-    record['location'] = location.strip()
+    record["country"] = country.strip()
+    record["division"] = division.strip()
+    record["location"] = location.strip()
 
     return record
 
 
-if __name__ == '__main__':
-
+def main():
     for record in stdin:
         record = json.loads(record)
 
-        database = record.get('database', '')
-        if database in {'GenBank', 'RefSeq'}:
+        database = record.get("database", "")
+        if database in {"GenBank", "RefSeq"}:
             parse_location(record)
 
-        json.dump(record, stdout, allow_nan=False, indent=None, separators=',:')
+        json.dump(record, stdout, allow_nan=False, indent=None, separators=",:")
         print()
+
+
+if __name__ == "__main__":
+    main()

@@ -96,13 +96,14 @@ rule transform:
                 --sequence-field {params.sequence_field} ) 2>> {log}
         """
 
+
 rule post_process_metadata:
     input:
         metadata="data/raw_metadata_{serotype}.tsv",
     output:
         metadata="data/metadata_{serotype}.tsv",
     shell:
-       """
+        """
        ./bin/post_process_metadata.py --metadata {input.metadata} --outfile {output.metadata}
        """
 

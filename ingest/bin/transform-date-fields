@@ -9,6 +9,25 @@ from datetime import datetime
 from sys import stderr, stdin, stdout
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument(
+        "--date-fields",
+        nargs="+",
+        help="List of date field names in the NDJSON record that need to be standardized.",
+    )
+    parser.add_argument(
+        "--expected-date-formats",
+        nargs="+",
+        help="Expected date formats that are currently in the provided date fields."
+        + "If a date string matches multiple formats, it will be parsed as the first format in the list.",
+    )
+
+    return parser.parse_args()
+
+
 def format_date(date_string: str, expected_formats: list) -> str:
     """
     Originally from nextstrain/ncov-ingest
@@ -47,16 +66,28 @@ def format_date(date_string: str, expected_formats: list) -> str:
     #
     # Allows us to check if year/month/day are included in the date format so we
     # know when to mask incomplete dates with 'XX'
-    all_field_directives = {'%c', '%x',
-        ('%G', '%V', '%A'), ('%G', '%V', '%a'), ('%G', '%V', '%w'), ('%G', '%V', '%u')
+    all_field_directives = {
+        "%c",
+        "%x",
+        ("%G", "%V", "%A"),
+        ("%G", "%V", "%a"),
+        ("%G", "%V", "%w"),
+        ("%G", "%V", "%u"),
     }
-    month_and_day_directives = {'%j',
-        ('%U', '%A'), ('%U', '%a'), ('%U', '%w'), ('%U', '%u'),
-        ('%W', '%A'), ('%W', '%a'), ('%W', '%w'), ('%W', '%u')
+    month_and_day_directives = {
+        "%j",
+        ("%U", "%A"),
+        ("%U", "%a"),
+        ("%U", "%w"),
+        ("%U", "%u"),
+        ("%W", "%A"),
+        ("%W", "%a"),
+        ("%W", "%w"),
+        ("%W", "%u"),
     }
-    year_directives = {'%y', '%Y'}
-    month_directives = {'%b', '%B', '%m'}
-    day_directives = {'%d'}
+    year_directives = {"%y", "%Y"}
+    month_directives = {"%b", "%B", "%m"}
+    day_directives = {"%d"}
 
     def directive_is_included(potential_directives: set, date_format: str) -> bool:
         """
@@ -68,8 +99,11 @@ def format_date(date_string: str, expected_formats: list) -> str:
         """
         return any(
             (
-                (isinstance(directive, str) and directive in date_format) or
-                (isinstance(directive, tuple) and all(sub_directive in date_format for sub_directive in directive))
+                (isinstance(directive, str) and directive in date_format)
+                or (
+                    isinstance(directive, tuple)
+                    and all(sub_directive in date_format for sub_directive in directive)
+                )
             )
             for directive in potential_directives
         )
@@ -81,8 +115,8 @@ def format_date(date_string: str, expected_formats: list) -> str:
             continue
 
         # Default to date masked as 'XXXX-XX-XX' so we don't return incorrect dates
-        year_string = 'XXXX'
-        month_string = day_string = 'XX'
+        year_string = "XXXX"
+        month_string = day_string = "XX"
 
         parsed_year_string = str(parsed_date.year)
         parsed_month_string = str(parsed_date.month).zfill(2)
@@ -90,29 +124,29 @@ def format_date(date_string: str, expected_formats: list) -> str:
 
         # If a directive for ALL fields is included in date format,
         # then use all of the parsed field strings
-        if (directive_is_included(all_field_directives, date_format)):
+        if directive_is_included(all_field_directives, date_format):
             year_string = parsed_year_string
             month_string = parsed_month_string
             day_string = parsed_day_string
 
         # If not all fields directives are included, then check year
         # directive was included in date format
-        elif(directive_is_included(year_directives, date_format)):
+        elif directive_is_included(year_directives, date_format):
             year_string = parsed_year_string
 
             # Only check for month and day directives if year is included
             # Check if directive for BOTH month and year is included in date format
-            if (directive_is_included(month_and_day_directives, date_format)):
+            if directive_is_included(month_and_day_directives, date_format):
                 month_string = parsed_month_string
                 day_string = parsed_day_string
 
             # If not directives for BOTH month and day are included, then check
             # month directive was included in date format
-            elif(directive_is_included(month_directives, date_format)):
+            elif directive_is_included(month_directives, date_format):
                 month_string = parsed_month_string
 
                 # Only check for day directives if month is included
-                if(directive_is_included(day_directives, date_format)):
+                if directive_is_included(day_directives, date_format):
                     day_string = parsed_day_string
 
         return f"{year_string}-{month_string}-{day_string}"
@@ -121,24 +155,14 @@ def format_date(date_string: str, expected_formats: list) -> str:
         print(
             f"WARNING: Unable to transform date string {date_string!r} because it does not match",
             f"any of the expected formats {expected_formats}.",
-            file=stderr
+            file=stderr,
         )
 
     return date_string
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description=__doc__,
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
-    )
-    parser.add_argument("--date-fields", nargs="+",
-        help="List of date field names in the NDJSON record that need to be standardized.")
-    parser.add_argument("--expected-date-formats", nargs="+",
-        help="Expected date formats that are currently in the provided date fields." +
-             "If a date string matches multiple formats, it will be parsed as the first format in the list.")
-
-    args = parser.parse_args()
+def main():
+    args = parse_args()
 
     expected_formats = args.expected_date_formats
 
@@ -150,5 +174,9 @@ if __name__ == '__main__':
             if date_string:
                 record[field] = format_date(date_string, expected_formats)
 
-        json.dump(record, stdout, allow_nan=False, indent=None, separators=',:')
+        json.dump(record, stdout, allow_nan=False, indent=None, separators=",:")
         print()
+
+
+if __name__ == "__main__":
+    main()
