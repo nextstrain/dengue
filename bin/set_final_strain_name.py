@@ -1,5 +1,29 @@
-import pandas as pd
+#! /usr/bin/env python
+
 import json, argparse
+import augur
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Swaps out the strain names in the Auspice JSON with the final strain name",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+    parser.add_argument(
+        "--input-auspice-json", type=str, required=True, help="input auspice_json"
+    )
+    parser.add_argument("--metadata", type=str, required=True, help="input data")
+    parser.add_argument(
+        "--display-strain-name",
+        type=str,
+        required=True,
+        help="field to use as strain name in auspice",
+    )
+    parser.add_argument(
+        "--output", type=str, metavar="JSON", required=True, help="output Auspice JSON"
+    )
+    return parser.parse_args()
+
 
 def replace_name_recursive(node, lookup):
     if node["name"] in lookup:
@@ -9,28 +33,29 @@ def replace_name_recursive(node, lookup):
         for child in node["children"]:
             replace_name_recursive(child, lookup)
 
-if __name__=="__main__":
-    parser = argparse.ArgumentParser(
-        description="Swaps out the strain names in the Auspice JSON with the final strain name",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
-    )
 
-    parser.add_argument('--input-auspice-json', type=str, required=True, help="input auspice_json")
-    parser.add_argument('--metadata', type=str, required=True, help="input data")
-    parser.add_argument('--display-strain-name', type=str, required=True, help="field to use as strain name in auspice")
-    parser.add_argument('--output', type=str, metavar="JSON", required=True, help="output Auspice JSON")
-    args = parser.parse_args()
-
-    metadata = pd.read_csv(args.metadata, sep='\t')
-    name_lookup = {}
-    for ri, row in metadata.iterrows():
-        strain_id = row['strain']
-        name_lookup[strain_id] = args.display_strain_name if pd.isna(row[args.display_strain_name]) else row[args.display_strain_name]
-
-    with open(args.input_auspice_json, 'r') as fh:
+def set_final_strain_name(auspice_json, metadata_file, display_strain_name, output):
+    with open(auspice_json, "r") as fh:
         data = json.load(fh)
 
-    replace_name_recursive(data['tree'], name_lookup)
+    metadata = augur.io.read_metadata(metadata_file)
+    if display_strain_name not in metadata.columns:
+        with open(output, "w") as fh:
+            json.dump(data, fh, allow_nan=False, indent=None, separators=",:")
+        return
 
-    with open(args.output, 'w') as fh:
-        json.dump(data, fh)
+    name_lookup = metadata[[display_strain_name]].to_dict()[display_strain_name]
+    replace_name_recursive(data["tree"], name_lookup)
+    with open(output, "w") as fh:
+        json.dump(data, fh, allow_nan=False, indent=None, separators=",:")
+
+
+def main():
+    args = parse_args()
+    set_final_strain_name(
+        args.input_auspice_json, args.metadata, args.display_strain_name, args.output
+    )
+
+
+if __name__ == "__main__":
+    main()
