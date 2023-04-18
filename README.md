@@ -54,7 +54,14 @@ This build starts by pulling preprocessed sequence and metadata files from:
 * https://data.nextstrain.org/files/dengue/sequences_denv4.fasta.zst
 * https://data.nextstrain.org/files/dengue/metadata_denv4.tsv.zst
 
-The above datasets have been preprocessed and cleaned from GenBank and are updated at regular intervals. 
+The above datasets have been preprocessed and cleaned from GenBank and are updated at regular intervals from the ingest folder.
+
+```
+nextstrain build ingest
+
+# Upload final dataset and trigger slack notifications
+nextstrain build ingest  --configfiles config/config.yaml config/optional.yaml
+```
 
 ### Using example data
 
