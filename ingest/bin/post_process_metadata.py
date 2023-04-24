@@ -25,12 +25,8 @@ def parse_args():
 
 
 def _set_strain_name(record):
-    """Check strain and strain_s to find the strain name"""
-    # For context, before this script is run, strain was set to accession if strain was missing
-    if record["strain"] == record["accession"] and pd.notna(record["strain_s"]):
-        strain_name = record["strain_s"]
-    else:
-        strain_name = record["strain"]
+    """Replace spaces, dashes, and periods with underscores in strain name."""
+    strain_name = record["strain"]
 
     return (
         strain_name.replace(" ", "_")

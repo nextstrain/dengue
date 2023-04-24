@@ -11,7 +11,7 @@ transform:
   # Currently accepts any characters because we do not have a clear standard for strain names
   strain_regex: '^.+$'
   # Back up strain name field if 'strain' doesn't match regex above
-  strain_backup_fields: ['accession']
+  strain_backup_fields: ['strain_s', 'accession']
   # List of date fields to standardize
   date_fields: ['date', 'date_submitted', 'updated']
   # Expected date formats present in date fields
