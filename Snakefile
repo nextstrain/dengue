@@ -53,7 +53,7 @@ def clade_defs(w):
     return defs[w.serotype]
 
 rule download:
-    message: "Downloading sequences and metadata from data.nextstrain.org"
+    """Downloading sequences and metadata from data.nextstrain.org"""
     output:
         sequences = "data/sequences_{serotype}.fasta.zst",
         metadata = "data/metadata_{serotype}.tsv.zst"
@@ -68,7 +68,7 @@ rule download:
         """
 
 rule decompress:
-    message: "Parsing fasta into sequences and metadata"
+    """Parsing fasta into sequences and metadata"""
     input:
         sequences = "data/sequences_{serotype}.fasta.zst",
         metadata = "data/metadata_{serotype}.tsv.zst"
@@ -82,14 +82,13 @@ rule decompress:
         """
 
 rule filter:
-    message:
-        """
-        Filtering to
-          - {params.sequences_per_group} sequence(s) per {params.group_by!s}
-          - excluding strains in {input.exclude}
-          - minimum genome length of {params.min_length}
-          - excluding strains with missing region, country or date metadata
-        """
+    """
+    Filtering to
+      - {params.sequences_per_group} sequence(s) per {params.group_by!s}
+      - excluding strains in {input.exclude}
+      - minimum genome length of {params.min_length}
+      - excluding strains with missing region, country or date metadata
+    """
     input:
         sequences = "results/sequences_{serotype}.fasta",
         metadata = "results/metadata_{serotype}.tsv",
@@ -114,11 +113,10 @@ rule filter:
         """
 
 rule align:
-    message:
-        """
-        Aligning sequences to {input.reference}
-          - filling gaps with N
-        """
+    """
+    Aligning sequences to {input.reference}
+      - filling gaps with N
+    """
     input:
         sequences = "results/filtered_{serotype}.fasta",
         reference = files.reference
@@ -136,7 +134,7 @@ rule align:
         """
 
 rule tree:
-    message: "Building tree"
+    """Building tree"""
     input:
         alignment = "results/aligned_{serotype}.fasta"
     output:
@@ -150,14 +148,13 @@ rule tree:
         """
 
 rule refine:
-    message:
-        """
-        Refining tree
-          - estimate timetree
-          - use {params.coalescent} coalescent timescale
-          - estimate {params.date_inference} node dates
-          - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
-        """
+    """
+    Refining tree
+      - estimate timetree
+      - use {params.coalescent} coalescent timescale
+      - estimate {params.date_inference} node dates
+      - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
+    """
     input:
         tree = "results/tree-raw_{serotype}.nwk",
         alignment = "results/aligned_{serotype}.fasta",
@@ -185,7 +182,7 @@ rule refine:
         """
 
 rule ancestral:
-    message: "Reconstructing ancestral sequences and mutations"
+    """Reconstructing ancestral sequences and mutations"""
     input:
         tree = "results/tree_{serotype}.nwk",
         alignment = "results/aligned_{serotype}.fasta"
@@ -203,7 +200,7 @@ rule ancestral:
         """
 
 rule translate:
-    message: "Translating amino acid sequences"
+    """Translating amino acid sequences"""
     input:
         tree = "results/tree_{serotype}.nwk",
         node_data = "results/nt-muts_{serotype}.json",
@@ -220,11 +217,10 @@ rule translate:
         """
 
 rule traits:
-    message:
-        """
-        Inferring ancestral traits for {params.columns!s}
-          - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
-        """
+    """
+    Inferring ancestral traits for {params.columns!s}
+      - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
+    """
     input:
         tree = "results/tree_{serotype}.nwk",
         metadata = "results/metadata_{serotype}.tsv"
@@ -245,7 +241,7 @@ rule traits:
         """
 
 rule clades:
-    message: "Annotating serotypes / genotypes"
+    """Annotating serotypes / genotypes"""
     input:
         tree = "results/tree_{serotype}.nwk",
         nt_muts = "results/nt-muts_{serotype}.json",
@@ -263,7 +259,7 @@ rule clades:
         """
 
 rule export:
-    message: "Exporting data files for for auspice"
+    """Exporting data files for for auspice"""
     input:
         tree = "results/tree_{serotype}.nwk",
         metadata = "results/metadata_{serotype}.tsv",
@@ -287,7 +283,7 @@ rule export:
         """
 
 rule clean:
-    message: "Removing directories: {params}"
+    """Removing directories: {params}"""
     params:
         "results ",
         "auspice"
