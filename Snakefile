@@ -70,8 +70,8 @@ rule download:
 rule decompress:
     message: "Parsing fasta into sequences and metadata"
     input:
-        sequences = rules.download.output.sequences,
-        metadata = rules.download.output.metadata
+        sequences = "data/sequences_{serotype}.fasta.zst",
+        metadata = "data/metadata_{serotype}.tsv.zst"
     output:
         sequences = "results/sequences_{serotype}.fasta",
         metadata = "results/metadata_{serotype}.tsv"
@@ -91,8 +91,8 @@ rule filter:
           - excluding strains with missing region, country or date metadata
         """
     input:
-        sequences = rules.decompress.output.sequences,
-        metadata = rules.decompress.output.metadata,
+        sequences = "results/sequences_{serotype}.fasta",
+        metadata = "results/metadata_{serotype}.tsv",
         exclude = files.dropped_strains
     output:
         sequences = "results/filtered_{serotype}.fasta"
@@ -120,7 +120,7 @@ rule align:
           - filling gaps with N
         """
     input:
-        sequences = rules.filter.output.sequences,
+        sequences = "results/filtered_{serotype}.fasta",
         reference = files.reference
     output:
         alignment = "results/aligned_{serotype}.fasta"
@@ -138,7 +138,7 @@ rule align:
 rule tree:
     message: "Building tree"
     input:
-        alignment = rules.align.output.alignment
+        alignment = "results/aligned_{serotype}.fasta"
     output:
         tree = "results/tree-raw_{serotype}.nwk"
     shell:
@@ -159,9 +159,9 @@ rule refine:
           - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
         """
     input:
-        tree = rules.tree.output.tree,
-        alignment = rules.align.output,
-        metadata = rules.decompress.output.metadata
+        tree = "results/tree-raw_{serotype}.nwk",
+        alignment = "results/aligned_{serotype}.fasta",
+        metadata = "results/metadata_{serotype}.tsv"
     output:
         tree = "results/tree_{serotype}.nwk",
         node_data = "results/branch-lengths_{serotype}.json"
@@ -187,8 +187,8 @@ rule refine:
 rule ancestral:
     message: "Reconstructing ancestral sequences and mutations"
     input:
-        tree = rules.refine.output.tree,
-        alignment = rules.align.output
+        tree = "results/tree_{serotype}.nwk",
+        alignment = "results/aligned_{serotype}.fasta"
     output:
         node_data = "results/nt-muts_{serotype}.json"
     params:
@@ -205,8 +205,8 @@ rule ancestral:
 rule translate:
     message: "Translating amino acid sequences"
     input:
-        tree = rules.refine.output.tree,
-        node_data = rules.ancestral.output.node_data,
+        tree = "results/tree_{serotype}.nwk",
+        node_data = "results/nt-muts_{serotype}.json",
         reference = files.reference
     output:
         node_data = "results/aa-muts_{serotype}.json"
@@ -226,8 +226,8 @@ rule traits:
           - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
         """
     input:
-        tree = rules.refine.output.tree,
-        metadata = rules.decompress.output.metadata
+        tree = "results/tree_{serotype}.nwk",
+        metadata = "results/metadata_{serotype}.tsv"
     output:
         node_data = "results/traits_{serotype}.json",
     params:
@@ -247,9 +247,9 @@ rule traits:
 rule clades:
     message: "Annotating serotypes / genotypes"
     input:
-        tree = rules.refine.output.tree,
-        nt_muts = rules.ancestral.output,
-        aa_muts = rules.translate.output,
+        tree = "results/tree_{serotype}.nwk",
+        nt_muts = "results/nt-muts_{serotype}.json",
+        aa_muts = "results/aa-muts_{serotype}.json",
         clade_defs = clade_defs,
     output:
         clades = "results/clades_{serotype}.json"
@@ -265,13 +265,13 @@ rule clades:
 rule export:
     message: "Exporting data files for for auspice"
     input:
-        tree = rules.refine.output.tree,
-        metadata = rules.decompress.output.metadata,
-        branch_lengths = rules.refine.output.node_data,
-        traits = rules.traits.output.node_data,
-        clades = rules.clades.output.clades,
-        nt_muts = rules.ancestral.output.node_data,
-        aa_muts = rules.translate.output.node_data,
+        tree = "results/tree_{serotype}.nwk",
+        metadata = "results/metadata_{serotype}.tsv",
+        branch_lengths = "results/branch-lengths_{serotype}.json",
+        traits = "results/traits_{serotype}.json",
+        clades = "results/clades_{serotype}.json",
+        nt_muts = "results/nt-muts_{serotype}.json",
+        aa_muts = "results/aa-muts_{serotype}.json",
         auspice_config = files.auspice_config
     output:
         auspice_json = "auspice/dengue_{serotype}.json"
