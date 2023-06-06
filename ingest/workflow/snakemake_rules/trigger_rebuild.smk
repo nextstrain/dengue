@@ -12,7 +12,7 @@ rule trigger_build:
         metadata_upload = "data/upload/s3/metadata_{serotype}.tsv-to-metadata_{serotype}.tsv.gz.done",
         fasta_upload = "data/upload/s3/sequences_{serotype}.fasta-to-sequences_{serotype}.fasta.xz.done"
     output:
-        touch("data/trigger/rebuild.done")
+        touch("data/trigger/rebuild_{serotype}.done")
     shell:
         """
         ./bin/trigger-on-new-data {input.metadata_upload} {input.fasta_upload}

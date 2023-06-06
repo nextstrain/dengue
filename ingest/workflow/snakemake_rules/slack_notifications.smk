@@ -25,7 +25,7 @@ rule notify_on_genbank_record_change:
     input:
         genbank_ndjson="data/genbank_{serotype}.ndjson",
     output:
-        touch("data/notify/genbank-record-change.done"),
+        touch("data/notify/genbank_{serotype}-record-change.done"),
     params:
         s3_src=S3_SRC,
         genbank_filename="genbank_{serotype}.ndjson.xz",
