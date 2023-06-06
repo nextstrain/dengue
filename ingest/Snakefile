@@ -50,14 +50,21 @@ def _get_all_targets(wildcards):
     # Add additional targets for Nextstrain's internal Slack notifications
     if send_slack_notifications:
         all_targets.extend(
-            [
-                "data/notify/genbank-record-change.done",
-                "data/notify/metadata-diff.done",
-            ]
+            expand(
+                [
+                    "data/notify/genbank_{serotype}-record-change.done",
+                    "data/notify/metadata_{serotype}-diff.done",
+                ],
+                serotype=serotypes,
+            )
         )
 
     if config.get("trigger_rebuild"):
-        all_targets.append("data/trigger/rebuild.done")
+        all_targets.extend(
+            expand(
+                "data/trigger/rebuild_{serotype}.done", serotype=serotypes
+            )
+        )
 
     return all_targets
 
