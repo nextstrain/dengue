@@ -10,15 +10,15 @@ set -euo pipefail
 bin="$(dirname "$0")"
 
 echo "Notifying Slack about started ingest job."
-message="🐵 Monkeypox ingest job has started."
+message="🦟 Dengue ingest job has started."
 
 if [[ -n "${GITHUB_RUN_ID}" ]]; then
-  message+=" The job was submitted by GitHub Action <https://github.com/nextstrain/monkeypox/actions/runs/${GITHUB_RUN_ID}?check_suite_focus=true|${GITHUB_RUN_ID}>."
+  message+=" The job was submitted by GitHub Action <https://github.com/nextstrain/dengue/actions/runs/${GITHUB_RUN_ID}?check_suite_focus=true|${GITHUB_RUN_ID}>."
 fi
 
 if [[ -n "${AWS_BATCH_JOB_ID}" ]]; then
   message+=" The job was launched as AWS Batch job \`${AWS_BATCH_JOB_ID}\` (<https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/${AWS_BATCH_JOB_ID}|link>)."
-  message+=" Follow along in your local \`monkeypox\` repo with: "'```'"nextstrain build --aws-batch --no-download --attach ${AWS_BATCH_JOB_ID} ingest/"'```'
+  message+=" Follow along in your local \`dengue\` repo with: "'```'"nextstrain build --aws-batch --no-download --attach ${AWS_BATCH_JOB_ID} ingest/"'```'
 fi
 
 "$bin"/notify-slack "$message"
