@@ -61,8 +61,6 @@ transform:
     'location',
     'host',
     'date_submitted',
-    'sra_accession',
-    'reverse',
     'authors',
     'institution',
     'title',
