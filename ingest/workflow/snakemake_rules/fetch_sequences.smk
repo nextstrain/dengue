@@ -28,7 +28,7 @@ rule fetch_from_genbank:
     resources:
         concurrent_fetches=1,
     output:
-        genbank_ndjson="data/genbank_{serotype}.ndjson",
+        genbank_ndjson=temp("data/genbank_{serotype}.ndjson"),
     params:
         serotype_tax_id=download_serotype,
     shell:
@@ -45,7 +45,7 @@ rule fetch_all_sequences:
     input:
         all_sources=_get_all_sources,
     output:
-        sequences_ndjson="data/sequences_{serotype}.ndjson",
+        sequences_ndjson=temp("data/sequences_{serotype}.ndjson"),
     shell:
         """
         cat {input.all_sources} > {output.sequences_ndjson}
