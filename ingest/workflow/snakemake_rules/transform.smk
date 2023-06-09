@@ -15,7 +15,7 @@ Parameters are expected to be defined in `config.transform`.
 
 rule fetch_general_geolocation_rules:
     output:
-        general_geolocation_rules="data/general-geolocation-rules.tsv",
+        general_geolocation_rules=temp("data/general-geolocation-rules.tsv"),
     params:
         geolocation_rules_url=config["transform"]["geolocation_rules_url"],
     shell:
@@ -29,7 +29,7 @@ rule concat_geolocation_rules:
         general_geolocation_rules="data/general-geolocation-rules.tsv",
         local_geolocation_rules=config["transform"]["local_geolocation_rules"],
     output:
-        all_geolocation_rules="data/all-geolocation-rules.tsv",
+        all_geolocation_rules=temp("data/all-geolocation-rules.tsv"),
     shell:
         """
         cat {input.general_geolocation_rules} {input.local_geolocation_rules} >> {output.all_geolocation_rules}
