@@ -1,26 +1,13 @@
 #! /usr/bin/env python3
 
 import argparse
-import os
-import sys
-
-import numpy as np
-import pandas as pd
-
+import json
+from sys import stdin, stdout
 
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Reformat a NCBI Virus metadata.tsv file for a pathogen build."
     )
-    parser.add_argument(
-        "--metadata", help="NCBI Virus metadata.tsv file.", required=True
-    )
-    parser.add_argument(
-        "--outfile",
-        help="Output file name, e.g. processed_metadata.tsv.",
-        required=True,
-    )
-
     return parser.parse_args()
 
 
@@ -44,7 +31,7 @@ def _set_url(record):
 
 def _set_paper_url(record):
     """Set paper_url from a comma separate list of PubMed IDs in publication. Only use the first ID."""
-    if pd.isna(record["publications"]):
+    if (not record["publications"]):
         return ""
 
     return (
@@ -73,32 +60,15 @@ def _set_dengue_serotype(record):
 
 def main():
     args = parse_args()
-    df = pd.read_csv(args.metadata, sep="\t", header=0)
 
-    df["strain"] = df.apply(_set_strain_name, axis=1)
-    df["url"] = df.apply(_set_url, axis=1)
-    df["paper_url"] = df.apply(_set_paper_url, axis=1)
-    df["serotype"] = df.apply(_set_dengue_serotype, axis=1)
-    df["authors"] = df["abbr_authors"]
-    df["city"] = df["location"]
-
-    METADATA_COLUMNS = [
-        "strain",
-        "accession",
-        "genbank_accession_rev",
-        "serotype",
-        "date",
-        "updated",
-        "region",
-        "country",
-        "division",
-        "city",
-        "authors",
-        "url",
-        "title",
-        "paper_url",
-    ]
-    df.to_csv(args.outfile, sep="\t", index=False, columns=METADATA_COLUMNS)
+    for index, record in enumerate(stdin):
+        record = json.loads(record)
+        record["strain"] = _set_strain_name(record)
+        record["url"] = _set_url(record)
+        record["paper_url"] = _set_paper_url(record)
+        record["serotype"] = _set_dengue_serotype(record)
+        record["authors"] = record["abbr_authors"]
+        stdout.write(json.dumps(record) + "\n")
 
 
 if __name__ == "__main__":
