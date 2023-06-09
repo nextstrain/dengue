@@ -1,2 +1,3 @@
 strain_id_field: "accession"
 display_strain_field: "strain_original"
+s3_src: 'https://data.nextstrain.org/files/dengue'
