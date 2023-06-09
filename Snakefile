@@ -1,10 +1,25 @@
+from snakemake.utils import min_version
+min_version("6.0")
+
 configfile: "config/config_dengue.yaml"
+configfile: "ingest/config/config.yaml"
+
+# WIP: BIG COMMENTS HERE, write documentation on the reasons this workaround is necessary. TK
+my_basedir="ingest"
 
 serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 
 rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}.json", serotype=serotypes)
+
+module ingest_workflow:
+    snakefile:
+        "ingest/Snakefile"
+    config: config
+    prefix: "ingest"
+
+use rule * from ingest_workflow as ingest_*
 
 rule files:
     params:
@@ -54,20 +69,37 @@ def clade_defs(w):
     }
     return defs[w.serotype]
 
-rule download:
-    """Downloading sequences and metadata from data.nextstrain.org"""
-    output:
-        sequences = "data/sequences_{serotype}.fasta.zst",
-        metadata = "data/metadata_{serotype}.tsv.zst"
 
-    params:
-        sequences_url = f"{config.get('s3_src')}/sequences_{{serotype}}.fasta.zst",
-        metadata_url = f"{config.get('s3_src')}/metadata_{{serotype}}.tsv.zst"
+rule mv_ingest_data:
+    input:
+        sequences="ingest/data/sequences_{serotype}.fasta.zst",
+        metadata="ingest/data/metadata_{serotype}.tsv.zst",
+    output:
+        sequences="data/sequences_{serotype}.fasta.zst",
+        metadata="data/metadata_{serotype}.tsv.zst",
     shell:
         """
-        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
-        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
+        mv {input.sequences} {output.sequences}
+        mv {input.metadata} {output.metadata}
         """
+
+if config.get("s3_src"):
+    ruleorder: download > mv_ingest_data
+
+    rule download:
+        """Downloading sequences and metadata from data.nextstrain.org"""
+        output:
+            sequences = "data/sequences_{serotype}.fasta.zst",
+            metadata = "data/metadata_{serotype}.tsv.zst"
+
+        params:
+            sequences_url = f"{config.get('s3_src')}/sequences_{{serotype}}.fasta.zst",
+            metadata_url = f"{config.get('s3_src')}/metadata_{{serotype}}.tsv.zst"
+        shell:
+            """
+            curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
+            curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
+            """
 
 rule decompress:
     """Parsing fasta into sequences and metadata"""
