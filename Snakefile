@@ -1,8 +1,12 @@
 from snakemake.utils import min_version
 min_version("6.0")
 
-configfile: "config/config_dengue.yaml"
-configfile: "ingest/config/config.yaml"
+# Use default pathogen build config if no configs are provided
+if not config:
+    configfile: "config/config_dengue.yaml"
+# Use default ingest config if no `transform` config is provided
+if not config.get("transform"):
+    configfile: "ingest/config/config.yaml"
 
 # WIP: BIG COMMENTS HERE, write documentation on the reasons this workaround is necessary. TK
 my_basedir="ingest"
