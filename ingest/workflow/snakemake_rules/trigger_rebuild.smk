@@ -15,5 +15,5 @@ rule trigger_build:
         touch("data/trigger/rebuild_{serotype}.done")
     shell:
         """
-        {my_basedir}/bin/trigger-on-new-data {input.metadata_upload} {input.fasta_upload}
+        {config[ingest_basedir]}/bin/trigger-on-new-data {input.metadata_upload} {input.fasta_upload}
         """

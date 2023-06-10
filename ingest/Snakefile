@@ -2,7 +2,10 @@ if not config:
 
     configfile: "config/config.yaml"
 
-my_basedir = workflow.current_basedir
+
+if not config.get("ingest_basedir"):
+
+    config["ingest_basedir"] = workflow.current_basedir
 
 send_slack_notifications = config.get("send_slack_notifications", False)
 

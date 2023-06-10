@@ -8,8 +8,12 @@ if not config:
 if not config.get("transform"):
     configfile: "ingest/config/config.yaml"
 
-# WIP: BIG COMMENTS HERE, write documentation on the reasons this workaround is necessary. TK
-my_basedir="ingest"
+# Add the hard-coded ingest basedir to the workflow config so that we can
+# pass it to the module ingest workflow. This will allow shell scripts to
+# use the proper paths for local script invocation since we cannot set the
+# workdir separately for module workflows.
+# This work around is based on https://stackoverflow.com/a/66890412
+config["ingest_basedir"] = f"{workflow.current_basedir}/ingest"
 
 serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 

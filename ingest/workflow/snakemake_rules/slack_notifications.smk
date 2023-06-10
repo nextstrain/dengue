@@ -31,7 +31,7 @@ rule notify_on_genbank_record_change:
         genbank_filename="genbank_{serotype}.ndjson.xz",
     shell:
         """
-        {my_basedir}/bin/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/{params.genbank_filename:q} Genbank
+        {config[ingest_basedir]}/bin/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/{params.genbank_filename:q} Genbank
         """
 
 
@@ -45,13 +45,13 @@ rule notify_on_metadata_diff:
         metadata_filename="metadata_{serotype}.tsv.gz",
     shell:
         """
-        {my_basedir}/bin/notify-on-diff {input.metadata} {params.s3_src:q}/{params.metadata_filename:q}
+        {config[ingest_basedir]}/bin/notify-on-diff {input.metadata} {params.s3_src:q}/{params.metadata_filename:q}
         """
 
 
 onstart:
-    shell("{my_basedir}/bin/notify-on-job-start")
+    shell("{config[ingest_basedir]}/bin/notify-on-job-start")
 
 
 onerror:
-    shell("{my_basedir}/bin/notify-on-job-fail")
+    shell("{config[ingest_basedir]}/bin/notify-on-job-fail")

@@ -33,7 +33,7 @@ rule fetch_from_genbank:
         serotype_tax_id=download_serotype,
     shell:
         """
-        {my_basedir}/bin/fetch-from-genbank {params.serotype_tax_id} > {output.genbank_ndjson}
+        {config[ingest_basedir]}/bin/fetch-from-genbank {params.serotype_tax_id} > {output.genbank_ndjson}
         """
 
 
