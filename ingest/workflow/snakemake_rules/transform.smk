@@ -40,6 +40,7 @@ rule transform:
     input:
         sequences_ndjson="data/sequences_{serotype}.ndjson",
         all_geolocation_rules="data/all-geolocation-rules.tsv",
+        annotations=config["transform"]["annotations"],
     output:
         metadata="data/metadata_{serotype}.tsv",
         sequences="data/sequences_{serotype}.fasta",
@@ -57,7 +58,6 @@ rule transform:
         authors_field=config["transform"]["authors_field"],
         authors_default_value=config["transform"]["authors_default_value"],
         abbr_authors_field=config["transform"]["abbr_authors_field"],
-        annotations=config["transform"]["annotations"],
         annotations_id=config["transform"]["annotations_id"],
         metadata_columns=config["transform"]["metadata_columns"],
         id_field=config["transform"]["id_field"],
@@ -65,31 +65,31 @@ rule transform:
     shell:
         """
         (cat {input.sequences_ndjson} \
-            | ./bin/transform-field-names \
+            | {config[ingest_basedir]}/bin/transform-field-names \
                 --field-map {params.field_map} \
             | augur curate normalize-strings \
-            | ./bin/transform-strain-names \
+            | {config[ingest_basedir]}/bin/transform-strain-names \
                 --strain-regex {params.strain_regex} \
                 --backup-fields {params.strain_backup_fields} \
-            | ./bin/transform-date-fields \
+            | {config[ingest_basedir]}/bin/transform-date-fields \
                 --date-fields {params.date_fields} \
                 --expected-date-formats {params.expected_date_formats} \
-            | ./bin/transform-genbank-location \
-            | ./bin/transform-string-fields \
+            | {config[ingest_basedir]}/bin/transform-genbank-location \
+            | {config[ingest_basedir]}/bin/transform-string-fields \
                 --titlecase-fields {params.titlecase_fields} \
                 --articles {params.articles} \
                 --abbreviations {params.abbreviations} \
-            | ./bin/transform-authors \
+            | {config[ingest_basedir]}/bin/transform-authors \
                 --authors-field {params.authors_field} \
                 --default-value {params.authors_default_value} \
                 --abbr-authors-field {params.abbr_authors_field} \
-            | ./bin/apply-geolocation-rules \
+            | {config[ingest_basedir]}/bin/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
-            | ./bin/post_process_metadata.py \
-            | ./bin/merge-user-metadata \
-                --annotations {params.annotations} \
+            | {config[ingest_basedir]}/bin/post_process_metadata.py \
+            | {config[ingest_basedir]}/bin/merge-user-metadata \
+                --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
-            | ./bin/ndjson-to-tsv-and-fasta \
+            | {config[ingest_basedir]}/bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --metadata {output.metadata} \
                 --fasta {output.sequences} \
