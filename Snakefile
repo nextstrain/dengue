@@ -83,18 +83,6 @@ rule decompress:
         zstd -d -c {input.metadata} > {output.metadata}
         """
 
-# rule wrangle_metadata:
-#     input:
-#         metadata="data/metadata_{serotype}.tsv",
-#     output:
-#         metadata="results/wrangled_metadata_{serotype}.tsv",
-#     params:
-#         strain_id=config.get("strain_id_field", "strain"), #accession
-#     shell:
-#         """
-#         csvtk -t rename -f strain -n strain_original {input.metadata} \
-#           | csvtk -t mutate -f {params.strain_id} -n strain > {output.metadata}
-#         """
 
 rule filter:
     """
