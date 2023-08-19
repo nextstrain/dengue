@@ -1,0 +1,40 @@
+# Optional configs used by Nextstrain team
+# Params for uploads
+upload:
+  # Upload params for AWS S3
+  s3:
+    # AWS S3 Bucket with prefix
+    dst: 's3://nextstrain-data/files/workflows/dengue'
+    # Files to upload to S3 that are in the `data` directory
+    files_to_upload: [
+      'metadata_all.tsv',
+      'sequences_all.fasta',
+      'metadata_denv1.tsv',
+      'sequences_denv1.fasta',
+      'metadata_denv2.tsv',
+      'sequences_denv2.fasta',
+      'metadata_denv3.tsv',
+      'sequences_denv3.fasta',
+      'metadata_denv4.tsv',
+      'sequences_denv4.fasta',
+    ]
+    # Remote file names for the files to upload, must be in the same order as local files above
+    remote_file_names: [
+      'metadata_all.tsv.zst',
+      'sequences_all.fasta.zst',
+      'metadata_denv1.tsv.zst',
+      'sequences_denv1.fasta.zst',
+      'metadata_denv2.tsv.zst',
+      'sequences_denv2.fasta.zst',
+      'metadata_denv3.tsv.zst',
+      'sequences_denv3.fasta.zst',
+      'metadata_denv4.tsv.zst',
+      'sequences_denv4.fasta.zst',
+    ]
+    cloudfront_domain: 'data.nextstrain.org'
+
+# Toggle for Slack notifications
+send_slack_notifications: True
+
+# Toggle for triggering builds
+trigger_rebuild: True
