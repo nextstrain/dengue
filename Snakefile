@@ -76,8 +76,8 @@ rule decompress:
         sequences = "data/sequences_{serotype}.fasta.zst",
         metadata = "data/metadata_{serotype}.tsv.zst"
     output:
-        sequences = "results/sequences_{serotype}.fasta",
-        metadata = "results/metadata_{serotype}.tsv"
+        sequences = "data/sequences_{serotype}.fasta",
+        metadata = "data/metadata_{serotype}.tsv"
     shell:
         """
         zstd -d -c {input.sequences} > {output.sequences}
@@ -93,8 +93,8 @@ rule filter:
       - excluding strains with missing region, country or date metadata
     """
     input:
-        sequences = "results/sequences_{serotype}.fasta",
-        metadata = "results/metadata_{serotype}.tsv",
+        sequences = "data/sequences_{serotype}.fasta",
+        metadata = "data/metadata_{serotype}.tsv",
         exclude = files.dropped_strains
     output:
         sequences = "results/filtered_{serotype}.fasta"
@@ -163,7 +163,7 @@ rule refine:
     input:
         tree = "results/tree-raw_{serotype}.nwk",
         alignment = "results/aligned_{serotype}.fasta",
-        metadata = "results/metadata_{serotype}.tsv"
+        metadata = "data/metadata_{serotype}.tsv"
     output:
         tree = "results/tree_{serotype}.nwk",
         node_data = "results/branch-lengths_{serotype}.json",
@@ -230,7 +230,7 @@ rule traits:
     """
     input:
         tree = "results/tree_{serotype}.nwk",
-        metadata = "results/metadata_{serotype}.tsv"
+        metadata = "data/metadata_{serotype}.tsv"
     output:
         node_data = "results/traits_{serotype}.json",
     params:
@@ -271,7 +271,7 @@ rule export:
     """Exporting data files for for auspice"""
     input:
         tree = "results/tree_{serotype}.nwk",
-        metadata = "results/metadata_{serotype}.tsv",
+        metadata = "data/metadata_{serotype}.tsv",
         branch_lengths = "results/branch-lengths_{serotype}.json",
         traits = "results/traits_{serotype}.json",
         clades = "results/clades_{serotype}.json",
@@ -298,7 +298,7 @@ rule export:
 rule final_strain_name:
     input:
         auspice_json="results/raw_dengue_{serotype}.json",
-        metadata="results/metadata_{serotype}.tsv",
+        metadata="data/metadata_{serotype}.tsv",
         root_sequence="results/raw_dengue_{serotype}_root-sequence.json",
     output:
         auspice_json="auspice/dengue_{serotype}.json",
