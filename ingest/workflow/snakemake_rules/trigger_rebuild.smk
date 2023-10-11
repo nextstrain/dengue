@@ -9,7 +9,7 @@ to expected upload flag files.
 
 rule trigger_build:
     """
-    Triggering monekypox builds via repository action type `rebuild`.
+    Triggering dengue builds via repository action type `rebuild`.
     """
     input:
         metadata_upload="data/upload/s3/metadata.tsv.gz.done",
@@ -18,5 +18,5 @@ rule trigger_build:
         touch("data/trigger/rebuild.done"),
     shell:
         """
-        ./vendored/trigger-on-new-data nextstrain/mpox rebuild {input.metadata_upload} {input.fasta_upload}
+        ./vendored/trigger-on-new-data nextstrain/dengue rebuild {input.metadata_upload} {input.fasta_upload}
         """

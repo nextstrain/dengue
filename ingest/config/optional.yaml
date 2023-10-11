@@ -4,7 +4,7 @@ upload:
   # Upload params for AWS S3
   s3:
     # AWS S3 Bucket with prefix
-    dst: 's3://nextstrain-data/files/workflows/mpox'
+    dst: 's3://nextstrain-data/files/workflows/dengue'
     # Mapping of files to upload, with key as remote file name and the value
     # the local file path relative to the ingest directory.
     files_to_upload:

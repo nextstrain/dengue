@@ -1,7 +1,7 @@
 # Sources of sequences to include in the ingest run
 sources: ['genbank']
 # Pathogen NCBI Taxonomy ID
-ncbi_taxon_id: '10244'
+ncbi_taxon_id: '12637'
 # Renames the NCBI dataset headers
 ncbi_field_map: 'source-data/ncbi-dataset-field-map.tsv'
 
