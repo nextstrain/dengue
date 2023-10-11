@@ -9,7 +9,9 @@ build/
 environment*
 
 # Snakemake state dir
-/.snakemake
+.snakemake/
+benchmarks/
+logs/
 
 # Local config overrides
 /config_local.yaml
