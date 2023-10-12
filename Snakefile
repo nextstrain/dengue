@@ -1,3 +1,6 @@
+if not config:
+    configfile: "config/config_dengue.yaml"
+
 serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 
 rule all:
@@ -73,8 +76,8 @@ rule decompress:
         sequences = "data/sequences_{serotype}.fasta.zst",
         metadata = "data/metadata_{serotype}.tsv.zst"
     output:
-        sequences = "results/sequences_{serotype}.fasta",
-        metadata = "results/metadata_{serotype}.tsv"
+        sequences = "data/sequences_{serotype}.fasta",
+        metadata = "data/metadata_{serotype}.tsv"
     shell:
         """
         zstd -d -c {input.sequences} > {output.sequences}
@@ -90,20 +93,22 @@ rule filter:
       - excluding strains with missing region, country or date metadata
     """
     input:
-        sequences = "results/sequences_{serotype}.fasta",
-        metadata = "results/metadata_{serotype}.tsv",
+        sequences = "data/sequences_{serotype}.fasta",
+        metadata = "data/metadata_{serotype}.tsv",
         exclude = files.dropped_strains
     output:
         sequences = "results/filtered_{serotype}.fasta"
     params:
         group_by = "year region",
         sequences_per_group = filter_sequences_per_group,
-        min_length = 5000
+        min_length = 5000,
+        strain_id = config.get("strain_id_field", "strain"),
     shell:
         """
         augur filter \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --exclude {input.exclude} \
             --output {output.sequences} \
             --group-by {params.group_by} \
@@ -158,20 +163,22 @@ rule refine:
     input:
         tree = "results/tree-raw_{serotype}.nwk",
         alignment = "results/aligned_{serotype}.fasta",
-        metadata = "results/metadata_{serotype}.tsv"
+        metadata = "data/metadata_{serotype}.tsv"
     output:
         tree = "results/tree_{serotype}.nwk",
-        node_data = "results/branch-lengths_{serotype}.json"
+        node_data = "results/branch-lengths_{serotype}.json",
     params:
         coalescent = "const",
         date_inference = "marginal",
-        clock_filter_iqd = 4
+        clock_filter_iqd = 4,
+        strain_id = config.get("strain_id_field", "strain"),
     shell:
         """
         augur refine \
             --tree {input.tree} \
             --alignment {input.alignment} \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --output-tree {output.tree} \
             --output-node-data {output.node_data} \
             --timetree \
@@ -223,17 +230,19 @@ rule traits:
     """
     input:
         tree = "results/tree_{serotype}.nwk",
-        metadata = "results/metadata_{serotype}.tsv"
+        metadata = "data/metadata_{serotype}.tsv"
     output:
         node_data = "results/traits_{serotype}.json",
     params:
         columns = traits_columns,
-        sampling_bias_correction = 3
+        sampling_bias_correction = 3,
+        strain_id = config.get("strain_id_field", "strain"),
     shell:
         """
         augur traits \
             --tree {input.tree} \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --output {output.node_data} \
             --columns {params.columns} \
             --confidence \
@@ -262,7 +271,7 @@ rule export:
     """Exporting data files for for auspice"""
     input:
         tree = "results/tree_{serotype}.nwk",
-        metadata = "results/metadata_{serotype}.tsv",
+        metadata = "data/metadata_{serotype}.tsv",
         branch_lengths = "results/branch-lengths_{serotype}.json",
         traits = "results/traits_{serotype}.json",
         clades = "results/clades_{serotype}.json",
@@ -270,16 +279,42 @@ rule export:
         aa_muts = "results/aa-muts_{serotype}.json",
         auspice_config = files.auspice_config
     output:
-        auspice_json = "auspice/dengue_{serotype}.json"
+        auspice_json = "results/raw_dengue_{serotype}.json",
+        root_sequence = "results/raw_dengue_{serotype}_root-sequence.json",
+    params:
+        strain_id = config.get("strain_id_field", "strain"),
     shell:
         """
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --node-data {input.branch_lengths} {input.traits} {input.clades} {input.nt_muts} {input.aa_muts} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
             --output {output.auspice_json}
+        """
+
+rule final_strain_name:
+    input:
+        auspice_json="results/raw_dengue_{serotype}.json",
+        metadata="data/metadata_{serotype}.tsv",
+        root_sequence="results/raw_dengue_{serotype}_root-sequence.json",
+    output:
+        auspice_json="auspice/dengue_{serotype}.json",
+        root_sequence="auspice/dengue_{serotype}_root-sequence.json",
+    params:
+        strain_id=config.get("strain_id_field", "strain"),
+        display_strain_field=config.get("display_strain_field", "strain"),
+    shell:
+        """
+        python3 bin/set_final_strain_name.py \
+            --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
+            --input-auspice-json {input.auspice_json} \
+            --display-strain-name {params.display_strain_field} \
+            --output {output.auspice_json}
+        cp {input.root_sequence} {output.root_sequence}
         """
 
 rule clean:
