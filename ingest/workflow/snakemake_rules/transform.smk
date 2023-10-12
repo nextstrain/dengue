@@ -6,7 +6,7 @@ formats and expects input file
 
 This will produce output files as
 
-    metadata = "data/metadata_raw.tsv"
+    metadata = "results/metadata.tsv"
     sequences = "results/sequences.fasta"
 
 Parameters are expected to be defined in `config.transform`.
@@ -42,7 +42,7 @@ rule transform:
         all_geolocation_rules="data/all-geolocation-rules.tsv",
         annotations=config["transform"]["annotations"],
     output:
-        metadata="data/metadata_raw.tsv",
+        metadata="results/metadata.tsv",
         sequences="results/sequences.fasta",
     log:
         "logs/transform.txt",
