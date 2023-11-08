@@ -44,57 +44,26 @@ rule extract_ncbi_dataset_sequences:
         """
 
 
-def _get_ncbi_dataset_field_mnemonics(wildcards) -> str:
-    """
-    Return list of NCBI Dataset report field mnemonics for fields that we want
-    to parse out of the dataset report. The column names in the output TSV
-    are different from the mnemonics.
-
-    See NCBI Dataset docs for full list of available fields and their column
-    names in the output:
-    https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/dataformat/tsv/dataformat_tsv_virus-genome/#fields
-    """
-    fields = [
-        "accession",
-        "sourcedb",
-        "isolate-lineage",
-        "geo-region",
-        "geo-location",
-        "isolate-collection-date",
-        "release-date",
-        "update-date",
-        "length",
-        "host-name",
-        "isolate-lineage-source",
-        "bioprojects",
-        "biosample-acc",
-        "sra-accs",
-        "submitter-names",
-        "submitter-affiliation",
-    ]
-    return ",".join(fields)
-
-
 rule format_ncbi_dataset_report:
-    # Formats the headers to be the same as before we used NCBI Datasets
-    # The only fields we do not have equivalents for are "title" and "publications"
+    # Formats the headers to match the NCBI mnemonic names
     input:
         dataset_package="data/ncbi_dataset.zip",
-        ncbi_field_map=config["ncbi_field_map"],
     output:
         ncbi_dataset_tsv=temp("data/ncbi_dataset_report.tsv"),
     params:
-        fields_to_include=_get_ncbi_dataset_field_mnemonics,
+        ncbi_datasets_fields=",".join(config["ncbi_datasets_fields"]),
     benchmark:
         "benchmarks/format_ncbi_dataset_report.txt"
     shell:
         """
         dataformat tsv virus-genome \
             --package {input.dataset_package} \
-            --fields {params.fields_to_include:q} \
-            | csvtk -tl rename2 -F -f '*' -p '(.+)' -r '{{kv}}' -k {input.ncbi_field_map} \
-            | csvtk -tl mutate -f genbank_accession_rev -n genbank_accession -p "^(.+?)\." \
-            | tsv-select -H -f genbank_accession --rest last \
+            --fields {params.ncbi_datasets_fields:q} \
+            --elide-header \
+            | csvtk add-header -t -l -n {params.ncbi_datasets_fields:q} \
+            | csvtk rename -t -f accession -n accession-rev \
+            | csvtk -tl mutate -f accession-rev -n accession -p "^(.+?)\." \
+            | tsv-select -H -f accession --rest last \
             > {output.ncbi_dataset_tsv}
         """
 
@@ -105,6 +74,8 @@ rule format_ncbi_datasets_ndjson:
         ncbi_dataset_tsv="data/ncbi_dataset_report.tsv",
     output:
         ndjson="data/genbank.ndjson",
+    params:
+        ncbi_datasets_fields=",".join(config["ncbi_datasets_fields"]),
     log:
         "logs/format_ncbi_datasets_ndjson.txt",
     benchmark:
@@ -114,7 +85,7 @@ rule format_ncbi_datasets_ndjson:
         augur curate passthru \
             --metadata {input.ncbi_dataset_tsv} \
             --fasta {input.ncbi_dataset_sequences} \
-            --seq-id-column genbank_accession_rev \
+            --seq-id-column accession-rev \
             --seq-field sequence \
             --unmatched-reporting warn \
             --duplicate-reporting warn \
