@@ -1,21 +1,14 @@
 # nextstrain.org/dengue
 
-This is the [Nextstrain](https://nextstrain.org) build for dengue, visible at
+This is the [Nextstrain](https://nextstrain.org) build for dengue. Output from this build is visible at
 [nextstrain.org/dengue](https://nextstrain.org/dengue).
 
-The build encompasses fetching data, preparing it for analysis, doing quality
-control, performing analyses, and saving the results in a format suitable for
-visualization (with [auspice][]).  These steps involves running 
-[augur][] subcommands.
 
-All dengue-specific steps and functionality for the Nextstrain pipeline should be
-housed in this repository.
+## Software requirements
 
-[![Build Status](https://github.com/nextstrain/dengue/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/nextstrain/dengue/actions/workflows/ci.yaml)
+Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
 
 ## Usage
-
-See the [Installing Nextstrain guide][] for how to install the `nextstrain` command.
 
 If you're unfamiliar with Nextstrain builds, you may want to follow our
 [Running a Pathogen Workflow guide][] first and then come back here.
