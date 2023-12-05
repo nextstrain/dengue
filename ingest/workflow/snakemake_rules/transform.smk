@@ -42,7 +42,7 @@ rule transform:
         all_geolocation_rules="data/all-geolocation-rules.tsv",
         annotations=config["transform"]["annotations"],
     output:
-        metadata="results/metadata_all.tsv",
+        metadata="data/metadata_all.tsv",
         sequences="results/sequences_all.fasta",
     log:
         "logs/transform.txt",
