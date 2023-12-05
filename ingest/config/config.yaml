@@ -1,0 +1,103 @@
+# Sources of sequences to include in the ingest run
+sources: ['genbank']
+# Pathogen NCBI Taxonomy ID
+ncbi_taxon_id: '12637'
+# The list of NCBI Datasets fields to include from NCBI Datasets output
+# These need to be the mneumonics of the NCBI Datasets fields, see docs for full list of fields
+# https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/dataformat/tsv/dataformat_tsv_virus-genome/#fields
+# Note: the "accession" field MUST be provided to match with the sequences
+ncbi_datasets_fields:
+  - accession
+  - sourcedb
+  - isolate-lineage
+  - geo-region
+  - geo-location
+  - isolate-collection-date
+  - release-date
+  - update-date
+  - length
+  - host-name
+  - isolate-lineage-source
+  - submitter-names
+  - submitter-affiliation
+
+# Params for the transform rule
+transform:
+  # NCBI Fields to rename to Nextstrain field names.
+  # This is the first step in the pipeline, so any references to field names
+  # in the configs below should use the new field names
+  field_map: [
+    'accession=genbank_accession',
+    'accession-rev=genbank_accession_rev',
+    'isolate-lineage=strain',
+    'sourcedb=database', # necessary for applying geo location rules
+    'geo-region=region',
+    'geo-location=location',
+    'host-name=host',
+    'isolate-collection-date=date',
+    'release-date=release_date',
+    'update-date=update_date',
+    'sra-accs=sra_accessions',    
+    'submitter-names=authors',
+    'submitter-affiliation=institution',
+  ]
+  # Standardized strain name regex
+  # Currently accepts any characters because we do not have a clear standard for strain names
+  strain_regex: '^.+$'
+  # Back up strain name field if 'strain' doesn't match regex above
+  strain_backup_fields: ['genbank_accession']
+  # List of date fields to standardize
+  date_fields: ['date', 'release_date', 'update_date']
+  # Expected date formats present in date fields
+  # These date formats should use directives expected by datetime
+  # See https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
+  expected_date_formats: ['%Y', '%Y-%m', '%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ']
+  # Titlecase rules
+  titlecase:
+    # Abbreviations not cast to titlecase, keeps uppercase
+    abbreviations: ['USA']
+    # Articles that should not be cast to titlecase
+    articles: [
+      'and', 'd', 'de', 'del', 'des', 'di', 'do', 'en', 'l', 'la', 'las', 'le',
+      'los', 'nad', 'of', 'op', 'sur', 'the', 'y'
+    ]
+    # List of string fields to titlecase
+    fields: ['region', 'country', 'division', 'location']
+  # Authors field name
+  authors_field: 'authors'
+  # Authors default value if authors value is empty
+  authors_default_value: '?'
+  # Field name for the generated abbreviated authors
+  abbr_authors_field: 'abbr_authors'
+  # General geolocation rules to apply to geolocation fields
+  geolocation_rules_url: 'https://raw.githubusercontent.com/nextstrain/ncov-ingest/master/source-data/gisaid_geoLocationRules.tsv'
+  # Local geolocation rules that are only applicable to mpox data
+  # Local rules can overwrite the general geolocation rules provided above
+  local_geolocation_rules: 'source-data/geolocation-rules.tsv'
+  # User annotations file
+  annotations: 'source-data/annotations.tsv'
+  # ID field used to merge annotations
+  annotations_id: 'genbank_accession'
+  # Field to use as the sequence ID in the FASTA file
+  id_field: 'genbank_accession'
+  # Field to use as the sequence in the FASTA file
+  sequence_field: 'sequence'
+  # Final output columns for the metadata TSV
+  metadata_columns: [
+    'strain',
+    'genbank_accession',
+    'genbank_accession_rev',
+    'date',
+    'region',
+    'country',
+    'division',
+    'location',
+    'length',
+    'host',
+    'release_date',
+    'update_date',
+    'sra_accessions',
+    'abbr_authors',
+    'authors',
+    'institution'
+  ]
