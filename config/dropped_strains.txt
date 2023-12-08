@@ -40,3 +40,4 @@ MW946564 # SENDAK_HD_10674 # sylvatic
 OK605757 # DENV2_1_DAK_HD_76395 # sylvatic
 MW945427 # DENV3/PUERTORICO/1963/PRS_228762_AC27 # too divergent
 OM258630 # PR_6 # too divergent
+KR919820 # Brun2014 # too divergent denv1

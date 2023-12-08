@@ -42,7 +42,7 @@ def build_query_url(ncbi_taxon_id: str):
             f'VirusLineageId_ss:({ncbi_taxon_id})', # NCBI Taxon id for virus
             'Division_s:("VRL")', # Restrict to viral sequences, avoid PAT
             '{!tag=SLen_i}SLen_i:([5000 TO 15000])', # Longer than 5K bp, shorter than 15k bp
-            '{!tag=UpdateDate_dt}UpdateDate_dt:([2023-10-19T00:00:00.00Z TO ' + today + 'T00:00:00.00Z ])', # recent
+            '{!tag=UpdateDate_dt}UpdateDate_dt:([2023-12-03T00:00:00.00Z TO ' + today + 'T00:00:00.00Z ])', # recent
         ],
 
         # Unclear, but seems necessary.
