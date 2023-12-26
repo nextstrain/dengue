@@ -54,7 +54,7 @@ rule filter:
     input:
         sequences = "data/sequences_{serotype}.fasta",
         metadata = "data/metadata_{serotype}.tsv",
-        exclude = files.dropped_strains
+        exclude = "config/dropped_strains.txt"
     output:
         sequences = "results/filtered_{serotype}.fasta"
     params:
@@ -83,7 +83,7 @@ rule align:
     """
     input:
         sequences = "results/filtered_{serotype}.fasta",
-        reference = files.reference
+        reference = "config/reference_dengue_{serotype}.gb"
     output:
         alignment = "results/aligned_{serotype}.fasta"
     shell:

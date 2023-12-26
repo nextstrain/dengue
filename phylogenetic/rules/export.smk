@@ -27,7 +27,7 @@ rule export:
         clades = "results/clades_{serotype}.json",
         nt_muts = "results/nt-muts_{serotype}.json",
         aa_muts = "results/aa-muts_{serotype}.json",
-        auspice_config = files.auspice_config
+        auspice_config = "config/auspice_config_{serotype}.json",
     output:
         auspice_json = "results/raw_dengue_{serotype}.json",
         root_sequence = "results/raw_dengue_{serotype}_root-sequence.json",

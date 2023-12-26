@@ -7,14 +7,6 @@ rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}.json", serotype=serotypes)
 
-rule files:
-    params:
-        dropped_strains = "config/dropped_strains.txt",
-        reference = "config/reference_dengue_{serotype}.gb",
-        auspice_config = "config/auspice_config_{serotype}.json"
-
-files = rules.files.params
-
 def download_serotype(w):
     serotype = {
         'all': 'all',
