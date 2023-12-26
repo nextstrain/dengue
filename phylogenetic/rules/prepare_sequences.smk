@@ -54,7 +54,7 @@ rule filter:
     input:
         sequences = "data/sequences_{serotype}.fasta",
         metadata = "data/metadata_{serotype}.tsv",
-        exclude = "config/dropped_strains.txt"
+        exclude = config["filter"]["exclude"],
     output:
         sequences = "results/filtered_{serotype}.fasta"
     params:
