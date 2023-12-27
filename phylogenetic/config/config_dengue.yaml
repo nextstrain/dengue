@@ -5,6 +5,8 @@ filter:
   exclude: "config/exclude.txt"
   group_by: "year region"
   min_length: 5000
+  # Length of the E gene is approximately 1400
+  E_min_length: 1000
   sequences_per_group:
     all: '10'
     denv1: '36'

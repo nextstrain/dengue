@@ -7,6 +7,7 @@ rule all:
         auspice_json = expand("auspice/dengue_{serotype}_genome.json", serotype=serotypes)
 
 include: "rules/prepare_sequences.smk"
+include: "rules/prepare_sequences_E.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"
 include: "rules/export.smk"
