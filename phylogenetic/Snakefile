@@ -13,6 +13,7 @@ include: "rules/construct_phylogeny_E.smk"
 include: "rules/annotate_phylogeny.smk"
 include: "rules/annotate_phylogeny_E.smk"
 include: "rules/export.smk"
+include: "rules/export_E.smk"
 
 # Include custom rules defined in the config.
 if "custom_rules" in config:
