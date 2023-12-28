@@ -22,6 +22,12 @@ traits:
     denv2: 'country region nextclade_subtype'
     denv3: 'country region nextclade_subtype'
     denv4: 'country region nextclade_subtype'
+  E_traits_columns:
+    all: 'region nextclade_type'
+    denv1: 'country region nextclade_subtype'
+    denv2: 'country region nextclade_subtype'
+    denv3: 'country region nextclade_subtype'
+    denv4: 'country region nextclade_subtype'
 
 clades:
   clade_definitions:
