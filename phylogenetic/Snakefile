@@ -11,6 +11,7 @@ include: "rules/prepare_sequences_E.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/construct_phylogeny_E.smk"
 include: "rules/annotate_phylogeny.smk"
+include: "rules/annotate_phylogeny_E.smk"
 include: "rules/export.smk"
 
 # Include custom rules defined in the config.
