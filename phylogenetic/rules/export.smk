@@ -51,8 +51,8 @@ rule final_strain_name:
         metadata="data/metadata_{serotype}.tsv",
         root_sequence="results/raw_dengue_{serotype}_root-sequence.json",
     output:
-        auspice_json="auspice/dengue_{serotype}.json",
-        root_sequence="auspice/dengue_{serotype}_root-sequence.json",
+        auspice_json="auspice/dengue_{serotype}_genome.json",
+        root_sequence="auspice/dengue_{serotype}_genome_root-sequence.json",
     params:
         strain_id=config.get("strain_id_field", "strain"),
         display_strain_field=config.get("display_strain_field", "strain"),
