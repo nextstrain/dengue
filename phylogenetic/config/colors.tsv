@@ -1,0 +1,29 @@
+nextclade_type	DENV1	#4377cd
+nextclade_type	DENV2	#61ab9d
+nextclade_type	DENV3	#94bd61
+nextclade_type	DENV4	#cdb642
+nextclade_subtype	DENV1/I	#4377cd
+nextclade_subtype	DENV1/II	#61ab9d
+nextclade_subtype	DENV1/III	#94bd61
+nextclade_subtype	DENV1/IV	#cdb642
+nextclade_subtype	DENV1/V	#e68133
+nextclade_subtype	DENV2/AA	#4377cd
+nextclade_subtype	DENV2/AI	#61ab9d
+nextclade_subtype	DENV2/AII	#94bd61
+nextclade_subtype	DENV2/AM	#cdb642
+nextclade_subtype	DENV2/C	#e68133
+nextclade_subtype	DENV2/S	#e1502a
+nextclade_subtype	DENV3/I	#4377cd
+nextclade_subtype	DENV3/II	#61ab9d
+nextclade_subtype	DENV3/III	#94bd61
+nextclade_subtype	DENV3/IV	#cdb642
+nextclade_subtype	DENV3/V	#e68133
+nextclade_subtype	DENV4/I	#4377cd
+nextclade_subtype	DENV4/II	#61ab9d
+nextclade_subtype	DENV4/S	#e1502a
+Region	Asia	#4377cd
+Region	Oceania	#61ab9d
+Region	Africa	#94bd61
+Region	Europe	#cdb642
+Region	South America	#e68133
+Region	North America	#e1502a

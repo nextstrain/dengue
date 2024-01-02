@@ -30,6 +30,7 @@ rule export_E:
         nt_muts = "results/nt-muts_{serotype}_E.json",
         aa_muts = "results/aa-muts_{serotype}_E.json",
         auspice_config = "config/auspice_config_{serotype}_E.json",
+        colors_tsv = "config/colors.tsv",
     output:
         auspice_json = "results/raw_dengue_{serotype}_E.json",
         root_sequence = "results/raw_dengue_{serotype}_E_root-sequence.json",
@@ -44,6 +45,7 @@ rule export_E:
             --node-data {input.branch_lengths} {input.traits} {input.nt_muts} {input.aa_muts} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
+            --colors {input.colors_tsv} \
             --output {output.auspice_json}
         """
 
