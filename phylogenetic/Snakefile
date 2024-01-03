@@ -4,7 +4,7 @@ serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 
 rule all:
     input:
-        auspice_json = expand("auspice/dengue_{serotype}.json", serotype=serotypes)
+        auspice_json = expand("auspice/dengue_{serotype}_genome.json", serotype=serotypes)
 
 rule files:
     params:
@@ -306,8 +306,8 @@ rule final_strain_name:
         metadata="results/wrangled_metadata_{serotype}.tsv",
         root_sequence="results/raw_dengue_{serotype}_root-sequence.json",
     output:
-        auspice_json="auspice/dengue_{serotype}.json",
-        root_sequence="auspice/dengue_{serotype}_root-sequence.json",
+        auspice_json="auspice/dengue_{serotype}_genome.json",
+        root_sequence="auspice/dengue_{serotype}_genome_root-sequence.json",
     params:
         display_strain_field=config.get("display_strain_field", "strain"),
     shell:
