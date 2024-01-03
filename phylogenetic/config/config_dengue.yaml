@@ -13,6 +13,12 @@ filter:
     denv2: '36'
     denv3: '36'
     denv4: '36'
+  E_root_sequence:
+    all: 'NC_002640'
+    denv1: 'NC_001477'
+    denv2: 'NC_001474'
+    denv3: 'NC_001475'
+    denv4: 'NC_002640'
 
 traits:
   sampling_bias_correction: '3'

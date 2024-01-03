@@ -77,6 +77,7 @@ rule filter_E:
     params:
         group_by = config['filter']['group_by'],
         sequences_per_group = lambda wildcards: config['filter']['sequences_per_group'][wildcards.serotype],
+        root_sequence = lambda wildcards: config['filter']['E_root_sequence'][wildcards.serotype],
         min_length = config['filter']['E_min_length'],
         strain_id = config.get("strain_id_field", "strain"),
     shell:
@@ -91,4 +92,5 @@ rule filter_E:
             --sequences-per-group {params.sequences_per_group} \
             --min-length {params.min_length} \
             --exclude-where country=? region=? date=? \
+            --include-where strain={params.root_sequence}
         """
