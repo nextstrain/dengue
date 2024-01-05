@@ -5,7 +5,24 @@ on:
   - pull_request
 
 jobs:
-  ci:
-    uses: nextstrain/.github/.github/workflows/pathogen-repo-ci.yaml@dec0880059017dac7facf100435c5737bf1386c8
+  pathogen-ci:
+    strategy:
+      matrix:
+        runtime: [docker, conda]
+    permissions:
+      id-token: write
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    secrets: inherit
     with:
-      workflow-root: phylogenetic
+      runtime: ${{ matrix.runtime }}
+      run: |
+        nextstrain build \
+          phylogenetic \
+          --configfile profiles/ci/profiles_config.yaml
+      artifact-name: output-${{ matrix.runtime }}
+      artifact-paths: |
+        phylogenetic/auspice/
+        phylogenetic/results/
+        phylogenetic/benchmarks/
+        phylogenetic/logs/
+        phylogenetic/.snakemake/log/
