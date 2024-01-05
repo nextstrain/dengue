@@ -1,0 +1,51 @@
+strain	virus	accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
+DENV1/INDIA/237/1962	dengue	JF297572	1962-XX-XX	South Asia	India	India	India	?	genome	Cecilia et al.	?	?	?	?
+DENV1/CHINA/RL6/2013	dengue	KJ470727	2013-09-XX	China	China	China	China	?	genome	Guo et al.	?	?	?	?
+DENV1/THAILAND/AILANDKPPKDV08491NC04528V0L/2007	dengue	JQ993108	2007-XX-XX	Southeast Asia	Thailand	Thailand	Thailand	?	genome	Aldstadt et al.	?	?	?	?
+DENV1/INDIA/EAIIMSDELHI1752/2010	dengue	KC863945	2010-XX-XX	South Asia	India	India	India	?	genome	Broor et al.	?	?	?	?
+DENV1/FIJI/C/2012	dengue	JX298569	2012-XX-XX	Oceania	Fiji	Fiji	Fiji	?	genome	Northill et al.	?	?	?	?
+DENV1/BRAZIL/19RJ/2010	dengue	HQ026762	2010-XX-XX	South America	Brazil	Brazil	Brazil	?	genome	Faria et al.	?	?	?	?
+DENV1/MYANMAR/438263801/NA	dengue	DQ264956	?	Southeast Asia	Myanmar	Myanmar	Myanmar	?	genome	Aaskov et al.	?	?	?	?
+DENV1/AUSTRALIA/SHCS1/NA	dengue	AF425611	?	Oceania	Australia	Australia	Australia	?	genome	Escalante et al.	?	?	?	?
+DENV1/NICARAGUA/BIDV641/2005	dengue	EU596503	2005-XX-XX	North America	Nicaragua	Managua	Managua	?	genome	Alvarado et al.	?	?	?	?
+DENV1/NEW_CALEDONIA/3601/2012	dengue	KC854415	2012-12-19	Oceania	New Caledonia	New Caledonia	New Caledonia	?	genome	Aaskov et al.	?	?	?	?
+DENV1/NICARAGUA/BIDV621/2005	dengue	FJ410290	2005-XX-XX	North America	Nicaragua	Managua	Managua	?	genome	Alvarado et al.	?	?	?	?
+DENV1/BRAZIL/K34D1DIVIMG/2013	dengue	KP903771	2013-XX-XX	South America	Brazil	Brazil	Brazil	?	genome	Drumond et al.	?	?	?	?
+DENV1/VIETNAM/09DX833/2011	dengue	JX093705	2011-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Bryant et al.	?	?	?	?
+DENV1/CHINA/YNGM/2015	dengue	KX056458	2015-10-18	China	China	Yunnan	Yunnan	?	genome	Fan et al.	?	?	?	?
+DENV1/SINGAPORE/K4138DK1/2005	dengue	EU081254	2005-XX-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Aw et al.	?	?	?	?
+DENV1/NICARAGUA/BIDV622/2005	dengue	KF955403	2005-XX-XX	North America	Nicaragua	Nicaragua	Nicaragua	?	genome	Balmaseda et al.	?	?	?	?
+DENV1/BRAZIL/K72D1DIVIMG/2013	dengue	KP903770	2013-XX-XX	South America	Brazil	Brazil	Brazil	?	genome	Drumond et al.	?	?	?	?
+DENV1/MYANMAR/MANDALAY87/2015	dengue	KX357963	2015-XX-XX	Southeast Asia	Myanmar	Myanmar	Myanmar	?	genome	Aung et al.	?	?	?	?
+DENV1/PARAGUAY/280PAR/2000	dengue	AF514878	2000-XX-XX	South America	Paraguay	Paraguay	Paraguay	?	genome	Aviles et al.	?	?	?	?
+DENV1/MEXICO/BIDV7580/2007	dengue	KJ189319	2007-XX-XX	North America	Mexico	Mexico	Mexico	?	genome	Birren et al.	?	?	?	?
+DENV1/VENEZUELA/61068/2006	dengue	HQ332180	2006-XX-XX	South America	Venezuela	Venezuela	Venezuela	?	genome	Alvarez et al.	?	?	?	?
+DENV1/MYANMAR/370452500/NA	dengue	DQ265097	?	Southeast Asia	Myanmar	Myanmar	Myanmar	?	genome	Aaskov et al.	?	?	?	?
+DENV1/VIETNAM/BIDV2693/2006	dengue	FJ882519	2006-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Alvarado et al.	?	?	?	?
+DENV1/VIETNAM/BIDV4052/2008	dengue	GU131805	2008-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Alvarado et al.	?	?	?	?
+DENV1/INDONESIA/MKS0077/2007	dengue	KC762654	2007-07-24	Southeast Asia	Indonesia	Makassar	Makassar	?	genome	Bifani et al.	?	?	?	?
+DENV1/NEW_CALEDONIA/280BB3/2012	dengue	KC741439	2012-07-28	Oceania	New Caledonia	New Caledonia	New Caledonia	?	genome	Barthel et al.	?	?	?	?
+DENV1/SINGAPORE/31428/2014	dengue	KX224260	2014-XX-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Chong et al.	?	?	?	?
+DENV1/MEXICO/BIDV3726/2007	dengue	GQ868520	2007-XX-XX	North America	Mexico	Mexico	Yucatan	?	genome	Alvarado et al.	?	?	?	?
+DENV1/CHINA/YNDGR103/2015	dengue	KX056469	2015-09-01	China	China	Yunnan	Yunnan	?	genome	Fan et al.	?	?	?	?
+DENV1/CAMBODIA/BIDV3775/2006	dengue	GU131887	2006-XX-XX	Southeast Asia	Cambodia	Cambodia	Cambodia	?	genome	Alvarado et al.	?	?	?	?
+DENV1/VIETNAM/BIDV4063/2008	dengue	GU131812	2008-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Alvarado et al.	?	?	?	?
+DENV1/INDONESIA/03CTW/2010	dengue	JF967901	2010-XX-XX	Southeast Asia	Indonesia	Indonesia	Indonesia	?	genome	Chang et al.	?	?	?	?
+DENV1/PUERTO_RICO/BIDV2096/1993	dengue	FJ562105	1993-XX-XX	North America	Puerto Rico	Puerto Rico	Puerto Rico	?	genome	Alvarado et al.	?	?	?	?
+DENV1/THAILAND/0197/1996	dengue	AY732423	1996-XX-XX	Southeast Asia	Thailand	Bangkok	Bangkok	?	genome	Chinnawirotpisan et al.	?	?	?	?
+DENV1/VIETNAM/12ATW/2014	dengue	KT175106	2014-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Chang et al.	?	?	?	?
+DENV1/NA/4642CAMPECHE95/NA	dengue	DQ341193	?	?	?	?	?	?	genome	Beaty et al.	?	?	?	?
+DENV1/THAILAND/0031/1991	dengue	AY732382	1991-XX-XX	Southeast Asia	Thailand	Bangkok	Bangkok	?	genome	Chinnawirotpisan et al.	?	?	?	?
+DENV1/CHINA/RL22/2013	dengue	KJ470731	2013-09-XX	China	China	China	China	?	genome	Guo et al.	?	?	?	?
+DENV1/THAILAND/16007/1964	dengue	AF180817	1964-XX-XX	Southeast Asia	Thailand	Thailand	Thailand	?	genome	Bhamarapravati et al.	?	?	?	?
+DENV1/INDONESIA/MKSIF039/2008	dengue	KC762629	2008-03-15	Southeast Asia	Indonesia	Makassar	Makassar	?	genome	Bifani et al.	?	?	?	?
+DENV1/VIETNAM/BIDV2811/2007	dengue	FJ882556	2007-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Alvarado et al.	?	?	?	?
+DENV1/VIETNAM/BIDV817/2006	dengue	EU482811	2006-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Alvarado et al.	?	?	?	?
+DENV1/VIETNAM/06DX19/2009	dengue	JX476084	2009-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Duong et al.	?	?	?	?
+DENV1/MYANMAR/405304001/NA	dengue	DQ264899	?	Southeast Asia	Myanmar	Myanmar	Myanmar	?	genome	Aaskov et al.	?	?	?	?
+DENV1/VIETNAM/VIETM10DX111802PLACEBO48HRS/NA	dengue	JQ045627	?	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Aw et al.	?	?	?	?
+DENV1/USA/HAWO3663/2001	dengue	DQ672564	2001-XX-XX	North America	Usa	Hawaii	Hawaii	?	genome	Bennett et al.	?	?	?	?
+DENV1/VIETNAM/BIDV2882/2006	dengue	JF937598	2006-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Alvarado et al.	?	?	?	?
+DENV1/MYANMAR/MANDALAY181/2015	dengue	KX357939	2015-XX-XX	Southeast Asia	Myanmar	Myanmar	Myanmar	?	genome	Aung et al.	?	?	?	?
+DENV1/VIETNAM/HANOI128415OCT/2004	dengue	KC861951	2004-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Aaskov et al.	?	?	?	?
+DENV1/SRI_LANKA/23789/2013	dengue	KU509310	2013-XX-XX	South Asia	Sri Lanka	Sri Lanka	Sri Lanka	?	genome	Cadar et al.	?	?	?	?

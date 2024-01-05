@@ -1,0 +1,51 @@
+strain	virus	accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
+DENV2/INDONESIA/MKS0084/2007	dengue	KC762660	2007-11-21	Southeast Asia	Indonesia	Makassar	Makassar	?	genome	Bifani et al.	?	?	?	?
+DENV2/TAIWAN/71/2002	dengue	EF016253	2002-XX-XX	China	Taiwan	Taiwan	Taiwan	?	genome	Ke et al.	?	?	?	?
+DENV2/PAKISTAN/8D/2011	dengue	JX042512	2011-XX-XX	West Asia	Pakistan	Pakistan	Pakistan	?	genome	Alvi et al.	?	?	?	?
+DENV2/PUERTO_RICO/BIDV851/1990	dengue	EU482590	1990-XX-XX	North America	Puerto Rico	Puerto Rico	Puerto Rico	?	genome	Alvarado et al.	?	?	?	?
+DENV2/INDONESIA/MKS3007/2008	dengue	KC762666	2008-02-15	Southeast Asia	Indonesia	Makassar	Makassar	?	genome	Bifani et al.	?	?	?	?
+DENV2/SINGAPORE/46701/2010	dengue	JN030256	2010-XX-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Chua et al.	?	?	?	?
+DENV2/NICARAGUA/BIDV563/2006	dengue	EU482444	2006-XX-XX	North America	Nicaragua	Managua	Managua	?	genome	Alvarado et al.	?	?	?	?
+DENV2/INDONESIA/MKS0502/2007	dengue	KC762656	2007-12-11	Southeast Asia	Indonesia	Makassar	Makassar	?	genome	Bifani et al.	?	?	?	?
+DENV2/NA/NIID0/2016	dengue	LC121816	2016-01-XX	?	?	?	?	?	genome	Tajima et al.	?	?	?	?
+DENV2/NICARAGUA/BIDV1201/2007	dengue	EU660405	2007-XX-XX	North America	Nicaragua	Managua	Managua	?	genome	Alvarado et al.	?	?	?	?
+DENV2/PERU/FPI01695/2011	dengue	KC294211	2011-04-04	South America	Peru	Loreto	Iquitos	?	genome	Chen et al.	?	?	?	?
+DENV2/NA/R051358/NA	dengue	AB587938	?	?	?	?	?	?	genome	Anantapreecha et al.	?	?	?	?
+DENV2/NICARAGUA/BIDV548/2005	dengue	EU482760	2005-XX-XX	North America	Nicaragua	Managua	Managua	?	genome	Alvarado et al.	?	?	?	?
+DENV2/INDIA/NIV427/1964	dengue	FJ538908	1964-XX-XX	South Asia	India	India	India	?	genome	Barde et al.	?	?	?	?
+DENV2/THAILAND/DB061/2006	dengue	JF812111	2006-XX-XX	Southeast Asia	Thailand	Thailand	Thailand	?	genome	Colon et al.	?	?	?	?
+DENV2/NA/L041537/NA	dengue	AB587897	?	?	?	?	?	?	genome	Anantapreecha et al.	?	?	?	?
+DENV2/THAILAND/P0408/NA	dengue	LC129169	?	Southeast Asia	Thailand	Thailand	Thailand	?	genome	Dhole et al.	?	?	?	?
+DENV2/MALAYSIA/22563/2000	dengue	FN429892	2000-XX-XX	Southeast Asia	Malaysia	Malaysia	Kuala Lumpur	?	genome	Aw et al.	?	?	?	?
+DENV2/NICARAGUA/BIDV2364/2000	dengue	FJ744744	2000-XX-XX	North America	Nicaragua	Managua	Managua	?	genome	Alvarado et al.	?	?	?	?
+DENV2/NICARAGUA/BIDV2657/2000	dengue	FJ850117	2000-XX-XX	North America	Nicaragua	Managua	Managua	?	genome	Alvarado et al.	?	?	?	?
+DENV2/VIETNAM/134DL/2012	dengue	KP706455	2012-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Le et al.	?	?	?	?
+DENV2/SINGAPORE/NA/NA	dengue	AY359463	?	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Chow et al.	?	?	?	?
+DENV2/PUERTO_RICO/BIDV1033/1998	dengue	EU482546	1998-XX-XX	North America	Puerto Rico	Puerto Rico	Puerto Rico	?	genome	Alvarado et al.	?	?	?	?
+DENV2/NA/BIDV2621/2008	dengue	GQ199901	2008-XX-XX	?	?	?	?	?	genome	Alpuche et al.	?	?	?	?
+DENV2/BRAZIL/72471RJ/2001	dengue	JQ710659	2001-XX-XX	South America	Brazil	Brazil	Brazil	?	genome	Ferreira et al.	?	?	?	?
+DENV2/THAILAND/AILAND/2007	dengue	JN568273	2007-XX-XX	Southeast Asia	Thailand	Thailand	Thailand	?	genome	Northill et al.	?	?	?	?
+DENV2/PUERTO_RICO/BIDV1393/1998	dengue	EU569712	1998-XX-XX	North America	Puerto Rico	Puerto Rico	Puerto Rico	?	genome	Alvarado et al.	?	?	?	?
+DENV2/SINGAPORE/CT24/2012	dengue	KX380819	2012-XX-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Aw et al.	?	?	?	?
+DENV2/PERU/OBT2093R/2001	dengue	JX051770	2001-XX-XX	South America	Peru	Piura	Piura	?	genome	Cruz et al.	?	?	?	?
+DENV2/TAIWAN/9501112/2001	dengue	DQ645542	2001-XX-XX	China	Taiwan	Taiwan	Taiwan	?	genome	Chen et al.	?	?	?	?
+DENV2/PUERTO_RICO/BIDV856/1986	dengue	KF955363	1986-XX-XX	North America	Puerto Rico	Puerto Rico	Puerto Rico	?	genome	Berlin et al.	?	?	?	?
+DENV2/NA/TORRESSTRAIT1/NA	dengue	AF004019	?	?	?	?	?	?	genome	Phillips et al.	?	?	?	?
+DENV2/PERU/MIS1313R/2011	dengue	JX051798	2011-XX-XX	South America	Peru	Tumbes	Tumbes	?	genome	Cruz et al.	?	?	?	?
+DENV2/SINGAPORE/DED973/2007	dengue	GQ357729	2007-XX-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Aw et al.	?	?	?	?
+DENV2/JAMAICA/AY484605/NA	dengue	AY484605	?	North America	Jamaica	Jamaica	Jamaica	?	genome	Bennett et al.	?	?	?	?
+DENV2/SINGAPORE/001/2010	dengue	JN030249	2010-XX-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Chua et al.	?	?	?	?
+DENV2/SINGAPORE/DED285/2007	dengue	GQ357800	2007-XX-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Aw et al.	?	?	?	?
+DENV2/VENEZUELA/LARD8336/2001	dengue	HM210466	2001-XX-XX	South America	Venezuela	Aragua	Aragua	?	genome	Aguirre et al.	?	?	?	?
+DENV2/SINGAPORE/08ATW/2010	dengue	JF968034	2010-XX-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Chang et al.	?	?	?	?
+DENV2/MALAYSIA/TM26/2014	dengue	KU666944	2014-01-XX	Southeast Asia	Malaysia	Johor	Johor Bahru	?	genome	Adnan et al.	?	?	?	?
+DENV2/INDIA/NIV6379/1983	dengue	FJ538922	1983-XX-XX	South Asia	India	India	India	?	genome	Barde et al.	?	?	?	?
+DENV2/INDONESIA/N045/2010	dengue	KM216699	2010-06-06	Southeast Asia	Indonesia	Indonesia	Indonesia	?	genome	Chidlow et al.	?	?	?	?
+DENV2/NA/B6BRAINP0408/NA	dengue	LC129171	?	?	?	?	?	?	genome	Dhole et al.	?	?	?	?
+DENV2/SINGAPORE/CT32/2013	dengue	KX380826	2013-XX-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Aw et al.	?	?	?	?
+DENV2/SOMALIA/DB126/2011	dengue	KC848584	2011-XX-XX	Africa	Somalia	Somalia	Somalia	?	genome	Colon et al.	?	?	?	?
+DENV2/VIETNAM/BD341/2006	dengue	GU211755	2006-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Cardosa et al.	?	?	?	?
+DENV2/VIETNAM/09DX698/2011	dengue	JX093619	2011-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Bryant et al.	?	?	?	?
+DENV2/THAILAND/05692/2001	dengue	EU117316	2001-XX-XX	Southeast Asia	Thailand	Kamphaeng Phet	Kamphaeng Phet	?	genome	Endy et al.	?	?	?	?
+DENV2/VIETNAM/HCM18C/2002	dengue	AB479041	2002-XX-XX	Southeast Asia	Vietnam	Ho Chi Minh	Ho Chi Minh	?	genome	Hasebe et al.	?	?	?	?
+DENV2/THAILAND/BIDV2279/2001	dengue	FJ687435	2001-XX-XX	Southeast Asia	Thailand	Kamphaeng Phet	Kamphaeng Phet	?	genome	Alvarado et al.	?	?	?	?
