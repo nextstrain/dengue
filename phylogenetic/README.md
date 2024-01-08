@@ -55,8 +55,7 @@ Alternatively, you can run the build using the
 example data provided in this repository.  Before running the build, copy the
 example sequences into the `data/` directory like so:
 
-    mkdir -p data/
-    cp example_data/dengue* data/
+    nextstrain build .  --configfile profiles/ci/profiles_config.yaml
 
 ## AWS
 
