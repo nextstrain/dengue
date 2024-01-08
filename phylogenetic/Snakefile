@@ -7,16 +7,6 @@ rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}.json", serotype=serotypes)
 
-def traits_columns(w):
-    traits = {
-        'all': 'region',
-        'denv1': 'country region',
-        'denv2': 'country region',
-        'denv3': 'country region',
-        'denv4': 'country region'
-    }
-    return traits[w.serotype]
-
 def clade_defs(w):
     defs = {
         'all': 'config/clades_serotypes.tsv',

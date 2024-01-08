@@ -67,8 +67,8 @@ rule traits:
     output:
         node_data = "results/traits_{serotype}.json",
     params:
-        columns = traits_columns,
-        sampling_bias_correction = 3,
+        columns = lambda wildcards: config['traits']['traits_columns'][wildcards.serotype],
+        sampling_bias_correction = config['traits']['sampling_bias_correction'],
         strain_id = config.get("strain_id_field", "strain"),
     shell:
         """

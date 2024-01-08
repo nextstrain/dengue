@@ -11,3 +11,12 @@ filter:
     denv2: '36'
     denv3: '36'
     denv4: '36'
+
+traits:
+  sampling_bias_correction: '3'
+  traits_columns:
+    all: 'region'
+    denv1: 'country region'
+    denv2: 'country region'
+    denv3: 'country region'
+    denv4: 'country region'
