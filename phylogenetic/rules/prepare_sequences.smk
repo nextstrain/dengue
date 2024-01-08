@@ -58,9 +58,9 @@ rule filter:
     output:
         sequences = "results/filtered_{serotype}.fasta"
     params:
-        group_by = "year region",
-        sequences_per_group = filter_sequences_per_group,
-        min_length = 5000,
+        group_by = config['filter']['group_by'],
+        sequences_per_group = lambda wildcards: config['filter']['sequences_per_group'][wildcards.serotype],
+        min_length = config['filter']['min_length'],
         strain_id = config.get("strain_id_field", "strain"),
     shell:
         """

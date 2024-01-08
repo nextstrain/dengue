@@ -7,16 +7,6 @@ rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}.json", serotype=serotypes)
 
-def filter_sequences_per_group(w):
-    sequences_per_group = {
-        'all': '10',
-        'denv1': '36',
-        'denv2': '36',
-        'denv3': '36',
-        'denv4': '36'
-    }
-    return sequences_per_group[w.serotype]
-
 def traits_columns(w):
     traits = {
         'all': 'region',

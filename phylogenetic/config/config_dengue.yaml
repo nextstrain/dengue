@@ -3,3 +3,11 @@ display_strain_field: "strain"
 
 filter:
   exclude: "config/dropped_strains.txt"
+  group_by: "year region"
+  min_length: 5000
+  sequences_per_group:
+    all: '10'
+    denv1: '36'
+    denv2: '36'
+    denv3: '36'
+    denv4: '36'
