@@ -7,16 +7,6 @@ rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}.json", serotype=serotypes)
 
-def clade_defs(w):
-    defs = {
-        'all': 'config/clades_serotypes.tsv',
-        'denv1': 'config/clades_genotypes.tsv',
-        'denv2': 'config/clades_genotypes.tsv',
-        'denv3': 'config/clades_genotypes.tsv',
-        'denv4': 'config/clades_genotypes.tsv'
-    }
-    return defs[w.serotype]
-
 include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"

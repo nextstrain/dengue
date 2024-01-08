@@ -20,3 +20,11 @@ traits:
     denv2: 'country region'
     denv3: 'country region'
     denv4: 'country region'
+
+clades:
+  clade_definitions:
+    all: 'config/clades_serotypes.tsv'
+    denv1: 'config/clades_genotypes.tsv'
+    denv2: 'config/clades_genotypes.tsv'
+    denv3: 'config/clades_genotypes.tsv'
+    denv4: 'config/clades_genotypes.tsv'
