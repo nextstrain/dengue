@@ -7,16 +7,6 @@ rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}.json", serotype=serotypes)
 
-def download_serotype(w):
-    serotype = {
-        'all': 'all',
-        'denv1': 'Dengue_virus_1',
-        'denv2': 'Dengue_virus_2',
-        'denv3': 'Dengue_virus_3',
-        'denv4': 'Dengue_virus_4'
-    }
-    return serotype[w.serotype]
-
 def filter_sequences_per_group(w):
     sequences_per_group = {
         'all': '10',
