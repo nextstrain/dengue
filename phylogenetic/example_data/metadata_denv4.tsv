@@ -1,0 +1,51 @@
+strain	virus	accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
+DENV4/ECUADOR/FSE2098/2006	dengue	GQ139572	2006-XX-XX	South America	Ecuador	Ecuador	Ecuador	?	genome	Alava et al.	?	?	?	?
+DENV4/BRAZIL/SJRP580/2012	dengue	KP188562	2012-12-10	South America	Brazil	Brazil	Brazil	?	genome	Araujo et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0670/2013	dengue	KP704043	2013-03-17	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/INDONESIA/MKS06/2007	dengue	KC762697	2007-12-11	Southeast Asia	Indonesia	Makassar	Makassar	?	genome	Bifani et al.	?	?	?	?
+DENV4/FRENCH_POLYNESIA/160119/2009	dengue	JN832537	2009-06-16	Oceania	French Polynesia	French Polynesia	French Polynesia	?	genome	Aaskov et al.	?	?	?	?
+DENV4/INDONESIA/07BTW/2008	dengue	JF967764	2008-XX-XX	Southeast Asia	Indonesia	Indonesia	Indonesia	?	genome	Chang et al.	?	?	?	?
+DENV4/BRAZIL/GUSP1161/2013	dengue	KP704202	2013-06-07	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/VENEZUELA/BIDV2499/2007	dengue	FJ882590	2007-XX-XX	South America	Venezuela	Aragua	Aragua	?	genome	Alvarado et al.	?	?	?	?
+DENV4/THAILAND/AILANDKPPKDS00996NP06SCHOLS08/2004	dengue	JQ993291	2004-XX-XX	Southeast Asia	Thailand	Thailand	Thailand	?	genome	Aldstadt et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0693/2013	dengue	KP704053	2013-03-19	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/MYANMAR/MDY76/2013	dengue	KR051895	2013-XX-XX	Southeast Asia	Myanmar	Myanmar	Myanmar	?	genome	Tun et al.	?	?	?	?
+DENV4/COLOMBIA/371813LOMBIA96/NA	dengue	DQ341219	?	South America	Colombia	Colombia	Colombia	?	genome	Beaty et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0789/2013	dengue	KP704087	2013-03-21	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/VENEZUELA/BIDV2173/1999	dengue	FJ639745	1999-XX-XX	South America	Venezuela	Aragua	Aragua	?	genome	Alvarado et al.	?	?	?	?
+DENV4/FRENCH_POLYNESIA/24072/2009	dengue	JN832529	2009-04-24	Oceania	French Polynesia	French Polynesia	French Polynesia	?	genome	Aaskov et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0590/2013	dengue	KP704010	2013-03-14	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/VIETNAM/13DX4452/2012	dengue	JX644012	2012-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Anders et al.	?	?	?	?
+DENV4/FRENCH_POLYNESIA/310162/2009	dengue	JN832524	2009-03-31	Oceania	French Polynesia	French Polynesia	Tahiti	?	genome	Aaskov et al.	?	?	?	?
+DENV4/MONTSERRAT/MON1994BCAREC9411972/NA	dengue	AY152370	?	North America	Montserrat	British Overseas Territory	Montserrat	?	genome	Bennett et al.	?	?	?	?
+DENV4/CAMBODIA/06ATW/2003	dengue	EU448453	2003-XX-XX	Southeast Asia	Cambodia	Cambodia	Cambodia	?	genome	Chang et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0406/2013	dengue	KP703943	2013-03-05	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/BRAZIL/GUSP1200/2013	dengue	KP704211	2013-05-23	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0649/2013	dengue	KP704035	2013-03-16	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/PERU/IQE7751/2008	dengue	GQ139548	2008-XX-XX	South America	Peru	Peru	Peru	?	genome	Alava et al.	?	?	?	?
+DENV4/SINGAPORE/64816/2011	dengue	JN544415	2011-02-XX	Southeast Asia	Singapore	Singapore	Singapore	?	genome	Chua et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0208/2013	dengue	KP703886	2013-02-22	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/BRAZIL/GUSP05/2013	dengue	KP703981	2013-03-12	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/INDONESIA/01ATW/2009	dengue	JF967768	2009-XX-XX	Southeast Asia	Indonesia	Indonesia	Indonesia	?	genome	Chang et al.	?	?	?	?
+DENV4/BRAZIL/3603RJ/2012	dengue	KY084514	2012-XX-XX	South America	Brazil	Brazil	Brazil	?	genome	Chouin-Carneiro et al.	?	?	?	?
+DENV4/PERU/FSP1412/2008	dengue	GQ139557	2008-XX-XX	South America	Peru	Peru	Peru	?	genome	Alava et al.	?	?	?	?
+DENV4/THAILAND/AILANDKPPKDS01280NBXXSCHOLS01/2004	dengue	JQ993288	2004-XX-XX	Southeast Asia	Thailand	Thailand	Thailand	?	genome	Aldstadt et al.	?	?	?	?
+DENV4/PUERTO_RICO/811994/NA	dengue	AY152148	?	North America	Puerto Rico	Puerto Rico	Puerto Rico	?	genome	Beltran et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0650/2013	dengue	KP704036	2013-03-16	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/INDONESIA/LF115/1999	dengue	FM986671	1999-XX-XX	Southeast Asia	Indonesia	Borneo	Sarawak	?	genome	Cardosa et al.	?	?	?	?
+DENV4/VIETNAM/SG5198/2002	dengue	AY786195	2002-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Ha et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0537/2013	dengue	KP703990	2013-03-13	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/VENEZUELA/BIDV2489/2007	dengue	FJ882580	2007-XX-XX	South America	Venezuela	Aragua	Aragua	?	genome	Alvarado et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0149/2013	dengue	KP703875	2013-02-14	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/SPAIN/BIDV3407/2001	dengue	GQ868580	2001-XX-XX	Europe	Spain	Cantabria	Santander	?	genome	Alvarado et al.	?	?	?	?
+DENV4/PUERTO_RICO/BIDV2442/1998	dengue	FJ882596	1998-XX-XX	North America	Puerto Rico	Puerto Rico	Puerto Rico	?	genome	Alvarado et al.	?	?	?	?
+DENV4/VIETNAM/BT3976/2011	dengue	JX556926	2011-XX-XX	Southeast Asia	Vietnam	Mekong Delta	Mekong Delta	?	genome	Bui et al.	?	?	?	?
+DENV4/NEW_CALEDONIA/200409/2008	dengue	JQ915085	2008-02-20	Oceania	New Caledonia	New Caledonia	Noumea	?	genome	Aubry et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0551/2013	dengue	KP703998	2013-03-14	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/PUERTO_RICO/11987/NA	dengue	AY152228	?	North America	Puerto Rico	Puerto Rico	Puerto Rico	?	genome	Beltran et al.	?	?	?	?
+DENV4/CHINA/GD0166GUANDONG/2010	dengue	KJ545440	2010-XX-XX	China	China	China	China	?	genome	Ke et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0792/2013	dengue	KP704090	2013-03-21	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/BRAZIL/GUSP1224/2013	dengue	KP704216	2013-05-27	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/VENEZUELA/BIDV1158/2007	dengue	FJ182016	2007-XX-XX	South America	Venezuela	Aragua	Aragua	?	genome	Alvarado et al.	?	?	?	?
+DENV4/BRAZIL/GUSP0766/2013	dengue	KP704082	2013-03-21	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?
+DENV4/NA/P71006/NA	dengue	AF231722	?	?	?	?	?	?	genome	Barrett et al.	?	?	?	?
