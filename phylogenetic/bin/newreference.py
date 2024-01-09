@@ -6,10 +6,12 @@ import argparse
 
 def new_reference(referencefile, outgenbank, outfasta, gene):
     ref = SeqIO.read(referencefile, "genbank")
+    startofgene = None
+    endofgene = None
     for feature in ref.features:
         if feature.type == 'source':
             ref_source_feature = feature
-        if feature.type =='gene':
+        if feature.type =='gene' or feature.type == 'CDS':
             a = list(feature.qualifiers.items())[0][-1][0]
             if a == gene:
                 startofgene = int(list(feature.location)[0])
