@@ -18,7 +18,6 @@ See Augur's usage docs for these commands for more details.
 """
 
 ruleorder: export_E > export
-ruleorder: final_strain_name_E > final_strain_name
 
 rule export_E:
     """Exporting data files for auspice"""
@@ -45,26 +44,4 @@ rule export_E:
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
             --output {output.auspice_json}
-        """
-
-rule final_strain_name_E:
-    input:
-        auspice_json="results/raw_dengue_{serotype}_E.json",
-        metadata="data/metadata_{serotype}.tsv",
-        root_sequence="results/raw_dengue_{serotype}_E_root-sequence.json",
-    output:
-        auspice_json="auspice/dengue_{serotype}_E.json",
-        root_sequence="auspice/dengue_{serotype}_E_root-sequence.json",
-    params:
-        strain_id=config.get("strain_id_field", "strain"),
-        display_strain_field=config.get("display_strain_field", "strain"),
-    shell:
-        """
-        python3 bin/set_final_strain_name.py \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --input-auspice-json {input.auspice_json} \
-            --display-strain-name {params.display_strain_field} \
-            --output {output.auspice_json}
-        cp {input.root_sequence} {output.root_sequence}
         """

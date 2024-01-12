@@ -19,7 +19,6 @@ rule download:
     output:
         sequences = "data/sequences_{serotype}.fasta.zst",
         metadata = "data/metadata_{serotype}.tsv.zst"
-
     params:
         sequences_url = "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst",
         metadata_url = "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
@@ -85,7 +84,7 @@ rule align:
         sequences = "results/filtered_{serotype}.fasta",
         reference = "config/reference_dengue_{serotype}.gb"
     output:
-        alignment = "results/aligned_{serotype}.fasta"
+        alignment = "results/aligned_{serotype}_genome.fasta"
     shell:
         """
         augur align \

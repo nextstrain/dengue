@@ -3,6 +3,10 @@ configfile: "config/config_dengue.yaml"
 serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 genes = ['E', 'genome']
 
+wildcard_constraints:
+    serotype = "|".join(serotypes),
+    gene = "|".join(genes)
+
 rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}_{gene}.json", serotype=serotypes, gene=genes),
@@ -10,7 +14,6 @@ rule all:
 include: "rules/prepare_sequences.smk"
 include: "rules/prepare_sequences_E.smk"
 include: "rules/construct_phylogeny.smk"
-include: "rules/construct_phylogeny_E.smk"
 include: "rules/annotate_phylogeny.smk"
 include: "rules/annotate_phylogeny_E.smk"
 include: "rules/export.smk"
