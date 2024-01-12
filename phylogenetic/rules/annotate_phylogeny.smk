@@ -24,10 +24,10 @@ to the ones produced by Augur commands.
 rule ancestral:
     """Reconstructing ancestral sequences and mutations"""
     input:
-        tree = "results/tree_{serotype}.nwk",
-        alignment = "results/aligned_{serotype}.fasta"
+        tree = "results/tree_{serotype}_{gene}.nwk",
+        alignment = "results/aligned_{serotype}_{gene}.fasta"
     output:
-        node_data = "results/nt-muts_{serotype}.json"
+        node_data = "results/nt-muts_{serotype}_{gene}.json"
     params:
         inference = "joint"
     shell:
@@ -42,11 +42,11 @@ rule ancestral:
 rule translate:
     """Translating amino acid sequences"""
     input:
-        tree = "results/tree_{serotype}.nwk",
-        node_data = "results/nt-muts_{serotype}.json",
+        tree = "results/tree_{serotype}_genome.nwk",
+        node_data = "results/nt-muts_{serotype}_genome.json",
         reference = "config/reference_dengue_{serotype}.gb"
     output:
-        node_data = "results/aa-muts_{serotype}.json"
+        node_data = "results/aa-muts_{serotype}_genome.json"
     shell:
         """
         augur translate \
@@ -62,12 +62,12 @@ rule traits:
       - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
     """
     input:
-        tree = "results/tree_{serotype}.nwk",
+        tree = "results/tree_{serotype}_{gene}.nwk",
         metadata = "data/metadata_{serotype}.tsv"
     output:
-        node_data = "results/traits_{serotype}.json",
+        node_data = "results/traits_{serotype}_{gene}.json",
     params:
-        columns = lambda wildcards: config['traits']['traits_columns'][wildcards.serotype],
+        columns = lambda wildcards: config['traits']['traits_columns'][wildcards.serotype + "_" + wildcards.gene],
         sampling_bias_correction = config['traits']['sampling_bias_correction'],
         strain_id = config.get("strain_id_field", "strain"),
     shell:
@@ -85,12 +85,12 @@ rule traits:
 rule clades:
     """Annotating serotypes / genotypes"""
     input:
-        tree = "results/tree_{serotype}.nwk",
-        nt_muts = "results/nt-muts_{serotype}.json",
-        aa_muts = "results/aa-muts_{serotype}.json",
+        tree = "results/tree_{serotype}_genome.nwk",
+        nt_muts = "results/nt-muts_{serotype}_genome.json",
+        aa_muts = "results/aa-muts_{serotype}_genome.json",
         clade_defs = lambda wildcards: config['clades']['clade_definitions'][wildcards.serotype],
     output:
-        clades = "results/clades_{serotype}.json"
+        clades = "results/clades_{serotype}_genome.json"
     shell:
         """
         augur clades \
