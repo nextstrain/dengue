@@ -20,9 +20,6 @@ filter:
     denv3: 'NC_001475'
     denv4: 'NC_002640'
 
-translate:
-  denv1_genome: ""
-
 traits:
   sampling_bias_correction: '3'
   traits_columns:
