@@ -42,11 +42,12 @@ rule ancestral:
 rule translate:
     """Translating amino acid sequences"""
     input:
-        tree = "results/tree_{serotype}_genome.nwk",
-        node_data = "results/nt-muts_{serotype}_genome.json",
-        reference = "config/reference_dengue_{serotype}.gb"
+        tree = "results/tree_{serotype}_{gene}.nwk",
+        node_data = "results/nt-muts_{serotype}_{gene}.json",
+        # The genbank references for the E gene are dynamically generated files located within the results folder.
+        reference = lambda wildcard: "config/reference_dengue_{serotype}.gb" if wildcard.gene in ["genome"] else "results/config/reference_dengue_{serotype}_{gene}.gb"
     output:
-        node_data = "results/aa-muts_{serotype}_genome.json"
+        node_data = "results/aa-muts_{serotype}_{gene}.json"
     shell:
         """
         augur translate \
