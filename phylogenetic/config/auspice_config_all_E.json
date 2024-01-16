@@ -1,8 +1,8 @@
 {
   "title": "Real-time tracking of Env gene in dengue virus evolution",
   "maintainers": [
-   {"name": "Jennifer Chang", "url": "https://bedford.io/team/jennifer-chang/"},
-   {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"}
+    {"name": "Jennifer Chang", "url": "https://bedford.io/team/jennifer-chang/"},
+    {"name": "Trevor Bedford", "url": "https://bedford.io/team/trevor-bedford/"}
   ],
   "build_url": "https://github.com/nextstrain/dengue",  
   "colorings": [
