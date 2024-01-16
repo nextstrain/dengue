@@ -40,7 +40,7 @@ rule colors:
 rule prepare_auspice_config:
     """Prepare the auspice config file for each serotypes"""
     output:
-        auspice_config="results/config/auspice_config_{serotype}.json",
+        auspice_config="results/config/auspice_config_{serotype}_{gene}.json",
     params:
         replace_clade_key="clade_membership",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"DENV genotype",
@@ -109,17 +109,17 @@ rule prepare_auspice_config:
 rule export:
     """Exporting data files for auspice"""
     input:
-        tree = "results/tree_{serotype}_genome.nwk",
+        tree = "results/tree_{serotype}_{gene}.nwk",
         metadata = "data/metadata_{serotype}.tsv",
-        branch_lengths = "results/branch-lengths_{serotype}_genome.json",
-        traits = "results/traits_{serotype}_genome.json",
-        clades = "results/clades_{serotype}_genome.json",
-        nt_muts = "results/nt-muts_{serotype}_genome.json",
-        aa_muts = "results/aa-muts_{serotype}_genome.json",
-        auspice_config = "results/config/auspice_config_{serotype}.json",
+        branch_lengths = "results/branch-lengths_{serotype}_{gene}.json",
+        traits = "results/traits_{serotype}_{gene}.json",
+        clades = lambda wildcard: "results/clades_{serotype}_{gene}.json" if wildcard.gene in ['genome'] else [],
+        nt_muts = "results/nt-muts_{serotype}_{gene}.json",
+        aa_muts = "results/aa-muts_{serotype}_{gene}.json",
+        auspice_config = "results/config/auspice_config_{serotype}_{gene}.json",
         colors = "results/colors_{serotype}.tsv",
     output:
-        auspice_json = "results/raw_dengue_{serotype}_genome.json",
+        auspice_json = "results/raw_dengue_{serotype}_{gene}.json",
     params:
         strain_id = config.get("strain_id_field", "strain"),
     shell:
