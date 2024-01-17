@@ -45,7 +45,7 @@ rule translate:
         tree = "results/tree_{serotype}_{gene}.nwk",
         node_data = "results/nt-muts_{serotype}_{gene}.json",
         # The genbank references for the E gene are dynamically generated files located within the results folder.
-        reference = lambda wildcard: "config/reference_dengue_{serotype}.gb" if wildcard.gene in ["genome"] else "results/config/reference_dengue_{serotype}_{gene}.gb"
+        reference = lambda wildcard: "config/reference_{serotype}_{gene}.gb" if wildcard.gene in ["genome"] else "results/config/reference_{serotype}_{gene}.gb"
     output:
         node_data = "results/aa-muts_{serotype}_{gene}.json"
     shell:
