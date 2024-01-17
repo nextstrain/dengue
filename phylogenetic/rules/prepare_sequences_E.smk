@@ -14,7 +14,7 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
-ruleorder: nextclade3_cut_E > decompress
+ruleorder: align_and_extract_E > decompress
 ruleorder: filter_E > align
 
 rule generate_E_reference_files:
@@ -37,7 +37,7 @@ rule generate_E_reference_files:
             --gene {params.gene}
         """
 
-rule nextclade3_cut_E:
+rule align_and_extract_E:
     """
     Cutting sequences to the length of the E gene reference sequence
     """
