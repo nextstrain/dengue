@@ -1,10 +1,10 @@
 {
-  "title": "Real-time tracking of DENV4 dengue virus evolution",
+  "title": "Real-time tracking of dengue virus REPLACE_GENE evolution",
   "maintainers": [
     {"name": "Jennifer Chang", "url": "https://bedford.io/team/jennifer-chang/"},
     {"name": "Trevor Bedford", "url": "https://bedford.io/team/trevor-bedford/"}
   ],
-  "build_url": "https://github.com/nextstrain/dengue",
+  "build_url": "https://github.com/nextstrain/dengue",  
   "colorings": [
     {
       "key": "gt",
@@ -27,8 +27,8 @@
       "type": "categorical"
     },
     {
-      "key": "clade_membership",
-      "title": "DENV genotype",
+      "key": "REPLACE_CLADE_KEY",
+      "title": "REPLACE_CLADE_TITLE",
       "type": "categorical"
     }
   ],
@@ -38,7 +38,8 @@
   ],
   "display_defaults": {
     "map_triplicate": true,
-    "color_by": "clade_membership"
+    "color_by": "REPLACE_CLADE_KEY",
+    "distance_measure": "div"
   },
   "filters": [
     "country",

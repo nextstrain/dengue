@@ -17,6 +17,23 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
+rule prepare_auspice_config:
+    input:
+        auspice_template="config/auspice_config_template.json",
+    output:
+        auspice_config="results/config/auspice_config_{serotype}_{gene}.json",
+    params:
+        replace_clade_key=lambda wildcard: "clade_membership" if wildcard.gene in ['genome'] else "nextclade_subtype",
+        replace_clade_title=lambda wildcard: "Serotype" if wildcard.serotype in ['all'] else "DENV genotype",
+    shell:
+        """
+        cat {input.auspice_template} \
+        | sed "s/REPLACE_GENE/{wildcards.gene}/g" \
+        | sed "s/REPLACE_CLADE_KEY/{params.replace_clade_key}/g" \
+        | sed "s/REPLACE_CLADE_TITLE/{params.replace_clade_title}/g" \
+        > {output.auspice_config}
+        """
+
 rule export:
     """Exporting data files for auspice"""
     input:
@@ -27,7 +44,7 @@ rule export:
         clades = lambda wildcard: "results/clades_{serotype}_{gene}.json" if wildcard.gene in ['genome'] else [],
         nt_muts = "results/nt-muts_{serotype}_{gene}.json",
         aa_muts = "results/aa-muts_{serotype}_{gene}.json",
-        auspice_config = "config/auspice_config_{serotype}_{gene}.json",
+        auspice_config = "results/config/auspice_config_{serotype}_{gene}.json",
     output:
         auspice_json = "results/raw_dengue_{serotype}_{gene}.json",
         root_sequence = "results/raw_dengue_{serotype}_{gene}_root-sequence.json",
