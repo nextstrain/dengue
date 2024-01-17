@@ -22,10 +22,10 @@ rule generate_E_reference_files:
     Generating reference files for the E gene
     """
     input:
-        reference = "config/reference_dengue_{serotype}.gb",
+        reference = "config/reference_{serotype}_genome.gb",
     output:
-        fasta = "results/config/reference_dengue_{serotype}_E.fasta",
-        genbank = "results/config/reference_dengue_{serotype}_E.gb",
+        fasta = "results/config/reference_{serotype}_E.fasta",
+        genbank = "results/config/reference_{serotype}_E.gb",
     params:
         gene = "E",
     shell:
@@ -43,7 +43,7 @@ rule nextclade3_cut_E:
     """
     input:
         sequences = "data/sequences_{serotype}.fasta",
-        reference = "results/config/reference_dengue_{serotype}_E.fasta"
+        reference = "results/config/reference_{serotype}_E.fasta"
     output:
         sequences = "results/sequences_{serotype}_E.fasta"
     params:

@@ -82,7 +82,7 @@ rule align:
     """
     input:
         sequences = "results/filtered_{serotype}.fasta",
-        reference = "config/reference_dengue_{serotype}.gb"
+        reference = "config/reference_{serotype}_genome.gb"
     output:
         alignment = "results/aligned_{serotype}_genome.fasta"
     shell:
