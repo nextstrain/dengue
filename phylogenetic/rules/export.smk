@@ -23,8 +23,8 @@ rule prepare_auspice_config:
     output:
         auspice_config="results/config/auspice_config_{serotype}_{gene}.json",
     params:
-        replace_clade_key=lambda wildcard: "clade_membership" if wildcard.gene in ['genome'] else "nextclade_subtype",
-        replace_clade_title=lambda wildcard: "Serotype" if wildcard.serotype in ['all'] else "DENV genotype",
+        replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"nextclade_subtype",
+        replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"DENV genotype",
     shell:
         """
         cat {input.auspice_template} \
