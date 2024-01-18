@@ -17,22 +17,68 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
+import json
+
 rule prepare_auspice_config:
-    input:
-        auspice_template="config/auspice_config_template.json",
+    """Prepare the auspice config file for serotype and gene pairs"""
     output:
         auspice_config="results/config/auspice_config_{serotype}_{gene}.json",
     params:
         replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"nextclade_subtype",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"DENV genotype",
-    shell:
-        """
-        cat {input.auspice_template} \
-        | sed "s/REPLACE_GENE/{wildcards.gene}/g" \
-        | sed "s/REPLACE_CLADE_KEY/{params.replace_clade_key}/g" \
-        | sed "s/REPLACE_CLADE_TITLE/{params.replace_clade_title}/g" \
-        > {output.auspice_config}
-        """
+    run:
+        data = {
+            "title": "Real-time tracking of dengue virus " + wildcards.gene + " evolution",
+            "maintainers": [
+              {"name": "Jennifer Chang", "url": "https://bedford.io/team/jennifer-chang/"},
+              {"name": "Trevor Bedford", "url": "https://bedford.io/team/trevor-bedford/"}
+            ],
+            "build_url": "https://github.com/nextstrain/dengue",
+            "colorings": [
+              {
+                "key": "gt",
+                "title": "Genotype",
+                "type": "categorical"
+              },
+              {
+                "key": "num_date",
+                "title": "Date",
+                "type": "continuous"
+              },
+              {
+                "key": "country",
+                "title": "Country",
+                "type": "categorical"
+              },
+              {
+                "key": "region",
+                "title": "Region",
+                "type": "categorical"
+              },
+              {
+                "key": params.replace_clade_key,
+                "title": params.replace_clade_title,
+                "type": "categorical"
+              }
+            ],
+            "geo_resolutions": [
+              "country",
+              "region"
+            ],
+            "display_defaults": {
+              "map_triplicate": True,
+              "color_by": params.replace_clade_key,
+              "distance_measure": "div"
+            },
+            "filters": [
+              "country",
+              "region",
+              "author"
+            ]
+          }
+
+        with open(output.auspice_config, 'w') as fh:
+            json.dump(data, fh, indent=2)
 
 rule export:
     """Exporting data files for auspice"""
