@@ -23,13 +23,15 @@ rule nextclade_denvX:
     output:
         nextclade_denvX="data/nextclade_results/nextclade_denv{x}.tsv",
     threads: 4
+    params:
+        min_seed_cover=0.01,
     shell:
         """
         nextclade run \
           --input-dataset {input.dataset} \
           -j {threads} \
           --output-tsv {output.nextclade_denvX} \
-          --min-match-rate 0.01 \
+          --min-seed-cover {params.min_seed_cover} \
           --silent \
           {input.sequences}
         """
