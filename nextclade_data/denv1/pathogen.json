@@ -1,6 +1,7 @@
 {
   "alignmentParams": {
-    "minSeedCover": 0.01
+    "minSeedCover": 0.1,
+    "minLength": 1000
   },
   "attributes": {
     "name": "Dengue virus DENV1 dataset",
