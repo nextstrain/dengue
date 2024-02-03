@@ -29,14 +29,16 @@ rule ancestral:
     output:
         node_data = "results/nt-muts_{serotype}.json"
     params:
-        inference = "joint"
+        inference = "joint",
+        reference = "config/reference_dengue_{serotype}.gb"
     shell:
         """
         augur ancestral \
             --tree {input.tree} \
             --alignment {input.alignment} \
             --output-node-data {output.node_data} \
-            --inference {params.inference}
+            --inference {params.inference} \
+            --root-sequence {params.reference}
         """
 
 rule translate:
