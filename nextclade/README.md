@@ -1,4 +1,4 @@
-# Nextclade reference tree workflow for monkeypox
+# Nextclade reference tree workflow for dengue
 
 This README doesn't end up in the datasets, so it's a developer README, rather than a dataset user README.
 
@@ -29,18 +29,18 @@ nextstrain view auspice/
 ### Creating a new dataset version
 
 - [ ] Edit CHANGELOG.md
-- [ ] Switch to `nextclade_data/data/mpox` repo
+- [ ] Switch to `nextclade_data/data/dengue` repo
 - [ ] Create branch there, copy datasets, commit, push, open PR:
 
 ```bash
 cd ../../nextclade_data
 git checkout master
 git pull
-git checkout -b mpox-update
-cp -r ../monkeypox/nextclade/datasets/ data/nextstrain/mpox
-git add data/nextstrain/mpox
-git commit -m "Update mpox dataset"
-git push -u origin mpox-update
+git checkout -b dengue-update
+cp -r ../dengue/nextclade/datasets/ data/nextstrain/dengue
+git add data/nextstrain/dengue
+git commit -m "Update dengue dataset"
+git push -u origin dengue-update
 gh pr create
 ```
 
