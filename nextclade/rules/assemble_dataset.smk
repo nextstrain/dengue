@@ -38,22 +38,23 @@ rule assemble_dataset:
         """
 # #cp {input.sequences} {output.sequences}
 
-# rule test_dataset:
-#     input:
-#         tree="datasets/{serotype}/tree.json",
-#         pathogen_json="datasets/{serotype}/pathogen.json",
-#         sequences="datasets/{serotype}/sequences.fasta",
-#         #annotation="datasets/{serotype}/genome_annotation.gff3",
-#         #readme="datasets/{serotype}/README.md",
-#         #changelog="datasets/{serotype}/CHANGELOG.md",
-#     output:
-#         outdir=directory("test_output/{serotype}"),
-#     params:
-#         dataset_dir="datasets/{serotype}",
-#     shell:
-#         """
-#         nextclade3 run \
-#             {input.sequences} \
-#             --input-dataset {params.dataset_dir} \
-#             --output-all {output.outdir}
-#         """
+rule test_dataset:
+    input:
+        tree="datasets/{serotype}/tree.json",
+        pathogen_json="datasets/{serotype}/pathogen.json",
+        sequences="resources/all/sequences.fasta",
+        annotation="datasets/{serotype}/genome_annotation.gff3",
+        readme="datasets/{serotype}/README.md",
+        changelog="datasets/{serotype}/CHANGELOG.md",
+    output:
+        outdir=directory("test_output/{serotype}"),
+    params:
+        dataset_dir="datasets/{serotype}",
+    shell:
+        """
+        nextclade run \
+          --input-dataset {params.dataset_dir} \
+          --output-all {output.outdir} \
+          --silent \
+          {input.sequences}
+        """
