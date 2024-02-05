@@ -11,6 +11,7 @@ rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}_{gene}.json", serotype=serotypes, gene=genes),
         nextclade_dataset = expand("datasets/{serotype}/tree.json", serotype=serotypes),
+        test_dataset = expand("test_output/{serotype}", serotype=serotypes),
 
 include: "rules/prepare_sequences.smk"
 include: "rules/prepare_sequences_E.smk"
