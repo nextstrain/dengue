@@ -10,12 +10,14 @@ wildcard_constraints:
 rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}_{gene}.json", serotype=serotypes, gene=genes),
+        nextclade_dataset = expand("datasets/{serotype}/tree.json", serotype=serotypes),
 
 include: "rules/prepare_sequences.smk"
 include: "rules/prepare_sequences_E.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"
 include: "rules/export.smk"
+include: "rules/assemble_dataset.smk"
 
 # Include custom rules defined in the config.
 if "custom_rules" in config:
