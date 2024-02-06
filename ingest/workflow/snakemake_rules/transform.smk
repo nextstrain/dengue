@@ -6,8 +6,8 @@ formats and expects input file
 
 This will produce output files as
 
-    metadata = "results/metadata.tsv"
-    sequences = "results/sequences.fasta"
+    metadata = "results/metadata_all.tsv"
+    sequences = "results/sequences_all.fasta"
 
 Parameters are expected to be defined in `config.transform`.
 """
@@ -42,8 +42,8 @@ rule transform:
         all_geolocation_rules="data/all-geolocation-rules.tsv",
         annotations=config["transform"]["annotations"],
     output:
-        metadata="results/metadata.tsv",
-        sequences="results/sequences.fasta",
+        metadata="results/metadata_all.tsv",
+        sequences="results/sequences_all.fasta",
     log:
         "logs/transform.txt",
     params:
@@ -85,6 +85,7 @@ rule transform:
                 --abbr-authors-field {params.abbr_authors_field} \
             | ./vendored/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
+            | ./bin/infer-dengue-serotype.py \
             | ./vendored/merge-user-metadata \
                 --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
