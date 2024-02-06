@@ -50,7 +50,7 @@ rule align_and_extract_E:
         min_length = config['filter']['E_min_length'],
     shell:
         """
-        nextclade3 run \
+        nextclade run \
            -j 2 \
            --input-ref {input.reference} \
            --output-fasta {output.sequences} \
