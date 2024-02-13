@@ -2,7 +2,7 @@ strain_id_field: "accession"
 display_strain_field: "strain"
 
 filter:
-  exclude: "config/dropped_strains.txt"
+  exclude: "config/exclude.txt"
   group_by: "year region"
   min_length: 5000
   sequences_per_group:
