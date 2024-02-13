@@ -1,3 +1,4 @@
+# Format: <GenBank accession> [# <strain name> <reason>]
 JF260983 # DENV/SPAIN/EEB17/2009 # sylvatic according to https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3149010/
 HE795086 # DENV1/FRANCE/00475/2008 # 2008/00475
 EF457905 # DENV1/MALAYSIA/P1244/1972 # P72-1244
