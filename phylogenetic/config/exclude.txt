@@ -44,7 +44,6 @@ ON046272 # 01488/09 # too divergent
 ON046271 # 01542/04 # too divergent
 MZ284953 # dev1 # too divergent
 MZ215848 # DKE_121 # too divergent
-MW946564 # SENDAK_HD_10674 # sylvatic
 OK605757 # DENV2_1_DAK_HD_76395 # sylvatic
 MW945427 # DENV3/PUERTORICO/1963/PRS_228762_AC27 # too divergent
 OM258630 # PR_6 # too divergent
@@ -891,3 +890,35 @@ GU131859 # duplicate of GU131847
 GU131867 # duplicate of GU131862
 HQ332171 # duplicate of HQ332170
 HQ332178 # duplicate of HQ332177
+OP909734 # DENV2-16681-rcCap-NS1 # too divergent E gene
+KR919820 # Brun2014 # highly divergent denv1
+MZ285058 # denv1 # This record was removed from NCBI
+OP741244 # D20 # Too divergent in Denv1 tree
+OP741243 # 05 # Too divergent in Denv1 tree
+ON127553 # BCSIR-IBS-D19 # Too divergent in Denv1 tree
+ON127552 # NC_001475.2 # Too divergent in Denv1 tree
+ON127551 # BCSIR-IBS-D18 # Too divergent in Denv1 tree
+ON127550 # NC_001475.2 # Too divergent in Denv1 tree
+ON127538 # BCSIR-IBS-D17 # Too divergent in Denv1 tree
+ON127537 # NC_001475.2 # Too divergent in Denv1 tree
+ON127534 # strain_1 # Too divergent in Denv1 tree
+ON127533 # NC_001475.2 # Too divergent in Denv1 tree
+ON127419 # BCSIR-IBS-D14 # Too divergent in Denv1 tree
+ON116130 # BCSIR-IBS-D13 # Too divergent in Denv1 tree
+ON116129 # NC_001475.2 # Too divergent in Denv1 tree
+ON115818 # NC_001475.2 # Too divergent in Denv1 tree
+ON115817 # BCSIR-IBS-D11 # Too divergent in Denv1 tree
+ON115814 # NC_001475.2 # Too divergent in Denv1 tree
+ON115812 # BCSIR-IBS-D9 # Too divergent in Denv1 tree
+ON115811 # NC_001475.2 # Too divergent in Denv1 tree
+ON115183 # BCSIR-IBS-D8 # Too divergent in Denv1 tree
+ON115030 # BCSIR-IBS-D7 # Too divergent in Denv1 tree
+ON115026 # BCSIR-IBS-D6 # Too divergent in Denv1 tree
+ON115025 # NC_001475.2 # Too divergent in Denv1 tree
+ON115024 # BCSIR-IBS-D5 # Too divergent in Denv1 tree
+ON115023 # NC_001475.2 # Too divergent in Denv1 tree
+ON115022 # BCSIR-IBS-D4 # Too divergent in Denv1 tree
+ON115021 # NC_001475.2 # Too divergent in Denv1 tree
+ON111445 # NC_001475.2 # Too divergent in Denv1 tree
+ON103303 # BCSIR-IBS-D1 # Too divergent in Denv1 tree
+OK079104 # BCSIR-05 # Too divergent in Denv1 tree
