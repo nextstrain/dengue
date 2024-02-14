@@ -15,6 +15,8 @@ ncbi_datasets_fields:
   - isolate-collection-date
   - release-date
   - update-date
+  - virus-tax-id
+  - virus-name
   - length
   - host-name
   - isolate-lineage-source
@@ -37,6 +39,8 @@ transform:
     'isolate-collection-date=date',
     'release-date=release_date',
     'update-date=update_date',
+    'virus-tax-id=virus_tax_id',
+    'virus-name=virus_name',
     'sra-accs=sra_accessions',    
     'submitter-names=authors',
     'submitter-affiliation=institution',
@@ -96,6 +100,7 @@ transform:
     'host',
     'release_date',
     'update_date',
+    'ncbi_serotype', # inferred from virus_tax_id
     'sra_accessions',
     'abbr_authors',
     'authors',

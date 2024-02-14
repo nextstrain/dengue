@@ -11,10 +11,12 @@ if not config:
 
 send_slack_notifications = config.get("send_slack_notifications", False)
 
+serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 
 def _get_all_targets(wildcards):
     # Default targets are the metadata TSV and sequences FASTA files
-    all_targets = ["results/sequences.fasta", "results/metadata.tsv"]
+    all_targets = expand(["results/sequences_{serotype}.fasta", "results/metadata_{serotype}.tsv"], serotype=serotypes)
+
 
     # Add additional targets based on upload config
     upload_config = config.get("upload", {})
@@ -57,6 +59,7 @@ rule all:
 
 include: "workflow/snakemake_rules/fetch_sequences.smk"
 include: "workflow/snakemake_rules/transform.smk"
+include: "workflow/snakemake_rules/split_serotypes.smk"
 
 
 if config.get("upload", False):
