@@ -24,6 +24,7 @@ rule nextclade_denvX:
         nextclade_denvX="data/nextclade_results/nextclade_denv{x}.tsv",
     threads: 4
     params:
+        min_length=1000, # E gene length is approximately 1400
         min_seed_cover=0.01,
     shell:
         """
@@ -31,6 +32,7 @@ rule nextclade_denvX:
           --input-dataset {input.dataset} \
           -j {threads} \
           --output-tsv {output.nextclade_denvX} \
+          --min-length {params.min_length} \
           --min-seed-cover {params.min_seed_cover} \
           --silent \
           {input.sequences}
