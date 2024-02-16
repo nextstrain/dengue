@@ -13,19 +13,24 @@ like to customize the rules:
 https://docs.nextstrain.org/projects/nextclade/page/user/nextclade-cli.html
 """
 
+SUPPORTED_NEXTCLADE_SEROTYPES = ['denv1', 'denv2', 'denv3', 'denv4']
+SEROTYPE_CONSTRAINTS = '|'.join(SUPPORTED_NEXTCLADE_SEROTYPES)
+
 rule nextclade_denvX:
     """
     For each type, classify into the appropriate subtype
     """
     input:
-        sequences="results/sequences_denv{x}.fasta",
-        dataset="../nextclade_data/denv{x}",
+        sequences="results/sequences_{serotype}.fasta",
+        dataset="../nextclade_data/{serotype}",
     output:
-        nextclade_denvX="data/nextclade_results/nextclade_denv{x}.tsv",
+        nextclade_denvX="data/nextclade_results/nextclade_{serotype}.tsv",
     threads: 4
     params:
         min_length=config["nextclade"]["min_length"],
         min_seed_cover=config["nextclade"]["min_seed_cover"],
+    wildcard_constraints:
+        serotype=SEROTYPE_CONSTRAINTS
     shell:
         """
         nextclade run \
@@ -38,51 +43,62 @@ rule nextclade_denvX:
           {input.sequences}
         """
 
-rule join_nextclade_clades:
+rule concat_nextclade_subtype_results:
     """
-    Merge all the nextclade results into metadata and split metadata
+    Concatenate all the nextclade results for dengue subtype classification
+    """
+    input:
+        expand("data/nextclade_results/nextclade_{serotype}.tsv", serotype=SUPPORTED_NEXTCLADE_SEROTYPES),
+    output:
+        nextclade_subtypes="results/nextclade_subtypes.tsv",
+    params:
+        id_field=config["transform"]["id_field"],
+        nextclade_field=config["nextclade"]["nextclade_field"],
+    shell:
+        """
+        echo "{params.id_field},{params.nextclade_field}" \
+        | tr ',' '\t' \
+        > {output.nextclade_subtypes}
+
+        tsv-select -H -f "seqName,clade" {input} \
+        | awk 'NR>1 {{print}}' \
+        >> {output.nextclade_subtypes}
+        """
+
+rule append_nextclade_columns:
+    """
+    Append the nextclade results to the metadata
     """
     input:
         metadata="data/metadata_all.tsv",
-        nextclade_denv1="data/nextclade_results/nextclade_denv1.tsv",
-        nextclade_denv2="data/nextclade_results/nextclade_denv2.tsv",
-        nextclade_denv3="data/nextclade_results/nextclade_denv3.tsv",
-        nextclade_denv4="data/nextclade_results/nextclade_denv4.tsv",
+        nextclade_subtypes="results/nextclade_subtypes.tsv",
     output:
         metadata_all="results/metadata_all.tsv",
-        metadata_denv1="results/metadata_denv1.tsv",
-        metadata_denv2="results/metadata_denv2.tsv",
-        metadata_denv3="results/metadata_denv3.tsv",
-        metadata_denv4="results/metadata_denv4.tsv",
+    params:
+        id_field=config["transform"]["id_field"],
+        nextclade_field=config["nextclade"]["nextclade_field"],
     shell:
         """
-        echo "genbank_accession,nextclade_subtype,nextclade_type" \
-        | tr ',' '\t' \
-        > results/nextclade_subtype.tsv
-
-        tsv-select -H -f "seqName,clade" {input.nextclade_denv1} \
-        | awk 'NR>1 {{print $0"\tDENV1"}}' \
-        >> results/nextclade_subtype.tsv
-        tsv-select -H -f "seqName,clade" {input.nextclade_denv2} \
-        | awk 'NR>1 {{print $0"\tDENV2"}}' \
-        >> results/nextclade_subtype.tsv
-        tsv-select -H -f "seqName,clade" {input.nextclade_denv3} \
-        | awk 'NR>1 {{print $0"\tDENV3"}}' \
-        >> results/nextclade_subtype.tsv
-        tsv-select -H -f "seqName,clade" {input.nextclade_denv4} \
-        | awk 'NR>1 {{print $0"\tDENV4"}}' \
-        >> results/nextclade_subtype.tsv
-
         tsv-join -H \
-            --filter-file results/nextclade_subtype.tsv \
-            --key-fields genbank_accession \
-            --append-fields 'nextclade_subtype,nextclade_type' \
+            --filter-file {input.nextclade_subtypes} \
+            --key-fields {params.id_field} \
+            --append-fields {params.nextclade_field} \
             --write-all ? \
             {input.metadata} \
         > {output.metadata_all}
+        """
 
-        tsv-filter -H --str-eq ncbi_serotype:denv1 {output.metadata_all} > {output.metadata_denv1}
-        tsv-filter -H --str-eq ncbi_serotype:denv2 {output.metadata_all} > {output.metadata_denv2}
-        tsv-filter -H --str-eq ncbi_serotype:denv3 {output.metadata_all} > {output.metadata_denv3}
-        tsv-filter -H --str-eq ncbi_serotype:denv4 {output.metadata_all} > {output.metadata_denv4}
+rule split_metadata_by_serotype:
+    """
+    Split the metadata by serotype
+    """
+    input:
+        metadata="results/metadata_all.tsv",
+    output:
+        serotype_metadata="results/metadata_{serotype}.tsv"
+    wildcard_constraints:
+        serotype=SEROTYPE_CONSTRAINTS
+    shell:
+        """
+        tsv-filter -H --str-eq ncbi_serotype:{wildcards.serotype} {input.metadata} > {output.serotype_metadata}
         """

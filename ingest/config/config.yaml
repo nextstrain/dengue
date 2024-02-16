@@ -110,3 +110,4 @@ transform:
 nextclade:
   min_length: 1000 # E gene length is approximately 1400nt
   min_seed_cover: 0.1
+  nextclade_field: 'nextclade_subtype'
