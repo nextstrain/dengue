@@ -8,30 +8,43 @@ Follow the [standard installation instructions](https://docs.nextstrain.org/en/l
 
 ## Usage
 
-> NOTE: All command examples assume you are within the `ingest` directory.
-> If running commands from the outer `dengue` directory, please replace the `.` with `ingest`
+All workflows are expected to the be run from the top level pathogen repo directory.
+The default ingest workflow should be run with
 
 Fetch sequences with
 
 ```sh
-nextstrain build . data/sequences.ndjson
+nextstrain build ingest data/sequences.ndjson
 ```
 
 Run the complete ingest pipeline with
 
 ```sh
-nextstrain build .
+nextstrain build ingest
 ```
 
-This will produce two files (within the `ingest` directory):
+This will produce 10 files (within the `ingest` directory):
 
-- `results/metadata.tsv`
-- `results/sequences.fasta`
+A pair of files with all the dengue sequences:
+
+- `ingest/results/metadata_all.tsv`
+- `ingest/results/sequences_all.fasta`
+
+A pair of files for each dengue serotype (denv1 - denv4)
+
+- `ingest/results/metadata_denv1.tsv`
+- `ingest/results/sequences_denv1.fasta`
+- `ingest/results/metadata_denv2.tsv`
+- `ingest/results/sequences_denv2.fasta`
+- `ingest/results/metadata_denv3.tsv`
+- `ingest/results/sequences_denv3.fasta`
+- `ingest/results/metadata_denv4.tsv`
+- `ingest/results/sequences_denv4.fasta`
 
 Run the complete ingest pipeline and upload results to AWS S3 with
 
 ```sh
-nextstrain build . --configfiles config/config.yaml config/optional.yaml
+nextstrain build ingest --configfiles config/config.yaml config/optional.yaml
 ```
 
 ### Adding new sequences not from GenBank
