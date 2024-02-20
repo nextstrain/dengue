@@ -59,3 +59,835 @@ AY656168 # circular SYN 14-JAN-2005
 AY656169 # circular SYN 14-JAN-2005
 AY656170 # circular SYN 14-JAN-2005
 AY744148 # circular SYN 03-DEC-2004
+ON123563 # record withdrawn from NCBI
+ON123566 # record withdrawn from NCBI and duplicate of ON123563
+ON123564 # record withdrawn from NCBI
+ON123565 # record withdrawn from NCBI and duplicate of ON123564
+ON123567 # record withdrawn from NCBI and duplicate of ON123564
+ON123568 # record withdrawn from NCBI
+ON123569 # record withdrawn from NCBI and duplicate of ON123568
+ON123570 # record withdrawn from NCBI and duplicate of ON123568
+ON123571 # record withdrawn from NCBI
+ON123572 # record withdrawn from NCBI and duplicate of ON123571
+ON123624 # record withdrawn from NCBI
+ON123625 # record withdrawn from NCBI and duplicate of ON123624
+JC562943 # PAT and duplicate of NC_001475
+LQ729835 # PAT and duplicate of NC_001475
+LQ868377 # PAT and duplicate of NC_001475
+LQ868394 # PAT and duplicate of NC_001475
+OG164704 # PAT and duplicate of NC_001475
+OG164735 # PAT and duplicate of NC_001475
+AY099336 # duplicate of NC_001475
+ON103302 # duplicate of NC_001475
+ON103390 # duplicate of NC_001475
+ON111445 # duplicate of NC_001475
+ON115021 # duplicate of NC_001475
+ON115023 # duplicate of NC_001475
+ON115025 # duplicate of NC_001475
+ON115029 # duplicate of NC_001475
+ON115182 # duplicate of NC_001475
+ON115811 # duplicate of NC_001475
+ON115814 # duplicate of NC_001475
+ON115816 # duplicate of NC_001475
+ON115818 # duplicate of NC_001475
+ON116129 # duplicate of NC_001475
+ON127418 # duplicate of NC_001475
+ON127533 # duplicate of NC_001475
+ON127537 # duplicate of NC_001475
+ON127550 # duplicate of NC_001475
+ON127552 # duplicate of NC_001475
+LG230783 # PAT
+LQ243188 # PAT and duplicate of LG230783
+LZ951198 # PAT and duplicate of LG230783
+MP451521 # PAT and duplicate of LG230783
+LQ905243 # PAT
+LX250397 # PAT and duplicate of LQ905243
+LY590181 # PAT and duplicate of LQ905243
+HZ784933 # PAT
+LY511422 # PAT and duplicate of HZ784933
+MA780862 # PAT and duplicate of HZ784933
+LQ905244 # PAT
+LQ905248 # PAT and duplicate of LQ905244
+LX250398 # PAT and duplicate of LQ905244
+LX250402 # PAT and duplicate of LQ905244
+LY590182 # PAT and duplicate of LQ905244
+LY590186 # PAT and duplicate of LQ905244
+CS477265 # PAT and duplicate of AF180818
+CS479204 # PAT and duplicate of AF180818
+CS805343 # PAT and duplicate of AF180818
+DI401607 # PAT and duplicate of AF180818
+DI403034 # PAT and duplicate of AF180818
+DM140254 # PAT and duplicate of AF180818
+DM140333 # PAT and duplicate of AF180818
+FB667398 # PAT and duplicate of AF180818
+CS479167 # PAT and duplicate of NC_001474
+DI402999 # PAT and duplicate of NC_001474
+DM140296 # PAT and duplicate of NC_001474
+JC562942 # PAT and duplicate of NC_001474
+LP943380 # PAT and duplicate of NC_001474
+LQ729833 # PAT and duplicate of NC_001474
+LQ868376 # PAT and duplicate of NC_001474
+LQ868393 # PAT and duplicate of NC_001474
+OG164703 # PAT and duplicate of NC_001474
+OG164734 # PAT and duplicate of NC_001474
+MZ285058 # duplicate of NC_001474
+U87411 # duplicate of NC_001474
+HZ784936 # PAT
+LY511425 # PAT and duplicate of HZ784936
+MA780865 # PAT and duplicate of HZ784936
+CS479165 # PAT
+DI191092 # PAT and duplicate of CS479165
+DI402998 # PAT and duplicate of CS479165
+DM140295 # PAT and duplicate of CS479165
+FB730117 # PAT and duplicate of CS479165
+FW366603 # PAT and duplicate of CS479165
+GM009080 # PAT and duplicate of CS479165
+GM059692 # PAT and duplicate of CS479165
+HV317819 # PAT and duplicate of CS479165
+LQ905235 # PAT
+LX250389 # PAT and duplicate of LQ905235
+LY590173 # PAT and duplicate of LQ905235
+HZ784935 # PAT
+LY511424 # PAT and duplicate of HZ784935
+MA780864 # PAT and duplicate of HZ784935
+CS477306 # PAT
+CS479206 # PAT and duplicate of CS477306
+CS805346 # PAT and duplicate of CS477306
+DI401647 # PAT and duplicate of CS477306
+DI403036 # PAT and duplicate of CS477306
+DM140294 # PAT and duplicate of CS477306
+DM140335 # PAT and duplicate of CS477306
+FB667402 # PAT and duplicate of CS477306
+HZ784939 # PAT
+LY511428 # PAT and duplicate of HZ784939
+MA780868 # PAT and duplicate of HZ784939
+LQ905239 # PAT
+LX250393 # PAT and duplicate of LQ905239
+LY590177 # PAT and duplicate of LQ905239
+LQ905249 # PAT
+LX250403 # PAT and duplicate of LQ905249
+LY590187 # PAT and duplicate of LQ905249
+CS477263 # PAT
+CS479203 # PAT and duplicate of CS477263
+DI191091 # PAT and duplicate of CS477263
+DI401605 # PAT and duplicate of CS477263
+DI403033 # PAT and duplicate of CS477263
+DM140252 # PAT and duplicate of CS477263
+DM140332 # PAT and duplicate of CS477263
+FB730116 # PAT and duplicate of CS477263
+FW366602 # PAT and duplicate of CS477263
+GM009079 # PAT and duplicate of CS477263
+GM059691 # PAT and duplicate of CS477263
+HV317818 # PAT and duplicate of CS477263
+LQ905247 # PAT
+LX250401 # PAT and duplicate of LQ905247
+LY590185 # PAT and duplicate of LQ905247
+LQ905236 # PAT
+LX250390 # PAT and duplicate of LQ905236
+LY590174 # PAT and duplicate of LQ905236
+LQ905234 # PAT
+LX250388 # PAT and duplicate of LQ905234
+LY590172 # PAT and duplicate of LQ905234
+LQ905245 # PAT
+LX250399 # PAT and duplicate of LQ905245
+LY590183 # PAT and duplicate of LQ905245
+CS805347 # PAT
+FB667403 # PAT and duplicate of CS805347
+CS477302 # PAT
+DI401644 # PAT and duplicate of CS477302
+DM140291 # PAT and duplicate of CS477302
+HZ784938 # PAT
+LY511427 # PAT and duplicate of HZ784938
+MA780867 # PAT and duplicate of HZ784938
+CS477304 # PAT
+CS479202 # PAT and duplicate of CS477304
+CS805344 # PAT and duplicate of CS477304
+DI401645 # PAT and duplicate of CS477304
+DI403032 # PAT and duplicate of CS477304
+DM140292 # PAT and duplicate of CS477304
+DM140331 # PAT and duplicate of CS477304
+FB667399 # PAT and duplicate of CS477304
+DI195805 # PAT
+FW503158 # PAT and duplicate of DI195805
+HI553375 # PAT and duplicate of DI195805
+HZ038019 # PAT and duplicate of DI195805
+LQ905240 # PAT
+LX250394 # PAT and duplicate of LQ905240
+LY590178 # PAT and duplicate of LQ905240
+JC562944 # PAT and duplicate of NC_002640
+LQ729837 # PAT and duplicate of NC_002640
+LQ868378 # PAT and duplicate of NC_002640
+LQ868395 # PAT and duplicate of NC_002640
+OG164705 # PAT and duplicate of NC_002640
+OG164736 # PAT and duplicate of NC_002640
+AF326825 # duplicate of NC_002640
+LQ905246 # PAT
+LX250400 # PAT and duplicate of LQ905246
+LY590184 # PAT and duplicate of LQ905246
+CS805342 # PAT and duplicate of AY099337
+FU267586 # PAT and duplicate of AY099337
+U88536 # duplicate of NC_001477
+JC562941 # PAT and duplicate of NC_001477
+LP918031 # PAT and duplicate of NC_001477
+LQ729831 # PAT and duplicate of NC_001477
+LQ868375 # PAT and duplicate of NC_001477
+LQ868392 # PAT and duplicate of NC_001477
+LY921396 # PAT and duplicate of NC_001477
+OG164702 # PAT and duplicate of NC_001477
+OG164733 # PAT and duplicate of NC_001477
+MW828678 # duplicate of NC_001477
+MZ284953 # duplicate of NC_001477
+MZ285732 # duplicate of NC_001477
+MP552823 # PAT and duplicate of KX812530
+LQ905241 # PAT
+LX250395 # PAT and duplicate of LQ905241
+LY590179 # PAT and duplicate of LQ905241
+HZ784932 # PAT
+LY511421 # PAT and duplicate of HZ784932
+MA780861 # PAT and duplicate of HZ784932
+LP918033 # PAT and duplicate of AY744147
+LZ239282 # PAT and duplicate of AB074760
+FV537260 # PAT
+FV537261 # PAT and duplicate of FV537260
+MP552819 # PAT and duplicate of KU725663
+FV537268 # PAT
+FV537269 # PAT and duplicate of FV537268
+OG158724 # PAT and duplicate of KC333651
+HH961660 # PAT and duplicate of U88535
+JE963510 # PAT and duplicate of U88535
+FV537258 # PAT
+FV537259 # PAT and duplicate of FV537258
+JE963511 # PAT and duplicate of AY037116
+CS477264 # PAT and duplicate of MT076932
+DI401606 # PAT and duplicate of MT076932
+DM140253 # PAT and duplicate of MT076932
+MP552817 # PAT and duplicate of MT076932
+AF180817 # duplicate of MT076932
+MT076932 # duplicate of MT076932
+MT076933 # duplicate of MT076932
+MT076934 # duplicate of MT076932
+MT076935 # duplicate of MT076932
+LP918029 # PAT and duplicate of AF326573
+LG230782 # PAT
+LQ243187 # PAT and duplicate of LG230782
+LZ951197 # PAT and duplicate of LG230782
+MP451520 # PAT and duplicate of LG230782
+FV537262 # PAT
+FV537263 # PAT and duplicate of FV537262
+CS477305 # PAT
+CS479205 # PAT and duplicate of CS477305
+CS805345 # PAT and duplicate of CS477305
+DI401646 # PAT and duplicate of CS477305
+DI403035 # PAT and duplicate of CS477305
+DM140293 # PAT and duplicate of CS477305
+DM140334 # PAT and duplicate of CS477305
+FB667400 # PAT and duplicate of CS477305
+FV537254 # PAT
+FV537255 # PAT and duplicate of FV537254
+FV537256 # PAT
+FV537257 # PAT and duplicate of FV537256
+MP552821 # PAT and duplicate of KU725665
+LY683284 # PAT and duplicate of KF887994
+LQ905237 # PAT
+LX250391 # PAT and duplicate of LQ905237
+LY590175 # PAT and duplicate of LQ905237
+LY683286 # PAT and duplicate of KP406805
+LQ905238 # PAT
+LX250392 # PAT and duplicate of LQ905238
+LY590176 # PAT and duplicate of LQ905238
+LQ905242 # PAT
+LX250396 # PAT and duplicate of LQ905242
+LY590180 # PAT and duplicate of LQ905242
+HH961661 # PAT and duplicate of AF038403
+CS805348 # PAT
+FB667404 # PAT and duplicate of CS805348
+FV537264 # PAT
+FV537265 # PAT and duplicate of FV537264
+FV537266 # PAT
+FV537267 # PAT and duplicate of FV537266
+OG158723 # PAT and duplicate of GQ466079
+LP918034 # PAT and duplicate of M93130
+DL138662 # PAT and duplicate of M19197
+MB029372 # PAT and duplicate of M19197
+LY683285 # PAT and duplicate of HQ026763
+LY683287 # PAT and duplicate of KJ596658
+PP087308 # duplicate of PP087307
+MF094167 # duplicate of MF094165
+OR179887 # duplicate of OR179881
+OR179888 # duplicate of OR179886
+OR179889 # duplicate of OR179886
+OP952165 # duplicate of OP952164
+OP952172 # duplicate of OP952164
+OP952169 # duplicate of OP952168
+OP952178 # duplicate of OP952177
+OP952182 # duplicate of OP952179
+OP952213 # duplicate of OP952212
+OP952221 # duplicate of OP952212
+OP952226 # duplicate of OP952224
+OR393913 # duplicate of OR393907
+OR393942 # duplicate of OR393922
+OR394033 # duplicate of OR393928
+OR875950 # duplicate of OR875949
+OR875963 # duplicate of OR875949
+OR875953 # duplicate of OR875951
+OR875964 # duplicate of OR875951
+OR875955 # duplicate of OR875954
+OR875960 # duplicate of OR875957
+OR875970 # duplicate of OR875957
+OR875979 # duplicate of OR875978
+OR037359 # duplicate of OR037358
+OR037360 # duplicate of OR037358
+MK514144 # duplicate of JN983813
+JQ045690 # duplicate of JQ045689
+JQ045695 # duplicate of JQ045694
+KC294215 # duplicate of KC294211
+FJ196852 # duplicate of KC964093
+KC964093 # duplicate of KC964093
+FJ196854 # duplicate of KC964094
+KC964094 # duplicate of KC964094
+FJ196851 # duplicate of KC964095
+KC964095 # duplicate of KC964095
+KF744406 # duplicate of KF744405
+KJ189264 # duplicate of KJ189263
+KJ596667 # duplicate of KJ596664
+KM217158 # duplicate of KJ701507
+KM217157 # duplicate of KM217156
+KM279586 # duplicate of KM279523
+KM279534 # duplicate of KM279530
+KM279536 # duplicate of KM279530
+KM279540 # duplicate of KM279530
+KM279541 # duplicate of KM279530
+KM279545 # duplicate of KM279530
+KM279548 # duplicate of KM279530
+KM279553 # duplicate of KM279530
+KM279554 # duplicate of KM279530
+KM279587 # duplicate of KM279530
+KM279546 # duplicate of KM279539
+KM279559 # duplicate of KM279558
+KM279563 # duplicate of KM279558
+KM279565 # duplicate of KM279558
+KM279567 # duplicate of KM279558
+KM279600 # duplicate of KM279599
+OP410987 # duplicate of KM403602
+KM403619 # duplicate of KM403618
+KT726341 # duplicate of KT726340
+KT726359 # duplicate of KT726342
+MF033225 # duplicate of KX224261
+KY474304 # duplicate of KY474303
+KY474311 # duplicate of KY474310
+KY474332 # duplicate of KY474310
+MW945782 # duplicate of KY586306
+MW946219 # duplicate of KY586306
+MW945882 # duplicate of KY586308
+MW945947 # duplicate of KY586321
+KY586346 # duplicate of KY586345
+MW945910 # duplicate of KY586352
+MW945865 # duplicate of KY586354
+MW946024 # duplicate of KY586367
+MW945992 # duplicate of KY586372
+MW945972 # duplicate of KY586382
+MW945966 # duplicate of KY586422
+MW946243 # duplicate of KY586479
+MW946009 # duplicate of KY586480
+MW946004 # duplicate of KY586526
+MW946191 # duplicate of KY586529
+MW946288 # duplicate of KY586609
+MW946540 # duplicate of KY586657
+MW946582 # duplicate of KY586671
+MW946593 # duplicate of KY586693
+KY586933 # duplicate of KY586932
+KY849739 # duplicate of KY849706
+MF033228 # duplicate of KY921902
+MF033227 # duplicate of KY921903
+LC011946 # duplicate of LC011945
+LC011947 # duplicate of LC011945
+LC335874 # duplicate of LC335872
+LC335875 # duplicate of LC335872
+LC335876 # duplicate of LC335872
+LC335878 # duplicate of LC335872
+LC335880 # duplicate of LC335872
+LC335881 # duplicate of LC335872
+LC428070 # duplicate of LC428063
+LC428066 # duplicate of LC428065
+LC428068 # duplicate of LC428065
+LC428074 # duplicate of LC428067
+LC428078 # duplicate of LC428069
+LC652828 # duplicate of LC652827
+LT996905 # duplicate of LT996904
+LT996906 # duplicate of LT996904
+LT996907 # duplicate of LT996904
+LT996908 # duplicate of LT996904
+LT996909 # duplicate of LT996904
+LT996910 # duplicate of LT996904
+LT996911 # duplicate of LT996904
+LT996912 # duplicate of LT996904
+OP410986 # duplicate of MF033245
+MF681693 # duplicate of MF681692
+MG599608 # duplicate of MG599602
+MG599609 # duplicate of MG599602
+MG599614 # duplicate of MG599603
+MG599617 # duplicate of MG599603
+MN018293 # duplicate of MG840530
+MN018325 # duplicate of MG840532
+MN018299 # duplicate of MG840534
+MN018324 # duplicate of MG840535
+MN018300 # duplicate of MG840538
+MN018310 # duplicate of MG840539
+MN018301 # duplicate of MG840541
+MG840543 # duplicate of MG840542
+MN018302 # duplicate of MG840542
+MN018319 # duplicate of MG840542
+MN018295 # duplicate of MG840544
+MN018329 # duplicate of MG840545
+MN018330 # duplicate of MG840546
+MN018331 # duplicate of MG840547
+MN018296 # duplicate of MG840548
+MN018311 # duplicate of MG840549
+MN018312 # duplicate of MG840550
+MN018320 # duplicate of MG840551
+MN018313 # duplicate of MG840552
+MN018303 # duplicate of MG840553
+MN018321 # duplicate of MG840555
+MN018322 # duplicate of MG840556
+MN018315 # duplicate of MG840557
+MN018307 # duplicate of MG840558
+MN018316 # duplicate of MG840559
+MN018285 # duplicate of MG840560
+MN018288 # duplicate of MG840561
+MN018289 # duplicate of MG840562
+MN018314 # duplicate of MG840563
+MN018305 # duplicate of MG840564
+MN018323 # duplicate of MG840565
+MN018317 # duplicate of MG840566
+MN018318 # duplicate of MG840567
+MN018332 # duplicate of MG840569
+MN018333 # duplicate of MG840570
+MN018334 # duplicate of MG840571
+MN018335 # duplicate of MG840572
+MN018336 # duplicate of MG840573
+MN018290 # duplicate of MG840574
+MN018291 # duplicate of MG840575
+MN018306 # duplicate of MG840576
+MN018298 # duplicate of MG840577
+MN018326 # duplicate of MG840578
+MH110572 # duplicate of MH110564
+OP684152 # duplicate of MH110573
+MH450309 # duplicate of MH450307
+MH456898 # duplicate of MH456897
+MN018357 # duplicate of MH827525
+MN018337 # duplicate of MH827528
+MN018339 # duplicate of MH827529
+MN018356 # duplicate of MH827530
+MN018338 # duplicate of MH827533
+MN018352 # duplicate of MH827534
+MN018358 # duplicate of MH827535
+MN018340 # duplicate of MH827540
+MN018348 # duplicate of MH827541
+MN018350 # duplicate of MH827542
+MN018347 # duplicate of MH827543
+MN018363 # duplicate of MH827544
+MN018364 # duplicate of MH827545
+MN018341 # duplicate of MH827548
+MN018342 # duplicate of MH827551
+MK858134 # duplicate of MK791752
+MN448600 # duplicate of MN448599
+MN448606 # duplicate of MN448605
+MN448653 # duplicate of MN448605
+MN448649 # duplicate of MN448614
+MN448655 # duplicate of MN448614
+MN448660 # duplicate of MN448618
+MN448663 # duplicate of MN448618
+MN448694 # duplicate of MN448624
+MN448627 # duplicate of MN448626
+MN448629 # duplicate of MN448626
+MN448666 # duplicate of MN448656
+MN448736 # duplicate of MN448705
+MN448717 # duplicate of MN448709
+MN448715 # duplicate of MN448710
+MN448716 # duplicate of MN448710
+MN448737 # duplicate of MN448710
+MN448738 # duplicate of MN448710
+MN448748 # duplicate of MN448741
+MN448744 # duplicate of MN448743
+MN448758 # duplicate of MN448756
+MN448777 # duplicate of MN448757
+MN448803 # duplicate of MN448784
+MN448822 # duplicate of MN448784
+MN448842 # duplicate of MN448784
+MN448802 # duplicate of MN448794
+MN448915 # duplicate of MN448869
+MN577549 # duplicate of MN577546
+MN912113 # duplicate of MN912109
+MN912118 # duplicate of MN912109
+MN912123 # duplicate of MN912109
+MN912124 # duplicate of MN912109
+MN912125 # duplicate of MN912109
+MN912126 # duplicate of MN912109
+MN912127 # duplicate of MN912109
+MN912128 # duplicate of MN912109
+MN912129 # duplicate of MN912109
+MN912116 # duplicate of MN912111
+MN912122 # duplicate of MN912111
+MN912120 # duplicate of MN912115
+MN912121 # duplicate of MN912119
+MN912146 # duplicate of MN912131
+MN912147 # duplicate of MN912131
+MN912149 # duplicate of MN912131
+MN912150 # duplicate of MN912131
+MN912151 # duplicate of MN912131
+MN912138 # duplicate of MN912133
+MN912140 # duplicate of MN912133
+MN912144 # duplicate of MN912133
+MN912145 # duplicate of MN912133
+MN912148 # duplicate of MN912143
+MN912153 # duplicate of MN912152
+MN912154 # duplicate of MN912152
+MN912155 # duplicate of MN912152
+MN912156 # duplicate of MN912152
+MN912157 # duplicate of MN912152
+MN912158 # duplicate of MN912152
+MN912161 # duplicate of MN912152
+MN912160 # duplicate of MN912159
+MN912162 # duplicate of MN912159
+MN912164 # duplicate of MN912159
+MN912167 # duplicate of MN912166
+MN912170 # duplicate of MN912166
+MN912172 # duplicate of MN912166
+MN912173 # duplicate of MN912166
+MN912186 # duplicate of MN912177
+MN912196 # duplicate of MN912177
+MN912197 # duplicate of MN912177
+MN912198 # duplicate of MN912177
+MN912199 # duplicate of MN912177
+MN912200 # duplicate of MN912177
+MN912201 # duplicate of MN912177
+MN912187 # duplicate of MN912181
+MN912193 # duplicate of MN912181
+MN912190 # duplicate of MN912184
+MN912194 # duplicate of MN912188
+MN912195 # duplicate of MN912189
+MN912204 # duplicate of MN912203
+MN912205 # duplicate of MN912203
+MN912206 # duplicate of MN912203
+MN912207 # duplicate of MN912203
+MN912208 # duplicate of MN912203
+MN912209 # duplicate of MN912203
+MN912210 # duplicate of MN912203
+MN912212 # duplicate of MN912203
+MN912213 # duplicate of MN912203
+MN912217 # duplicate of MN912203
+MN912216 # duplicate of MN912211
+MN912221 # duplicate of MN912211
+MN912218 # duplicate of MN912215
+MN912226 # duplicate of MN912225
+MN912227 # duplicate of MN912225
+MN912228 # duplicate of MN912225
+MN912229 # duplicate of MN912225
+MN912230 # duplicate of MN912225
+MN912239 # duplicate of MN912225
+MN912241 # duplicate of MN912225
+MN912245 # duplicate of MN912225
+MN912232 # duplicate of MN912231
+MN912243 # duplicate of MN912231
+MN912234 # duplicate of MN912233
+MN912235 # duplicate of MN912233
+MN912238 # duplicate of MN912237
+MT832036 # duplicate of MT832035
+MT832042 # duplicate of MT832041
+MT832044 # duplicate of MT832043
+MT832050 # duplicate of MT832049
+MT832051 # duplicate of MT832049
+MT832052 # duplicate of MT832049
+MT832054 # duplicate of MT832053
+MT832056 # duplicate of MT832055
+MT832072 # duplicate of MT832071
+MT832074 # duplicate of MT832073
+MT832078 # duplicate of MT832077
+MW315177 # duplicate of MW315176
+MW362474 # duplicate of MW362471
+MW362476 # duplicate of MW362475
+MW396467 # duplicate of MW396463
+MW481683 # duplicate of MW481675
+OP410991 # duplicate of MW512469
+MW577824 # duplicate of MW577821
+MW720956 # duplicate of MW720951
+MW793706 # duplicate of MW793705
+MW945522 # duplicate of MW945492
+MW945759 # duplicate of MW945594
+MW945724 # duplicate of MW945692
+MW946100 # duplicate of MW945783
+MW946005 # duplicate of MW945800
+MW945939 # duplicate of MW945809
+DQ401695 # duplicate of DQ401694
+MW946054 # duplicate of MW945861
+MW946168 # duplicate of MW945905
+MW946018 # duplicate of MW945984
+MW945998 # duplicate of MW945985
+MW946336 # duplicate of MW946322
+MW946387 # duplicate of MW946369
+MW946855 # duplicate of MW946652
+MW946944 # duplicate of MW946652
+MW946712 # duplicate of MW946682
+MW946823 # duplicate of MW946746
+MW946793 # duplicate of MW946768
+MW946889 # duplicate of MW946768
+OK605599 # duplicate of MZ215848
+MZ312927 # duplicate of MZ312923
+MZ619039 # duplicate of MZ619038
+MZ857210 # duplicate of MZ857208
+MZ857211 # duplicate of MZ857208
+MZ857215 # duplicate of MZ857208
+MZ857222 # duplicate of MZ857218
+OP741243 # duplicate of OK079104
+DQ672562 # duplicate of DQ672561
+DQ675523 # duplicate of DQ675521
+OQ652963 # duplicate of OM250394
+OQ652964 # duplicate of OM256481
+OM281573 # duplicate of OM281571
+OM281582 # duplicate of OM281574
+OM281592 # duplicate of OM281574
+OM281594 # duplicate of OM281574
+OM281595 # duplicate of OM281574
+OM281587 # duplicate of OM281585
+OM865787 # duplicate of OM865779
+OM865820 # duplicate of OM865779
+OM909247 # duplicate of OM909246
+ON799266 # duplicate of ON109597
+ON799267 # duplicate of ON109598
+ON799401 # duplicate of ON109599
+ON123588 # duplicate of ON123587
+ON510269 # duplicate of ON510268
+ON907582 # duplicate of ON890819
+OP684178 # duplicate of OP684146
+OP684153 # duplicate of OP684149
+OP684173 # duplicate of OP684149
+OP684177 # duplicate of OP684171
+OP941837 # duplicate of OP941833
+OQ144241 # duplicate of OQ144230
+OQ426690 # duplicate of OQ426567
+OQ426733 # duplicate of OQ426568
+OQ426606 # duplicate of OQ426569
+OQ426734 # duplicate of OQ426570
+OQ426745 # duplicate of OQ426570
+OQ426608 # duplicate of OQ426573
+OQ426687 # duplicate of OQ426573
+OQ426725 # duplicate of OQ426573
+OQ426593 # duplicate of OQ426576
+OQ426616 # duplicate of OQ426578
+OQ426607 # duplicate of OQ426580
+OQ426588 # duplicate of OQ426587
+OQ426626 # duplicate of OQ426587
+OQ426629 # duplicate of OQ426587
+OQ426632 # duplicate of OQ426587
+OQ426637 # duplicate of OQ426587
+OQ426735 # duplicate of OQ426587
+OQ426753 # duplicate of OQ426590
+OQ426641 # duplicate of OQ426595
+OQ426744 # duplicate of OQ426596
+OQ426691 # duplicate of OQ426603
+OQ426721 # duplicate of OQ426603
+OQ426751 # duplicate of OQ426605
+OQ426614 # duplicate of OQ426610
+OQ426685 # duplicate of OQ426622
+OQ426727 # duplicate of OQ426622
+OQ426728 # duplicate of OQ426622
+OQ426741 # duplicate of OQ426640
+OQ426678 # duplicate of OQ426676
+OQ426684 # duplicate of OQ426679
+OQ426726 # duplicate of OQ426679
+OQ426729 # duplicate of OQ426679
+OQ426743 # duplicate of OQ426679
+OQ426739 # duplicate of OQ426680
+OQ426748 # duplicate of OQ426680
+OQ426688 # duplicate of OQ426682
+OQ426715 # duplicate of OQ426698
+OQ426704 # duplicate of OQ426702
+OQ426705 # duplicate of OQ426702
+OQ426773 # duplicate of OQ426757
+OQ426942 # duplicate of OQ426758
+OQ426772 # duplicate of OQ426759
+OQ426777 # duplicate of OQ426759
+OQ426809 # duplicate of OQ426759
+OQ426831 # duplicate of OQ426759
+OQ426846 # duplicate of OQ426759
+OQ426927 # duplicate of OQ426759
+OQ426840 # duplicate of OQ426767
+OQ426952 # duplicate of OQ426767
+OQ426824 # duplicate of OQ426776
+OQ426792 # duplicate of OQ426779
+OQ426911 # duplicate of OQ426786
+OQ426897 # duplicate of OQ426787
+OQ426899 # duplicate of OQ426788
+OQ426790 # duplicate of OQ426789
+OQ426842 # duplicate of OQ426793
+OQ426900 # duplicate of OQ426796
+OQ426971 # duplicate of OQ426796
+OQ426917 # duplicate of OQ426800
+OQ426841 # duplicate of OQ426804
+OQ426920 # duplicate of OQ426805
+OQ426921 # duplicate of OQ426805
+OQ426922 # duplicate of OQ426805
+OQ426825 # duplicate of OQ426806
+OQ426812 # duplicate of OQ426810
+OQ426827 # duplicate of OQ426813
+OQ426830 # duplicate of OQ426813
+OQ426937 # duplicate of OQ426813
+OQ426946 # duplicate of OQ426813
+OQ426945 # duplicate of OQ426818
+OQ426949 # duplicate of OQ426819
+OQ426965 # duplicate of OQ426833
+OQ426973 # duplicate of OQ426833
+OQ426913 # duplicate of OQ426858
+OQ426876 # duplicate of OQ426870
+OQ426890 # duplicate of OQ426886
+OQ426929 # duplicate of OQ426928
+OQ426941 # duplicate of OQ426940
+OQ427000 # duplicate of OQ426987
+OQ427007 # duplicate of OQ427004
+OQ427010 # duplicate of OQ427008
+OQ427015 # duplicate of OQ427014
+OQ427047 # duplicate of OQ427046
+OQ427050 # duplicate of OQ427049
+OQ786008 # duplicate of OQ786007
+OQ786021 # duplicate of OQ786020
+OR025620 # duplicate of OR025619
+OR029733 # duplicate of OR029724
+OR029739 # duplicate of OR029731
+OR029741 # duplicate of OR029731
+OR029803 # duplicate of OR029752
+OR029804 # duplicate of OR029752
+OR029872 # duplicate of OR029752
+OR029874 # duplicate of OR029752
+OR029938 # duplicate of OR029752
+OR029945 # duplicate of OR029752
+OR029947 # duplicate of OR029752
+OR029756 # duplicate of OR029755
+OR029757 # duplicate of OR029755
+OR029758 # duplicate of OR029755
+OR029761 # duplicate of OR029755
+OR029762 # duplicate of OR029755
+OR029769 # duplicate of OR029755
+OR029795 # duplicate of OR029755
+OR029819 # duplicate of OR029755
+OR029821 # duplicate of OR029755
+OR029826 # duplicate of OR029755
+OR029827 # duplicate of OR029755
+OR029848 # duplicate of OR029755
+OR029866 # duplicate of OR029755
+OR029869 # duplicate of OR029755
+OR029899 # duplicate of OR029755
+OR029914 # duplicate of OR029755
+OR029922 # duplicate of OR029755
+OR029930 # duplicate of OR029755
+OR029778 # duplicate of OR029763
+OR029781 # duplicate of OR029763
+OR029787 # duplicate of OR029763
+OR029790 # duplicate of OR029763
+OR029865 # duplicate of OR029763
+OR029882 # duplicate of OR029763
+OR029919 # duplicate of OR029763
+OR029943 # duplicate of OR029765
+OR029956 # duplicate of OR029772
+OR029825 # duplicate of OR029791
+OR029806 # duplicate of OR029799
+OR029807 # duplicate of OR029799
+OR029831 # duplicate of OR029799
+OR029839 # duplicate of OR029799
+OR029844 # duplicate of OR029799
+OR029852 # duplicate of OR029799
+OR029857 # duplicate of OR029799
+OR029861 # duplicate of OR029799
+OR029870 # duplicate of OR029799
+OR029888 # duplicate of OR029799
+OR029903 # duplicate of OR029799
+OR029904 # duplicate of OR029799
+OR029918 # duplicate of OR029799
+OR029954 # duplicate of OR029799
+OR029966 # duplicate of OR029799
+OR029967 # duplicate of OR029799
+OR029817 # duplicate of OR029800
+OR029859 # duplicate of OR029815
+OR029915 # duplicate of OR029828
+OR029923 # duplicate of OR029828
+OR029830 # duplicate of OR029829
+OR029838 # duplicate of OR029829
+OR029840 # duplicate of OR029829
+OR029851 # duplicate of OR029829
+OR029917 # duplicate of OR029871
+OR029896 # duplicate of OR029875
+OR029946 # duplicate of OR029875
+OR029958 # duplicate of OR029901
+OR029959 # duplicate of OR029901
+OR029962 # duplicate of OR029901
+OR029957 # duplicate of OR029909
+OR029960 # duplicate of OR029909
+OR029964 # duplicate of OR029909
+OR029926 # duplicate of OR029925
+OR029940 # duplicate of OR029925
+OR029934 # duplicate of OR029928
+EU081251 # duplicate of EU081240
+EU081243 # duplicate of EU081242
+EU482518 # duplicate of EU249495
+EU482706 # duplicate of EU482480
+FJ390382 # duplicate of EU482507
+EU482530 # duplicate of EU482529
+EU482823 # duplicate of EU482529
+EU482824 # duplicate of EU482531
+EU482798 # duplicate of EU482534
+EU482825 # duplicate of EU482535
+EU482826 # duplicate of EU482536
+EU482827 # duplicate of EU482537
+EU482828 # duplicate of EU482538
+EU482577 # duplicate of EU482576
+FJ850054 # duplicate of EU482598
+EU482602 # duplicate of EU482599
+EU482632 # duplicate of EU482600
+EU482636 # duplicate of EU482600
+EU482758 # duplicate of EU482600
+FJ898435 # duplicate of EU482600
+EU482638 # duplicate of EU482601
+EU529689 # duplicate of EU482613
+FJ432720 # duplicate of EU482615
+EU596502 # duplicate of EU482617
+FJ024478 # duplicate of EU482617
+FJ432721 # duplicate of EU482617
+EU482683 # duplicate of EU482620
+EU569694 # duplicate of EU482621
+EU482637 # duplicate of EU482633
+EU596484 # duplicate of EU482633
+HM631867 # duplicate of EU482690
+EU677174 # duplicate of EU482716
+FJ024425 # duplicate of EU482716
+HM631868 # duplicate of EU482756
+GQ199850 # duplicate of EU482794
+FJ882522 # duplicate of EU482801
+FJ182004 # duplicate of EU529698
+EU529704 # duplicate of EU529703
+FJ850056 # duplicate of EU529703
+FJ182035 # duplicate of EU677150
+EU677169 # duplicate of EU677151
+FJ024451 # duplicate of EU677153
+EU687225 # duplicate of EU687222
+FJ024438 # duplicate of EU726782
+FJ024440 # duplicate of FJ024429
+FJ205884 # duplicate of FJ024437
+FJ182024 # duplicate of FJ182020
+FJ410187 # duplicate of FJ390374
+FJ410182 # duplicate of FJ410174
+FJ410180 # duplicate of FJ410175
+FJ562101 # duplicate of FJ410253
+GQ199825 # duplicate of FJ461333
+FJ687435 # duplicate of FJ687434
+FJ687436 # duplicate of FJ687434
+FJ744712 # duplicate of FJ744710
+FJ898447 # duplicate of FJ850080
+FJ882540 # duplicate of FJ882539
+GQ199851 # duplicate of FJ898411
+GQ868576 # duplicate of FJ898444
+FJ906967 # duplicate of FJ906966
+GQ199848 # duplicate of GQ199844
+GQ868597 # duplicate of GQ868595
+GU131859 # duplicate of GU131847
+GU131867 # duplicate of GU131862
+HQ332171 # duplicate of HQ332170
+HQ332178 # duplicate of HQ332177
