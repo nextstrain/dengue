@@ -62,7 +62,7 @@ example sequences into the `data/` directory like so:
 
 With access to AWS, this can be more quickly run as:
 
-    nextstrain build --aws-batch --aws-batch-cpus 4 --aws-batch-memory 7200 . --jobs 4
+    nextstrain build --aws-batch --aws-batch-cpus 10 --aws-batch-memory 7200 . --jobs 10
 
 [Nextstrain]: https://nextstrain.org
 [augur]: https://docs.nextstrain.org/projects/augur/en/stable/
