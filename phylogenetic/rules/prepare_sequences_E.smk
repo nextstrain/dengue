@@ -51,7 +51,7 @@ rule align_and_extract_E:
     shell:
         """
         nextclade run \
-           -j 2 \
+           -j 1 \
            --input-ref {input.reference} \
            --output-fasta {output.sequences} \
            --min-seed-cover 0.01 \
