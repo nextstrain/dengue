@@ -23,8 +23,8 @@ ncbi_datasets_fields:
   - submitter-names
   - submitter-affiliation
 
-# Params for the transform rule
-transform:
+# Params for the curate rule
+curate:
   # NCBI Fields to rename to Nextstrain field names.
   # This is the first step in the pipeline, so any references to field names
   # in the configs below should use the new field names

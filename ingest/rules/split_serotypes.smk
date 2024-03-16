@@ -9,7 +9,7 @@ This will produce output files as
 
     sequences_{serotype} = "results/sequences_{serotype}.fasta"
 
-Parameters are expected to be defined in `config.transform`.
+Parameters are expected to be defined in `config.curate`.
 """
 
 rule split_by_ncbi_serotype:
@@ -22,7 +22,7 @@ rule split_by_ncbi_serotype:
     output:
         sequences = "results/sequences_{serotype}.fasta"
     params:
-        id_field = config["transform"]["id_field"]
+        id_field = config["curate"]["id_field"]
     shell:
         """
         augur filter \

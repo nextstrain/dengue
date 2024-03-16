@@ -52,7 +52,7 @@ rule concat_nextclade_subtype_results:
     output:
         nextclade_subtypes="results/nextclade_subtypes.tsv",
     params:
-        id_field=config["transform"]["id_field"],
+        id_field=config["curate"]["id_field"],
         nextclade_field=config["nextclade"]["nextclade_field"],
     shell:
         """
@@ -75,7 +75,7 @@ rule append_nextclade_columns:
     output:
         metadata_all="results/metadata_all.tsv",
     params:
-        id_field=config["transform"]["id_field"],
+        id_field=config["curate"]["id_field"],
         nextclade_field=config["nextclade"]["nextclade_field"],
     shell:
         """
