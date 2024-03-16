@@ -57,7 +57,7 @@ rule all:
         _get_all_targets,
 
 
-include: "rules/fetch_sequences.smk"
+include: "rules/fetch_from_ncbi.smk"
 include: "rules/transform.smk"
 include: "rules/split_serotypes.smk"
 include: "rules/nextclade.smk"
