@@ -4,10 +4,7 @@ min_version(
     "7.7.0"
 )  # Snakemake 7.7.0 introduced `retries` directive used in fetch-sequences
 
-if not config:
-
-    configfile: "config/config.yaml"
-
+configfile: "defaults/config.yaml"
 
 send_slack_notifications = config.get("send_slack_notifications", False)
 

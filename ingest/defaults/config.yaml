@@ -77,9 +77,9 @@ curate:
   geolocation_rules_url: 'https://raw.githubusercontent.com/nextstrain/ncov-ingest/master/source-data/gisaid_geoLocationRules.tsv'
   # Local geolocation rules that are only applicable to mpox data
   # Local rules can overwrite the general geolocation rules provided above
-  local_geolocation_rules: 'config/geolocation-rules.tsv'
+  local_geolocation_rules: 'defaults/geolocation-rules.tsv'
   # User annotations file
-  annotations: 'config/annotations.tsv'
+  annotations: 'defaults/annotations.tsv'
   # ID field used to merge annotations
   annotations_id: 'genbank_accession'
   # Field to use as the sequence ID in the FASTA file
