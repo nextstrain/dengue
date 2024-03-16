@@ -23,8 +23,3 @@ upload:
 
     cloudfront_domain: 'data.nextstrain.org'
 
-# Toggle for Slack notifications
-send_slack_notifications: True
-
-# Toggle for triggering builds
-trigger_rebuild: True
