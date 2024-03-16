@@ -57,12 +57,12 @@ rule all:
         _get_all_targets,
 
 
-include: "workflow/snakemake_rules/fetch_sequences.smk"
-include: "workflow/snakemake_rules/transform.smk"
-include: "workflow/snakemake_rules/split_serotypes.smk"
-include: "workflow/snakemake_rules/nextclade.smk"
+include: "rules/fetch_sequences.smk"
+include: "rules/transform.smk"
+include: "rules/split_serotypes.smk"
+include: "rules/nextclade.smk"
 
 
 if config.get("upload", False):
 
-    include: "workflow/snakemake_rules/upload.smk"
+    include: "rules/upload.smk"
