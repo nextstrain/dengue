@@ -62,4 +62,4 @@ include: "rules/nextclade.smk"
 
 if config.get("upload", False):
 
-    include: "rules/upload.smk"
+    include: "build-configs/nextstrain-automation/upload.smk"
