@@ -28,23 +28,22 @@ curate:
   # NCBI Fields to rename to Nextstrain field names.
   # This is the first step in the pipeline, so any references to field names
   # in the configs below should use the new field names
-  field_map: [
-    'accession=genbank_accession',
-    'accession-rev=genbank_accession_rev',
-    'isolate-lineage=strain',
-    'sourcedb=database', # necessary for applying geo location rules
-    'geo-region=region',
-    'geo-location=location',
-    'host-name=host',
-    'isolate-collection-date=date',
-    'release-date=release_date',
-    'update-date=update_date',
-    'virus-tax-id=virus_tax_id',
-    'virus-name=virus_name',
-    'sra-accs=sra_accessions',    
-    'submitter-names=authors',
-    'submitter-affiliation=institution',
-  ]
+  field_map:
+    accession: genbank_accession
+    accession-rev: genbank_accession_rev
+    isolate-lineage: strain
+    sourcedb: database
+    geo-region: region
+    geo-location: location
+    host-name: host
+    isolate-collection-date: date
+    release-date: release_date
+    update-date: update_date
+    virus-tax-id: virus_tax_id
+    virus-name: virus_name
+    sra-accs: sra_accessions
+    submitter-names: authors
+    submitter-affiliation: institution
   # Standardized strain name regex
   # Currently accepts any characters because we do not have a clear standard for strain names
   strain_regex: '^.+$'
