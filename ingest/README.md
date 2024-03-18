@@ -44,7 +44,12 @@ A pair of files for each dengue serotype (denv1 - denv4)
 Run the complete ingest pipeline and upload results to AWS S3 with
 
 ```sh
-nextstrain build ingest --configfiles defaults/optional.yaml
+nextstrain build \
+    --env AWS_ACCESS_KEY_ID \
+    --env AWS_SECRET_ACCESS_KEY \
+    ingest \
+        upload_all \
+        --configfile build-configs/nextstrain-automation/config.yaml
 ```
 
 ### Adding new sequences not from GenBank

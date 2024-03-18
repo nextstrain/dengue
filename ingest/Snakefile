@@ -59,7 +59,8 @@ include: "rules/curate.smk"
 include: "rules/split_serotypes.smk"
 include: "rules/nextclade.smk"
 
+# Include custom rules defined in the config.
+if "custom_rules" in config:
+    for rule_file in config["custom_rules"]:
 
-if config.get("upload", False):
-
-    include: "build-configs/nextstrain-automation/upload.smk"
+        include: rule_file
