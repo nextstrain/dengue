@@ -56,12 +56,13 @@ rule concat_nextclade_subtype_results:
         nextclade_field=config["nextclade"]["nextclade_field"],
     shell:
         """
-        echo "{params.id_field},{params.nextclade_field},alignmentStart,alignmentEnd" \
+        echo "{params.id_field},{params.nextclade_field},alignmentStart,alignmentEnd,genome_coverage,failedCdses,E_coverage" \
         | tr ',' '\t' \
         > {output.nextclade_subtypes}
 
-        tsv-select -H -f "seqName,clade,alignmentStart,alignmentEnd" {input} \
+        tsv-select -H -f "seqName,clade,alignmentStart,alignmentEnd,coverage,failedCdses" {input} \
         | awk 'NR>1 {{print}}' \
+        | awk -F'\t' '$2 && !($6 ~ /E/) {{print $0"\t1"; next}} {{print $0"\t"}}' \
         >> {output.nextclade_subtypes}
         """
 
@@ -82,7 +83,7 @@ rule append_nextclade_columns:
         tsv-join -H \
             --filter-file {input.nextclade_subtypes} \
             --key-fields {params.id_field} \
-            --append-fields {params.nextclade_field},alignmentStart,alignmentEnd \
+            --append-fields {params.nextclade_field},alignmentStart,alignmentEnd,genome_coverage,failedCdses,E_coverage \
             --write-all ? \
             {input.metadata} \
         > {output.metadata_all}
