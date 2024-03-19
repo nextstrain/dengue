@@ -14,35 +14,53 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
-rule download:
-    """Downloading sequences and metadata from data.nextstrain.org"""
-    output:
-        sequences = "data/sequences_{serotype}.fasta.zst",
-        metadata = "data/metadata_{serotype}.tsv.zst"
-    params:
-        sequences_url = "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst",
-        metadata_url = "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
-    shell:
-        """
-        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
-        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
-        """
+ruleorder: align_and_extract_E > decompress
+ruleorder: filter_E > align
 
-rule decompress:
-    """Parsing fasta into sequences and metadata"""
+rule generate_E_reference_files:
+    """
+    Generating reference files for the E gene
+    """
     input:
-        sequences = "data/sequences_{serotype}.fasta.zst",
-        metadata = "data/metadata_{serotype}.tsv.zst"
+        reference = "config/reference_{serotype}_genome.gb",
     output:
-        sequences = "data/sequences_{serotype}.fasta",
-        metadata = "data/metadata_{serotype}.tsv"
+        fasta = "results/config/reference_{serotype}_E.fasta",
+        genbank = "results/config/reference_{serotype}_E.gb",
+    params:
+        gene = "E",
     shell:
         """
-        zstd -d -c {input.sequences} > {output.sequences}
-        zstd -d -c {input.metadata} > {output.metadata}
+        python3 bin/newreference.py \
+            --reference {input.reference} \
+            --output-fasta {output.fasta} \
+            --output-genbank {output.genbank} \
+            --gene {params.gene}
         """
 
-rule filter:
+rule align_and_extract_E:
+    """
+    Cutting sequences to the length of the E gene reference sequence
+    """
+    input:
+        sequences = "data/sequences_{serotype}.fasta",
+        reference = "results/config/reference_{serotype}_E.fasta"
+    output:
+        sequences = "results/sequences_{serotype}_E.fasta"
+    params:
+        min_length = config['filter']['E_min_length'],
+    shell:
+        """
+        nextclade run \
+           -j 1 \
+           --input-ref {input.reference} \
+           --output-fasta {output.sequences} \
+           --min-seed-cover 0.01 \
+           --min-length {params.min_length} \
+           --silent \
+           {input.sequences}
+        """
+
+rule filter_E:
     """
     Filtering to
       - {params.sequences_per_group} sequence(s) per {params.group_by!s}
@@ -51,15 +69,16 @@ rule filter:
       - excluding strains with missing region, country or date metadata
     """
     input:
-        sequences = "data/sequences_{serotype}.fasta",
+        sequences = "results/sequences_{serotype}_E.fasta",
         metadata = "data/metadata_{serotype}.tsv",
         exclude = config["filter"]["exclude"],
     output:
-        sequences = "results/filtered_{serotype}.fasta"
+        sequences = "results/aligned_{serotype}_E.fasta"
     params:
         group_by = config['filter']['group_by'],
         sequences_per_group = lambda wildcards: config['filter']['sequences_per_group'][wildcards.serotype],
-        min_length = config['filter']['min_length'],
+        root_sequence = lambda wildcards: config['filter']['E_root_sequence'][wildcards.serotype],
+        min_length = config['filter']['E_min_length'],
         strain_id = config.get("strain_id_field", "strain"),
     shell:
         """
@@ -73,25 +92,5 @@ rule filter:
             --sequences-per-group {params.sequences_per_group} \
             --min-length {params.min_length} \
             --exclude-where country=? region=? date=? \
-        """
-
-rule align:
-    """
-    Aligning sequences to {input.reference}
-      - filling gaps with N
-    """
-    input:
-        sequences = "results/filtered_{serotype}.fasta",
-        reference = "config/reference_{serotype}_genome.gb"
-    output:
-        alignment = "results/aligned_{serotype}_genome.fasta"
-    shell:
-        """
-        augur align \
-            --sequences {input.sequences} \
-            --reference-sequence {input.reference} \
-            --output {output.alignment} \
-            --fill-gaps \
-            --remove-reference \
-            --nthreads 1
+            --include-where strain={params.root_sequence}
         """

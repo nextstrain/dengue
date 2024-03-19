@@ -1,4 +1,4 @@
-strain	virus	accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
+strain	virus	genbank_accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
 DENV3/PUERTO_RICO/BIDV1615/2004	dengue	FJ373302	2004-XX-XX	North America	Puerto Rico	Puerto Rico	Puerto Rico	?	genome	Alvarado et al.	?	?	?	?
 DENV3/THAILAND/BIDV2323/2001	dengue	FJ744734	2001-XX-XX	Southeast Asia	Thailand	Kamphaeng Phet	Kamphaeng Phet	?	genome	Alvarado et al.	?	?	?	?
 DENV3/BANGLADESH/JACOB/NA	dengue	AY656673	?	South Asia	Bangladesh	Bangladesh	Bangladesh	?	genome	Aaskov et al.	?	?	?	?
