@@ -12,11 +12,6 @@ The rule `upload_all` can be used as a target to upload all files.
 """
 import os
 
-slack_envvars_defined = "SLACK_CHANNELS" in os.environ and "SLACK_TOKEN" in os.environ
-send_notifications = (
-    config.get("send_slack_notifications", False) and slack_envvars_defined
-)
-
 
 rule upload_to_s3:
     input:
