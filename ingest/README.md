@@ -44,7 +44,12 @@ A pair of files for each dengue serotype (denv1 - denv4)
 Run the complete ingest pipeline and upload results to AWS S3 with
 
 ```sh
-nextstrain build ingest --configfiles config/config.yaml config/optional.yaml
+nextstrain build \
+    --env AWS_ACCESS_KEY_ID \
+    --env AWS_SECRET_ACCESS_KEY \
+    ingest \
+        upload_all \
+        --configfile build-configs/nextstrain-automation/config.yaml
 ```
 
 ### Adding new sequences not from GenBank
@@ -70,27 +75,25 @@ Do the following to include sequences from static FASTA files.
     !ingest/data/{file-name}.ndjson
     ```
 
-3. Add the `file-name` (without the `.ndjson` extension) as a source to `ingest/config/config.yaml`. This will tell the ingest pipeline to concatenate the records to the GenBank sequences and run them through the same transform pipeline.
+3. Add the `file-name` (without the `.ndjson` extension) as a source to `ingest/defaults/config.yaml`. This will tell the ingest pipeline to concatenate the records to the GenBank sequences and run them through the same transform pipeline.
 
 ## Configuration
 
-Configuration takes place in `config/config.yaml` by default.
-Optional configs for uploading files and Slack notifications are in `config/optional.yaml`.
+Configuration takes place in `defaults/config.yaml` by default.
+Optional configs for uploading files are in `build-configs/nextstrain-automation/config.yaml`.
 
 ### Environment Variables
 
-The complete ingest pipeline with AWS S3 uploads and Slack notifications uses the following environment variables:
+The complete ingest pipeline with AWS S3 uploads uses the following environment variables:
 
 #### Required
 
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
-- `SLACK_TOKEN`
-- `SLACK_CHANNELS`
 
 #### Optional
 
-These are optional environment variables used in our automated pipeline for providing detailed Slack notifications.
+These are optional environment variables used in our automated pipeline.
 
 - `GITHUB_RUN_ID` - provided via [`github.run_id` in a GitHub Action workflow](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)
 - `AWS_BATCH_JOB_ID` - provided via [AWS Batch Job environment variables](https://docs.aws.amazon.com/batch/latest/userguide/job_env_vars.html)
