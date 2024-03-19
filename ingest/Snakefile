@@ -8,36 +8,10 @@ configfile: "defaults/config.yaml"
 
 serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 
-def _get_all_targets(wildcards):
-    # Default targets are the metadata TSV and sequences FASTA files
-    all_targets = expand(["results/sequences_{serotype}.fasta", "results/metadata_{serotype}.tsv"], serotype=serotypes)
-
-
-    # Add additional targets based on upload config
-    upload_config = config.get("upload", {})
-
-    for target, params in upload_config.items():
-        files_to_upload = params.get("files_to_upload", {})
-
-        if not params.get("dst"):
-            print(
-                f"Skipping file upload for {target!r} because the destination was not defined."
-            )
-        else:
-            all_targets.extend(
-                expand(
-                    [f"data/upload/{target}/{{remote_file_name}}.done"],
-                    zip,
-                    remote_file_name=files_to_upload.keys(),
-                )
-            )
-
-    return all_targets
-
 
 rule all:
     input:
-        _get_all_targets,
+        expand(["results/sequences_{serotype}.fasta", "results/metadata_{serotype}.tsv"], serotype=serotypes)
 
 
 include: "rules/fetch_from_ncbi.smk"
