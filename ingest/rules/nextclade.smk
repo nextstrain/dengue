@@ -19,16 +19,22 @@ SEROTYPE_CONSTRAINTS = '|'.join(SUPPORTED_NEXTCLADE_SEROTYPES)
 rule nextclade_denvX:
     """
     For each type, classify into the appropriate subtype
+    1. Capture the alignment
+    2. Capture the translations of gene(s) of interest
     """
     input:
         sequences="results/sequences_{serotype}.fasta",
         dataset="../nextclade_data/{serotype}",
     output:
         nextclade_denvX="data/nextclade_results/nextclade_{serotype}.tsv",
+        nextclade_alignment="results/nextclade_aligned_sequences_{serotype}.fasta",
+        nextclade_translations=expand("results/translations/seqs_{{serotype}}.gene.{gene}.fasta", gene=config["nextclade"]["gene"]),
     threads: 4
     params:
         min_length=config["nextclade"]["min_length"],
         min_seed_cover=config["nextclade"]["min_seed_cover"],
+        gene=config["nextclade"]["gene"],
+        output_translations = lambda wildcards: f"results/translations/seqs_{wildcards.serotype}.gene.{{cds}}.fasta",
     wildcard_constraints:
         serotype=SEROTYPE_CONSTRAINTS
     shell:
@@ -40,6 +46,9 @@ rule nextclade_denvX:
           --min-length {params.min_length} \
           --min-seed-cover {params.min_seed_cover} \
           --silent \
+          --output-fasta {output.nextclade_alignment} \
+          --cds-selection {params.gene} \
+          --output-translations {params.output_translations} \
           {input.sequences}
         """
 
