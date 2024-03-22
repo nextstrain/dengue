@@ -98,6 +98,69 @@ rule append_nextclade_columns:
         > {output.metadata_all}
         """
 
+rule calculate_gene_coverage:
+    """
+    Calculate the coverage of the gene of interest
+    """
+    input:
+        nextclade_translation="data/translations/seqs_{serotype}.gene.{gene}.fasta",
+    output:
+        gene_coverage="data/translations/gene_coverage_{serotype}_{gene}.tsv",
+    wildcard_constraints:
+        serotype=SEROTYPE_CONSTRAINTS,
+    shell:
+        """
+        python bin/calculate-gene-converage-from-nextclade-translation.py \
+          --fasta {input.nextclade_translation} \
+          --out-col {wildcards.gene}_coverage \
+          > {output.gene_coverage}
+        """
+
+rule aggregate_gene_coverage_by_gene:
+    """
+    Aggregate the gene coverage results by gene
+    """
+    input:
+        gene_coverage=expand("data/translations/gene_coverage_{serotype}_{{gene}}.tsv", serotype=SUPPORTED_NEXTCLADE_SEROTYPES),
+    output:
+        gene_coverage_all="results/gene_coverage_all_{gene}.tsv",
+    shell:
+        """
+        # Capture header for tsv
+        head -n1 {input.gene_coverage[0]} > {output.gene_coverage_all}
+        # Capture rest of tsv lines from all files
+        for FILE in {input.gene_coverage}; do
+            awk 'NR>1' $FILE >> {output.gene_coverage_all}
+        done
+        """
+
+rule append_gene_coverage_columns:
+    """
+    Append the gene coverage results to the metadata
+    """
+    input:
+        metadata="data/metadata_nextclade.tsv",
+        gene_coverage=expand("results/gene_coverage_all_{gene}.tsv", gene=config["nextclade"]["gene"])
+    output:
+        metadata_all="results/metadata_all.tsv",
+    params:
+        id_field=config["curate"]["id_field"],
+    shell:
+        """
+        cp {input.metadata} {output.metadata_all}
+        for FILE in {input.gene_coverage}; do
+            export append_col=`awk 'NR==1 {{print $2}}' $FILE`
+            tsv-join -H \
+                --filter-file $FILE \
+                --key-fields {params.id_field} \
+                --append-fields $append_col \
+                --write-all ? \
+                {output.metadata_all} \
+            > results/temp_aggregate_gene_coverage.tsv
+            mv results/temp_aggregate_gene_coverage.tsv {output.metadata_all}
+        done
+        """
+
 rule split_metadata_by_serotype:
     """
     Split the metadata by serotype
