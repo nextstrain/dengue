@@ -21,20 +21,21 @@ rule nextclade_denvX:
     For each type, classify into the appropriate subtype
     1. Capture the alignment
     2. Capture the translations of gene(s) of interest
+
+    Note: If using --cds-selection, only the thoese genes are reported in the failedCdses column
     """
     input:
         sequences="results/sequences_{serotype}.fasta",
         dataset="../nextclade_data/{serotype}",
     output:
         nextclade_denvX="data/nextclade_results/nextclade_{serotype}.tsv",
-        nextclade_alignment="results/nextclade_aligned_sequences_{serotype}.fasta",
-        nextclade_translations=expand("results/translations/seqs_{{serotype}}.gene.{gene}.fasta", gene=config["nextclade"]["gene"]),
+        nextclade_alignment="results/aligned_{serotype}.fasta",
+        nextclade_translations=expand("data/translations/seqs_{{serotype}}.gene.{gene}.fasta", gene=config["nextclade"]["gene"]),
     threads: 4
     params:
         min_length=config["nextclade"]["min_length"],
         min_seed_cover=config["nextclade"]["min_seed_cover"],
-        gene=config["nextclade"]["gene"],
-        output_translations = lambda wildcards: f"results/translations/seqs_{wildcards.serotype}.gene.{{cds}}.fasta",
+        output_translations = lambda wildcards: f"data/translations/seqs_{wildcards.serotype}.gene.{{cds}}.fasta",
     wildcard_constraints:
         serotype=SEROTYPE_CONSTRAINTS
     shell:
@@ -47,7 +48,6 @@ rule nextclade_denvX:
           --min-seed-cover {params.min_seed_cover} \
           --silent \
           --output-fasta {output.nextclade_alignment} \
-          --cds-selection {params.gene} \
           --output-translations {params.output_translations} \
           {input.sequences}
         """
@@ -57,7 +57,7 @@ rule concat_nextclade_subtype_results:
     Concatenate all the nextclade results for dengue subtype classification
     """
     input:
-        expand("data/nextclade_results/nextclade_{serotype}.tsv", serotype=SUPPORTED_NEXTCLADE_SEROTYPES),
+        nextclade_results_files = expand("data/nextclade_results/nextclade_{serotype}.tsv", serotype=SUPPORTED_NEXTCLADE_SEROTYPES),
     output:
         nextclade_subtypes="results/nextclade_subtypes.tsv",
     params:
@@ -65,11 +65,11 @@ rule concat_nextclade_subtype_results:
         nextclade_field=config["nextclade"]["nextclade_field"],
     shell:
         """
-        echo "{params.id_field},{params.nextclade_field},alignmentStart,alignmentEnd,genome_coverage,failedCdses,E_coverage" \
+        echo "{params.id_field},{params.nextclade_field},alignmentStart,alignmentEnd,genome_coverage,failedCdses,E_indicator" \
         | tr ',' '\t' \
         > {output.nextclade_subtypes}
 
-        tsv-select -H -f "seqName,clade,alignmentStart,alignmentEnd,coverage,failedCdses" {input} \
+        tsv-select -H -f "seqName,clade,alignmentStart,alignmentEnd,coverage,failedCdses" {input.nextclade_results_files} \
         | awk 'NR>1 {{print}}' \
         | awk -F'\t' '$2 && !($6 ~ /E/) {{print $0"\t1"; next}} {{print $0"\t"}}' \
         >> {output.nextclade_subtypes}
@@ -83,7 +83,7 @@ rule append_nextclade_columns:
         metadata="data/metadata_all.tsv",
         nextclade_subtypes="results/nextclade_subtypes.tsv",
     output:
-        metadata_all="results/metadata_all.tsv",
+        metadata_all="data/metadata_nextclade.tsv",
     params:
         id_field=config["curate"]["id_field"],
         nextclade_field=config["nextclade"]["nextclade_field"],
@@ -92,7 +92,7 @@ rule append_nextclade_columns:
         tsv-join -H \
             --filter-file {input.nextclade_subtypes} \
             --key-fields {params.id_field} \
-            --append-fields {params.nextclade_field},alignmentStart,alignmentEnd,genome_coverage,failedCdses,E_coverage \
+            --append-fields {params.nextclade_field},alignmentStart,alignmentEnd,genome_coverage,failedCdses,E_indicator \
             --write-all ? \
             {input.metadata} \
         > {output.metadata_all}
