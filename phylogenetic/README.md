@@ -69,3 +69,17 @@ With access to AWS, this can be more quickly run as:
 [auspice]: https://docs.nextstrain.org/projects/auspice/en/stable/index.html
 [Installing Nextstrain guide]: https://docs.nextstrain.org/en/latest/install.html
 [Running a Pathogen Workflow guide]: https://docs.nextstrain.org/en/latest/tutorials/running-a-workflow.html
+
+### Deploying build
+
+To run the workflow and automatically deploy the build to nextstrain.org,
+you will need to have AWS credentials to run the following:
+
+```
+nextstrain build \
+    --env AWS_ACCESS_KEY_ID \
+    --env AWS_SECRET_ACCESS_KEY \
+    . \
+        deploy_all \
+        --configfile build-configs/nextstrain-automation/config.yaml
+```
