@@ -126,12 +126,7 @@ rule aggregate_gene_coverage_by_gene:
         gene_coverage_all="results/gene_coverage_all_{gene}.tsv",
     shell:
         """
-        # Capture header for tsv
-        head -n1 {input.gene_coverage[0]} > {output.gene_coverage_all}
-        # Capture rest of tsv lines from all files
-        for FILE in {input.gene_coverage}; do
-            awk 'NR>1' $FILE >> {output.gene_coverage_all}
-        done
+        tsv-append -H {input.gene_coverage} > {output.gene_coverage_all}
         """
 
 rule append_gene_coverage_columns:
