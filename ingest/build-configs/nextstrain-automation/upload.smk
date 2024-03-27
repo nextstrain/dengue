@@ -19,13 +19,12 @@ rule upload_to_s3:
     output:
         "results/upload/{remote_file}.upload",
     params:
-        quiet="" if send_notifications else "--quiet",
         s3_dst=config["s3_dst"],
         cloudfront_domain=config["cloudfront_domain"],
     shell:
         """
         ./vendored/upload-to-s3 \
-            {params.quiet} \
+            --quiet \
             {input.file_to_upload:q} \
             {params.s3_dst:q}/{wildcards.remote_file:q} \
             {params.cloudfront_domain} 2>&1 | tee {output}
