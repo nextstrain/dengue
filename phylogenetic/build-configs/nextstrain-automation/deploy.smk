@@ -1,5 +1,5 @@
 """
-This part of the workflow handles automatic deployments of the zika build.
+This part of the workflow handles automatic deployments of the dengue build.
 Uploads the build defined as the default output of the workflow through
 the `all` rule from Snakefille
 """
