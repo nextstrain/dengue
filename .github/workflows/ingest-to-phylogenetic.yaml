@@ -10,6 +10,25 @@ defaults:
     shell: bash --noprofile --norc -eo pipefail {0}
 
 on:
+  schedule:
+    # Note times are in UTC, which is 1 or 2 hours behind CET depending on daylight savings.
+    #
+    # Note the actual runs might be late.
+    # Numerous people were confused, about that, including me:
+    #  - https://github.community/t/scheduled-action-running-consistently-late/138025/11
+    #  - https://github.com/github/docs/issues/3059
+    #
+    # Note, '*' is a special character in YAML, so you have to quote this string.
+    #
+    # Docs:
+    #  - https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#schedule
+    #
+    # Tool that deciphers this particular format of crontab string:
+    #  - https://crontab.guru/
+    #
+    # Runs at 4pm UTC (12pm EDT) since curation by NCBI happens on the East Coast.
+    - cron: '0 16 * * *'
+
   workflow_dispatch:
     inputs:
       ingest_image:
