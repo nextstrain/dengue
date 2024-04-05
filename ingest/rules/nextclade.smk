@@ -143,11 +143,10 @@ rule append_gene_coverage_columns:
         """
         cp {input.metadata} {output.metadata_all}
         for FILE in {input.gene_coverage}; do
-            export append_col=`awk 'NR==1 {{print $2}}' $FILE`
             tsv-join -H \
                 --filter-file $FILE \
                 --key-fields {params.id_field} \
-                --append-fields $append_col \
+                --append-fields '*_coverage' \
                 --write-all ? \
                 {output.metadata_all} \
             > results/temp_aggregate_gene_coverage.tsv
