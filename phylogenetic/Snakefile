@@ -4,7 +4,7 @@ serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 
 rule all:
     input:
-        auspice_json = expand("auspice/dengue_{serotype}.json", serotype=serotypes)
+        auspice_json = expand("auspice/dengue_{serotype}_genome.json", serotype=serotypes)
 
 include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"
