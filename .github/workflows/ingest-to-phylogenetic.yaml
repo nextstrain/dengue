@@ -11,6 +11,13 @@ defaults:
 
 on:
   workflow_dispatch:
+    inputs:
+      ingest_image:
+        description: 'Specific container image to use for ingest workflow (will override the default of "nextstrain build")'
+        required: false
+      phylogenetic_image:
+        description: 'Specific container image to use for phylogenetic workflow (will override the default of "nextstrain build")'
+        required: false
 
 jobs:
   ingest:
@@ -23,6 +30,8 @@ jobs:
       # We can migrate to AWS Batch when/if we need to for more resources or if
       # the job runs longer than the GH Action limit of 6 hours.
       runtime: docker
+      env: |
+        NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.ingest_image }}
       run: |
         nextstrain build \
           --env AWS_ACCESS_KEY_ID \
@@ -91,6 +100,8 @@ jobs:
       # We can migrate to AWS Batch when/if we need to for more resources or if
       # the job runs longer than the GH Action limit of 6 hours.
       runtime: docker
+      env: |
+        NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.phylogenetic_image }}
       run: |
         nextstrain build \
           --env AWS_ACCESS_KEY_ID \
