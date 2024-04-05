@@ -9,7 +9,7 @@ import re
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Calculate gene coverage from amino acid sequence",
+        description="Calculate gene coverage from amino acid sequence. The output will be in TSV format to stdout.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
