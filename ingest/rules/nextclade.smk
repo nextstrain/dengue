@@ -63,13 +63,15 @@ rule concat_nextclade_subtype_results:
     params:
         id_field=config["curate"]["id_field"],
         nextclade_field=config["nextclade"]["nextclade_field"],
+        input_nextclade_fields=config["nextclade"]["input_nextclade_fields"],
+        output_nextclade_fields=config["nextclade"]["output_nextclade_fields"],
     shell:
         """
-        echo "{params.id_field},{params.nextclade_field},alignmentStart,alignmentEnd,genome_coverage,failedCdses" \
+        echo "{params.id_field},{params.nextclade_field},{params.output_nextclade_fields}" \
         | tr ',' '\t' \
         > {output.nextclade_subtypes}
 
-        tsv-select -H -f "seqName,clade,alignmentStart,alignmentEnd,coverage,failedCdses" {input.nextclade_results_files} \
+        tsv-select -H -f "{params.input_nextclade_fields}" {input.nextclade_results_files} \
         | awk 'NR>1 {{print}}' \
         >> {output.nextclade_subtypes}
         """
@@ -86,12 +88,13 @@ rule append_nextclade_columns:
     params:
         id_field=config["curate"]["id_field"],
         nextclade_field=config["nextclade"]["nextclade_field"],
+        output_nextclade_fields=config["nextclade"]["output_nextclade_fields"],
     shell:
         """
         tsv-join -H \
             --filter-file {input.nextclade_subtypes} \
             --key-fields {params.id_field} \
-            --append-fields {params.nextclade_field},alignmentStart,alignmentEnd,genome_coverage,failedCdses \
+            --append-fields {params.nextclade_field},{params.output_nextclade_fields} \
             --write-all ? \
             {input.metadata} \
         > {output.metadata_all}

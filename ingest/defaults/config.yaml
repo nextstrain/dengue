@@ -111,3 +111,5 @@ nextclade:
   min_seed_cover: 0.1
   nextclade_field: 'nextclade_subtype'
   gene: ['E','NS1']
+  input_nextclade_fields: "seqName,clade,alignmentStart,alignmentEnd,coverage,failedCdses"
+  output_nextclade_fields: "alignmentStart,alignmentEnd,genome_coverage,failedCdses"
