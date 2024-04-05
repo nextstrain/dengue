@@ -38,3 +38,34 @@ jobs:
         ingest/benchmarks/
         ingest/logs/
         ingest/.snakemake/log/
+
+  # TKTK check if ingest results include new data
+  # potentially use actions/cache to store Metadata.sha256sum of S3 files
+
+  phylogenetic:
+    needs: [ingest]
+    permissions:
+      id-token: write
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    secrets: inherit
+    with:
+      # Starting with the default docker runtime
+      # We can migrate to AWS Batch when/if we need to for more resources or if
+      # the job runs longer than the GH Action limit of 6 hours.
+      runtime: docker
+      run: |
+        nextstrain build \
+          --env AWS_ACCESS_KEY_ID \
+          --env AWS_SECRET_ACCESS_KEY \
+          phylogenetic \
+            deploy_all \
+            --configfile build-configs/nextstrain-automation/config.yaml
+      # Specifying artifact name to differentiate ingest build outputs from
+      # the phylogenetic build outputs
+      artifact-name: phylogenetic-build-output
+      artifact-paths: |
+        phylogenetic/auspice/
+        phylogenetic/results/
+        phylogenetic/benchmarks/
+        phylogenetic/logs/
+        phylogenetic/.snakemake/log/
