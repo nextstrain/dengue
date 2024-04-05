@@ -39,11 +39,49 @@ jobs:
         ingest/logs/
         ingest/.snakemake/log/
 
-  # TKTK check if ingest results include new data
-  # potentially use actions/cache to store Metadata.sha256sum of S3 files
+  # Check if ingest results include new data by checking for the cache
+  # of the file with the results' Metadata.sh256sum (which should have been added within upload-to-s3)
+  # GitHub will remove any cache entries that have not been accessed in over 7 days,
+  # so if the workflow has not been run over 7 days then it will trigger phylogenetic.
+  check-new-data:
+    needs: [ingest]
+    runs-on: ubuntu-latest
+    outputs:
+      cache-hit: ${{ steps.check-cache.outputs.cache-hit }}
+    steps:
+      - name: Get sha256sum
+        id: get-sha256sum
+        run: |
+          s3_urls=(
+            "s3://nextstrain-data/files/workflows/dengue/metadata_all.tsv.zst"
+            "s3://nextstrain-data/files/workflows/dengue/sequences_all.fasta.zst"
+          )
+
+          # Code below is modified from ingest/upload-to-s3
+          # https://github.com/nextstrain/ingest/blob/c0b4c6bb5e6ccbba86374d2c09b42077768aac23/upload-to-s3#L23-L29
+
+          no_hash=0000000000000000000000000000000000000000000000000000000000000000
+
+          for s3_url in "${s3_urls[@]}"; do
+            s3path="${s3_url#s3://}"
+            bucket="${s3path%%/*}"
+            key="${s3path#*/}"
+
+            s3_hash="$(aws s3api head-object --no-sign-request --bucket "$bucket" --key "$key" --query Metadata.sha256sum --output text 2>/dev/null || echo "$no_hash")"
+            echo "${s3_hash}" >> ingest-output-sha256sum
+          done
+
+      - name: Check cache
+        id: check-cache
+        uses: actions/cache@v4
+        with:
+          path: ingest-output-sha256sum
+          key: ingest-output-sha256sum-${{ hashFiles('ingest-output-sha256sum') }}
+          lookup-only: true
 
   phylogenetic:
-    needs: [ingest]
+    needs: [check-new-data]
+    if: ${{ needs.check-new-data.outputs.cache-hit != 'true' }}
     permissions:
       id-token: write
     uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
