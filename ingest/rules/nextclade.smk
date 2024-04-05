@@ -30,12 +30,12 @@ rule nextclade_denvX:
     output:
         nextclade_denvX="data/nextclade_results/nextclade_{serotype}.tsv",
         nextclade_alignment="results/aligned_{serotype}.fasta",
-        nextclade_translations=expand("data/translations/seqs_{{serotype}}.gene.{gene}.fasta", gene=config["nextclade"]["gene"]),
+        nextclade_translations=expand("data/translations/{{serotype}}/{gene}/seqs.gene.fasta", gene=config["nextclade"]["gene"]),
     threads: 4
     params:
         min_length=config["nextclade"]["min_length"],
         min_seed_cover=config["nextclade"]["min_seed_cover"],
-        output_translations = lambda wildcards: f"data/translations/seqs_{wildcards.serotype}.gene.{{cds}}.fasta",
+        output_translations = lambda wildcards: f"data/translations/{wildcards.serotype}/{{cds}}/seqs.gene.fasta",
     wildcard_constraints:
         serotype=SEROTYPE_CONSTRAINTS
     shell:
@@ -105,9 +105,9 @@ rule calculate_gene_coverage:
     Calculate the coverage of the gene of interest
     """
     input:
-        nextclade_translation="data/translations/seqs_{serotype}.gene.{gene}.fasta",
+        nextclade_translation="data/translations/{serotype}/{gene}/seqs.gene.fasta",
     output:
-        gene_coverage="data/translations/gene_coverage_{serotype}_{gene}.tsv",
+        gene_coverage="data/translations/{serotype}/{gene}/gene_coverage.tsv",
     wildcard_constraints:
         serotype=SEROTYPE_CONSTRAINTS,
     shell:
@@ -123,9 +123,9 @@ rule aggregate_gene_coverage_by_gene:
     Aggregate the gene coverage results by gene
     """
     input:
-        gene_coverage=expand("data/translations/gene_coverage_{serotype}_{{gene}}.tsv", serotype=SUPPORTED_NEXTCLADE_SEROTYPES),
+        gene_coverage=expand("data/translations/{serotype}/{{gene}}/gene_coverage.tsv", serotype=SUPPORTED_NEXTCLADE_SEROTYPES),
     output:
-        gene_coverage_all="results/gene_coverage_all_{gene}.tsv",
+        gene_coverage_all="results/{gene}/gene_coverage_all.tsv",
     shell:
         """
         tsv-append -H {input.gene_coverage} > {output.gene_coverage_all}
@@ -137,7 +137,7 @@ rule append_gene_coverage_columns:
     """
     input:
         metadata="data/metadata_nextclade.tsv",
-        gene_coverage=expand("results/gene_coverage_all_{gene}.tsv", gene=config["nextclade"]["gene"])
+        gene_coverage=expand("results/{gene}/gene_coverage_all.tsv", gene=config["nextclade"]["gene"])
     output:
         metadata_all="results/metadata_all.tsv",
     params:
