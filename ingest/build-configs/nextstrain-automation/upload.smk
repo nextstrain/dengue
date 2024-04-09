@@ -19,7 +19,7 @@ rule upload_to_s3:
     output:
         "results/upload/{remote_file}.upload",
     params:
-        quiet="" if send_notifications else "--quiet",
+        quiet="--quiet",
         s3_dst=config["s3_dst"],
         cloudfront_domain=config["cloudfront_domain"],
     shell:
