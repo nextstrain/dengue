@@ -79,6 +79,8 @@ jobs:
     steps:
       - name: Get sha256sum
         id: get-sha256sum
+        env:
+          AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
         run: |
           s3_urls=(
             "s3://nextstrain-data/files/workflows/dengue/metadata_all.tsv.zst"
