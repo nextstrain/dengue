@@ -756,3 +756,22 @@ KR052012	ncbi_serotype	denv1 # denv1 from GenBank record and sequence aligns clo
 KR071622	ncbi_serotype	denv1 # denv1 from GenBank record and sequence aligns closest to KM204119 DENV1 WHO reference
 KR919820	ncbi_serotype	denv1 # denv1 from GenBank record and sequence aligns closest to KM204119 DENV1 WHO reference
 KR919821	ncbi_serotype	denv1 # denv1 from GenBank record and sequence aligns closest to KM204119 DENV1 WHO reference
+ON127553	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON127551	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON127538	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON127534	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON127419	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON116130	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON115819	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON115817	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON115815	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON115812	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON115183	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON115030	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON115026	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON115024	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON115022	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON111446	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON103391	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+ON103303	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
+OK079104	ncbi_serotype	denv3 # Annotated as denv1 but aligns closer to denv3
