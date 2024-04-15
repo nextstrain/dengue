@@ -43,5 +43,8 @@
     "country",
     "region",
     "author"
+  ],
+  "metadata_columns": [
+    "genbank_accession"
   ]
 }

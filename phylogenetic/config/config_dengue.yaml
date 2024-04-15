@@ -1,4 +1,4 @@
-strain_id_field: "accession"
+strain_id_field: "genbank_accession"
 display_strain_field: "strain"
 
 filter:

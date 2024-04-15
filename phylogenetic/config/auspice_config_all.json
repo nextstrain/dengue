@@ -3,7 +3,7 @@
   "maintainers": [
     {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"}
   ],
-  "build_url": "https://github.com/nextstrain/dengue",  
+  "build_url": "https://github.com/nextstrain/dengue",
   "colorings": [
     {
       "key": "gt",
@@ -44,5 +44,8 @@
     "country",
     "region",
     "author"
+  ],
+  "metadata_columns": [
+    "genbank_accession"
   ]
 }
