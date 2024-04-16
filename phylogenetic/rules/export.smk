@@ -29,8 +29,7 @@ rule export:
         aa_muts = "results/aa-muts_{serotype}.json",
         auspice_config = "config/auspice_config_{serotype}.json",
     output:
-        auspice_json = "results/raw_dengue_{serotype}.json",
-        root_sequence = "results/raw_dengue_{serotype}_root-sequence.json",
+        auspice_json = "results/raw_dengue_{serotype}.json"
     params:
         strain_id = config.get("strain_id_field", "strain"),
     shell:
@@ -41,7 +40,7 @@ rule export:
             --metadata-id-columns {params.strain_id} \
             --node-data {input.branch_lengths} {input.traits} {input.clades} {input.nt_muts} {input.aa_muts} \
             --auspice-config {input.auspice_config} \
-            --include-root-sequence \
+            --include-root-sequence-inline \
             --output {output.auspice_json}
         """
 
@@ -49,10 +48,8 @@ rule final_strain_name:
     input:
         auspice_json="results/raw_dengue_{serotype}.json",
         metadata="data/metadata_{serotype}.tsv",
-        root_sequence="results/raw_dengue_{serotype}_root-sequence.json",
     output:
-        auspice_json="auspice/dengue_{serotype}_genome.json",
-        root_sequence="auspice/dengue_{serotype}_genome_root-sequence.json",
+        auspice_json="auspice/dengue_{serotype}_genome.json"
     params:
         strain_id=config.get("strain_id_field", "strain"),
         display_strain_field=config.get("display_strain_field", "strain"),
@@ -64,5 +61,4 @@ rule final_strain_name:
             --input-auspice-json {input.auspice_json} \
             --display-strain-name {params.display_strain_field} \
             --output {output.auspice_json}
-        cp {input.root_sequence} {output.root_sequence}
         """
