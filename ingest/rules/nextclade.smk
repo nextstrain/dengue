@@ -61,13 +61,11 @@ rule concat_nextclade_subtype_results:
     output:
         nextclade_subtypes="results/nextclade_subtypes.tsv",
     params:
-        id_field=config["curate"]["id_field"],
-        nextclade_field=config["nextclade"]["nextclade_field"],
-        input_nextclade_fields=config["nextclade"]["input_nextclade_fields"],
-        output_nextclade_fields=config["nextclade"]["output_nextclade_fields"],
+        input_nextclade_fields=",".join([f'{key}' for key, value in config["nextclade"]["field_map"].items()]),
+        output_nextclade_fields=",".join([f'{value}' for key, value in config["nextclade"]["field_map"].items()]),
     shell:
         """
-        echo "{params.id_field},{params.nextclade_field},{params.output_nextclade_fields}" \
+        echo "{params.output_nextclade_fields}" \
         | tr ',' '\t' \
         > {output.nextclade_subtypes}
 
@@ -86,15 +84,14 @@ rule append_nextclade_columns:
     output:
         metadata_all="data/metadata_nextclade.tsv",
     params:
-        id_field=config["curate"]["id_field"],
-        nextclade_field=config["nextclade"]["nextclade_field"],
-        output_nextclade_fields=config["nextclade"]["output_nextclade_fields"],
+        id_field=list(config["nextclade"]["field_map"].values())[0],
+        output_nextclade_fields=",".join([f'{value}' for key, value in config["nextclade"]["field_map"].items()][1:]),
     shell:
         """
         tsv-join -H \
             --filter-file {input.nextclade_subtypes} \
             --key-fields {params.id_field} \
-            --append-fields {params.nextclade_field},{params.output_nextclade_fields} \
+            --append-fields {params.output_nextclade_fields} \
             --write-all ? \
             {input.metadata} \
         > {output.metadata_all}

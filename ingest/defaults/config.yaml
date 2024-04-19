@@ -109,7 +109,12 @@ curate:
 nextclade:
   min_length: 1000 # E gene length is approximately 1400nt
   min_seed_cover: 0.1
-  nextclade_field: 'nextclade_subtype'
   gene: ['E','NS1']
-  input_nextclade_fields: "seqName,clade,alignmentStart,alignmentEnd,coverage,failedCdses"
-  output_nextclade_fields: "alignmentStart,alignmentEnd,genome_coverage,failedCdses"
+  # Nextclade Fields to rename to metadata field names.
+  field_map:
+    seqName: genbank_accession # ID field used to merge annotations
+    clade: nextclade_subtype
+    alignmentStart: alignmentStart
+    alignmentEnd: alignmentEnd
+    coverage: genome_coverage
+    failedCdses: failedCdses
