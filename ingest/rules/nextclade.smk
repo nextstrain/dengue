@@ -147,7 +147,7 @@ rule append_gene_coverage_columns:
                 --filter-file $FILE \
                 --key-fields {params.id_field} \
                 --append-fields '*_coverage' \
-                --write-all ? \
+                --write-all 0 \
                 {output.metadata_all} \
             > results/temp_aggregate_gene_coverage.tsv
             mv results/temp_aggregate_gene_coverage.tsv {output.metadata_all}
