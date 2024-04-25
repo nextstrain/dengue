@@ -1,0 +1,109 @@
+name: Phylogenetic
+
+defaults:
+  run:
+    # This is the same as GitHub Action's `bash` keyword as of 20 June 2023:
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
+    #
+    # Completely spelling it out here so that GitHub can't change it out from under us
+    # and we don't have to refer to the docs to know the expected behavior.
+    shell: bash --noprofile --norc -eo pipefail {0}
+
+on:
+  workflow_call:
+    inputs:
+      image:
+        description: 'Specific container image to use for phylogenetic workflow (will override the default of "nextstrain build")'
+        required: false
+        type: string
+
+  workflow_dispatch:
+    inputs:
+      image:
+        description: 'Specific container image to use for ingest workflow (will override the default of "nextstrain build")'
+        required: false
+        type: string
+      trial_name:
+        description: |
+          Trial name for deploying builds.
+          If not set, builds will overwrite existing builds at s3://nextstrain-data/dengue*
+          If set, builds will be deployed to s3://nextstrain-staging/dengue_trials_<trial_name>_*
+        required: false
+        type: string
+      sequences_url:
+        description: |
+          URL for a sequences.fasta.zst file.
+          If not provided, will use default sequences_url from phylogenetic/defaults/config_dengue.yaml
+        required: false
+        type: string
+      metadata_url:
+        description: |
+          URL for a metadata.tsv.zst file.
+          If not provided, will use default metadata_url from phylogenetic/defaults/config_dengue.yaml
+        required: false
+        type: string
+
+jobs:
+  set_config_overrides:
+    runs-on: ubuntu-latest
+    steps:
+      - id: config
+        name: Set config overrides
+        env:
+          TRIAL_NAME: ${{ inputs.trial_name }}
+          SEQUENCES_URL: ${{ inputs.sequences_url }}
+          METADATA_URL: ${{ inputs.metadata_url }}
+        run: |
+          config=""
+
+          if [[ "$TRIAL_NAME" ]]; then
+            config+=" deploy_url='s3://nextstrain-staging/dengue_trials_"$TRIAL_NAME"_'"
+          fi
+
+          if [[ "$SEQUENCES_URL" ]]; then
+            config+=" sequences_url='"$SEQUENCES_URL"'"
+          fi
+
+          if [[ "$METADATA_URL" ]]; then
+            config+=" metadata_url='"$METADATA_URL"'"
+          fi
+
+          if [[ $config ]]; then
+            config="--config $config"
+          fi
+
+          echo "config=$config" >> "$GITHUB_OUTPUT"
+    outputs:
+      config_overrides: ${{ steps.config.outputs.config }}
+
+  phylogenetic:
+    needs: [set_config_overrides]
+    permissions:
+      id-token: write
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    secrets: inherit
+    with:
+      # Starting with the default docker runtime
+      # We can migrate to AWS Batch when/if we need to for more resources or if
+      # the job runs longer than the GH Action limit of 6 hours.
+      runtime: docker
+      env: |
+        NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
+        CONFIG_OVERRIDES: ${{ needs.set_config_overrides.outputs.config_overrides }}
+      run: |
+        nextstrain build \
+          --env AWS_ACCESS_KEY_ID \
+          --env AWS_SECRET_ACCESS_KEY \
+          phylogenetic \
+            deploy_all \
+            --configfile build-configs/nextstrain-automation/config.yaml \
+            $CONFIG_OVERRIDES
+      # Specifying artifact name to differentiate ingest build outputs from
+      # the phylogenetic build outputs
+      artifact-name: phylogenetic-build-output
+      artifact-paths: |
+        phylogenetic/auspice/
+        phylogenetic/results/
+        phylogenetic/benchmarks/
+        phylogenetic/logs/
+        phylogenetic/.snakemake/log/
