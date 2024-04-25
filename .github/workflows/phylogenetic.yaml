@@ -33,13 +33,13 @@ on:
       sequences_url:
         description: |
           URL for a sequences.fasta.zst file.
-          If not provided, will use default sequences_url from phylogenetic/defaults/config_dengue.yaml
+          If not provided, will use default sequences_url from phylogenetic/config/config_dengue.yaml
         required: false
         type: string
       metadata_url:
         description: |
           URL for a metadata.tsv.zst file.
-          If not provided, will use default metadata_url from phylogenetic/defaults/config_dengue.yaml
+          If not provided, will use default metadata_url from phylogenetic/config/config_dengue.yaml
         required: false
         type: string
 
