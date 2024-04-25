@@ -59,6 +59,11 @@ rule prepare_auspice_config:
                 "key": params.replace_clade_key,
                 "title": params.replace_clade_title,
                 "type": "categorical"
+              },
+              {
+                "key": "nextclade_subtype",
+                "title": "Nextclade genotype",
+                "type": "categorical"
               }
             ],
             "geo_resolutions": [
