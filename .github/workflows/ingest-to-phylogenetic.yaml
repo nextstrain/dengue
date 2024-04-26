@@ -42,30 +42,10 @@ jobs:
   ingest:
     permissions:
       id-token: write
-    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    uses: ./.github/workflows/ingest.yaml
     secrets: inherit
     with:
-      # Starting with the default docker runtime
-      # We can migrate to AWS Batch when/if we need to for more resources or if
-      # the job runs longer than the GH Action limit of 6 hours.
-      runtime: docker
-      env: |
-        NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.ingest_image }}
-      run: |
-        nextstrain build \
-          --env AWS_ACCESS_KEY_ID \
-          --env AWS_SECRET_ACCESS_KEY \
-          ingest \
-            upload_all \
-            --configfile build-configs/nextstrain-automation/config.yaml
-      # Specifying artifact name to differentiate ingest build outputs from
-      # the phylogenetic build outputs
-      artifact-name: ingest-build-output
-      artifact-paths: |
-        ingest/results/
-        ingest/benchmarks/
-        ingest/logs/
-        ingest/.snakemake/log/
+      image: ${{ inputs.ingest_image }}
 
   # Check if ingest results include new data by checking for the cache
   # of the file with the results' Metadata.sh256sum (which should have been added within upload-to-s3)
@@ -114,28 +94,7 @@ jobs:
     if: ${{ needs.check-new-data.outputs.cache-hit != 'true' }}
     permissions:
       id-token: write
-    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    uses: ./.github/workflows/phylogenetic.yaml
     secrets: inherit
     with:
-      # Starting with the default docker runtime
-      # We can migrate to AWS Batch when/if we need to for more resources or if
-      # the job runs longer than the GH Action limit of 6 hours.
-      runtime: docker
-      env: |
-        NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.phylogenetic_image }}
-      run: |
-        nextstrain build \
-          --env AWS_ACCESS_KEY_ID \
-          --env AWS_SECRET_ACCESS_KEY \
-          phylogenetic \
-            deploy_all \
-            --configfile build-configs/nextstrain-automation/config.yaml
-      # Specifying artifact name to differentiate ingest build outputs from
-      # the phylogenetic build outputs
-      artifact-name: phylogenetic-build-output
-      artifact-paths: |
-        phylogenetic/auspice/
-        phylogenetic/results/
-        phylogenetic/benchmarks/
-        phylogenetic/logs/
-        phylogenetic/.snakemake/log/
+      image: ${{ inputs.phylogenetic_image }}
