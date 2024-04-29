@@ -20,6 +20,23 @@ See Augur's usage docs for these commands for more details.
 import json
 
 
+rule colors:
+    input:
+        color_schemes = "config/color_schemes.tsv",
+        color_orderings = "config/color_orderings.tsv",
+        metadata = "data/metadata_{serotype}.tsv",
+    output:
+        colors = "results/colors_{serotype}.tsv"
+    shell:
+        """
+        python3 bin/assign-colors.py \
+            --color-schemes {input.color_schemes} \
+            --ordering {input.color_orderings} \
+            --metadata {input.metadata} \
+            --output {output.colors}
+        """
+
+
 rule prepare_auspice_config:
     """Prepare the auspice config file for each serotypes"""
     output:
@@ -97,6 +114,7 @@ rule export:
         nt_muts = "results/nt-muts_{serotype}.json",
         aa_muts = "results/aa-muts_{serotype}.json",
         auspice_config = "results/config/auspice_config_{serotype}.json",
+        colors = "results/colors_{serotype}.tsv",
     output:
         auspice_json = "results/raw_dengue_{serotype}.json"
     params:
@@ -108,6 +126,7 @@ rule export:
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
             --node-data {input.branch_lengths} {input.traits} {input.clades} {input.nt_muts} {input.aa_muts} \
+            --colors {input.colors} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence-inline \
             --output {output.auspice_json}
