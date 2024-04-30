@@ -15,11 +15,11 @@ filter:
 traits:
   sampling_bias_correction: '3'
   traits_columns:
-    all: 'region'
-    denv1: 'country region'
-    denv2: 'country region'
-    denv3: 'country region'
-    denv4: 'country region'
+    all: 'region nextclade_subtype'
+    denv1: 'country region nextclade_subtype'
+    denv2: 'country region nextclade_subtype'
+    denv3: 'country region nextclade_subtype'
+    denv4: 'country region nextclade_subtype'
 
 clades:
   clade_definitions:
