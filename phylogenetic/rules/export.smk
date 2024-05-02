@@ -96,6 +96,9 @@ rule prepare_auspice_config:
               "country",
               "region",
               "author"
+            ],
+            "metadata_columns": [
+              "genbank_accession"
             ]
           }
 
