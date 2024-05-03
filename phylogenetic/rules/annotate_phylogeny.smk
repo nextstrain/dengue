@@ -44,7 +44,7 @@ rule translate:
     input:
         tree = "results/tree_{serotype}.nwk",
         node_data = "results/nt-muts_{serotype}.json",
-        reference = "config/reference_dengue_{serotype}.gb"
+        reference = "config/reference_dengue_{serotype}_genome.gb"
     output:
         node_data = "results/aa-muts_{serotype}.json"
     shell:
