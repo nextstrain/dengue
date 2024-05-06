@@ -56,7 +56,7 @@ rule filter:
         metadata = "data/metadata_{serotype}.tsv",
         exclude = config["filter"]["exclude"],
     output:
-        sequences = "results/genome/filtered_{serotype}.fasta"
+        sequences = "results/{gene}/filtered_{serotype}.fasta"
     params:
         group_by = config['filter']['group_by'],
         sequences_per_group = lambda wildcards: config['filter']['sequences_per_group'][wildcards.serotype],
@@ -82,10 +82,10 @@ rule align:
       - filling gaps with N
     """
     input:
-        sequences = "results/genome/filtered_{serotype}.fasta",
+        sequences = "results/{gene}/filtered_{serotype}.fasta",
         reference = "config/reference_dengue_{serotype}_genome.gb"
     output:
-        alignment = "results/genome/aligned_{serotype}.fasta"
+        alignment = "results/{gene}/aligned_{serotype}.fasta"
     shell:
         """
         augur align \

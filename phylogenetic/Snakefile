@@ -9,7 +9,7 @@ wildcard_constraints:
 
 rule all:
     input:
-        auspice_json = expand("auspice/dengue_{serotype}_genome.json", serotype=serotypes)
+        auspice_json = expand("auspice/dengue_{serotype}_{gene}.json", serotype=serotypes, gene='genome'),
 
 include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"
