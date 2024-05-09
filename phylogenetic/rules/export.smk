@@ -40,7 +40,7 @@ rule colors:
 rule prepare_auspice_config:
     """Prepare the auspice config file for each serotypes"""
     output:
-        auspice_config="results/config/auspice_config_{serotype}.json",
+        auspice_config="results/config/{gene}/auspice_config_{serotype}.json",
     params:
         replace_clade_key="clade_membership",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"DENV genotype",
@@ -109,17 +109,17 @@ rule prepare_auspice_config:
 rule export:
     """Exporting data files for auspice"""
     input:
-        tree = "results/tree_{serotype}.nwk",
+        tree = "results/{gene}/tree_{serotype}.nwk",
         metadata = "data/metadata_{serotype}.tsv",
-        branch_lengths = "results/branch-lengths_{serotype}.json",
-        traits = "results/traits_{serotype}.json",
-        clades = "results/clades_{serotype}.json",
-        nt_muts = "results/nt-muts_{serotype}.json",
-        aa_muts = "results/aa-muts_{serotype}.json",
-        auspice_config = "results/config/auspice_config_{serotype}.json",
+        branch_lengths = "results/{gene}/branch-lengths_{serotype}.json",
+        traits = "results/{gene}/traits_{serotype}.json",
+        clades = "results/{gene}/clades_{serotype}.json",
+        nt_muts = "results/{gene}/nt-muts_{serotype}.json",
+        aa_muts = "results/{gene}/aa-muts_{serotype}.json",
+        auspice_config = "results/config/{gene}/auspice_config_{serotype}.json",
         colors = "results/colors_{serotype}.tsv",
     output:
-        auspice_json = "results/raw_dengue_{serotype}.json"
+        auspice_json = "results/{gene}/raw_dengue_{serotype}.json"
     params:
         strain_id = config.get("strain_id_field", "strain"),
     shell:
@@ -137,10 +137,10 @@ rule export:
 
 rule final_strain_name:
     input:
-        auspice_json="results/raw_dengue_{serotype}.json",
+        auspice_json="results/{gene}/raw_dengue_{serotype}.json",
         metadata="data/metadata_{serotype}.tsv",
     output:
-        auspice_json="auspice/dengue_{serotype}_genome.json"
+        auspice_json="auspice/dengue_{serotype}_{gene}.json"
     params:
         strain_id=config.get("strain_id_field", "strain"),
         display_strain_field=config.get("display_strain_field", "strain"),
