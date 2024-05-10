@@ -81,6 +81,11 @@ rule prepare_auspice_config:
                 "key": "nextclade_subtype",
                 "title": "Nextclade genotype",
                 "type": "categorical"
+              },
+              {
+                "key": "ncbi_serotype",
+                "title": "NCBI serotype",
+                "type": "categorical"
               }
             ],
             "geo_resolutions": [

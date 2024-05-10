@@ -17,11 +17,11 @@ filter:
 traits:
   sampling_bias_correction: '3'
   traits_columns:
-    all: 'region nextclade_subtype'
-    denv1: 'country region nextclade_subtype'
-    denv2: 'country region nextclade_subtype'
-    denv3: 'country region nextclade_subtype'
-    denv4: 'country region nextclade_subtype'
+    all: 'region ncbi_serotype nextclade_subtype'
+    denv1: 'country region ncbi_serotype nextclade_subtype'
+    denv2: 'country region ncbi_serotype nextclade_subtype'
+    denv3: 'country region ncbi_serotype nextclade_subtype'
+    denv4: 'country region ncbi_serotype nextclade_subtype'
 
 clades:
   clade_definitions:

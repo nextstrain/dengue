@@ -235,6 +235,11 @@ recency	New
 
 ################
 
+ncbi_serotype	denv1
+ncbi_serotype	denv2
+ncbi_serotype	denv3
+ncbi_serotype	denv4
+
 nextclade_subtype	DENV1/I
 nextclade_subtype	DENV1/II
 nextclade_subtype	DENV1/III
