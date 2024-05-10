@@ -52,7 +52,7 @@ rule filter:
       - excluding strains with missing region, country or date metadata
     """
     input:
-        sequences = "data/sequences_{serotype}.fasta",
+        sequences = lambda wildcard: "data/sequences_{serotype}.fasta" if wildcard.gene in ['genome'] else "results/{gene}/sequences_{serotype}.fasta",
         metadata = "data/metadata_{serotype}.tsv",
         exclude = config["filter"]["exclude"],
     output:
@@ -60,7 +60,7 @@ rule filter:
     params:
         group_by = config['filter']['group_by'],
         sequences_per_group = lambda wildcards: config['filter']['sequences_per_group'][wildcards.serotype],
-        min_length = config['filter']['min_length'],
+        min_length = lambda wildcard: config['filter']['min_length'][wildcard.gene],
         strain_id = config.get("strain_id_field", "strain"),
     shell:
         """
@@ -83,7 +83,7 @@ rule align:
     """
     input:
         sequences = "results/{gene}/filtered_{serotype}.fasta",
-        reference = "config/reference_{serotype}_genome.gb"
+        reference = lambda wildcard: "config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb"
     output:
         alignment = "results/{gene}/aligned_{serotype}.fasta"
     shell:

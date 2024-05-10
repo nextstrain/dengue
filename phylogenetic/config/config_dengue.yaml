@@ -4,7 +4,9 @@ display_strain_field: "strain"
 filter:
   exclude: "config/exclude.txt"
   group_by: "year region"
-  min_length: 5000
+  min_length:
+    genome: 5000
+    E: 1000
   sequences_per_group:
     all: '10'
     denv1: '36'
