@@ -113,7 +113,7 @@ rule export:
         metadata = "data/metadata_{serotype}.tsv",
         branch_lengths = "results/{gene}/branch-lengths_{serotype}.json",
         traits = "results/{gene}/traits_{serotype}.json",
-        clades = "results/{gene}/clades_{serotype}.json",
+        clades = lambda wildcard: "results/{gene}/clades_{serotype}.json" if wildcard.gene in ['genome'] else [],
         nt_muts = "results/{gene}/nt-muts_{serotype}.json",
         aa_muts = "results/{gene}/aa-muts_{serotype}.json",
         auspice_config = "results/config/{gene}/auspice_config_{serotype}.json",

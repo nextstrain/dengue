@@ -85,12 +85,12 @@ rule traits:
 rule clades:
     """Annotating serotypes / genotypes"""
     input:
-        tree = "results/{gene}/tree_{serotype}.nwk",
-        nt_muts = "results/{gene}/nt-muts_{serotype}.json",
-        aa_muts = "results/{gene}/aa-muts_{serotype}.json",
+        tree = "results/genome/tree_{serotype}.nwk",
+        nt_muts = "results/genome/nt-muts_{serotype}.json",
+        aa_muts = "results/genome/aa-muts_{serotype}.json",
         clade_defs = lambda wildcards: config['clades']['clade_definitions'][wildcards.serotype],
     output:
-        clades = "results/{gene}/clades_{serotype}.json"
+        clades = "results/genome/clades_{serotype}.json"
     shell:
         """
         augur clades \
