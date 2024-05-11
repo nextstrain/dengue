@@ -94,8 +94,7 @@ rule prepare_auspice_config:
             ],
             "display_defaults": {
               "map_triplicate": True,
-              "color_by": params.replace_clade_key,
-              "distance_measure": "div"
+              "color_by": params.replace_clade_key
             },
             "filters": [
               "country",
