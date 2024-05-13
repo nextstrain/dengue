@@ -42,7 +42,7 @@ rule prepare_auspice_config:
     output:
         auspice_config="results/config/{gene}/auspice_config_{serotype}.json",
     params:
-        replace_clade_key="clade_membership",
+        replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"nextclade_subtype",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"DENV genotype",
     run:
         data = {
@@ -81,6 +81,11 @@ rule prepare_auspice_config:
                 "key": "nextclade_subtype",
                 "title": "Nextclade genotype",
                 "type": "categorical"
+              },
+              {
+                "key": "ncbi_serotype",
+                "title": "NCBI serotype",
+                "type": "categorical"
               }
             ],
             "geo_resolutions": [
@@ -89,8 +94,7 @@ rule prepare_auspice_config:
             ],
             "display_defaults": {
               "map_triplicate": True,
-              "color_by": params.replace_clade_key,
-              "distance_measure": "div"
+              "color_by": params.replace_clade_key
             },
             "filters": [
               "country",
@@ -113,7 +117,7 @@ rule export:
         metadata = "data/metadata_{serotype}.tsv",
         branch_lengths = "results/{gene}/branch-lengths_{serotype}.json",
         traits = "results/{gene}/traits_{serotype}.json",
-        clades = "results/{gene}/clades_{serotype}.json",
+        clades = lambda wildcard: "results/{gene}/clades_{serotype}.json" if wildcard.gene in ['genome'] else [],
         nt_muts = "results/{gene}/nt-muts_{serotype}.json",
         aa_muts = "results/{gene}/aa-muts_{serotype}.json",
         auspice_config = "results/config/{gene}/auspice_config_{serotype}.json",
