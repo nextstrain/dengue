@@ -240,23 +240,23 @@ serotype_genbank	denv2
 serotype_genbank	denv3
 serotype_genbank	denv4
 
-nextclade_subtype	DENV1/I
-nextclade_subtype	DENV1/II
-nextclade_subtype	DENV1/III
-nextclade_subtype	DENV1/IV
-nextclade_subtype	DENV1/V
-nextclade_subtype	DENV2/AA
-nextclade_subtype	DENV2/AI
-nextclade_subtype	DENV2/AII
-nextclade_subtype	DENV2/AM
-nextclade_subtype	DENV2/C
-nextclade_subtype	DENV2/S
-nextclade_subtype	DENV3/I
-nextclade_subtype	DENV3/II
-nextclade_subtype	DENV3/III
-nextclade_subtype	DENV3/IV
-nextclade_subtype	DENV4/I
-nextclade_subtype	DENV4/II
-nextclade_subtype	DENV4/S
+genotype_nextclade	DENV1/I
+genotype_nextclade	DENV1/II
+genotype_nextclade	DENV1/III
+genotype_nextclade	DENV1/IV
+genotype_nextclade	DENV1/V
+genotype_nextclade	DENV2/AA
+genotype_nextclade	DENV2/AI
+genotype_nextclade	DENV2/AII
+genotype_nextclade	DENV2/AM
+genotype_nextclade	DENV2/C
+genotype_nextclade	DENV2/S
+genotype_nextclade	DENV3/I
+genotype_nextclade	DENV3/II
+genotype_nextclade	DENV3/III
+genotype_nextclade	DENV3/IV
+genotype_nextclade	DENV4/I
+genotype_nextclade	DENV4/II
+genotype_nextclade	DENV4/S
 
 ################

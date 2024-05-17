@@ -115,7 +115,7 @@ nextclade:
   # Nextclade Fields to rename to metadata field names.
   field_map:
     seqName: genbank_accession # ID field used to merge annotations
-    clade: nextclade_subtype
+    clade: genotype_nextclade
     alignmentStart: alignmentStart
     alignmentEnd: alignmentEnd
     coverage: genome_coverage
