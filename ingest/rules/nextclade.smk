@@ -164,7 +164,9 @@ rule split_metadata_by_serotype:
         serotype_metadata="results/metadata_{serotype}.tsv"
     wildcard_constraints:
         serotype=SEROTYPE_CONSTRAINTS
+    params:
+        serotype_field=config["curate"]["serotype_field"],
     shell:
         """
-        tsv-filter -H --str-eq ncbi_serotype:{wildcards.serotype} {input.metadata} > {output.serotype_metadata}
+        tsv-filter -H --str-eq {params.serotype_field}:{wildcards.serotype} {input.metadata} > {output.serotype_metadata}
         """

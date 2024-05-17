@@ -83,8 +83,8 @@ rule prepare_auspice_config:
                 "type": "categorical"
               },
               {
-                "key": "ncbi_serotype",
-                "title": "NCBI serotype",
+                "key": "serotype_genbank",
+                "title": "Serotype (Genbank metadata)",
                 "type": "categorical"
               }
             ],

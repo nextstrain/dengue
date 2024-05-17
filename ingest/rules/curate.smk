@@ -66,6 +66,7 @@ rule curate:
         authors_default_value=config["curate"]["authors_default_value"],
         abbr_authors_field=config["curate"]["abbr_authors_field"],
         annotations_id=config["curate"]["annotations_id"],
+        serotype_field=config["curate"]["serotype_field"],
         metadata_columns=config["curate"]["metadata_columns"],
         id_field=config["curate"]["id_field"],
         sequence_field=config["curate"]["sequence_field"],
@@ -93,6 +94,7 @@ rule curate:
             | ./vendored/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
             | ./bin/infer-dengue-serotype.py \
+                --out-col {params.serotype_field} \
             | ./vendored/merge-user-metadata \
                 --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
