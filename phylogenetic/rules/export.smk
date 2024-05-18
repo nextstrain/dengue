@@ -114,6 +114,10 @@ rule prepare_auspice_config:
                 "title": clade_membership_title,
                 "type": "categorical"
             })
+        else:
+            # During E/dengue_all workflows, default color by Serotype
+            if wildcards.serotype in ['all']:
+                data["display_defaults"]["color_by"]="serotype_genbank"
 
         with open(output.auspice_config, 'w') as fh:
             json.dump(data, fh, indent=2)
