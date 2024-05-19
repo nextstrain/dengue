@@ -101,11 +101,11 @@ curate:
     'host',
     'release_date',
     'update_date',
-    'serotype_genbank', # inferred from virus_tax_id
     'sra_accessions',
     'abbr_authors',
     'authors',
-    'institution'
+    'institution',
+    'serotype_genbank', # inferred from virus_tax_id
   ]
 
 nextclade:
