@@ -32,13 +32,13 @@ on:
         type: string
       sequences_url:
         description: |
-          URL for a sequences.fasta.zst file.
+          URL for sequences_{serotype}.fasta.zst files where {serotype} will be replaced by all, denv1 to denv4.
           If not provided, will use default sequences_url from phylogenetic/config/config_dengue.yaml
         required: false
         type: string
       metadata_url:
         description: |
-          URL for a metadata.tsv.zst file.
+          URL for metadata_{serotype}.tsv.zst files where {serotype} will be replaced by all, denv1 to denv4.
           If not provided, will use default metadata_url from phylogenetic/config/config_dengue.yaml
         required: false
         type: string

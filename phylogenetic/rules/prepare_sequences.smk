@@ -21,8 +21,8 @@ rule download:
         metadata = "data/metadata_{serotype}.tsv.zst"
 
     params:
-        sequences_url = "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst",
-        metadata_url = "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
+        sequences_url = config["sequences_url"],
+        metadata_url = config["metadata_url"],
     shell:
         """
         curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
