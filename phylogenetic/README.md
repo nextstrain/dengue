@@ -37,16 +37,16 @@ There is little redirection and each rule should be able to be reasoned with on 
 
 This build starts by pulling preprocessed sequence and metadata files from: 
 
-* https://data.nextstrain.org/files/dengue/sequences_all.fasta.zst
-* https://data.nextstrain.org/files/dengue/metadata_all.tsv.zst
-* https://data.nextstrain.org/files/dengue/sequences_denv1.fasta.zst
-* https://data.nextstrain.org/files/dengue/metadata_denv1.tsv.zst
-* https://data.nextstrain.org/files/dengue/sequences_denv2.fasta.zst
-* https://data.nextstrain.org/files/dengue/metadata_denv2.tsv.zst
-* https://data.nextstrain.org/files/dengue/sequences_denv3.fasta.zst
-* https://data.nextstrain.org/files/dengue/metadata_denv3.tsv.zst
-* https://data.nextstrain.org/files/dengue/sequences_denv4.fasta.zst
-* https://data.nextstrain.org/files/dengue/metadata_denv4.tsv.zst
+* https://data.nextstrain.org/files/workflows/dengue/sequences_all.fasta.zst
+* https://data.nextstrain.org/files/workflows/dengue/metadata_all.tsv.zst
+* https://data.nextstrain.org/files/workflows/dengue/sequences_denv1.fasta.zst
+* https://data.nextstrain.org/files/workflows/dengue/metadata_denv1.tsv.zst
+* https://data.nextstrain.org/files/workflows/dengue/sequences_denv2.fasta.zst
+* https://data.nextstrain.org/files/workflows/dengue/metadata_denv2.tsv.zst
+* https://data.nextstrain.org/files/workflows/dengue/sequences_denv3.fasta.zst
+* https://data.nextstrain.org/files/workflows/dengue/metadata_denv3.tsv.zst
+* https://data.nextstrain.org/files/workflows/dengue/sequences_denv4.fasta.zst
+* https://data.nextstrain.org/files/workflows/dengue/metadata_denv4.tsv.zst
 
 The above datasets have been preprocessed and cleaned from GenBank and are updated at regular intervals. 
 
