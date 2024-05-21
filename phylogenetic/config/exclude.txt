@@ -32,7 +32,6 @@ EF051521 # ZS01/01 # metadata issue
 MT929160 # Vero # cell line
 MH048676 # MS13002673 # too divergent
 MH048674 # MS11011405 # too divergent
-MT597439 # V43257 # too divergent
 MN448607 # KDC0574A2_06/02/2011 # too divergent
 ON046268 # 00178/03 # too divergent
 ON046278 # 00759/12 # too divergent
