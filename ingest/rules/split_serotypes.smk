@@ -12,9 +12,9 @@ This will produce output files as
 Parameters are expected to be defined in `config.curate`.
 """
 
-rule split_by_ncbi_serotype:
+rule split_by_serotype_genbank:
     """
-    Split the data by serotype based on the NCBI metadata.
+    Split the data by serotype based on the NCBI Genbank metadata.
     """
     input:
         metadata = "data/metadata_all.tsv",
@@ -22,13 +22,14 @@ rule split_by_ncbi_serotype:
     output:
         sequences = "results/sequences_{serotype}.fasta"
     params:
-        id_field = config["curate"]["id_field"]
+        id_field = config["curate"]["id_field"],
+        serotype_field = config["curate"]["serotype_field"]
     shell:
         """
         augur filter \
           --sequences {input.sequences} \
           --metadata {input.metadata} \
           --metadata-id-columns {params.id_field} \
-          --query "ncbi_serotype=='{wildcards.serotype}'" \
+          --query "{params.serotype_field}=='{wildcards.serotype}'" \
           --output-sequences {output.sequences}
         """

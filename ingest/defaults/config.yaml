@@ -79,6 +79,8 @@ curate:
   local_geolocation_rules: 'defaults/geolocation-rules.tsv'
   # User annotations file
   annotations: 'defaults/annotations.tsv'
+  # Serotype field name inferred from NCBI Genbank annotation
+  serotype_field: 'serotype_genbank'
   # ID field used to merge annotations
   annotations_id: 'genbank_accession'
   # Field to use as the sequence ID in the FASTA file
@@ -99,11 +101,11 @@ curate:
     'host',
     'release_date',
     'update_date',
-    'ncbi_serotype', # inferred from virus_tax_id
     'sra_accessions',
     'abbr_authors',
     'authors',
-    'institution'
+    'institution',
+    'serotype_genbank', # inferred from virus_tax_id
   ]
 
 nextclade:
@@ -113,7 +115,7 @@ nextclade:
   # Nextclade Fields to rename to metadata field names.
   field_map:
     seqName: genbank_accession # ID field used to merge annotations
-    clade: nextclade_subtype
+    clade: genotype_nextclade
     alignmentStart: alignmentStart
     alignmentEnd: alignmentEnd
     coverage: genome_coverage

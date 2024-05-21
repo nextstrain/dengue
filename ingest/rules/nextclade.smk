@@ -7,7 +7,7 @@ REQUIRED INPUTS:
     nextclade_datasets = ../nextclade_data/{serotype}
 OUTPUTS:
     metadata        = results/metadata_{serotype}.tsv
-    nextclade       = results/nextclade_subtypes.tsv
+    nextclade       = results/nextclade_genotypes.tsv
 See Nextclade docs for more details on usage, inputs, and outputs if you would
 like to customize the rules:
 https://docs.nextstrain.org/projects/nextclade/page/user/nextclade-cli.html
@@ -18,7 +18,7 @@ SEROTYPE_CONSTRAINTS = '|'.join(SUPPORTED_NEXTCLADE_SEROTYPES)
 
 rule nextclade_denvX:
     """
-    For each type, classify into the appropriate subtype
+    For each type, classify into the appropriate Dengue genotype
     1. Capture the alignment
     2. Capture the translations of gene(s) of interest
 
@@ -52,14 +52,14 @@ rule nextclade_denvX:
           {input.sequences}
         """
 
-rule concat_nextclade_subtype_results:
+rule concat_genotype_nextclade_results:
     """
-    Concatenate all the nextclade results for dengue subtype classification
+    Concatenate all the nextclade results for dengue genotype classification
     """
     input:
         nextclade_results_files = expand("data/nextclade_results/nextclade_{serotype}.tsv", serotype=SUPPORTED_NEXTCLADE_SEROTYPES),
     output:
-        nextclade_subtypes="results/nextclade_subtypes.tsv",
+        genotype_nextclade="results/nextclade_genotypes.tsv",
     params:
         input_nextclade_fields=",".join([f'{key}' for key, value in config["nextclade"]["field_map"].items()]),
         output_nextclade_fields=",".join([f'{value}' for key, value in config["nextclade"]["field_map"].items()]),
@@ -67,11 +67,11 @@ rule concat_nextclade_subtype_results:
         """
         echo "{params.output_nextclade_fields}" \
         | tr ',' '\t' \
-        > {output.nextclade_subtypes}
+        > {output.genotype_nextclade}
 
         tsv-select -H -f "{params.input_nextclade_fields}" {input.nextclade_results_files} \
         | awk 'NR>1 {{print}}' \
-        >> {output.nextclade_subtypes}
+        >> {output.genotype_nextclade}
         """
 
 rule append_nextclade_columns:
@@ -80,7 +80,7 @@ rule append_nextclade_columns:
     """
     input:
         metadata="data/metadata_all.tsv",
-        nextclade_subtypes="results/nextclade_subtypes.tsv",
+        genotype_nextclade="results/nextclade_genotypes.tsv",
     output:
         metadata_all="data/metadata_nextclade.tsv",
     params:
@@ -89,7 +89,7 @@ rule append_nextclade_columns:
     shell:
         """
         tsv-join -H \
-            --filter-file {input.nextclade_subtypes} \
+            --filter-file {input.genotype_nextclade} \
             --key-fields {params.id_field} \
             --append-fields {params.output_nextclade_fields} \
             --write-all ? \
@@ -164,7 +164,9 @@ rule split_metadata_by_serotype:
         serotype_metadata="results/metadata_{serotype}.tsv"
     wildcard_constraints:
         serotype=SEROTYPE_CONSTRAINTS
+    params:
+        serotype_field=config["curate"]["serotype_field"],
     shell:
         """
-        tsv-filter -H --str-eq ncbi_serotype:{wildcards.serotype} {input.metadata} > {output.serotype_metadata}
+        tsv-filter -H --str-eq {params.serotype_field}:{wildcards.serotype} {input.metadata} > {output.serotype_metadata}
         """

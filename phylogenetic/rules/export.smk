@@ -42,8 +42,8 @@ rule prepare_auspice_config:
     output:
         auspice_config="results/config/{gene}/auspice_config_{serotype}.json",
     params:
-        replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"nextclade_subtype",
-        replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"DENV genotype",
+        replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"genotype_nextclade",
+        replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"Dengue Genotype (Nextclade)",
     run:
         data = {
             "title": "Real-time tracking of dengue virus evolution",
@@ -73,18 +73,13 @@ rule prepare_auspice_config:
                 "type": "categorical"
               },
               {
-                "key": params.replace_clade_key,
-                "title": params.replace_clade_title,
+                "key": "genotype_nextclade",
+                "title": "Dengue Genotype (Nextclade)",
                 "type": "categorical"
               },
               {
-                "key": "nextclade_subtype",
-                "title": "Nextclade genotype",
-                "type": "categorical"
-              },
-              {
-                "key": "ncbi_serotype",
-                "title": "NCBI serotype",
+                "key": "serotype_genbank",
+                "title": "Serotype (Genbank metadata)",
                 "type": "categorical"
               }
             ],
@@ -105,6 +100,24 @@ rule prepare_auspice_config:
               "genbank_accession"
             ]
           }
+
+        # During genome/dengue_all workflows, clade membership represents Serotype
+        # While genome/dengue_denvX workflows, clade_membership represents the more detailed Genotype
+        if params.replace_clade_key == 'clade_membership':
+            if wildcards.gene in ['genome'] and wildcards.serotype in ['all']:
+                clade_membership_title="Serotype (Nextstrain)"
+            else:
+                clade_membership_title="Dengue Genotype (Nextstrain)"
+
+            data["colorings"].append({
+                "key": "clade_membership",
+                "title": clade_membership_title,
+                "type": "categorical"
+            })
+        else:
+            # During E/dengue_all workflows, default color by Serotype
+            if wildcards.serotype in ['all']:
+                data["display_defaults"]["color_by"]="serotype_genbank"
 
         with open(output.auspice_config, 'w') as fh:
             json.dump(data, fh, indent=2)
