@@ -1000,3 +1000,4 @@ KR029566	ncbi_serotype	denv2 # Annotated as denv1 but matches denv2
 KR029565	ncbi_serotype	denv2 # Annotated as denv1 but matches denv2
 FJ502850	ncbi_serotype	denv2 # Annotated as denv1 but matches denv2
 AY612201	ncbi_serotype	denv2 # Annotated as denv1 but matches denv2
+MT597439	ncbi_serotype	denv4 # Annotated as denv2 but is denv4 based on submitter article https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7952331/ (isolate: 43257)
