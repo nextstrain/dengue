@@ -22,14 +22,14 @@ import json
 
 rule colors:
     input:
-        color_schemes = "config/color_schemes.tsv",
-        color_orderings = "config/color_orderings.tsv",
+        color_schemes = "../phylogenetic/config/color_schemes.tsv",
+        color_orderings = "../phylogenetic/config/color_orderings.tsv",
         metadata = "data/metadata_{serotype}.tsv",
     output:
         colors = "results/colors_{serotype}.tsv"
     shell:
         """
-        python3 bin/assign-colors.py \
+        python3 ../phylogenetic/bin/assign-colors.py \
             --color-schemes {input.color_schemes} \
             --ordering {input.color_orderings} \
             --metadata {input.metadata} \
@@ -163,7 +163,7 @@ rule final_strain_name:
         display_strain_field=config.get("display_strain_field", "strain"),
     shell:
         """
-        python3 bin/set_final_strain_name.py \
+        python3 ../phylogenetic/bin/set_final_strain_name.py \
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
             --input-auspice-json {input.auspice_json} \

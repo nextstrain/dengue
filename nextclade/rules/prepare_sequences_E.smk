@@ -21,7 +21,7 @@ rule generate_E_reference_files:
     Generating reference files for the E gene
     """
     input:
-        reference = "config/reference_{serotype}_genome.gb",
+        reference = "../phylogenetic/config/reference_{serotype}_genome.gb",
     output:
         fasta = "results/config/reference_{serotype}_E.fasta",
         genbank = "results/config/reference_{serotype}_E.gb",
@@ -29,7 +29,7 @@ rule generate_E_reference_files:
         gene = "E",
     shell:
         """
-        python3 bin/newreference.py \
+        python3 ../phylogenetic/bin/newreference.py \
             --reference {input.reference} \
             --output-fasta {output.fasta} \
             --output-genbank {output.genbank} \

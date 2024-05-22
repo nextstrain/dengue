@@ -26,11 +26,12 @@ rule ancestral:
     input:
         tree = "results/{gene}/tree_{serotype}.nwk",
         alignment = "results/{gene}/aligned_{serotype}.fasta",
-        root_sequence = lambda wildcard: "config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb",
+        root_sequence = lambda wildcard: "../phylogenetic/config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb",
     output:
         node_data = "results/{gene}/nt-muts_{serotype}.json"
     params:
-        inference = "joint"
+        inference = "joint",
+        reference = "../phylogenetic/config/reference_dengue_{serotype}.gb"
     shell:
         """
         augur ancestral \
@@ -46,7 +47,7 @@ rule translate:
     input:
         tree = "results/{gene}/tree_{serotype}.nwk",
         node_data = "results/{gene}/nt-muts_{serotype}.json",
-        reference = lambda wildcard: "config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb"
+        reference = lambda wildcard: "../phylogenetic/config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb"
     output:
         node_data = "results/{gene}/aa-muts_{serotype}.json"
     shell:
