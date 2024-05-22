@@ -13,7 +13,7 @@ See Augur's usage docs for these commands for more details.
 rule assemble_dataset:
     input:
         reference="resources/{serotype}/reference.fasta",
-        tree="auspice/dengue_{serotype}.json",
+        tree="auspice/dengue_{serotype}_genome.json",
         pathogen_json="resources/{serotype}/pathogen.json",
         #sequences="resources/{serotype}/sequences.fasta",
         annotation="resources/{serotype}/genome_annotation.gff3",

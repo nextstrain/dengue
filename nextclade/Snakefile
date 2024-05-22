@@ -1,7 +1,7 @@
 configfile: "config/config_dengue.yaml"
 
 serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
-genes = ['genome', 'E']
+genes = ['genome']
 
 wildcard_constraints:
     serotype = "|".join(serotypes),
@@ -14,7 +14,6 @@ rule all:
         test_dataset = expand("test_output/{serotype}", serotype=serotypes),
 
 include: "rules/prepare_sequences.smk"
-include: "rules/prepare_sequences_E.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"
 include: "rules/export.smk"
