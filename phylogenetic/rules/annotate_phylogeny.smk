@@ -25,7 +25,8 @@ rule ancestral:
     """Reconstructing ancestral sequences and mutations"""
     input:
         tree = "results/{gene}/tree_{serotype}.nwk",
-        alignment = "results/{gene}/aligned_{serotype}.fasta"
+        alignment = "results/{gene}/aligned_{serotype}.fasta",
+        root_sequence = lambda wildcard: "config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb",
     output:
         node_data = "results/{gene}/nt-muts_{serotype}.json"
     params:
@@ -36,6 +37,7 @@ rule ancestral:
             --tree {input.tree} \
             --alignment {input.alignment} \
             --output-node-data {output.node_data} \
+            --root-sequence {input.root_sequence} \
             --inference {params.inference}
         """
 
