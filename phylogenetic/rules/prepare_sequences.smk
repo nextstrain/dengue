@@ -55,6 +55,7 @@ rule filter:
         sequences = lambda wildcard: "data/sequences_{serotype}.fasta" if wildcard.gene in ['genome'] else "results/{gene}/sequences_{serotype}.fasta",
         metadata = "data/metadata_{serotype}.tsv",
         exclude = config["filter"]["exclude"],
+        include = config["filter"]["include"],
     output:
         sequences = "results/{gene}/filtered_{serotype}.fasta"
     params:
@@ -69,6 +70,7 @@ rule filter:
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
             --exclude {input.exclude} \
+            --include {input.include} \
             --output {output.sequences} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
