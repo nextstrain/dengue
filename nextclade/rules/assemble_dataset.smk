@@ -15,7 +15,7 @@ rule assemble_dataset:
         reference="resources/{serotype}/reference.fasta",
         tree="auspice/dengue_{serotype}_genome.json",
         pathogen_json="resources/{serotype}/pathogen.json",
-        #sequences="resources/{serotype}/sequences.fasta",
+        sequences="resources/{serotype}/sequences.fasta",
         annotation="resources/{serotype}/genome_annotation.gff3",
         readme="resources/{serotype}/README.md",
         changelog="resources/{serotype}/CHANGELOG.md",
@@ -23,7 +23,7 @@ rule assemble_dataset:
         reference="datasets/{serotype}/reference.fasta",
         tree="datasets/{serotype}/tree.json",
         pathogen_json="datasets/{serotype}/pathogen.json",
-        #sequences="datasets/{serotype}/sequences.fasta",
+        sequences="datasets/{serotype}/sequences.fasta",
         annotation="datasets/{serotype}/genome_annotation.gff3",
         readme="datasets/{serotype}/README.md",
         changelog="datasets/{serotype}/CHANGELOG.md",
@@ -35,14 +35,14 @@ rule assemble_dataset:
         cp {input.annotation} {output.annotation}
         cp {input.readme} {output.readme}
         cp {input.changelog} {output.changelog}
+        cp {input.sequences} {output.sequences}
         """
-# #cp {input.sequences} {output.sequences}
 
 rule test_dataset:
     input:
         tree="datasets/{serotype}/tree.json",
         pathogen_json="datasets/{serotype}/pathogen.json",
-        sequences="resources/all/sequences.fasta",
+        sequences="resources/{serotype}/sequences.fasta",
         annotation="datasets/{serotype}/genome_annotation.gff3",
         readme="datasets/{serotype}/README.md",
         changelog="datasets/{serotype}/CHANGELOG.md",
