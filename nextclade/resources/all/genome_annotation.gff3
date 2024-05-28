@@ -2,7 +2,7 @@
 ##sequence-region NC_002640.1 1 10649
 NC_002640.1	feature	gene	102	440	.	+	.	codon_start=1;gene=C;gene_name=C;
 NC_002640.1	feature	gene	441	713	.	+	.	codon_start=1;gene=pr;gene_name=pr;
-NC_002640.1	feature	gene	714	938	.	+	.	codon_start=1;gene=M;gene_name=M;
+NC_002640.1	feature	gene	441	938	.	+	.	codon_start=1;gene=M;gene_name=M;
 NC_002640.1	feature	gene	939	2423	.	+	.	codon_start=1;gene=E;gene_name=E;
 NC_002640.1	feature	gene	2424	3479	.	+	.	codon_start=1;gene=NS1;gene_name=NS1;
 NC_002640.1	feature	gene	3480	4133	.	+	.	codon_start=1;gene=NS2A;gene_name=NS2A;
