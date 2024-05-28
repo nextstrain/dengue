@@ -1,8 +1,8 @@
 ##gff-version 3
 ##sequence-region NC_001477.1 1 10735
-NC_001477.1	feature	gene	95	394	.	+	.	codon_start=1;gene=C;gene_name=C;
+NC_001477.1	feature	gene	95	436	.	+	.	codon_start=1;gene=C;gene_name=C;
 NC_001477.1	feature	gene	437	709	.	+	.	codon_start=1;gene=pr;gene_name=pr;
-NC_001477.1	feature	gene	710	934	.	+	.	codon_start=1;gene=M;gene_name=M;
+NC_001477.1	feature	gene	437	934	.	+	.	codon_start=1;gene=M;gene_name=M;
 NC_001477.1	feature	gene	935	2419	.	+	.	codon_start=1;gene=E;gene_name=E;
 NC_001477.1	feature	gene	2420	3475	.	+	.	codon_start=1;gene=NS1;gene_name=NS1;
 NC_001477.1	feature	gene	3476	4129	.	+	.	codon_start=1;gene=NS2A;gene_name=NS2A;
