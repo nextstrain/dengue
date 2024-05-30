@@ -1,0 +1,34 @@
+configfile: "config/config_dengue.yaml"
+
+serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
+genes = ['genome']
+
+wildcard_constraints:
+    serotype = "|".join(serotypes),
+    gene = "|".join(genes)
+
+rule all:
+    input:
+        auspice_json = expand("auspice/dengue_{serotype}_{gene}.json", serotype=serotypes, gene=genes),
+        nextclade_dataset = expand("datasets/{serotype}/tree.json", serotype=serotypes),
+        test_dataset = expand("test_output/{serotype}", serotype=serotypes),
+
+include: "rules/prepare_sequences.smk"
+include: "rules/construct_phylogeny.smk"
+include: "rules/annotate_phylogeny.smk"
+include: "rules/export.smk"
+include: "rules/assemble_dataset.smk"
+
+# Include custom rules defined in the config.
+if "custom_rules" in config:
+    for rule_file in config["custom_rules"]:
+
+        include: rule_file
+
+rule clean:
+    """Removing directories: {params}"""
+    params:
+        "results ",
+        "auspice"
+    shell:
+        "rm -rfv {params}"

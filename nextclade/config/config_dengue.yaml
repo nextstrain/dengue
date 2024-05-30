@@ -1,0 +1,39 @@
+# Sequences must be FASTA and metadata must be TSV
+# Both files must be zstd compressed
+# Both files must have a {serotype} expandable field to be replaced by all, denv1-denv4
+sequences_url: "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst"
+metadata_url: "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
+
+strain_id_field: "genbank_accession"
+display_strain_field: "strain"
+
+filter:
+  exclude: "../phylogenetic/config/exclude.txt"
+  include: "../phylogenetic/config/include_{serotype}.txt"
+  group_by: "year region"
+  min_length:
+    genome: 5000
+    E: 1000
+  sequences_per_group:
+    all: '10'
+    denv1: '36'
+    denv2: '36'
+    denv3: '36'
+    denv4: '36'
+
+traits:
+  sampling_bias_correction: '3'
+  traits_columns:
+    all: 'region serotype_genbank genotype_nextclade'
+    denv1: 'country region serotype_genbank genotype_nextclade'
+    denv2: 'country region serotype_genbank genotype_nextclade'
+    denv3: 'country region serotype_genbank genotype_nextclade'
+    denv4: 'country region serotype_genbank genotype_nextclade'
+
+clades:
+  clade_definitions:
+    all: '../phylogenetic/config/clades_serotypes.tsv'
+    denv1: '../phylogenetic/config/clades_genotypes.tsv'
+    denv2: '../phylogenetic/config/clades_genotypes.tsv'
+    denv3: '../phylogenetic/config/clades_genotypes.tsv'
+    denv4: '../phylogenetic/config/clades_genotypes.tsv'
