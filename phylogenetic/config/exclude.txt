@@ -32,7 +32,6 @@ EF051521 # ZS01/01 # metadata issue
 MT929160 # Vero # cell line
 MH048676 # MS13002673 # too divergent
 MH048674 # MS11011405 # too divergent
-MN448607 # KDC0574A2_06/02/2011 # too divergent
 ON046268 # 00178/03 # too divergent
 ON046278 # 00759/12 # too divergent
 ON046276 # 00988/11 # too divergent
@@ -41,7 +40,6 @@ ON046270 # 01224/04 # too divergent
 ON046274 # 01231/10 # too divergent
 ON046272 # 01488/09 # too divergent
 ON046271 # 01542/04 # too divergent
-MZ284953 # dev1 # too divergent
 MZ215848 # DKE_121 # too divergent
 MW946564 # SENDAK_HD_10674 # sylvatic
 OK605757 # DENV2_1_DAK_HD_76395 # sylvatic
@@ -890,3 +888,5 @@ GU131859 # duplicate of GU131847
 GU131867 # duplicate of GU131862
 HQ332171 # duplicate of HQ332170
 HQ332178 # duplicate of HQ332177
+MS631898 # PAT
+MB466022 # PAT

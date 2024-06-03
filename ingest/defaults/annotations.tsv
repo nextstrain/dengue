@@ -1001,3 +1001,10 @@ KR029565	serotype_genbank	denv2 # Annotated as denv1 but matches denv2
 FJ502850	serotype_genbank	denv2 # Annotated as denv1 but matches denv2
 AY612201	serotype_genbank	denv2 # Annotated as denv1 but matches denv2
 MT597439	serotype_genbank	denv4 # Annotated as denv2 but is denv4 based on submitter article https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7952331/ (isolate: 43257)
+MN448607	serotype_genbank	denv1 # Annotated as denv2 but blastn places within denv1
+MZ284953	serotype_genbank	denv1 # Annotated as organism="dengue virus type 3" but isolate="dev1"
+MZ285732	serotype_genbank	denv1 # Annotated as organism="dengue virus type 3" but isolate="dev1"
+MZ285058	serotype_genbank	denv2 # Annotated as organism="Dengue virus 4" but duplicate of NC_001474 (denv2)
+MW332572	serotype_genbank	denv2 # Annotated as organism="Dengue virus 4" but blastn places within denv2
+MS631898	serotype_genbank	denv4 # Annotated as organism="Dengue virus 2" but blastn places within denv4
+MB466022	serotype_genbank	denv4 # Annotated as organism="Dengue virus 2" but blastn places within denv4
