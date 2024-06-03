@@ -66,8 +66,6 @@ jobs:
         CONFIG_OVERRIDES: ${{ needs.set_config_overrides.outputs.config_overrides }}
       run: |
         nextstrain build \
-          --env AWS_ACCESS_KEY_ID \
-          --env AWS_SECRET_ACCESS_KEY \
           ingest \
             upload_all \
             --configfile build-configs/nextstrain-automation/config.yaml \
