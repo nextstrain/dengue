@@ -26,7 +26,7 @@ rule ancestral:
     input:
         tree = "results/{gene}/tree_{serotype}.nwk",
         alignment = "results/{gene}/aligned_{serotype}.fasta",
-        root_sequence = lambda wildcard: "../phylogenetic/config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb",
+        root_sequence = lambda wildcard: "resources/all/reference.fasta" if wildcard.serotype in ['all'] else "../phylogenetic/config/reference_{serotype}_genome.gb",
     output:
         node_data = "results/{gene}/nt-muts_{serotype}.json"
     params:
@@ -47,7 +47,7 @@ rule translate:
     input:
         tree = "results/{gene}/tree_{serotype}.nwk",
         node_data = "results/{gene}/nt-muts_{serotype}.json",
-        reference = lambda wildcard: "../phylogenetic/config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb"
+        reference = lambda wildcard: "resources/all/genome_annotation.gff3" if wildcard.serotype in ['all'] else "../phylogenetic/config/reference_{serotype}_genome.gb"
     output:
         node_data = "results/{gene}/aa-muts_{serotype}.json"
     shell:
