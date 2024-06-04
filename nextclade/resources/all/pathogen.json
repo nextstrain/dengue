@@ -34,7 +34,7 @@
   },
   "qc": {
     "frameShifts": {
-      "enabled": false
+      "enabled": true
     },
     "missingData": {
       "enabled": false,
@@ -60,7 +60,7 @@
       "windowSize": 100
     },
     "stopCodons": {
-      "enabled": false
+      "enabled": true
     }
   },
   "schemaVersion": "3.0.0",
