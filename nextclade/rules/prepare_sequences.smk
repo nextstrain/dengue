@@ -85,7 +85,7 @@ rule align:
     """
     input:
         sequences = "results/{gene}/filtered_{serotype}.fasta",
-        reference = lambda wildcard: "resources/all/reference.fasta" if wildcard.serotype in ['all'] else "../phylogenetic/config/reference_{serotype}_genome.gb"
+        reference = "resources/{serotype}/reference.fasta",
     output:
         alignment = "results/{gene}/aligned_{serotype}.fasta"
     shell:
