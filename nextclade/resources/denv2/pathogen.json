@@ -1,5 +1,9 @@
 {
   "alignmentParams": {
+    "penaltyGapOpen": 8,
+    "penaltyGapOpenInFrame": 12,
+    "penaltyGapOpenOutOfFrame": 14,
+    "gapAlignmentSide": "left",
     "minSeedCover": 0.1,
     "minLength": 1000
   },
