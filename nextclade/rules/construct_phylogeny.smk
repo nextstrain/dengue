@@ -46,6 +46,11 @@ rule refine:
         date_inference = "marginal",
         clock_filter_iqd = 4,
         strain_id = config.get("strain_id_field", "strain"),
+        root_flag = lambda wildcard: (
+            f"--root '{config['refine']['root_id'][wildcard.serotype]}'"
+            if wildcard.serotype in config["refine"]['root_id']
+            else ""
+        )
     shell:
         """
         augur refine \
@@ -55,9 +60,8 @@ rule refine:
             --metadata-id-columns {params.strain_id} \
             --output-tree {output.tree} \
             --output-node-data {output.node_data} \
-            --timetree \
-            --coalescent {params.coalescent} \
-            --date-confidence \
-            --date-inference {params.date_inference} \
-            --clock-filter-iqd {params.clock_filter_iqd}
+            --divergence-unit mutations \
+            --keep-polytomies \
+            --use-fft \
+            {params.root_flag}
         """
