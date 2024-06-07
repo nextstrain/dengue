@@ -2,7 +2,7 @@
 
 | Key  | Value  |
 | :-- | :-- |
-| name  | Dengue virus DENV1 (genotype-level) |
+| name  | Dengue virus DENV1 genotypes |
 | authors | [Nextstrain](https://nextstrain.org) |
 | reference | NC_001477.1 |
 | workflow  | https://github.com/nextstrain/dengue/tree/main/nextclade  |
