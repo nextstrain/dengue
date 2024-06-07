@@ -2,7 +2,7 @@ k# Dengue virus DENV3 dataset
 
 | Key  | Value  |
 | :-- | :-- |
-| name  | Dengue virus DENV3 (genotype-level) |
+| name  | Dengue virus DENV3 genotypes |
 | authors | [Nextstrain](https://nextstrain.org) |
 | reference | NC_001475.2 |
 | workflow  | https://github.com/nextstrain/dengue/tree/main/nextclade  |
