@@ -49,7 +49,7 @@ rule refine:
         root_flag = lambda wildcard: (
             f"--root '{config['refine']['root_id'][wildcard.serotype]}'"
             if wildcard.serotype in config["refine"]['root_id']
-            else ""
+            else "--root min_dev"
         )
     shell:
         """
