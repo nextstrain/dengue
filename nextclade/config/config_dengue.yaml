@@ -21,6 +21,8 @@ filter:
     denv3: '36'
     denv4: '36'
 
+outgroup: "config/outgroup.fasta"
+
 refine:
   root_id:
     all: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome"
