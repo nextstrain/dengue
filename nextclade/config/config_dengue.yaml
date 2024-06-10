@@ -25,11 +25,11 @@ outgroup: "config/outgroup.fasta"
 
 refine:
   root_id:
-    all: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome"
-    denv1: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv1/genome"
-    denv2: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv2/genome"
-    denv3: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv3/genome"
-    denv4: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv4/genome"
+    all: ["Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome"]
+    denv1: ['Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv1/genome', 'Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome']
+    denv2: ['Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv2/genome', 'Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome']
+    denv3: ['Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv3/genome', 'Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome']
+    denv4: ['Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv4/genome', 'Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome']
 
 traits:
   sampling_bias_correction: '3'
