@@ -84,7 +84,7 @@ rule add_outgorup:
     """
     input:
         sequences = "results/{gene}/filtered_{serotype}.fasta",
-        outgroup = config["outgroup"],
+        outgroup = lambda wildcard: config["outgroup"][wildcard.serotype],
     output:
         sequences = "results/{gene}/filtered_{serotype}_with_outgroup.fasta"
     shell:
