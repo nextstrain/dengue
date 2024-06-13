@@ -50,6 +50,12 @@ rule prepare_auspice_config:
             "maintainers": [
               {"name": "the Nextstrain team", "url": "https://nextstrain.org/team"}
             ],
+            "data_provenance": [
+              {
+                "name": "GenBank",
+                "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+              }
+            ],
             "build_url": "https://github.com/nextstrain/dengue",
             "colorings": [
               {
