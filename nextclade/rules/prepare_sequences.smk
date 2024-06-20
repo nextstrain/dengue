@@ -78,13 +78,27 @@ rule filter:
             --exclude-where country=? region=? date=? \
         """
 
+rule add_outgorup:
+    """
+    Adding outgroup to the filtered sequences
+    """
+    input:
+        sequences = "results/{gene}/filtered_{serotype}.fasta",
+        outgroup = lambda wildcard: config["outgroup"][wildcard.serotype],
+    output:
+        sequences = "results/{gene}/filtered_{serotype}_with_outgroup.fasta"
+    shell:
+        """
+        cat {input.sequences} {input.outgroup} > {output.sequences}
+        """
+
 rule align:
     """
     Aligning sequences to {input.reference}
       - filling gaps with N
     """
     input:
-        sequences = "results/{gene}/filtered_{serotype}.fasta",
+        sequences = lambda wildcard: "results/{gene}/filtered_{serotype}.fasta" if wildcard.serotype in ['all'] else "results/{gene}/filtered_{serotype}_with_outgroup.fasta",
         reference = "resources/{serotype}/reference.fasta",
     output:
         alignment = "results/{gene}/aligned_{serotype}.fasta"

@@ -890,3 +890,10 @@ HQ332171 # duplicate of HQ332170
 HQ332178 # duplicate of HQ332177
 MS631898 # PAT
 MB466022 # PAT
+OR393991 # denv2 too divergent
+OR389022 # denv2 many Ns
+OR389024 # denv2 many Ns
+OR389026 # denv2 many Ns
+OR389325 # denv2 many Ns
+OR389023 # denv2 many Ns
+OR389307 # denv2 many Ns

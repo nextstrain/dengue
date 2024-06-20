@@ -46,10 +46,10 @@ rule refine:
         date_inference = "marginal",
         clock_filter_iqd = 4,
         strain_id = config.get("strain_id_field", "strain"),
-        root_flag = lambda wildcard: (
-            f"--root '{config['refine']['root_id'][wildcard.serotype]}'"
+        root_args = lambda wildcard: (
+            " ".join(f"'{id}'" for id in config['refine']['root_id'][wildcard.serotype])
             if wildcard.serotype in config["refine"]['root_id']
-            else ""
+            else "min_dev"
         )
     shell:
         """
@@ -63,5 +63,5 @@ rule refine:
             --divergence-unit mutations \
             --keep-polytomies \
             --use-fft \
-            {params.root_flag}
+            --root {params.root_args}
         """

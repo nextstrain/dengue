@@ -21,13 +21,19 @@ filter:
     denv3: '36'
     denv4: '36'
 
+outgroup:
+  denv1: "config/outgroup.fasta"
+  denv2: "config/outgroup_denv2.fasta"
+  denv3: "config/outgroup.fasta"
+  denv4: "config/outgroup.fasta"
+
 refine:
   root_id:
-    all: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome"
-    denv1: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv1/genome"
-    denv2: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv2/genome"
-    denv3: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv3/genome"
-    denv4: "Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv4/genome"
+    all: ["Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome"]
+    denv1: ['Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv1/genome', 'Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome']
+    denv2: ['Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv2/genome', 'Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv4/genome']
+    denv3: ['Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv3/genome', 'Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome']
+    denv4: ['Reconstructed_root_sequence_of_https_nextstrain_org_dengue/denv4/genome', 'Reconstructed_root_sequence_of_https_nextstrain_org_dengue/all/genome']
 
 traits:
   sampling_bias_correction: '3'
@@ -41,7 +47,7 @@ traits:
 clades:
   clade_definitions:
     all: '../phylogenetic/config/clades_serotypes.tsv'
-    denv1: '../phylogenetic/config/clades_genotypes.tsv'
-    denv2: '../phylogenetic/config/clades_genotypes.tsv'
-    denv3: '../phylogenetic/config/clades_genotypes.tsv'
-    denv4: '../phylogenetic/config/clades_genotypes.tsv'
+    denv1: 'config/clades_genotypes_denv1.tsv'
+    denv2: 'config/clades_genotypes_denv2.tsv'
+    denv3: 'config/clades_genotypes_denv3.tsv'
+    denv4: 'config/clades_genotypes_denv4.tsv'
