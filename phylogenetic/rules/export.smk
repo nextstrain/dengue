@@ -154,6 +154,7 @@ rule export:
             --metadata-id-columns {params.strain_id} \
             --node-data {input.branch_lengths} {input.traits} {input.clades} {input.nt_muts} {input.aa_muts} \
             --colors {input.colors} \
+            --description {input.description} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence-inline \
             --output {output.auspice_json}

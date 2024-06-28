@@ -139,6 +139,7 @@ rule export:
         clades = lambda wildcard: "results/{gene}/clades_{serotype}.json" if wildcard.gene in ['genome'] else [],
         nt_muts = "results/{gene}/nt-muts_{serotype}.json",
         aa_muts = "results/{gene}/aa-muts_{serotype}.json",
+        description = config["export"]["description"],
         auspice_config = "results/config/{gene}/auspice_config_{serotype}.json",
         colors = "results/colors_{serotype}.tsv",
     output:
@@ -153,6 +154,7 @@ rule export:
             --metadata-id-columns {params.strain_id} \
             --node-data {input.branch_lengths} {input.traits} {input.clades} {input.nt_muts} {input.aa_muts} \
             --colors {input.colors} \
+            --description {input.description} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence-inline \
             --output {output.auspice_json}
