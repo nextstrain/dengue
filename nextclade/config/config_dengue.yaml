@@ -51,3 +51,6 @@ clades:
     denv2: 'config/clades_genotypes_denv2.tsv'
     denv3: 'config/clades_genotypes_denv3.tsv'
     denv4: 'config/clades_genotypes_denv4.tsv'
+
+export:
+  description: "../phylogenetic/config/description.md"

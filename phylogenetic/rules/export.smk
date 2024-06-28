@@ -139,6 +139,7 @@ rule export:
         clades = lambda wildcard: "results/{gene}/clades_{serotype}.json" if wildcard.gene in ['genome'] else [],
         nt_muts = "results/{gene}/nt-muts_{serotype}.json",
         aa_muts = "results/{gene}/aa-muts_{serotype}.json",
+        description = config["export"]["description"],
         auspice_config = "results/config/{gene}/auspice_config_{serotype}.json",
         colors = "results/colors_{serotype}.tsv",
     output:
