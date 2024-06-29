@@ -37,3 +37,6 @@ clades:
     denv2: 'config/clades_genotypes.tsv'
     denv3: 'config/clades_genotypes.tsv'
     denv4: 'config/clades_genotypes.tsv'
+
+export:
+  description: "config/description.md"
