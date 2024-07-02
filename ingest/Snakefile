@@ -11,7 +11,7 @@ serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 
 rule all:
     input:
-        expand(["results/sequences_{serotype}.fasta", "results/metadata_{serotype}.tsv"], serotype=serotypes)
+        expand(["results/{serotype}/sequences.fasta", "results/{serotype}/metadata.tsv"], serotype=serotypes)
 
 
 include: "rules/fetch_from_ncbi.smk"

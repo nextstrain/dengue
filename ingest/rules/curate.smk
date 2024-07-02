@@ -49,8 +49,8 @@ rule curate:
         all_geolocation_rules="data/all-geolocation-rules.tsv",
         annotations=config["curate"]["annotations"],
     output:
-        metadata="data/metadata_all.tsv",
-        sequences="results/sequences_all.fasta",
+        metadata="data/all/metadata.tsv",
+        sequences="results/all/sequences.fasta",
     log:
         "logs/curate.txt",
     params:
