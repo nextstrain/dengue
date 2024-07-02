@@ -2,13 +2,13 @@ We gratefully acknowledge the authors, originating and submitting laboratories o
 
 We curate sequence data and metadata from NCBI as starting point for our analyses. Curated sequences and metadata are available as flat files at:
 
-* [data.nextstrain.org/files/workflows/dengue/sequences_all.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/sequences_all.fasta.zst)
-* [data.nextstrain.org/files/workflows/dengue/metadata_all.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/metadata_all.tsv.zst)
-* [data.nextstrain.org/files/workflows/dengue/sequences_denv1.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/sequences_denv1.fasta.zst)
-* [data.nextstrain.org/files/workflows/dengue/metadata_denv1.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/metadata_denv1.tsv.zst)
-* [data.nextstrain.org/files/workflows/dengue/sequences_denv2.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/sequences_denv2.fasta.zst)
-* [data.nextstrain.org/files/workflows/dengue/metadata_denv2.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/metadata_denv2.tsv.zst)
-* [data.nextstrain.org/files/workflows/dengue/sequences_denv3.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/sequences_denv3.fasta.zst)
-* [data.nextstrain.org/files/workflows/dengue/metadata_denv3.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/metadata_denv3.tsv.zst)
-* [data.nextstrain.org/files/workflows/dengue/sequences_denv4.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/sequences_denv4.fasta.zst)
-* [data.nextstrain.org/files/workflows/dengue/metadata_denv4.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/metadata_denv4.tsv.zst)
+* [data.nextstrain.org/files/workflows/dengue/all/sequences.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/all/sequences.fasta.zst)
+* [data.nextstrain.org/files/workflows/dengue/all/metadata.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/all/metadata.tsv.zst)
+* [data.nextstrain.org/files/workflows/dengue/denv1/sequences.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/denv1/sequences.fasta.zst)
+* [data.nextstrain.org/files/workflows/dengue/denv1/metadata.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/denv1/metadata.tsv.zst)
+* [data.nextstrain.org/files/workflows/dengue/denv2/sequences.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/denv2/sequences.fasta.zst)
+* [data.nextstrain.org/files/workflows/dengue/denv2/metadata.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/denv2/metadata.tsv.zst)
+* [data.nextstrain.org/files/workflows/dengue/denv3/sequences.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/denv3/sequences.fasta.zst)
+* [data.nextstrain.org/files/workflows/dengue/denv3/metadata.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/denv3/metadata.tsv.zst)
+* [data.nextstrain.org/files/workflows/dengue/denv4/sequences.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/denv4/sequences.fasta.zst)
+* [data.nextstrain.org/files/workflows/dengue/denv4/metadata.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/denv4/metadata.tsv.zst)

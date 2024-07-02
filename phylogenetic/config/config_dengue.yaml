@@ -1,8 +1,8 @@
 # Sequences must be FASTA and metadata must be TSV
 # Both files must be zstd compressed
 # Both files must have a {serotype} expandable field to be replaced by all, denv1-denv4
-sequences_url: "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst"
-metadata_url: "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
+sequences_url: "https://data.nextstrain.org/files/workflows/dengue/{serotype}/sequences.fasta.zst"
+metadata_url: "https://data.nextstrain.org/files/workflows/dengue/{serotype}/metadata.tsv.zst"
 
 strain_id_field: "genbank_accession"
 display_strain_field: "strain"
