@@ -61,7 +61,7 @@ Do the following to include sequences from static FASTA files.
 1. Convert the FASTA files to NDJSON files with:
 
     ```sh
-    ./ingest/bin/fasta-to-ndjson \
+    ./ingest/scripts/fasta-to-ndjson \
         --fasta {path-to-fasta-file} \
         --fields {fasta-header-field-names} \
         --separator {field-separator-in-header} \
