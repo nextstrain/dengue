@@ -29,7 +29,7 @@ rule generate_E_reference_files:
         gene = "E",
     shell:
         """
-        python3 bin/newreference.py \
+        python3 scripts/newreference.py \
             --reference {input.reference} \
             --output-fasta {output.fasta} \
             --output-genbank {output.genbank} \

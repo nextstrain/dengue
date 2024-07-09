@@ -109,7 +109,7 @@ rule calculate_gene_coverage:
         serotype=SEROTYPE_CONSTRAINTS,
     shell:
         """
-        python bin/calculate-gene-converage-from-nextclade-translation.py \
+        python scripts/calculate-gene-converage-from-nextclade-translation.py \
           --fasta {input.nextclade_translation} \
           --out-col {wildcards.gene}_coverage \
           > {output.gene_coverage}

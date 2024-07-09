@@ -93,12 +93,12 @@ rule curate:
                 --abbr-authors-field {params.abbr_authors_field} \
             | ./vendored/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
-            | ./bin/infer-dengue-serotype.py \
+            | ./scripts/infer-dengue-serotype.py \
                 --out-col {params.serotype_field} \
             | ./vendored/merge-user-metadata \
                 --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
-            | ./bin/ndjson-to-tsv-and-fasta \
+            | ./scripts/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --metadata {output.metadata} \
                 --fasta {output.sequences} \
