@@ -25,11 +25,11 @@ rule nextclade_denvX:
     Note: If using --cds-selection, only the thoese genes are reported in the failedCdses column
     """
     input:
-        sequences="results/sequences_{serotype}.fasta",
+        sequences="results/{serotype}/sequences.fasta",
         dataset="../nextclade_data/{serotype}",
     output:
         nextclade_denvX="data/nextclade_results/nextclade_{serotype}.tsv",
-        nextclade_alignment="results/aligned_{serotype}.fasta",
+        nextclade_alignment="results/{serotype}/aligned.fasta",
         nextclade_translations=expand("data/translations/{{serotype}}/{gene}/seqs.gene.fasta", gene=config["nextclade"]["gene"]),
     threads: 4
     params:
@@ -79,7 +79,7 @@ rule append_nextclade_columns:
     Append the nextclade results to the metadata
     """
     input:
-        metadata="data/metadata_all.tsv",
+        metadata="data/all/metadata.tsv",
         genotype_nextclade="results/nextclade_genotypes.tsv",
     output:
         metadata_all="data/metadata_nextclade.tsv",
@@ -136,7 +136,7 @@ rule append_gene_coverage_columns:
         metadata="data/metadata_nextclade.tsv",
         gene_coverage=expand("results/{gene}/gene_coverage_all.tsv", gene=config["nextclade"]["gene"])
     output:
-        metadata_all="results/metadata_all.tsv",
+        metadata_all="results/all/metadata.tsv",
     params:
         id_field=config["curate"]["id_field"],
     shell:
@@ -159,9 +159,9 @@ rule split_metadata_by_serotype:
     Split the metadata by serotype
     """
     input:
-        metadata="results/metadata_all.tsv",
+        metadata="results/all/metadata.tsv",
     output:
-        serotype_metadata="results/metadata_{serotype}.tsv"
+        serotype_metadata="results/{serotype}/metadata.tsv"
     wildcard_constraints:
         serotype=SEROTYPE_CONSTRAINTS
     params:

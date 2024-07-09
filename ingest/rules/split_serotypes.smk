@@ -17,10 +17,10 @@ rule split_by_serotype_genbank:
     Split the data by serotype based on the NCBI Genbank metadata.
     """
     input:
-        metadata = "data/metadata_all.tsv",
-        sequences = "results/sequences_all.fasta"
+        metadata = "data/all/metadata.tsv",
+        sequences = "results/all/sequences.fasta"
     output:
-        sequences = "results/sequences_{serotype}.fasta"
+        sequences = "results/{serotype}/sequences.fasta"
     params:
         id_field = config["curate"]["id_field"],
         serotype_field = config["curate"]["serotype_field"]
