@@ -41,7 +41,6 @@ curate:
     update-date: update_date
     virus-tax-id: virus_tax_id
     virus-name: virus_name
-    sra-accs: sra_accessions
     submitter-names: authors
     submitter-affiliation: institution
   # Standardized strain name regex
@@ -103,7 +102,6 @@ curate:
     'host',
     'release_date',
     'update_date',
-    'sra_accessions',
     'abbr_authors',
     'authors',
     'institution',
