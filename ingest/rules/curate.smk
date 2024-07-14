@@ -106,4 +106,15 @@ rule curate:
                 --output-seq-field {params.sequence_field} ) 2>> {log}
         """
 
+rule subset_metadata:
+    input:
+        metadata="data/all_metadata_curated.tsv",
+    output:
+        subset_metadata="data/metadata_all.tsv",
+    params:
+        metadata_fields=",".join(config["curate"]["metadata_columns"]),
+    shell:
+        """
+        tsv-select -H -f {params.metadata_fields} \
+            {input.metadata} > {output.subset_metadata}
         """
