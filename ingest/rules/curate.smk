@@ -68,7 +68,6 @@ rule curate:
         abbr_authors_field=config["curate"]["abbr_authors_field"],
         annotations_id=config["curate"]["annotations_id"],
         serotype_field=config["curate"]["serotype_field"],
-        metadata_columns=config["curate"]["metadata_columns"],
         id_field=config["curate"]["id_field"],
         sequence_field=config["curate"]["sequence_field"],
     shell:
