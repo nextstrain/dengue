@@ -49,7 +49,7 @@ rule curate:
         all_geolocation_rules="data/all-geolocation-rules.tsv",
         annotations=config["curate"]["annotations"],
     output:
-        metadata="data/metadata_all.tsv",
+        metadata="data/all_metadata_curated.tsv",
         sequences="results/sequences_all.fasta",
     log:
         "logs/curate.txt",
@@ -59,6 +59,7 @@ rule curate:
         strain_backup_fields=config["curate"]["strain_backup_fields"],
         date_fields=config["curate"]["date_fields"],
         expected_date_formats=config["curate"]["expected_date_formats"],
+        genbank_location_field=config["curate"]["genbank_location_field"],
         articles=config["curate"]["titlecase"]["articles"],
         abbreviations=config["curate"]["titlecase"]["abbreviations"],
         titlecase_fields=config["curate"]["titlecase"]["fields"],
@@ -67,41 +68,52 @@ rule curate:
         abbr_authors_field=config["curate"]["abbr_authors_field"],
         annotations_id=config["curate"]["annotations_id"],
         serotype_field=config["curate"]["serotype_field"],
-        metadata_columns=config["curate"]["metadata_columns"],
         id_field=config["curate"]["id_field"],
         sequence_field=config["curate"]["sequence_field"],
     shell:
         """
         (cat {input.sequences_ndjson} \
-            | ./vendored/transform-field-names \
+            | augur curate rename \
                 --field-map {params.field_map} \
             | augur curate normalize-strings \
-            | ./vendored/transform-strain-names \
+            | augur curate transform-strain-name \
                 --strain-regex {params.strain_regex} \
                 --backup-fields {params.strain_backup_fields} \
             | augur curate format-dates \
                 --date-fields {params.date_fields} \
                 --expected-date-formats {params.expected_date_formats} \
-            | ./vendored/transform-genbank-location \
+            | augur curate parse-genbank-location \
+                --location-field {params.genbank_location_field} \
             | augur curate titlecase \
                 --titlecase-fields {params.titlecase_fields} \
                 --articles {params.articles} \
                 --abbreviations {params.abbreviations} \
-            | ./vendored/transform-authors \
+            | augur curate abbreviate-authors \
                 --authors-field {params.authors_field} \
                 --default-value {params.authors_default_value} \
                 --abbr-authors-field {params.abbr_authors_field} \
-            | ./vendored/apply-geolocation-rules \
+            | augur curate apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
             | ./scripts/infer-dengue-serotype.py \
                 --out-col {params.serotype_field} \
-            | ./vendored/merge-user-metadata \
+            | augur curate apply-record-annotations \
                 --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
-            | ./scripts/ndjson-to-tsv-and-fasta \
-                --metadata-columns {params.metadata_columns} \
-                --metadata {output.metadata} \
-                --fasta {output.sequences} \
-                --id-field {params.id_field} \
-                --sequence-field {params.sequence_field} ) 2>> {log}
+                --output-metadata {output.metadata} \
+                --output-fasta {output.sequences} \
+                --output-id-field {params.id_field} \
+                --output-seq-field {params.sequence_field} ) 2>> {log}
+        """
+
+rule subset_metadata:
+    input:
+        metadata="data/all_metadata_curated.tsv",
+    output:
+        subset_metadata="data/metadata_all.tsv",
+    params:
+        metadata_fields=",".join(config["curate"]["metadata_columns"]),
+    shell:
+        """
+        tsv-select -H -f {params.metadata_fields} \
+            {input.metadata} > {output.subset_metadata}
         """

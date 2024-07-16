@@ -41,7 +41,6 @@ curate:
     update-date: update_date
     virus-tax-id: virus_tax_id
     virus-name: virus_name
-    sra-accs: sra_accessions
     submitter-names: authors
     submitter-affiliation: institution
   # Standardized strain name regex
@@ -55,6 +54,8 @@ curate:
   # These date formats should use directives expected by datetime
   # See https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
   expected_date_formats: ['%Y', '%Y-%m', '%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ']
+  # The expected field that contains the GenBank geo_loc_name
+  genbank_location_field: location
   # Titlecase rules
   titlecase:
     # Abbreviations not cast to titlecase, keeps uppercase
@@ -101,7 +102,6 @@ curate:
     'host',
     'release_date',
     'update_date',
-    'sra_accessions',
     'abbr_authors',
     'authors',
     'institution',
