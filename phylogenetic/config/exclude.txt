@@ -897,44 +897,43 @@ OR389026 # denv2 many Ns
 OR389325 # denv2 many Ns
 OR389023 # denv2 many Ns
 OR389307 # denv2 many Ns
-MK506262 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KU094071 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KM204119 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-EU848545 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MF576311 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MW945433 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MT076937 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MH613984 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MH613985 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MH613986 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MK506264 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MK506263 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KU094070 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KM204118 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KF704358 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KF704357 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KF704354 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KF704355 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KJ918750 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KF704356 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-HQ891023 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-HQ891024 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-GQ398268 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-FJ906959 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-FJ390389 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-EU854293 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KY586699 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-OP809583 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MT076948 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MK506265 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-JN697379 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KM190936 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MW793460 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MT076955 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KY586824 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KY586825 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MW793459 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KY586823 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-KY586826 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-MK506266 # Detected outlier by Hill et. al. 2024 due to resequencing of commonly used virus stocks
-
+MK506262 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KU094071 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KM204119 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+EU848545 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MF576311 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MW945433 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MT076937 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MH613984 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MH613985 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MH613986 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MK506264 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MK506263 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KU094070 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KM204118 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KF704358 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KF704357 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KF704354 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KF704355 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KJ918750 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KF704356 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+HQ891023 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+HQ891024 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+GQ398268 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+FJ906959 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+FJ390389 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+EU854293 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KY586699 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+OP809583 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MT076948 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MK506265 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+JN697379 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KM190936 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MW793460 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MT076955 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KY586824 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KY586825 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MW793459 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KY586823 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+KY586826 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
+MK506266 # Outlier according to publication Hill et al, 2024 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11426435/)
