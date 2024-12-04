@@ -138,7 +138,7 @@ rule append_gene_coverage_columns:
     output:
         metadata_all="results/metadata_all.tsv",
     params:
-        id_field=config["curate"]["id_field"],
+        id_field=config["curate"]["output_id_field"],
     shell:
         """
         cp {input.metadata} {output.metadata_all}

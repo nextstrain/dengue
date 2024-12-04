@@ -1,5 +1,5 @@
 """
-This part of the workflow handles splitting the data by serotype either based on the 
+This part of the workflow handles splitting the data by serotype either based on the
 NCBI metadata or Nextclade dataset. Could use both if necessary to cross-validate.
 
     metadata = "data/metadata_all.tsv"
@@ -22,7 +22,7 @@ rule split_by_serotype_genbank:
     output:
         sequences = "results/sequences_{serotype}.fasta"
     params:
-        id_field = config["curate"]["id_field"],
+        id_field = config["curate"]["output_id_field"],
         serotype_field = config["curate"]["serotype_field"]
     shell:
         """

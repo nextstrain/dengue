@@ -2,7 +2,7 @@
 This part of the workflow handles curating the data into standardized
 formats and expects input file
 
-    sequences_ndjson = "data/sequences.ndjson"
+    ndjson      = data/ncbi.ndjson
 
 This will produce output files as
 
@@ -13,6 +13,10 @@ Parameters are expected to be defined in `config.curate`.
 """
 
 
+# The following two rules can be ignored if you choose not to use the
+# generalized geolocation rules that are shared across pathogens.
+# The Nextstrain team will try to maintain a generalized set of geolocation
+# rules that can then be overridden by local geolocation rules per pathogen repo.
 rule fetch_general_geolocation_rules:
     output:
         general_geolocation_rules="data/general-geolocation-rules.tsv",
@@ -42,10 +46,16 @@ def format_field_map(field_map: dict[str, str]) -> str:
     """
     return " ".join([f'"{key}"="{value}"' for key, value in field_map.items()])
 
-
+# This curate pipeline is based on existing pipelines for pathogen repos using NCBI data.
+# You may want to add and/or remove steps from the pipeline for custom metadata
+# curation for your pathogen. Note that the curate pipeline is streaming NDJSON
+# records between scripts, so any custom scripts added to the pipeline should expect
+# the input as NDJSON records from stdin and output NDJSON records to stdout.
+# The final step of the pipeline should convert the NDJSON records to two
+# separate files: a metadata TSV and a sequences FASTA.
 rule curate:
     input:
-        sequences_ndjson="data/sequences.ndjson",
+        sequences_ndjson="data/ncbi.ndjson",
         all_geolocation_rules="data/all-geolocation-rules.tsv",
         annotations=config["curate"]["annotations"],
     output:
@@ -53,6 +63,8 @@ rule curate:
         sequences="results/sequences_all.fasta",
     log:
         "logs/curate.txt",
+    benchmark:
+        "benchmarks/curate.txt",
     params:
         field_map=format_field_map(config["curate"]["field_map"]),
         strain_regex=config["curate"]["strain_regex"],
@@ -68,8 +80,8 @@ rule curate:
         abbr_authors_field=config["curate"]["abbr_authors_field"],
         annotations_id=config["curate"]["annotations_id"],
         serotype_field=config["curate"]["serotype_field"],
-        id_field=config["curate"]["id_field"],
-        sequence_field=config["curate"]["sequence_field"],
+        id_field=config["curate"]["output_id_field"],
+        sequence_field=config["curate"]["output_sequence_field"],
     shell:
         """
         (cat {input.sequences_ndjson} \

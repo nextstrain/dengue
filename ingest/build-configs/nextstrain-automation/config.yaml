@@ -15,8 +15,7 @@ s3_dst: "s3://nextstrain-data/files/workflows/dengue"
 
 # Mapping of files to upload
 files_to_upload:
-  genbank.ndjson.xz: data/genbank.ndjson
-  all_sequences.ndjson.xz: data/sequences.ndjson
+  ncbi.ndjson.zst: data/ncbi.ndjson
   metadata_all.tsv.zst: results/metadata_all.tsv
   sequences_all.fasta.zst: results/sequences_all.fasta
   metadata_denv1.tsv.zst: results/metadata_denv1.tsv
