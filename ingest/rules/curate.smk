@@ -117,9 +117,29 @@ rule curate:
                 --output-seq-field {params.sequence_field} ) 2>> {log}
         """
 
-rule subset_metadata:
+rule add_metadata_columns:
+    """Add columns to metadata
+    Notable columns:
+    - [NEW] url: URL linking to the NCBI GenBank record ('https://www.ncbi.nlm.nih.gov/nuccore/*').
+    """
     input:
         metadata="data/all_metadata_curated.tsv",
+    output:
+        metadata = temp("data/all_metadata_added.tsv")
+    params:
+        accession=config['curate']['genbank_accession']
+    shell:
+        """
+        csvtk mutate2 -t \
+          -n url \
+          -e '"https://www.ncbi.nlm.nih.gov/nuccore/" + ${params.accession}' \
+          {input.metadata} \
+        > {output.metadata}
+        """
+
+rule subset_metadata:
+    input:
+        metadata="data/all_metadata_added.tsv",
     output:
         subset_metadata="data/metadata_all.tsv",
     params:
