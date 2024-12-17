@@ -57,7 +57,7 @@ curate:
     host-name: host
     is-lab-host: is_lab_host
     isolate-lineage-source: sample_type
-    submitter-names: authors
+    submitter-names: full_authors
     submitter-affiliation: institution
   # Standardized strain name regex
   # Currently accepts any characters because we do not have a clear standard for strain names across pathogens
@@ -83,11 +83,11 @@ curate:
       "los", "nad", "of", "op", "sur", "the", "y"
     ]
   # Metadata field that contains the list of authors associated with the sequence
-  authors_field: "authors"
+  authors_field: "full_authors"
   # Default value to use if the authors field is empty
   authors_default_value: "?"
   # Name to use for the generated abbreviated authors field
-  abbr_authors_field: "abbr_authors"
+  abbr_authors_field: "authors"
   # Path to the manual annotations file
   # The path should be relative to the ingest directory
   annotations: "defaults/annotations.tsv"
@@ -117,7 +117,7 @@ curate:
     "date_released",
     "date_updated",
     "authors",
-    "abbr_authors",
+    "full_authors",
     "institution",
     "serotype_genbank", # inferred from virus_tax_id
     "url"
