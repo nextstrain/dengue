@@ -75,7 +75,8 @@ rule filter:
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
             --min-length {params.min_length} \
-            --exclude-where country=? region=? date=? \
+            --exclude-where country=? region=? date=? is_lab_host='true' \
+            --query-columns is_lab_host:str
         """
 
 rule align:
