@@ -102,6 +102,12 @@ rule prepare_auspice_config:
               "region",
               "author"
             ],
+            "panels": [
+              "tree",
+              "map",
+              "entropy",
+              "frequencies"
+            ],
             "metadata_columns": [
               "accession",
               "url"
@@ -178,4 +184,33 @@ rule final_strain_name:
             --input-auspice-json {input.auspice_json} \
             --display-strain-name {params.display_strain_field} \
             --output {output.auspice_json}
+        """
+
+rule tip_frequencies:
+    """
+    Estimating KDE frequencies for tips
+    """
+    input:
+        tree = "results/{gene}/tree_{serotype}.nwk",
+        metadata = "data/metadata_{serotype}.tsv",
+    output:
+        tip_freq = "auspice/dengue_{serotype}_{gene}_tip-frequencies.json"
+    params:
+        strain_id = config["strain_id_field"],
+        min_date = config["tip_frequencies"]["min_date"],
+        max_date = config["tip_frequencies"]["max_date"],
+        narrow_bandwidth = config["tip_frequencies"]["narrow_bandwidth"],
+        wide_bandwidth = config["tip_frequencies"]["wide_bandwidth"]
+    shell:
+        r"""
+        augur frequencies \
+            --method kde \
+            --tree {input.tree} \
+            --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
+            --min-date {params.min_date} \
+            --max-date {params.max_date} \
+            --narrow-bandwidth {params.narrow_bandwidth} \
+            --wide-bandwidth {params.wide_bandwidth} \
+            --output {output.tip_freq}
         """

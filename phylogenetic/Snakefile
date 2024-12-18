@@ -10,6 +10,7 @@ wildcard_constraints:
 rule all:
     input:
         auspice_json = expand("auspice/dengue_{serotype}_{gene}.json", serotype=serotypes, gene=genes),
+        tip_frequencies_json= expand("auspice/dengue_{serotype}_{gene}_tip-frequencies.json", serotype=serotypes, gene=genes)
 
 include: "rules/prepare_sequences.smk"
 include: "rules/prepare_sequences_E.smk"
