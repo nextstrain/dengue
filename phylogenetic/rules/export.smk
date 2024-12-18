@@ -103,7 +103,8 @@ rule prepare_auspice_config:
               "author"
             ],
             "metadata_columns": [
-              "genbank_accession"
+              "accession",
+              "url"
             ]
           }
 

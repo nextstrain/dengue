@@ -1,4 +1,4 @@
-strain	virus	genbank_accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
+strain	virus	accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
 DENV1/INDIA/237/1962	dengue	JF297572	1962-XX-XX	South Asia	India	India	India	?	genome	Cecilia et al.	?	?	?	?
 DENV1/CHINA/RL6/2013	dengue	KJ470727	2013-09-XX	China	China	China	China	?	genome	Guo et al.	?	?	?	?
 DENV1/THAILAND/AILANDKPPKDV08491NC04528V0L/2007	dengue	JQ993108	2007-XX-XX	Southeast Asia	Thailand	Thailand	Thailand	?	genome	Aldstadt et al.	?	?	?	?

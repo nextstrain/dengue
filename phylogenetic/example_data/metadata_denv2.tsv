@@ -1,4 +1,4 @@
-strain	virus	genbank_accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
+strain	virus	accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
 DENV2/INDONESIA/MKS0084/2007	dengue	KC762660	2007-11-21	Southeast Asia	Indonesia	Makassar	Makassar	?	genome	Bifani et al.	?	?	?	?
 DENV2/TAIWAN/71/2002	dengue	EF016253	2002-XX-XX	China	Taiwan	Taiwan	Taiwan	?	genome	Ke et al.	?	?	?	?
 DENV2/PAKISTAN/8D/2011	dengue	JX042512	2011-XX-XX	West Asia	Pakistan	Pakistan	Pakistan	?	genome	Alvi et al.	?	?	?	?
