@@ -44,7 +44,7 @@ rule translate:
     input:
         tree = "results/{gene}/tree_{serotype}.nwk",
         node_data = "results/{gene}/nt-muts_{serotype}.json",
-        reference = lambda wildcard: "config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb"
+        reference = lambda wildcard: "defaults/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/defaults/reference_{serotype}_{gene}.gb"
     output:
         node_data = "results/{gene}/aa-muts_{serotype}.json"
     shell:

@@ -22,8 +22,8 @@ import json
 
 rule colors:
     input:
-        color_schemes = "config/color_schemes.tsv",
-        color_orderings = "config/color_orderings.tsv",
+        color_schemes = "defaults/color_schemes.tsv",
+        color_orderings = "defaults/color_orderings.tsv",
         metadata = "data/metadata_{serotype}.tsv",
     output:
         colors = "results/colors_{serotype}.tsv"
@@ -40,7 +40,7 @@ rule colors:
 rule prepare_auspice_config:
     """Prepare the auspice config file for each serotypes"""
     output:
-        auspice_config="results/config/{gene}/auspice_config_{serotype}.json",
+        auspice_config="results/defaults/{gene}/auspice_config_{serotype}.json",
     params:
         replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"genotype_nextclade",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"Dengue Genotype (Nextclade)",
@@ -140,7 +140,7 @@ rule export:
         nt_muts = "results/{gene}/nt-muts_{serotype}.json",
         aa_muts = "results/{gene}/aa-muts_{serotype}.json",
         description = config["export"]["description"],
-        auspice_config = "results/config/{gene}/auspice_config_{serotype}.json",
+        auspice_config = "results/defaults/{gene}/auspice_config_{serotype}.json",
         colors = "results/colors_{serotype}.tsv",
     output:
         auspice_json = "results/{gene}/raw_dengue_{serotype}.json"

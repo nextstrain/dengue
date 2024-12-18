@@ -1,4 +1,4 @@
-configfile: "config/config_dengue.yaml"
+configfile: "defaults/config_dengue.yaml"
 
 serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 genes = ['genome', 'E']
