@@ -95,7 +95,8 @@ rule prepare_auspice_config:
             ],
             "display_defaults": {
               "map_triplicate": True,
-              "color_by": params.replace_clade_key
+              "color_by": params.replace_clade_key,
+              "tip_label": "strain"
             },
             "filters": [
               "country",
@@ -110,6 +111,7 @@ rule prepare_auspice_config:
             ],
             "metadata_columns": [
               "accession",
+              "strain",
               "url"
             ]
           }
@@ -150,7 +152,7 @@ rule export:
         auspice_config = "results/defaults/{gene}/auspice_config_{serotype}.json",
         colors = "results/colors_{serotype}.tsv",
     output:
-        auspice_json = "results/{gene}/raw_dengue_{serotype}.json"
+        auspice_json = "auspice/dengue_{serotype}_{gene}.json"
     params:
         strain_id = config.get("strain_id_field", "strain"),
     shell:
@@ -167,25 +169,6 @@ rule export:
             --output {output.auspice_json}
         """
 
-rule final_strain_name:
-    input:
-        auspice_json="results/{gene}/raw_dengue_{serotype}.json",
-        metadata="data/metadata_{serotype}.tsv",
-    output:
-        auspice_json="auspice/dengue_{serotype}_{gene}.json"
-    params:
-        strain_id=config.get("strain_id_field", "strain"),
-        display_strain_field=config.get("display_strain_field", "strain"),
-    shell:
-        """
-        python3 scripts/set_final_strain_name.py \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --input-auspice-json {input.auspice_json} \
-            --display-strain-name {params.display_strain_field} \
-            --output {output.auspice_json}
-        """
-
 rule tip_frequencies:
     """
     Estimating KDE frequencies for tips
@@ -196,7 +179,7 @@ rule tip_frequencies:
     output:
         tip_freq = "auspice/dengue_{serotype}_{gene}_tip-frequencies.json"
     params:
-        strain_id = config["display_strain_field"],
+        strain_id = config["strain_id_field"],
         min_date = config["tip_frequencies"]["min_date"],
         max_date = config["tip_frequencies"]["max_date"],
         narrow_bandwidth = config["tip_frequencies"]["narrow_bandwidth"],
