@@ -196,7 +196,7 @@ rule tip_frequencies:
     output:
         tip_freq = "auspice/dengue_{serotype}_{gene}_tip-frequencies.json"
     params:
-        strain_id = config["strain_id_field"],
+        strain_id = config["display_strain_field"],
         min_date = config["tip_frequencies"]["min_date"],
         max_date = config["tip_frequencies"]["max_date"],
         narrow_bandwidth = config["tip_frequencies"]["narrow_bandwidth"],
