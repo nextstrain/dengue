@@ -1,4 +1,4 @@
-strain	virus	genbank_accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
+strain	virus	accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
 DENV4/ECUADOR/FSE2098/2006	dengue	GQ139572	2006-XX-XX	South America	Ecuador	Ecuador	Ecuador	?	genome	Alava et al.	?	?	?	?
 DENV4/BRAZIL/SJRP580/2012	dengue	KP188562	2012-12-10	South America	Brazil	Brazil	Brazil	?	genome	Araujo et al.	?	?	?	?
 DENV4/BRAZIL/GUSP0670/2013	dengue	KP704043	2013-03-17	South America	Brazil	Brazil	Brazil	?	genome	Balarini et al.	?	?	?	?

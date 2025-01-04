@@ -4,12 +4,12 @@
 sequences_url: "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst"
 metadata_url: "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
 
-strain_id_field: "genbank_accession"
+strain_id_field: "accession"
 display_strain_field: "strain"
 
 filter:
-  exclude: "config/exclude.txt"
-  include: "config/include_{serotype}.txt"
+  exclude: "defaults/exclude.txt"
+  include: "defaults/include_{serotype}.txt"
   group_by: "year region"
   min_length:
     genome: 5000
@@ -32,11 +32,17 @@ traits:
 
 clades:
   clade_definitions:
-    all: 'config/clades_serotypes.tsv'
-    denv1: 'config/clades_genotypes.tsv'
-    denv2: 'config/clades_genotypes.tsv'
-    denv3: 'config/clades_genotypes.tsv'
-    denv4: 'config/clades_genotypes.tsv'
+    all: 'defaults/clades_serotypes.tsv'
+    denv1: 'defaults/clades_genotypes.tsv'
+    denv2: 'defaults/clades_genotypes.tsv'
+    denv3: 'defaults/clades_genotypes.tsv'
+    denv4: 'defaults/clades_genotypes.tsv'
+
+tip_frequencies:
+    min_date: "1980-01-01"
+    max_date: "6M"
+    narrow_bandwidth: 0.2
+    wide_bandwidth: 0.6
 
 export:
-  description: "config/description.md"
+  description: "defaults/description.md"

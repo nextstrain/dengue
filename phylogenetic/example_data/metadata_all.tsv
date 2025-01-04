@@ -1,4 +1,4 @@
-strain	virus	genbank_accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
+strain	virus	accession	date	region	country	division	city	db	segment	authors	url	title	journal	paper_url
 DENV1/VIETNAM/BIDV1862/2008	dengue	FJ410220	2008-XX-XX	Southeast Asia	Vietnam	Vietnam	Vietnam	?	genome	Alvarado et al.	?	?	?	?
 DENV3/WALLIS_AND_FUTUNA/1404838/1989	dengue	JQ920487	1989-08-14	?	Wallis And Futuna	French Overseas Collectivity	Wallis And Futuna	?	genome	Aubry et al.	?	?	?	?
 DENV/BRAZIL/SJRP778/2013	dengue	KT438585	2013-02-04	South America	Brazil	Brazil	Brazil	?	genome	Araujo et al.	?	?	?	?

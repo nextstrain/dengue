@@ -75,7 +75,8 @@ rule filter:
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
             --min-length {params.min_length} \
-            --exclude-where country=? region=? date=? \
+            --exclude-where country=? region=? date=? is_lab_host='true' \
+            --query-columns is_lab_host:str
         """
 
 rule align:
@@ -85,7 +86,7 @@ rule align:
     """
     input:
         sequences = "results/{gene}/filtered_{serotype}.fasta",
-        reference = lambda wildcard: "config/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/config/reference_{serotype}_{gene}.gb"
+        reference = lambda wildcard: "defaults/reference_{serotype}_genome.gb" if wildcard.gene in ['genome'] else "results/defaults/reference_{serotype}_{gene}.gb"
     output:
         alignment = "results/{gene}/aligned_{serotype}.fasta"
     shell:

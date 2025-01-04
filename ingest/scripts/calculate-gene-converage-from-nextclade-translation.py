@@ -18,6 +18,12 @@ def parse_args():
         help="FASTA file of CDS translations from Nextclade.",
     )
     parser.add_argument(
+        "--out-id",
+        type=str,
+        default="accession",
+        help="Output record ID.",
+    )
+    parser.add_argument(
         "--out-col",
         type=str,
         default="gene_coverage",
@@ -26,16 +32,16 @@ def parse_args():
     return parser.parse_args()
 
 
-def calculate_gene_coverage_from_nextclade_cds(fasta, out_col):
+def calculate_gene_coverage_from_nextclade_cds(fasta, out_id, out_col):
     """
     Calculate gene coverage from amino acid sequence in gene translation FASTA file from Nextclade.
     """
-    print(f"genbank_accession\t{out_col}")
+    print(f"{out_id}\t{out_col}")
     # Iterate over the sequences in the FASTA file
     for record in SeqIO.parse(fasta, "fasta"):
         sequence_id = record.id
         sequence = str(record.seq)
-        
+
         # Calculate gene coverage
         results = re.findall(r"([ACDEFGHIKLMNPQRSTVWY])",  sequence.upper())
         gene_coverage = round(len(results) / len(sequence), 3)
@@ -47,7 +53,7 @@ def calculate_gene_coverage_from_nextclade_cds(fasta, out_col):
 def main():
     args = parse_args()
 
-    calculate_gene_coverage_from_nextclade_cds(args.fasta, args.out_col)
+    calculate_gene_coverage_from_nextclade_cds(args.fasta, args.out_id, args.out_col)
 
 
 if __name__ == "__main__":

@@ -22,8 +22,8 @@ import json
 
 rule colors:
     input:
-        color_schemes = "config/color_schemes.tsv",
-        color_orderings = "config/color_orderings.tsv",
+        color_schemes = "defaults/color_schemes.tsv",
+        color_orderings = "defaults/color_orderings.tsv",
         metadata = "data/metadata_{serotype}.tsv",
     output:
         colors = "results/colors_{serotype}.tsv"
@@ -40,7 +40,7 @@ rule colors:
 rule prepare_auspice_config:
     """Prepare the auspice config file for each serotypes"""
     output:
-        auspice_config="results/config/{gene}/auspice_config_{serotype}.json",
+        auspice_config="results/defaults/{gene}/auspice_config_{serotype}.json",
     params:
         replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"genotype_nextclade",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"Dengue Genotype (Nextclade)",
@@ -95,15 +95,24 @@ rule prepare_auspice_config:
             ],
             "display_defaults": {
               "map_triplicate": True,
-              "color_by": params.replace_clade_key
+              "color_by": params.replace_clade_key,
+              "tip_label": "strain"
             },
             "filters": [
               "country",
               "region",
               "author"
             ],
+            "panels": [
+              "tree",
+              "map",
+              "entropy",
+              "frequencies"
+            ],
             "metadata_columns": [
-              "genbank_accession"
+              "accession",
+              "strain",
+              "url"
             ]
           }
 
@@ -140,10 +149,10 @@ rule export:
         nt_muts = "results/{gene}/nt-muts_{serotype}.json",
         aa_muts = "results/{gene}/aa-muts_{serotype}.json",
         description = config["export"]["description"],
-        auspice_config = "results/config/{gene}/auspice_config_{serotype}.json",
+        auspice_config = "results/defaults/{gene}/auspice_config_{serotype}.json",
         colors = "results/colors_{serotype}.tsv",
     output:
-        auspice_json = "results/{gene}/raw_dengue_{serotype}.json"
+        auspice_json = "auspice/dengue_{serotype}_{gene}.json"
     params:
         strain_id = config.get("strain_id_field", "strain"),
     shell:
@@ -160,21 +169,31 @@ rule export:
             --output {output.auspice_json}
         """
 
-rule final_strain_name:
+rule tip_frequencies:
+    """
+    Estimating KDE frequencies for tips
+    """
     input:
-        auspice_json="results/{gene}/raw_dengue_{serotype}.json",
-        metadata="data/metadata_{serotype}.tsv",
+        tree = "results/{gene}/tree_{serotype}.nwk",
+        metadata = "data/metadata_{serotype}.tsv",
     output:
-        auspice_json="auspice/dengue_{serotype}_{gene}.json"
+        tip_freq = "auspice/dengue_{serotype}_{gene}_tip-frequencies.json"
     params:
-        strain_id=config.get("strain_id_field", "strain"),
-        display_strain_field=config.get("display_strain_field", "strain"),
+        strain_id = config["strain_id_field"],
+        min_date = config["tip_frequencies"]["min_date"],
+        max_date = config["tip_frequencies"]["max_date"],
+        narrow_bandwidth = config["tip_frequencies"]["narrow_bandwidth"],
+        wide_bandwidth = config["tip_frequencies"]["wide_bandwidth"]
     shell:
-        """
-        python3 scripts/set_final_strain_name.py \
+        r"""
+        augur frequencies \
+            --method kde \
+            --tree {input.tree} \
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
-            --input-auspice-json {input.auspice_json} \
-            --display-strain-name {params.display_strain_field} \
-            --output {output.auspice_json}
+            --min-date {params.min_date} \
+            --max-date {params.max_date} \
+            --narrow-bandwidth {params.narrow_bandwidth} \
+            --wide-bandwidth {params.wide_bandwidth} \
+            --output {output.tip_freq}
         """

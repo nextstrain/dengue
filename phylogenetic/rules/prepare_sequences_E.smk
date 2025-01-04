@@ -21,10 +21,10 @@ rule generate_E_reference_files:
     Generating reference files for the E gene
     """
     input:
-        reference = "config/reference_{serotype}_genome.gb",
+        reference = "defaults/reference_{serotype}_genome.gb",
     output:
-        fasta = "results/config/reference_{serotype}_E.fasta",
-        genbank = "results/config/reference_{serotype}_E.gb",
+        fasta = "results/defaults/reference_{serotype}_E.fasta",
+        genbank = "results/defaults/reference_{serotype}_E.gb",
     params:
         gene = "E",
     shell:
@@ -42,7 +42,7 @@ rule align_and_extract_E:
     """
     input:
         sequences = "data/sequences_{serotype}.fasta",
-        reference = "results/config/reference_{serotype}_E.fasta"
+        reference = "results/defaults/reference_{serotype}_E.fasta"
     output:
         sequences = "results/E/sequences_{serotype}.fasta"
     params:
