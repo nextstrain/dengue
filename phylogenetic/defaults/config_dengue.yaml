@@ -15,7 +15,7 @@ filter:
     genome: 5000
     E: 1000
   sequences_per_group:
-    all: '10'
+    all: '36'
     denv1: '36'
     denv2: '36'
     denv3: '36'
