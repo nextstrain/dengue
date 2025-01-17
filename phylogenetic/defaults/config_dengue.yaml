@@ -14,12 +14,7 @@ filter:
   min_length:
     genome: 5000
     E: 1000
-  sequences_per_group:
-    all: '10'
-    denv1: '36'
-    denv2: '36'
-    denv3: '36'
-    denv4: '36'
+  subsample_max_sequences: '4000'
 
 traits:
   sampling_bias_correction: '3'
