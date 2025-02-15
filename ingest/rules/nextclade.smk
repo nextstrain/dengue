@@ -211,7 +211,7 @@ rule append_gene_coverage_columns:
         metadata="data/metadata_nextclade.tsv",
         gene_coverage="results/gene_coverage_combined.tsv",
     output:
-        metadata="results/metadata_all.tsv",
+        metadata="data/metadata_gene_coverage.tsv",
     params:
         id_field=config["curate"]["output_id_field"],
     log:
@@ -230,6 +230,43 @@ rule append_gene_coverage_columns:
             --output-metadata {output.metadata:q} \
             --no-source-columns \
         &> {log:q}
+        """
+
+rule infer_major_lineage:
+    """
+    Infer Major dengue lineages
+    Reference: https://dengue-lineages.org/assets/img/homepage-img-01.png
+    For example:
+      Minor lineage -> Major lineage
+      1I_A.2.3 -> 1I_A
+      2II_B -> 2II_B
+      4III -> 4III
+    """
+    input:
+        metadata="data/metadata_gene_coverage.tsv",
+    output:
+        metadata="results/metadata_all.tsv",
+    params:
+        nextclade_field="genotype_nextclade",
+    log:
+        "logs/v-gen-lab/infer_major_lineage.txt",
+    benchmark:
+        "benchmarks/v-gen-lab/infer_major_lineage.txt",
+    shell:
+        """
+        cat {input.metadata:q} \
+        | csvtk -tl mutate \
+          -f {params.nextclade_field} \
+          -n genotype \
+          -p "^([0-9][A-Z]+)" \
+        | csvtk -tl mutate \
+          -f {params.nextclade_field} \
+          -n major_lineage \
+          -p "^([0-9][A-Z]+(?:_[A-Z])?)" \
+        | csvtk -tl mutate \
+          -f {params.nextclade_field} \
+          -n minor_lineage \
+        > {output.metadata:q}
         """
 
 rule split_metadata_by_serotype:

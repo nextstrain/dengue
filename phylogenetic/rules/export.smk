@@ -84,6 +84,21 @@ rule prepare_auspice_config:
                 "type": "categorical"
               },
               {
+                "key": "genotype",
+                "title": "Genotype (Nextclade)",
+                "type": "categorical"
+              },
+              {
+                "key": "major_lineage",
+                "title": "Major lineage (Nextclade)",
+                "type": "categorical"
+              },
+              {
+                "key": "minor_lineage",
+                "title": "Minor lineage (Nextclade)",
+                "type": "categorical"
+              },
+              {
                 "key": "serotype_genbank",
                 "title": "Serotype (Genbank metadata)",
                 "type": "categorical"
