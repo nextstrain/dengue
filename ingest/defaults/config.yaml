@@ -126,7 +126,7 @@ curate:
 nextclade:
   min_length: 1000 # E gene length is approximately 1400nt
   min_seed_cover: 0.1
-  gene: ["E","C","M","pr","NS1","NS2A","NS2B","NS3","NS4A","2K","NS4B","NS5"]
+  gene: ["E","C","prM","NS1","NS2A","NS2B","NS3","NS4A","2K","NS4B","NS5"]
   # Nextclade Fields to rename to metadata field names.
   field_map:
     seqName: accession # ID field used to merge annotations
@@ -135,3 +135,4 @@ nextclade:
     alignmentEnd: alignmentEnd
     coverage: genome_coverage
     failedCdses: failedCdses
+  id_field: accession
