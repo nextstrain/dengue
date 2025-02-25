@@ -172,61 +172,34 @@ rule combine_gene_coverage_columns:
         done
         """
 
-rule append_nextclade_columns:
+rule append_nextclade_and_gene_coverage_columns:
     """
     Append the nextclade results to the metadata
     """
     input:
         metadata="data/metadata_all.tsv",
         genotype_nextclade="results/v-gen-lab/nextclade_metadata.tsv",
+        gene_coverage="results/gene_coverage_combined.tsv",
     output:
         metadata="data/metadata_nextclade.tsv",
     params:
-        output_nextclade_fields=",".join([f'{value}' for key, value in config["nextclade"]["field_map"].items()][1:]),
         metadata_id_field=config["curate"]["output_id_field"],
         nextclade_id_field=config["nextclade"]["id_field"],
     log:
-        "logs/v-gen-lab/append_nextclade_columns.txt",
+        "logs/v-gen-lab/append_nextclade_and_gene_coverage_columns.txt",
     benchmark:
-        "benchmarks/v-gen-lab/append_nextclade_columns.txt",
+        "benchmarks/v-gen-lab/append_nextclade_and_gene_coverage_columns.txt",
     shell:
         """
         augur merge \
             --metadata \
                 metadata={input.metadata:q} \
                 nextclade={input.genotype_nextclade:q} \
+                gene_coverage={input.gene_coverage:q} \
             --metadata-id-columns \
                 metadata={params.metadata_id_field:q} \
                 nextclade={params.nextclade_id_field:q} \
-            --output-metadata {output.metadata:q} \
-            --no-source-columns \
-        &> {log:q}
-        """
-
-rule append_gene_coverage_columns:
-    """
-    Append the gene_coverage results to the metadata
-    """
-    input:
-        metadata="data/metadata_nextclade.tsv",
-        gene_coverage="results/gene_coverage_combined.tsv",
-    output:
-        metadata="data/metadata_gene_coverage.tsv",
-    params:
-        id_field=config["curate"]["output_id_field"],
-    log:
-        "logs/v-gen-lab/append_gene_coverage_columns.txt",
-    benchmark:
-        "benchmarks/v-gen-lab/append_gene_coverage_columns.txt",
-    shell:
-        """
-        augur merge \
-            --metadata \
-                metadata={input.metadata:q} \
-                gene_coverage={input.gene_coverage:q} \
-            --metadata-id-columns \
-                metadata={params.id_field:q} \
-                gene_coverage={params.id_field:q} \
+                gene_coverage={params.metadata_id_field:q} \
             --output-metadata {output.metadata:q} \
             --no-source-columns \
         &> {log:q}
@@ -243,7 +216,7 @@ rule infer_major_lineage:
       4III -> 4III
     """
     input:
-        metadata="data/metadata_gene_coverage.tsv",
+        metadata="data/metadata_nextclade.tsv",
     output:
         metadata="results/metadata_all.tsv",
     params:
