@@ -13,4 +13,4 @@ We curate sequence data and metadata from NCBI as starting point for our analyse
 * [data.nextstrain.org/files/workflows/dengue/sequences_denv4.fasta.zst](https://data.nextstrain.org/files/workflows/dengue/sequences_denv4.fasta.zst)
 * [data.nextstrain.org/files/workflows/dengue/metadata_denv4.tsv.zst](https://data.nextstrain.org/files/workflows/dengue/metadata_denv4.tsv.zst)
 
-For more information about the dengue lineage system, to submit questions, or lineage proposals; please visit dengue-lineages.org
+For more information about the dengue lineage system, to submit questions, or lineage proposals; please visit [dengue-lineages.org](https://dengue-lineages.org/). 
