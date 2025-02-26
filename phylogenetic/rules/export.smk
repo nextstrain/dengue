@@ -42,8 +42,8 @@ rule prepare_auspice_config:
     output:
         auspice_config="results/defaults/{gene}/auspice_config_{serotype}.json",
     params:
-        replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"genotype_nextclade",
-        replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"Dengue Genotype (Nextclade)",
+        replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"major_lineage",
+        replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"Genotype (Nextclade)",
     run:
         data = {
             "title": "Real-time tracking of dengue virus evolution",
@@ -79,8 +79,8 @@ rule prepare_auspice_config:
                 "type": "categorical"
               },
               {
-                "key": "genotype_nextclade",
-                "title": "Dengue Genotype (Nextclade)",
+                "key": "serotype_genbank",
+                "title": "Serotype (Genbank metadata)",
                 "type": "categorical"
               },
               {
@@ -96,11 +96,6 @@ rule prepare_auspice_config:
               {
                 "key": "minor_lineage",
                 "title": "Minor lineage (Nextclade)",
-                "type": "categorical"
-              },
-              {
-                "key": "serotype_genbank",
-                "title": "Serotype (Genbank metadata)",
                 "type": "categorical"
               }
             ],
@@ -137,7 +132,7 @@ rule prepare_auspice_config:
             if wildcards.gene in ['genome'] and wildcards.serotype in ['all']:
                 clade_membership_title="Serotype (Nextstrain)"
             else:
-                clade_membership_title="Dengue Genotype (Nextstrain)"
+                clade_membership_title="Genotype (Nextstrain)"
 
             data["colorings"].append({
                 "key": "clade_membership",
