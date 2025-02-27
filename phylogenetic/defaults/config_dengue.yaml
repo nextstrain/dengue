@@ -19,11 +19,11 @@ filter:
 traits:
   sampling_bias_correction: '3'
   traits_columns:
-    all: 'region serotype_genbank genotype_nextclade'
-    denv1: 'country region serotype_genbank genotype_nextclade'
-    denv2: 'country region serotype_genbank genotype_nextclade'
-    denv3: 'country region serotype_genbank genotype_nextclade'
-    denv4: 'country region serotype_genbank genotype_nextclade'
+    all: 'region serotype_genbank'
+    denv1: 'country region serotype_genbank'
+    denv2: 'country region serotype_genbank'
+    denv3: 'country region serotype_genbank'
+    denv4: 'country region serotype_genbank'
 
 clades:
   clade_definitions:
