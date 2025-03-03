@@ -8,8 +8,8 @@ strain_id_field: "genbank_accession"
 display_strain_field: "strain"
 
 filter:
-  exclude: "../phylogenetic/config/exclude.txt"
-  include: "../phylogenetic/config/include_{serotype}.txt"
+  exclude: "../phylogenetic/defaults/exclude.txt"
+  include: "../phylogenetic/defaults/{serotype}/include.txt"
   group_by: "year region"
   min_length:
     genome: 5000
@@ -46,7 +46,7 @@ traits:
 
 clades:
   clade_definitions:
-    all: '../phylogenetic/config/clades_serotypes.tsv'
+    all: '../phylogenetic/defaults/clades_serotypes.tsv'
     denv1: 'config/clades_genotypes_denv1.tsv'
     denv2: 'config/clades_genotypes_denv2.tsv'
     denv3: 'config/clades_genotypes_denv3.tsv'
