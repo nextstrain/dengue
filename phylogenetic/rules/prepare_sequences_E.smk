@@ -21,7 +21,7 @@ rule generate_E_reference_files:
     Generating reference files for the E gene
     """
     input:
-        reference = "defaults/reference_{serotype}_genome.gb",
+        reference = "defaults/{serotype}/reference.gb",
     output:
         fasta = "results/defaults/reference_{serotype}_E.fasta",
         genbank = "results/defaults/reference_{serotype}_E.gb",
