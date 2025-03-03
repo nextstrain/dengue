@@ -52,12 +52,12 @@ rule filter:
       - excluding strains with missing region, country or date metadata
     """
     input:
-        sequences = lambda wildcard: "data/sequences_{serotype}.fasta" if wildcard.gene in ['genome'] else "results/{gene}/sequences_{serotype}.fasta",
+        sequences = lambda wildcard: "data/sequences_{serotype}.fasta" if wildcard.gene in ['genome'] else "results/{serotype}/{gene}/sequences.fasta",
         metadata = "data/metadata_{serotype}.tsv",
         exclude = config["filter"]["exclude"],
         include = config["filter"]["include"],
     output:
-        sequences = "results/{gene}/filtered_{serotype}.fasta"
+        sequences = "results/{serotype}/{gene}/filtered.fasta"
     params:
         group_by = config['filter']['group_by'],
         subsample_max_sequences = config['filter']['subsample_max_sequences'],
@@ -85,10 +85,10 @@ rule align:
       - filling gaps with N
     """
     input:
-        sequences = "results/{gene}/filtered_{serotype}.fasta",
+        sequences = "results/{serotype}/{gene}/filtered.fasta",
         reference = lambda wildcard: "defaults/{serotype}/reference.gb" if wildcard.gene in ['genome'] else "results/defaults/reference_{serotype}_{gene}.gb"
     output:
-        alignment = "results/{gene}/aligned_{serotype}.fasta"
+        alignment = "results/{serotype}/{gene}/aligned.fasta"
     shell:
         """
         augur align \
