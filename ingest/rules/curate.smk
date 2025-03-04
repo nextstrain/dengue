@@ -13,33 +13,6 @@ Parameters are expected to be defined in `config.curate`.
 """
 
 
-# The following two rules can be ignored if you choose not to use the
-# generalized geolocation rules that are shared across pathogens.
-# The Nextstrain team will try to maintain a generalized set of geolocation
-# rules that can then be overridden by local geolocation rules per pathogen repo.
-rule fetch_general_geolocation_rules:
-    output:
-        general_geolocation_rules="data/general-geolocation-rules.tsv",
-    params:
-        geolocation_rules_url=config["curate"]["geolocation_rules_url"],
-    shell:
-        """
-        curl {params.geolocation_rules_url} > {output.general_geolocation_rules}
-        """
-
-
-rule concat_geolocation_rules:
-    input:
-        general_geolocation_rules="data/general-geolocation-rules.tsv",
-        local_geolocation_rules=config["curate"]["local_geolocation_rules"],
-    output:
-        all_geolocation_rules="data/all-geolocation-rules.tsv",
-    shell:
-        """
-        cat {input.general_geolocation_rules} {input.local_geolocation_rules} >> {output.all_geolocation_rules}
-        """
-
-
 def format_field_map(field_map: dict[str, str]) -> str:
     """
     Format dict to `"key1"="value1" "key2"="value2"...` for use in shell commands.
@@ -56,7 +29,7 @@ def format_field_map(field_map: dict[str, str]) -> str:
 rule curate:
     input:
         sequences_ndjson="data/ncbi.ndjson",
-        all_geolocation_rules="data/all-geolocation-rules.tsv",
+        geolocation_rules=config["curate"]["local_geolocation_rules"],
         annotations=config["curate"]["annotations"],
     output:
         metadata="data/all_metadata_curated.tsv",
@@ -105,7 +78,7 @@ rule curate:
                 --default-value {params.authors_default_value} \
                 --abbr-authors-field {params.abbr_authors_field} \
             | augur curate apply-geolocation-rules \
-                --geolocation-rules {input.all_geolocation_rules} \
+                --geolocation-rules {input.geolocation_rules} \
             | ./scripts/infer-dengue-serotype.py \
                 --out-col {params.serotype_field} \
             | augur curate apply-record-annotations \
