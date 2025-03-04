@@ -22,10 +22,10 @@ filter:
     denv4: '36'
 
 outgroup:
-  denv1: "config/outgroup.fasta"
-  denv2: "config/outgroup_denv2.fasta"
-  denv3: "config/outgroup.fasta"
-  denv4: "config/outgroup.fasta"
+  denv1: "defaults/outgroup.fasta"
+  denv2: "defaults/outgroup_denv2.fasta"
+  denv3: "defaults/outgroup.fasta"
+  denv4: "defaults/outgroup.fasta"
 
 refine:
   root_id:
@@ -47,7 +47,7 @@ traits:
 clades:
   clade_definitions:
     all: '../phylogenetic/defaults/clades_serotypes.tsv'
-    denv1: 'config/clades_genotypes_denv1.tsv'
-    denv2: 'config/clades_genotypes_denv2.tsv'
-    denv3: 'config/clades_genotypes_denv3.tsv'
-    denv4: 'config/clades_genotypes_denv4.tsv'
+    denv1: 'defaults/clades_genotypes_denv1.tsv'
+    denv2: 'defaults/clades_genotypes_denv2.tsv'
+    denv3: 'defaults/clades_genotypes_denv3.tsv'
+    denv4: 'defaults/clades_genotypes_denv4.tsv'
