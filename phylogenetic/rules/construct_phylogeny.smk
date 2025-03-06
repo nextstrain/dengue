@@ -15,9 +15,9 @@ See Augur's usage docs for these commands for more details.
 rule tree:
     """Building tree"""
     input:
-        alignment = "results/{gene}/aligned_{serotype}.fasta"
+        alignment = "results/{serotype}/{gene}/aligned.fasta"
     output:
-        tree = "results/{gene}/tree-raw_{serotype}.nwk"
+        tree = "results/{serotype}/{gene}/tree-raw.nwk"
     shell:
         """
         augur tree \
@@ -35,12 +35,12 @@ rule refine:
       - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
     """
     input:
-        tree = "results/{gene}/tree-raw_{serotype}.nwk",
-        alignment = "results/{gene}/aligned_{serotype}.fasta",
+        tree = "results/{serotype}/{gene}/tree-raw.nwk",
+        alignment = "results/{serotype}/{gene}/aligned.fasta",
         metadata = "data/metadata_{serotype}.tsv"
     output:
-        tree = "results/{gene}/tree_{serotype}.nwk",
-        node_data = "results/{gene}/branch-lengths_{serotype}.json",
+        tree = "results/{serotype}/{gene}/tree.nwk",
+        node_data = "results/{serotype}/{gene}/branch-lengths.json",
     params:
         coalescent = "const",
         date_inference = "marginal",
