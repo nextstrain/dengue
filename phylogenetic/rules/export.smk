@@ -26,7 +26,7 @@ rule colors:
         color_orderings = "defaults/color_orderings.tsv",
         metadata = "data/metadata_{serotype}.tsv",
     output:
-        colors = "results/colors_{serotype}.tsv"
+        colors = "results/{serotype}/colors.tsv"
     shell:
         """
         python3 scripts/assign-colors.py \
@@ -40,7 +40,7 @@ rule colors:
 rule prepare_auspice_config:
     """Prepare the auspice config file for each serotypes"""
     output:
-        auspice_config="results/defaults/{gene}/auspice_config_{serotype}.json",
+        auspice_config="results/defaults/{serotype}/{gene}/auspice_config.json",
     params:
         replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"major_lineage",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"Genotype (Nextclade)",
@@ -151,16 +151,16 @@ rule prepare_auspice_config:
 rule export:
     """Exporting data files for auspice"""
     input:
-        tree = "results/{gene}/tree_{serotype}.nwk",
+        tree = "results/{serotype}/{gene}/tree.nwk",
         metadata = "data/metadata_{serotype}.tsv",
-        branch_lengths = "results/{gene}/branch-lengths_{serotype}.json",
-        traits = "results/{gene}/traits_{serotype}.json",
-        clades = lambda wildcard: "results/{gene}/clades_{serotype}.json" if wildcard.gene in ['genome'] else [],
-        nt_muts = "results/{gene}/nt-muts_{serotype}.json",
-        aa_muts = "results/{gene}/aa-muts_{serotype}.json",
+        branch_lengths = "results/{serotype}/{gene}/branch-lengths.json",
+        traits = "results/{serotype}/{gene}/traits.json",
+        clades = lambda wildcard: "results/{serotype}/{gene}/clades.json" if wildcard.gene in ['genome'] else [],
+        nt_muts = "results/{serotype}/{gene}/nt-muts.json",
+        aa_muts = "results/{serotype}/{gene}/aa-muts.json",
         description = config["export"]["description"],
-        auspice_config = "results/defaults/{gene}/auspice_config_{serotype}.json",
-        colors = "results/colors_{serotype}.tsv",
+        auspice_config = "results/defaults/{serotype}/{gene}/auspice_config.json",
+        colors = "results/{serotype}/colors.tsv",
     output:
         auspice_json = "auspice/dengue_{serotype}_{gene}.json"
     params:
@@ -184,7 +184,7 @@ rule tip_frequencies:
     Estimating KDE frequencies for tips
     """
     input:
-        tree = "results/{gene}/tree_{serotype}.nwk",
+        tree = "results/{serotype}/{gene}/tree.nwk",
         metadata = "data/metadata_{serotype}.tsv",
     output:
         tip_freq = "auspice/dengue_{serotype}_{gene}_tip-frequencies.json"

@@ -22,8 +22,8 @@ import json
 
 rule colors:
     input:
-        color_schemes = "../phylogenetic/config/color_schemes.tsv",
-        color_orderings = "../phylogenetic/config/color_orderings.tsv",
+        color_schemes = "../phylogenetic/defaults/color_schemes.tsv",
+        color_orderings = "../phylogenetic/defaults/color_orderings.tsv",
         metadata = "data/metadata_{serotype}.tsv",
     output:
         colors = "results/colors_{serotype}.tsv"

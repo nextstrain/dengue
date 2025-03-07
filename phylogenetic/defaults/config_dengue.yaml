@@ -9,7 +9,7 @@ display_strain_field: "strain"
 
 filter:
   exclude: "defaults/exclude.txt"
-  include: "defaults/include_{serotype}.txt"
+  include: "defaults/{serotype}/include.txt"
   group_by: "year region"
   min_length:
     genome: 5000

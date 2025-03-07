@@ -4,7 +4,7 @@ and sequences.
 REQUIRED INPUTS:
     metadata    = data/metadata_all.tsv
     sequences   = results/sequences_{serotype}.fasta
-    nextclade_datasets = ../nextclade_data/{serotype}
+
 OUTPUTS:
     metadata        = results/metadata_{serotype}.tsv
     nextclade       = results/nextclade_genotypes.tsv
