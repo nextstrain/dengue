@@ -1,11 +1,16 @@
 host	host_genus	host_type
 Homo sapiens	Homo	Human
 Aedeomyia madagascarica	Aedeomyia	Mosquito
+Aedes aegypti	Aedes	Mosquito
+Aedes africanus	Aedes	Mosquito
 Aedes albopictus	Aedes	Mosquito
 Aedes cinereus	Aedes	Mosquito
 Aedes dalzieli	Aedes	Mosquito
 Aedes japonicus	Aedes	Mosquito
+Aedes luteocephalus	Aedes	Mosquito
+Aedes niveus	Aedes	Mosquito
 Aedes rossicus	Aedes	Mosquito
+Aedes taylori	Aedes	Mosquito
 Aedes sp.	Aedes	Mosquito
 Aedes vexans	Aedes	Mosquito
 Anopheles atroparvus	Anopheles	Mosquito
@@ -61,6 +66,7 @@ Culiseta longiareolata	Culiseta	Mosquito
 Culiseta melanura	Culiseta	Mosquito
 Culiseta morsitans	Culiseta	Mosquito
 Mansonia uniformis	Mansonia	Mosquito
+Melanoconion	Culex	Mosquito
 Ochlerotatus canadensis	Ochlerotatus	Mosquito
 Ochlerotatus cantator	Ochlerotatus	Mosquito
 Ochlerotatus caspius	Ochlerotatus	Mosquito
@@ -77,6 +83,18 @@ Psorophora	Psorophora	Mosquito
 Psorophora ferox	Psorophora	Mosquito
 Uranotaenia	Uranotaenia	Mosquito
 Uranotaenia unguiculata	Uranotaenia	Mosquito
+Artibeus jamaicensis	Artibeus	Bat
+Artibeus phaeotis	Artibeus	Bat
+Carollia perspicillata	Carollia	Bat
+Glossophaga mutica	Glossophaga	Bat
+Glossophaga soricina	Glossophaga	Bat
+Molossus nigricans	Molossus	Bat
+Molossus pretiosus	Molossus	Bat
+Molossus rufus	Molossus	Bat
+Molossus sinaloae	Molossus	Bat
+Phyllostomus discolor	Phyllostomus	Bat
+Rhogeessa tumida	Rhogeessa	Bat
+Sturnira parvidens	Sturnira	Bat
 Accipiter	Accipiter	Bird
 Accipiter cooperii	Accipiter	Bird
 Accipiter gentilis	Accipiter	Bird
@@ -258,20 +276,28 @@ Ixodoidea	Ixodoidea	Tick
 Rhipicephalus guilhoni	Rhipicephalus	Tick
 Rhipicephalus pulchellus	Rhipicephalus	Tick
 Rhipicephalus rossicus	Rhipicephalus	Tick
+Arthropoda	Arthropoda	Other arthopod
+Chironomus thummi	Chironomus	Other arthopod
 Bos taurus	Bos	Other
+Callithrix penicillata	Callithrix	Other
 Camelus bactrianus	Camelus	Other
 Camelus dromedarius	Camelus	Other
 Canis lupus familiaris	Canis	Other
 Chiroptera	Chiroptera	Other
+Chlorocebus aethiops	Chlorocebus	Other
 Cricetinae	Cricetinae	Other
 Crocodylus moreletii	Crocodylus	Other
 Crocodylus niloticus	Crocodylus	Other
 Crocodylus porosus	Crocodylus	Other
+Didelphis marsupialis	Didelphis	Other
 Equus	Equus	Other
 Equus asinus	Equus	Other
 Equus ferus	Equus	Other
 Giraffa giraffa	Giraffa	Other
 Laridae	Laridae	Other
+Macaca fascicularis	Macaca	Other
+Macaca nemestrina	Macaca	Other
+Marmosa murina	Marmosa	Other
 Mastomys erythroleucus	Mastomys	Other
 Mephitis mephitis	Mephitis	Other
 Mesocricetus auratus	Mesocricetus	Other
@@ -280,11 +306,15 @@ Orcinus orca	Orcinus	Other
 Ovis aries	Ovis	Other
 Panthera leo	Panthera	Other
 Pelophylax ridibundus	Pelophylax	Other
+Proechimys cuvieri	Proechimys	Other
 Platycercus	Platycercus	Other
 Rodentia	Rodentia	Other
 Rousettus leschenaultii	Rousettus	Other
 Sciuridae	Sciuridae	Other
 Sciurus carolinensis	Sciurus	Other
 Sciurus niger	Sciurus	Other
+Simiiformes	Simiiformes	Other
 Syncerus caffer	Syncerus	Other
+Trachypithecus cristatus	Trachypithecus	Other
+Tupaia glis	Tupaia	Other
 Vicugna pacos	Vicugna	Other
