@@ -1,0 +1,50 @@
+#! /usr/bin/env python3
+
+import argparse
+import json
+import csv
+from sys import stdin, stdout
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Transform JSON data by applying a TSV mapping and adding new columns."
+    )
+    parser.add_argument("--map-tsv", required=True,
+        help="Path to the TSV mapping file.")
+    parser.add_argument("--map-id", required=True,
+        help="Column name in the map TSV to use as the mapping key.")
+    parser.add_argument("--metadata-id", required=True,
+        help="Column name in the metadata JSON to use as the mapping key.")
+    parser.add_argument("--map-fields", nargs="+", required=True,
+        help="Columns to add from the mapping file.")
+    parser.add_argument("--pass-through", default=False,
+        help="If set, pass through the original value when no mapping is found.")
+    return parser.parse_args()
+
+def load_mapping(map_tsv, map_id, map_fields):
+    mapping = {}
+    with open(map_tsv, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f, delimiter='\t')
+        for row in reader:
+            key = row[map_id]
+            mapping[key] = {col: row[col] for col in map_fields}
+    return mapping
+
+def main():
+    args = parse_args()
+    mapping = load_mapping(args.map_tsv, args.map_id, args.map_fields)
+
+    for line in stdin:
+        record = json.loads(line)
+        key = record.get(args.metadata_id, '')
+
+        if key in mapping:
+            record.update(mapping[key])
+        elif args.pass_through:
+            for col in args.map_fields:
+                record[col] = record.get(args.metadata_id, '')
+
+        stdout.write(json.dumps(record) + '\n')
+
+if __name__ == "__main__":
+    main()
