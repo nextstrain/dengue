@@ -49,8 +49,6 @@ rule run_nextclade:
         translations=expand("data/v-gen-lab/{{serotype}}/translations/{gene}/seqs.gene.fasta", gene=config["nextclade"]["gene"]),
     threads: 4
     params:
-        min_length=config["nextclade"]["min_length"],
-        min_seed_cover=config["nextclade"]["min_seed_cover"],
         output_translations = lambda wildcards: f"data/v-gen-lab/{wildcards.serotype}/translations/{{cds}}/seqs.gene.fasta",
     log:
         "logs/v-gen-lab/{serotype}/run_nextclade.txt",
@@ -64,8 +62,6 @@ rule run_nextclade:
             --input-dataset {input.dataset} \
             -j {threads} \
             --output-tsv {output.nextclade} \
-            --min-length {params.min_length} \
-            --min-seed-cover {params.min_seed_cover} \
             --silent \
             --output-fasta {output.alignment} \
             --output-translations {params.output_translations} \
