@@ -97,6 +97,21 @@ rule prepare_auspice_config:
                 "key": "minor_lineage",
                 "title": "Minor lineage (Nextclade)",
                 "type": "categorical"
+              },
+              {
+                "key": "host",
+                "title": "Host Species",
+                "type": "categorical"
+              },
+              {
+                "key": "host_genus",
+                "title": "Host Genus",
+                "type": "categorical"
+              },
+              {
+                "key": "host_type",
+                "title": "Host Type",
+                "type": "categorical"
               }
             ],
             "geo_resolutions": [

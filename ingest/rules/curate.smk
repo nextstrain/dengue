@@ -31,6 +31,7 @@ rule curate:
         sequences_ndjson="data/ncbi.ndjson",
         geolocation_rules=config["curate"]["local_geolocation_rules"],
         annotations=config["curate"]["annotations"],
+        manual_mapping="defaults/host_hostgenus_hosttype_map.tsv",
     output:
         metadata="data/all_metadata_curated.tsv",
         sequences="results/sequences_all.fasta",
@@ -81,6 +82,12 @@ rule curate:
                 --geolocation-rules {input.geolocation_rules} \
             | ./scripts/infer-dengue-serotype.py \
                 --out-col {params.serotype_field} \
+            | ./scripts/transform-new-fields \
+                --map-tsv {input.manual_mapping} \
+                --map-id host \
+                --metadata-id host \
+                --map-fields host_genus host_type \
+                --pass-through true \
             | augur curate apply-record-annotations \
                 --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
