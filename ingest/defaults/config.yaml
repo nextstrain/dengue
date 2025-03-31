@@ -109,6 +109,8 @@ curate:
     "location",
     "length",
     "host",
+    "host_genus",
+    "host_type",
     "is_lab_host",
     "date_released",
     "date_updated",
