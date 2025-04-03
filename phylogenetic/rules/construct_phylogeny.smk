@@ -46,6 +46,7 @@ rule refine:
         date_inference = "marginal",
         clock_filter_iqd = 4,
         strain_id = config.get("strain_id_field", "strain"),
+        root = lambda wildcards: config['refine']['root'][wildcards.serotype],
     shell:
         """
         augur refine \
@@ -59,5 +60,6 @@ rule refine:
             --coalescent {params.coalescent} \
             --date-confidence \
             --date-inference {params.date_inference} \
-            --clock-filter-iqd {params.clock_filter_iqd}
+            --clock-filter-iqd {params.clock_filter_iqd} \
+            --root {params.root}
         """

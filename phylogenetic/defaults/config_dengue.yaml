@@ -25,6 +25,14 @@ traits:
     denv3: 'country region serotype_genbank'
     denv4: 'country region serotype_genbank'
 
+refine:
+  root:
+    all: 'mid_point'
+    denv1: 'best'
+    denv2: 'best'
+    denv3: 'best'
+    denv4: 'best'
+
 clades:
   clade_definitions:
     all: 'defaults/clades_serotypes.tsv'
