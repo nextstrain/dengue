@@ -18,12 +18,14 @@ rule tree:
         alignment = "results/{serotype}/{gene}/aligned.fasta"
     output:
         tree = "results/{serotype}/{gene}/tree-raw.nwk"
+    threads:
+        8
     shell:
         """
         augur tree \
             --alignment {input.alignment} \
             --output {output.tree} \
-            --nthreads 1
+            --nthreads {threads}
         """
 
 rule refine:

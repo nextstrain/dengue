@@ -89,6 +89,7 @@ rule align:
         reference = lambda wildcard: "defaults/{serotype}/reference.gb" if wildcard.gene in ['genome'] else "results/defaults/reference_{serotype}_{gene}.gb"
     output:
         alignment = "results/{serotype}/{gene}/aligned.fasta"
+    threads: 8
     shell:
         """
         augur align \
@@ -97,5 +98,5 @@ rule align:
             --output {output.alignment} \
             --fill-gaps \
             --remove-reference \
-            --nthreads 1
+            --nthreads {threads}
         """
