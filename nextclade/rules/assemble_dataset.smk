@@ -27,6 +27,8 @@ rule assemble_dataset:
         annotation="datasets/{serotype}/genome_annotation.gff3",
         readme="datasets/{serotype}/README.md",
         changelog="datasets/{serotype}/CHANGELOG.md",
+    benchmark:
+        "benchmarks/{serotype}/assemble_dataset.txt"
     shell:
         """
         cp {input.reference} {output.reference}
@@ -48,6 +50,8 @@ rule test_dataset:
         changelog="datasets/{serotype}/CHANGELOG.md",
     output:
         outdir=directory("test_output/{serotype}"),
+    benchmark:
+        "benchmarks/{serotype}/test_dataset.txt"
     params:
         dataset_dir="datasets/{serotype}",
     shell:

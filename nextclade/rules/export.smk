@@ -27,6 +27,8 @@ rule colors:
         metadata = "data/metadata_{serotype}.tsv",
     output:
         colors = "results/colors_{serotype}.tsv"
+    benchmark:
+        "benchmarks/{serotype}/colors.txt"
     shell:
         """
         python3 ../phylogenetic/scripts/assign-colors.py \
@@ -41,6 +43,8 @@ rule prepare_auspice_config:
     """Prepare the auspice config file for each serotypes"""
     output:
         auspice_config="results/config/{gene}/auspice_config_{serotype}.json",
+    benchmark:
+        "benchmarks/{serotype}/{gene}/prepare_auspice_config.txt"
     params:
         replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"genotype_nextclade",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"Dengue Genotype (Nextclade)",
@@ -143,6 +147,8 @@ rule export:
         colors = "results/colors_{serotype}.tsv",
     output:
         auspice_json = "results/{gene}/raw_dengue_{serotype}.json"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/export.txt"
     params:
         strain_id = config.get("strain_id_field", "strain"),
     shell:
@@ -164,6 +170,8 @@ rule final_strain_name:
         metadata="data/metadata_{serotype}.tsv",
     output:
         auspice_json="auspice/dengue_{serotype}_{gene}.json"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/final_strain_name.txt"
     params:
         strain_id=config.get("strain_id_field", "strain"),
         display_strain_field=config.get("display_strain_field", "strain"),

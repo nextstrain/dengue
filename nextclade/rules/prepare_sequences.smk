@@ -19,7 +19,8 @@ rule download:
     output:
         sequences = "data/sequences_{serotype}.fasta.zst",
         metadata = "data/metadata_{serotype}.tsv.zst"
-
+    benchmark:
+        "benchmarks/{serotype}/download.txt"
     params:
         sequences_url = config["sequences_url"],
         metadata_url = config["metadata_url"],
@@ -37,6 +38,8 @@ rule decompress:
     output:
         sequences = "data/sequences_{serotype}.fasta",
         metadata = "data/metadata_{serotype}.tsv"
+    benchmark:
+        "benchmarks/{serotype}/decompress.txt"
     shell:
         """
         zstd -d -c {input.sequences} > {output.sequences}
@@ -58,6 +61,8 @@ rule filter:
         include = config["filter"]["include"],
     output:
         sequences = "results/{gene}/filtered_{serotype}.fasta"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/filter.txt"
     params:
         group_by = config['filter']['group_by'],
         sequences_per_group = lambda wildcards: config['filter']['sequences_per_group'][wildcards.serotype],
@@ -87,6 +92,8 @@ rule add_outgorup:
         outgroup = lambda wildcard: config["outgroup"][wildcard.serotype],
     output:
         sequences = "results/{gene}/filtered_{serotype}_with_outgroup.fasta"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/add_outgroup.txt"
     shell:
         """
         cat {input.sequences} {input.outgroup} > {output.sequences}
@@ -102,6 +109,8 @@ rule align:
         reference = "resources/{serotype}/reference.fasta",
     output:
         alignment = "results/{gene}/aligned_{serotype}.fasta"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/align.txt"
     shell:
         """
         augur align \
