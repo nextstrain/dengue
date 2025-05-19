@@ -76,7 +76,7 @@ rule filter:
             --metadata-id-columns {params.strain_id} \
             --exclude {input.exclude} \
             --include {input.include} \
-            --output {output.sequences} \
+            --output-sequences {output.sequences} \
             --group-by {params.group_by} \
             --subsample-max-sequences {params.subsample_max_sequences} \
             --min-length {params.min_length} \
