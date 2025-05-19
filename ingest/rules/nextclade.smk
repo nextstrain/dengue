@@ -20,6 +20,8 @@ rule get_nextclade_dataset:
     """Download Nextclade dataset"""
     output:
         dataset="data/nextclade_data/v-gen-lab/{serotype}.zip",
+    benchmark:
+        "benchmarks/{serotype}/get_nextclade_dataset.txt"
     params:
         dataset_name=lambda wildcards: f"community/v-gen-lab/dengue/{wildcards.serotype}",
     wildcard_constraints:

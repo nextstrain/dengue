@@ -41,6 +41,8 @@ rule dump_ncbi_dataset_report:
         dataset_package="data/ncbi_dataset.zip",
     output:
         ncbi_dataset_tsv="data/ncbi_dataset_report_raw.tsv",
+    benchmark:
+        "benchmarks/dump_ncbi_dataset_report.txt"
     shell:
         """
         dataformat tsv virus-genome \
