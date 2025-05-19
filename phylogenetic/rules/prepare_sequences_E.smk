@@ -25,6 +25,8 @@ rule generate_E_reference_files:
     output:
         fasta = "results/defaults/reference_{serotype}_E.fasta",
         genbank = "results/defaults/reference_{serotype}_E.gb",
+    benchmark:
+        "benchmarks/{serotype}/generate_E_reference_files.txt"
     params:
         gene = "E",
     shell:
@@ -45,6 +47,8 @@ rule align_and_extract_E:
         reference = "results/defaults/reference_{serotype}_E.fasta"
     output:
         sequences = "results/{serotype}/E/sequences.fasta"
+    benchmark:
+        "benchmarks/{serotype}/align_and_extract_E.txt"
     params:
         min_length = 1000,
     shell:

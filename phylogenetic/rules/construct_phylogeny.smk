@@ -18,6 +18,8 @@ rule tree:
         alignment = "results/{serotype}/{gene}/aligned.fasta"
     output:
         tree = "results/{serotype}/{gene}/tree-raw.nwk"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/tree.txt"
     threads:
         8
     shell:
@@ -43,6 +45,8 @@ rule refine:
     output:
         tree = "results/{serotype}/{gene}/tree.nwk",
         node_data = "results/{serotype}/{gene}/branch-lengths.json",
+    benchmark:
+        "benchmarks/{serotype}/{gene}/refine.txt"
     params:
         coalescent = "const",
         date_inference = "marginal",

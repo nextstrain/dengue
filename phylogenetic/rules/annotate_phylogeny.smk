@@ -28,6 +28,8 @@ rule ancestral:
         alignment = "results/{serotype}/{gene}/aligned.fasta",
     output:
         node_data = "results/{serotype}/{gene}/nt-muts.json"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/ancestral.txt"
     params:
         inference = "joint"
     shell:
@@ -47,6 +49,8 @@ rule translate:
         reference = lambda wildcard: "defaults/{serotype}/reference.gb" if wildcard.gene in ['genome'] else "results/defaults/reference_{serotype}_{gene}.gb"
     output:
         node_data = "results/{serotype}/{gene}/aa-muts.json"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/translate.txt"
     shell:
         """
         augur translate \
@@ -66,6 +70,8 @@ rule traits:
         metadata = "data/metadata_{serotype}.tsv"
     output:
         node_data = "results/{serotype}/{gene}/traits.json",
+    benchmark:
+        "benchmarks/{serotype}/{gene}/traits.txt"
     params:
         columns = lambda wildcards: config['traits']['traits_columns'][wildcards.serotype],
         sampling_bias_correction = config['traits']['sampling_bias_correction'],
@@ -91,6 +97,8 @@ rule clades:
         clade_defs = lambda wildcards: config['clades']['clade_definitions'][wildcards.serotype],
     output:
         clades = "results/{serotype}/genome/clades.json"
+    benchmark:
+        "benchmarks/{serotype}/genome/clades.txt"
     shell:
         """
         augur clades \

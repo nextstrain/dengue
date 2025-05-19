@@ -19,7 +19,8 @@ rule download:
     output:
         sequences = "data/sequences_{serotype}.fasta.zst",
         metadata = "data/metadata_{serotype}.tsv.zst"
-
+    benchmark:
+        "benchmarks/{serotype}/download.txt"
     params:
         sequences_url = config["sequences_url"],
         metadata_url = config["metadata_url"],
@@ -37,6 +38,8 @@ rule decompress:
     output:
         sequences = "data/sequences_{serotype}.fasta",
         metadata = "data/metadata_{serotype}.tsv"
+    benchmark:
+        "benchmarks/{serotype}/decompress.txt"
     shell:
         """
         zstd -d -c {input.sequences} > {output.sequences}
@@ -58,6 +61,8 @@ rule filter:
         include = config["filter"]["include"],
     output:
         sequences = "results/{serotype}/{gene}/filtered.fasta"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/filter.txt"
     params:
         group_by = config['filter']['group_by'],
         subsample_max_sequences = config['filter']['subsample_max_sequences'],
@@ -89,6 +94,8 @@ rule align:
         reference = lambda wildcard: "defaults/{serotype}/reference.gb" if wildcard.gene in ['genome'] else "results/defaults/reference_{serotype}_{gene}.gb"
     output:
         alignment = "results/{serotype}/{gene}/aligned.fasta"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/align.txt"
     threads: 8
     shell:
         """
