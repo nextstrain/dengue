@@ -83,7 +83,7 @@ rule filter:
             --exclude-where country=? region=? date=? \
         """
 
-rule add_outgorup:
+rule add_outgroup:
     """
     Adding outgroup to the filtered sequences
     """
