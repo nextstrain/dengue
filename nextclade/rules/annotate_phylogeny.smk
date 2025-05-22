@@ -29,6 +29,8 @@ rule ancestral:
         root_sequence = "resources/{serotype}/reference.fasta",
     output:
         node_data = "results/{gene}/nt-muts_{serotype}.json"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/ancestral.txt"
     params:
         inference = "joint",
         reference = "../phylogenetic/config/reference_dengue_{serotype}.gb"
@@ -50,6 +52,8 @@ rule translate:
         reference = "resources/{serotype}/genome_annotation.gff3",
     output:
         node_data = "results/{gene}/aa-muts_{serotype}.json"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/translate.txt"
     shell:
         """
         augur translate \
@@ -69,6 +73,8 @@ rule traits:
         metadata = "data/metadata_{serotype}.tsv"
     output:
         node_data = "results/{gene}/traits_{serotype}.json",
+    benchmark:
+        "benchmarks/{serotype}/{gene}/traits.txt"
     params:
         columns = lambda wildcards: config['traits']['traits_columns'][wildcards.serotype],
         sampling_bias_correction = config['traits']['sampling_bias_correction'],
@@ -94,6 +100,8 @@ rule clades:
         clade_defs = lambda wildcards: config['clades']['clade_definitions'][wildcards.serotype],
     output:
         clades = "results/genome/clades_{serotype}.json"
+    benchmark:
+        "benchmarks/{serotype}/genome/clades.txt"
     shell:
         """
         augur clades \

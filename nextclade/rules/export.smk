@@ -27,6 +27,8 @@ rule colors:
         metadata = "data/metadata_{serotype}.tsv",
     output:
         colors = "results/colors_{serotype}.tsv"
+    benchmark:
+        "benchmarks/{serotype}/colors.txt"
     shell:
         """
         python3 ../phylogenetic/scripts/assign-colors.py \
@@ -41,6 +43,8 @@ rule prepare_auspice_config:
     """Prepare the auspice config file for each serotypes"""
     output:
         auspice_config="results/config/{gene}/auspice_config_{serotype}.json",
+    benchmark:
+        "benchmarks/{serotype}/{gene}/prepare_auspice_config.txt"
     params:
         replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"genotype_nextclade",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"Dengue Genotype (Nextclade)",
@@ -95,7 +99,8 @@ rule prepare_auspice_config:
             ],
             "display_defaults": {
               "map_triplicate": True,
-              "color_by": params.replace_clade_key
+              "color_by": params.replace_clade_key,
+              "tip_label": "strain"
             },
             "filters": [
               "country",
@@ -103,7 +108,7 @@ rule prepare_auspice_config:
               "author"
             ],
             "metadata_columns": [
-              "genbank_accession"
+              "strain"
             ]
           }
 
@@ -142,7 +147,9 @@ rule export:
         auspice_config = "results/config/{gene}/auspice_config_{serotype}.json",
         colors = "results/colors_{serotype}.tsv",
     output:
-        auspice_json = "results/{gene}/raw_dengue_{serotype}.json"
+        auspice_json = "auspice/dengue_{serotype}_{gene}.json"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/export.txt"
     params:
         strain_id = config.get("strain_id_field", "strain"),
     shell:
@@ -155,24 +162,5 @@ rule export:
             --colors {input.colors} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence-inline \
-            --output {output.auspice_json}
-        """
-
-rule final_strain_name:
-    input:
-        auspice_json="results/{gene}/raw_dengue_{serotype}.json",
-        metadata="data/metadata_{serotype}.tsv",
-    output:
-        auspice_json="auspice/dengue_{serotype}_{gene}.json"
-    params:
-        strain_id=config.get("strain_id_field", "strain"),
-        display_strain_field=config.get("display_strain_field", "strain"),
-    shell:
-        """
-        python3 ../phylogenetic/scripts/set_final_strain_name.py \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --input-auspice-json {input.auspice_json} \
-            --display-strain-name {params.display_strain_field} \
             --output {output.auspice_json}
         """

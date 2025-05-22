@@ -18,6 +18,8 @@ rule tree:
         alignment = "results/{gene}/aligned_{serotype}.fasta"
     output:
         tree = "results/{gene}/tree-raw_{serotype}.nwk"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/tree.txt"
     shell:
         """
         augur tree \
@@ -41,6 +43,8 @@ rule refine:
     output:
         tree = "results/{gene}/tree_{serotype}.nwk",
         node_data = "results/{gene}/branch-lengths_{serotype}.json",
+    benchmark:
+        "benchmarks/{serotype}/{gene}/refine.txt"
     params:
         coalescent = "const",
         date_inference = "marginal",

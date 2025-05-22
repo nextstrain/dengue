@@ -21,6 +21,8 @@ rule split_by_serotype_genbank:
         sequences = "results/sequences_all.fasta"
     output:
         sequences = "results/sequences_{serotype}.fasta"
+    benchmark:
+        "benchmarks/{serotype}/split_by_serotype_genbank.txt"
     params:
         id_field = config["curate"]["output_id_field"],
         serotype_field = config["curate"]["serotype_field"]

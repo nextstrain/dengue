@@ -4,7 +4,7 @@
 sequences_url: "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst"
 metadata_url: "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
 
-strain_id_field: "genbank_accession"
+strain_id_field: "accession"
 display_strain_field: "strain"
 
 filter:

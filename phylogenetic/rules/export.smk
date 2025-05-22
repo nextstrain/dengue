@@ -27,6 +27,8 @@ rule colors:
         metadata = "data/metadata_{serotype}.tsv",
     output:
         colors = "results/{serotype}/colors.tsv"
+    benchmark:
+        "benchmarks/{serotype}/colors.txt"
     shell:
         """
         python3 scripts/assign-colors.py \
@@ -41,6 +43,8 @@ rule prepare_auspice_config:
     """Prepare the auspice config file for each serotypes"""
     output:
         auspice_config="results/defaults/{serotype}/{gene}/auspice_config.json",
+    benchmark:
+        "benchmarks/{serotype}/{gene}/prepare_auspice_config.txt"
     params:
         replace_clade_key=lambda wildcard: r"clade_membership" if wildcard.gene in ['genome'] else r"major_lineage",
         replace_clade_title=lambda wildcard: r"Serotype" if wildcard.serotype in ['all'] else r"Genotype (Nextclade)",
@@ -178,6 +182,8 @@ rule export:
         colors = "results/{serotype}/colors.tsv",
     output:
         auspice_json = "auspice/dengue_{serotype}_{gene}.json"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/export.txt"
     params:
         strain_id = config.get("strain_id_field", "strain"),
     shell:
@@ -203,6 +209,8 @@ rule tip_frequencies:
         metadata = "data/metadata_{serotype}.tsv",
     output:
         tip_freq = "auspice/dengue_{serotype}_{gene}_tip-frequencies.json"
+    benchmark:
+        "benchmarks/{serotype}/{gene}/tip_frequencies.txt"
     params:
         strain_id = config["strain_id_field"],
         min_date = config["tip_frequencies"]["min_date"],
