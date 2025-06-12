@@ -25,6 +25,7 @@ rule colors:
         color_schemes = "defaults/color_schemes.tsv",
         color_orderings = "defaults/color_orderings.tsv",
         metadata = "data/metadata_{serotype}.tsv",
+        manual_colors = "defaults/colors.tsv"
     output:
         colors = "results/{serotype}/colors.tsv"
     benchmark:
@@ -36,6 +37,7 @@ rule colors:
             --ordering {input.color_orderings} \
             --metadata {input.metadata} \
             --output {output.colors}
+        cat {input.manual_colors} >> {output.colors}
         """
 
 
