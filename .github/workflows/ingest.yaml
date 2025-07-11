@@ -69,7 +69,6 @@ jobs:
           ingest \
             upload_all \
             --configfile build-configs/nextstrain-automation/config.yaml \
-            --stats benchmarks/stats.json \
             $CONFIG_OVERRIDES
       # Specifying artifact name to differentiate ingest build outputs from
       # the phylogenetic build outputs
