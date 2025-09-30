@@ -1,3 +1,7 @@
+# Define wildcards used for building trees in the workflow
+serotypes: ['all', 'denv1', 'denv2', 'denv3', 'denv4']
+genes: ['genome', 'E']
+
 # Sequences must be FASTA and metadata must be TSV
 # Both files must be zstd compressed
 # Both files must have a {serotype} expandable field to be replaced by all, denv1-denv4
