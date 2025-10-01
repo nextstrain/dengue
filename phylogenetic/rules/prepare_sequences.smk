@@ -14,37 +14,6 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
-rule download:
-    """Downloading sequences and metadata from data.nextstrain.org"""
-    output:
-        sequences = "data/sequences_{serotype}.fasta.zst",
-        metadata = "data/metadata_{serotype}.tsv.zst"
-    benchmark:
-        "benchmarks/{serotype}/download.txt"
-    params:
-        sequences_url = config["sequences_url"],
-        metadata_url = config["metadata_url"],
-    shell:
-        """
-        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
-        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
-        """
-
-rule decompress:
-    """Parsing fasta into sequences and metadata"""
-    input:
-        sequences = "data/sequences_{serotype}.fasta.zst",
-        metadata = "data/metadata_{serotype}.tsv.zst"
-    output:
-        sequences = "data/sequences_{serotype}.fasta",
-        metadata = "data/metadata_{serotype}.tsv"
-    benchmark:
-        "benchmarks/{serotype}/decompress.txt"
-    shell:
-        """
-        zstd -d -c {input.sequences} > {output.sequences}
-        zstd -d -c {input.metadata} > {output.metadata}
-        """
 
 rule filter:
     """
@@ -55,8 +24,11 @@ rule filter:
       - excluding strains with missing region, country or date metadata
     """
     input:
-        sequences = lambda wildcard: "data/sequences_{serotype}.fasta" if wildcard.gene in ['genome'] else "results/{serotype}/{gene}/sequences.fasta",
-        metadata = "data/metadata_{serotype}.tsv",
+        sequences = lambda wildcard: (
+            "results/{serotype}/sequences.fasta"
+            if wildcard.gene in ['genome']
+            else "results/{serotype}/{gene}/sequences.fasta"),
+        metadata = "results/{serotype}/metadata.tsv",
         exclude = config["filter"]["exclude"],
         include = config["filter"]["include"],
     output:

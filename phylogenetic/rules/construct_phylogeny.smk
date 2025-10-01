@@ -41,7 +41,7 @@ rule refine:
     input:
         tree = "results/{serotype}/{gene}/tree-raw.nwk",
         alignment = "results/{serotype}/{gene}/aligned.fasta",
-        metadata = "data/metadata_{serotype}.tsv"
+        metadata = "results/{serotype}/metadata.tsv"
     output:
         tree = "results/{serotype}/{gene}/tree.nwk",
         node_data = "results/{serotype}/{gene}/branch-lengths.json",

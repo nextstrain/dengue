@@ -67,7 +67,7 @@ rule traits:
     """
     input:
         tree = "results/{serotype}/{gene}/tree.nwk",
-        metadata = "data/metadata_{serotype}.tsv"
+        metadata = "results/{serotype}/metadata.tsv",
     output:
         node_data = "results/{serotype}/{gene}/traits.json",
     benchmark:

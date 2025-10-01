@@ -24,7 +24,7 @@ rule colors:
     input:
         color_schemes = "defaults/color_schemes.tsv",
         color_orderings = "defaults/color_orderings.tsv",
-        metadata = "data/metadata_{serotype}.tsv",
+        metadata = "results/{serotype}/metadata.tsv",
         manual_colors = "defaults/colors.tsv"
     output:
         colors = "results/{serotype}/colors.tsv"
@@ -173,7 +173,7 @@ rule export:
     """Exporting data files for auspice"""
     input:
         tree = "results/{serotype}/{gene}/tree.nwk",
-        metadata = "data/metadata_{serotype}.tsv",
+        metadata = "results/{serotype}/metadata.tsv",
         branch_lengths = "results/{serotype}/{gene}/branch-lengths.json",
         traits = "results/{serotype}/{gene}/traits.json",
         clades = lambda wildcard: "results/{serotype}/{gene}/clades.json" if wildcard.gene in ['genome'] else [],
@@ -208,7 +208,7 @@ rule tip_frequencies:
     """
     input:
         tree = "results/{serotype}/{gene}/tree.nwk",
-        metadata = "data/metadata_{serotype}.tsv",
+        metadata = "results/{serotype}/metadata.tsv",
     output:
         tip_freq = "auspice/dengue_{serotype}_{gene}_tip-frequencies.json"
     benchmark:

@@ -14,7 +14,6 @@ This part of the workflow usually includes the following steps:
 See Nextclade or script usage docs for these commands for more details.
 """
 
-ruleorder: align_and_extract_E > decompress
 
 rule generate_E_reference_files:
     """
@@ -43,7 +42,7 @@ rule align_and_extract_E:
     Cutting sequences to the length of the E gene reference sequence
     """
     input:
-        sequences = "data/sequences_{serotype}.fasta",
+        sequences = "results/{serotype}/sequences.fasta",
         reference = "results/defaults/reference_{serotype}_E.fasta"
     output:
         sequences = "results/{serotype}/E/sequences.fasta"

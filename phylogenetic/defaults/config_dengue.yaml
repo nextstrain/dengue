@@ -3,10 +3,12 @@ serotypes: ['all', 'denv1', 'denv2', 'denv3', 'denv4']
 genes: ['genome', 'E']
 
 # Sequences must be FASTA and metadata must be TSV
-# Both files must be zstd compressed
+# Both files can use any compression format supported by `augur read-file`
 # Both files must have a {serotype} expandable field to be replaced by all, denv1-denv4
-sequences_url: "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst"
-metadata_url: "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
+inputs:
+  - name: ncbi
+    metadata: "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
+    sequences: "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst"
 
 strain_id_field: "accession"
 display_strain_field: "strain"

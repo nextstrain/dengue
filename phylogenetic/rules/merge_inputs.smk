@@ -25,33 +25,6 @@ additional_inputs:
 
 Supports any of the compression formats that are supported by `augur read-file`,
 see <https://docs.nextstrain.org/projects/augur/page/usage/cli/read-file.html>
-
-NOTE: The included rules are written for workflows that do not use wildcards
-for defining inputs such as zika. You will need to edit the rules to support wildcards
-
-1. If your workflow needs wildcards for both metadata and sequences,
-e.g. serotypes for dengue, then you will need to edit the `output`, `log`, and
-`benchmark` paths of the metadata and sequences rules.
-The wildcards can then be directly used in the config for inputs:
-
-```yaml
-inputs:
-    - name: default
-      metadata: https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst
-      sequences: https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst
-
-```
-
-2. If your workflow only needs wildcards for sequences, e.g. segments for influenza,
-then you will only need to edit the paths for the sequences rules.
-The wildcards can then be directly used in the config for inputs:
-
-```yaml
-inputs:
-    - name: default
-      metadata: s3://nextstrain-data-private/files/workflows/avian-flu/metadata.tsv.zst
-      sequences: s3://nextstrain-data-private/files/workflows/avian-flu/{segment}/sequences.fasta.zst
-```
 """
 from pathlib import Path
 
@@ -95,11 +68,11 @@ if len(_input_metadata) == 1:
         input:
             metadata = _input_metadata[0],
         output:
-            metadata = "results/metadata.tsv",
+            metadata = "results/{serotype}/metadata.tsv",
         log:
-            "logs/decompress_metadata.txt",
+            "logs/{serotype}/decompress_metadata.txt",
         benchmark:
-            "benchmarks/decompress_metadata.txt",
+            "benchmarks/{serotype}/decompress_metadata.txt",
         shell:
             r"""
             exec &> >(tee {log:q})
@@ -120,11 +93,11 @@ else:
             metadata = lambda w, input: list(map("=".join, input.items())),
             id_field = config['strain_id_field'],
         output:
-            metadata = "results/metadata.tsv"
+            metadata = "results/{serotype}/metadata.tsv"
         log:
-            "logs/merge_metadata.txt",
+            "logs/{serotype}/merge_metadata.txt",
         benchmark:
-            "benchmarks/merge_metadata.txt"
+            "benchmarks/{serotype}/merge_metadata.txt"
         shell:
             r"""
             exec &> >(tee {log:q})
@@ -147,11 +120,11 @@ if len(_input_sequences) == 1:
         input:
             sequences = _input_sequences[0],
         output:
-            sequences = "results/sequences.fasta",
+            sequences = "results/{serotype}/sequences.fasta",
         log:
-            "logs/decompress_sequences.txt",
+            "logs/{serotype}/decompress_sequences.txt",
         benchmark:
-            "benchmarks/decompress_sequences.txt",
+            "benchmarks/{serotype}/decompress_sequences.txt",
         shell:
             r"""
             exec &> >(tee {log:q})
@@ -169,11 +142,11 @@ else:
         input:
             **{name: info['sequences'] for name,info in input_sources.items() if info.get('sequences', None)}
         output:
-            sequences = "results/sequences.fasta",
+            sequences = "results/{serotype}/sequences.fasta",
         log:
-            "logs/merge_sequences.txt",
+            "logs/{serotype}/merge_sequences.txt",
         benchmark:
-            "benchmarks/merge_sequences.txt"
+            "benchmarks/{serotype}/merge_sequences.txt"
         shell:
             r"""
             exec &> >(tee {log:q})
