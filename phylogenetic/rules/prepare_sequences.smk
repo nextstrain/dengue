@@ -1,11 +1,13 @@
 """
 This part of the workflow prepares sequences for constructing the phylogenetic tree.
 REQUIRED INPUTS:
-    metadata_url    = url to metadata.tsv.zst
-    sequences_url   = url to sequences.fasta.zst
+    metadata        = results/{serotype}/metadata.tsv
+    sequences       = results/{serotype}/sequences.fasta (for gene='genome')
+                        OR
+                      results/{serotype}/{gene}/sequences.fasta (for gene='E')
     reference   = path to reference sequence or genbank
 OUTPUTS:
-    prepared_sequences = results/aligned.fasta
+    prepared_sequences = results/{serotype}/{gene}/aligned.fasta
 This part of the workflow usually includes the following steps:
     - augur index
     - augur filter

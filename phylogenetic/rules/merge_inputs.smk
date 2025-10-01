@@ -3,8 +3,8 @@ This part of the workflow merges inputs based on what is defined in the config.
 
 OUTPUTS:
 
-    metadata  = results/metadata.tsv
-    sequences = results/sequences.fasta
+    metadata  = results/{serotype}/metadata.tsv
+    sequences = results/{serotype}/sequences.fasta
 
 The config dict is expected to have a top-level `inputs` list that defines the
 separate inputs' name, metadata, and sequences. Optionally, the config can have

@@ -1,11 +1,11 @@
 """
 This part of the workflow constructs the phylogenetic tree.
 REQUIRED INPUTS:
-    metadata            = data/metadata_all.tsv
-    prepared_sequences  = results/aligned_serotype.fasta
+    metadata            = results/{serotype}/metadata.tsv
+    prepared_sequences  = results/{serotype}/{gene}/aligned.fasta
 OUTPUTS:
-    tree            = results/tree.nwk
-    branch_lengths  = results/branch_lengths.json
+    tree            = results/{serotype}/{gene}/tree.nwk
+    branch_lengths  = results/{serotype}/{gene}/branch-lengths.json
 This part of the workflow usually includes the following steps:
     - augur tree
     - augur refine

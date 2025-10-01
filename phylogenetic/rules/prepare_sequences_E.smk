@@ -2,12 +2,12 @@
 This part of the workflow prepares reference files and sequences for constructing the gene phylogenetic trees.
 REQUIRED INPUTS:
     reference   = path to reference sequence or genbank
-    sequences   = path to all sequences from which gene sequences can be extracted
+    sequences   = results/{serotype}/sequences.fasta
 
 OUTPUTS:
     gene_fasta = reference fasta for the gene (e.g. E gene)
     gene_genbank = reference genbank for the gene (e.g. E gene)
-    sequences = sequences with gene sequences extracted and aligned to the reference gene sequence
+    sequences = results/{serotype}/E/sequences.fasta
 This part of the workflow usually includes the following steps:
     - newreference.py: Creates new gene genbank and gene reference FASTA from the whole genome reference genbank
     - nextclade: Aligns sequences to the reference gene sequence and extracts the gene sequences to ensure the reference files are valid
