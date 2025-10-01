@@ -22,9 +22,10 @@ rule upload_to_s3:
         quiet="--quiet",
         s3_dst=config["s3_dst"],
         cloudfront_domain=config["cloudfront_domain"],
+        current_basedir = str(workflow.current_basedir),
     shell:
         """
-        ./vendored/upload-to-s3 \
+        {params.current_basedir}/../../../shared/vendored/scripts/upload-to-s3 \
             {params.quiet} \
             {input.file_to_upload:q} \
             {params.s3_dst:q}/{wildcards.remote_file:q} \
