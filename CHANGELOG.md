@@ -4,6 +4,9 @@ We use this CHANGELOG to document breaking changes, new features, bug fixes, and
 
 ## 2025
 
+* 02 October 2025: **Breaking change** phylogenetic - Major update to the configuration of inputs.
+  See the configuration docs in the [phylogenetic/README.md](phylogenetic/README.md)
+  for more details [PR #118][]
 * 02 October 2025: phylogenetic - new required config params `serotypes` and `genes`
   to configure which builds to run. [PR #117][]
 * 12 June 2025: **Breaking change** phylogenetic - use manually curated `defaults/colors.tsv`
@@ -52,6 +55,7 @@ We use this CHANGELOG to document breaking changes, new features, bug fixes, and
 [PR #108]: https://github.com/nextstrain/dengue/pull/108
 [PR #109]: https://github.com/nextstrain/dengue/pull/109
 [PR #117]: https://github.com/nextstrain/dengue/pull/117
+[PR #118]: https://github.com/nextstrain/dengue/pull/118
 
 ## 2024
 
