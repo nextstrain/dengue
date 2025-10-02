@@ -1,2 +1,5 @@
+serotypes: ["all"]
+genes: ["genome", "E"]
+
 custom_rules:
   - build-configs/ci/copy_example_data.smk
