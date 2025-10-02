@@ -32,23 +32,57 @@ The analysis pipeline is contained in [Snakefile](Snakefile) with included [rule
 Each rule specifies its file inputs and output and pulls its parameters from the config.
 There is little redirection and each rule should be able to be reasoned with on its own.
 
+The config that was used during the run of the workflow is output to `results/run_config.yaml`.
 
-### Using GenBank data
+### Default input data
 
-This build starts by pulling preprocessed sequence and metadata files from: 
+The default builds start from the public Nextstrain data that have been preprocessed
+and cleaned from NCBI GenBank.
 
-* https://data.nextstrain.org/files/workflows/dengue/sequences_all.fasta.zst
-* https://data.nextstrain.org/files/workflows/dengue/metadata_all.tsv.zst
-* https://data.nextstrain.org/files/workflows/dengue/sequences_denv1.fasta.zst
-* https://data.nextstrain.org/files/workflows/dengue/metadata_denv1.tsv.zst
-* https://data.nextstrain.org/files/workflows/dengue/sequences_denv2.fasta.zst
-* https://data.nextstrain.org/files/workflows/dengue/metadata_denv2.tsv.zst
-* https://data.nextstrain.org/files/workflows/dengue/sequences_denv3.fasta.zst
-* https://data.nextstrain.org/files/workflows/dengue/metadata_denv3.tsv.zst
-* https://data.nextstrain.org/files/workflows/dengue/sequences_denv4.fasta.zst
-* https://data.nextstrain.org/files/workflows/dengue/metadata_denv4.tsv.zst
+```yaml
+serotypes: ['all', 'denv1', 'denv2', 'denv3', 'denv4']
+inputs:
+  - name: ncbi
+    metadata: "https://data.nextstrain.org/files/workflows/dengue/metadata_{serotype}.tsv.zst"
+    sequences: "https://data.nextstrain.org/files/workflows/dengue/sequences_{serotype}.fasta.zst"
+```
 
-The above datasets have been preprocessed and cleaned from GenBank and are updated at regular intervals. 
+Note the inputs require the `{serotype}` expandable field, to be replaced by
+the config parameter `serotypes` values.
+
+### Adding your own data
+
+If you want to add your own data to the default input, specify your inputs with
+the `additional_inputs` config parameter. For example, this repo has a small set
+of example data that could be added to the default inputs via:
+
+```yaml
+additional_inputs:
+  - name: example-data
+    metadata: example_data/metadata_{serotype}.tsv
+    sequences: example_data/sequences_{serotype}.fasta
+```
+
+Note that the additional inputs also require the `{serotype}` expandable field.
+If you only have data for a single serotype, e.g. denv1, then you can do so with
+
+```yaml
+serotypes: ["denv1"]
+additional_inputs:
+  - name: private
+    metadata: private/metadata_{serotype}.tsv
+    sequences: private/sequences_{serotype}.fasta
+```
+
+If you want to run the builds _without_ the default data and only use your own
+data, you can do so by specifying the `inputs` parameter.
+
+```yaml
+inputs:
+  - name: example-data
+    metadata: example_data/metadata_{serotype}.tsv
+    sequences: example_data/sequences_{serotype}.fasta
+```
 
 ### Using example data
 

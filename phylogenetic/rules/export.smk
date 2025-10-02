@@ -2,12 +2,13 @@
 This part of the workflow collects the phylogenetic tree and annotations to
 export a Nextstrain dataset.
 REQUIRED INPUTS:
-    metadata        = data/metadata_all.tsv
-    tree            = results/tree.nwk
-    branch_lengths  = results/branch_lengths.json
-    node_data       = results/*.json
+    metadata        = results/{serotype}/metadata.tsv
+    tree            = results/{serotype}/{gene}/tree.nwk
+    branch_lengths  = results/{serotype}/{gene}/branch-lengths.json
+    node_data       = results/{serotype}/{gene}/*.json
 OUTPUTS:
-    auspice_json = auspice/${build_name}.json
+    auspice_json      = auspice/dengue_{serotype}_{gene}.json
+    frequencies_json  = auspice/dengue_{serotype}_{gene}_tip-frequencies.json
     There are optional sidecar JSON files that can be exported as part of the dataset.
     See Nextstrain's data format docs for more details on sidecar files:
     https://docs.nextstrain.org/page/reference/data-formats.html
@@ -24,7 +25,7 @@ rule colors:
     input:
         color_schemes = "defaults/color_schemes.tsv",
         color_orderings = "defaults/color_orderings.tsv",
-        metadata = "data/metadata_{serotype}.tsv",
+        metadata = "results/{serotype}/metadata.tsv",
         manual_colors = "defaults/colors.tsv"
     output:
         colors = "results/{serotype}/colors.tsv"
@@ -173,7 +174,7 @@ rule export:
     """Exporting data files for auspice"""
     input:
         tree = "results/{serotype}/{gene}/tree.nwk",
-        metadata = "data/metadata_{serotype}.tsv",
+        metadata = "results/{serotype}/metadata.tsv",
         branch_lengths = "results/{serotype}/{gene}/branch-lengths.json",
         traits = "results/{serotype}/{gene}/traits.json",
         clades = lambda wildcard: "results/{serotype}/{gene}/clades.json" if wildcard.gene in ['genome'] else [],
@@ -208,7 +209,7 @@ rule tip_frequencies:
     """
     input:
         tree = "results/{serotype}/{gene}/tree.nwk",
-        metadata = "data/metadata_{serotype}.tsv",
+        metadata = "results/{serotype}/metadata.tsv",
     output:
         tip_freq = "auspice/dengue_{serotype}_{gene}_tip-frequencies.json"
     benchmark:

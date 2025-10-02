@@ -1,11 +1,11 @@
 """
 This part of the workflow creates additonal annotations for the phylogenetic tree.
 REQUIRED INPUTS:
-    metadata            = data/metadata_all.tsv
-    prepared_sequences  = results/aligned.fasta
-    tree                = results/tree.nwk
+    metadata            = results/{serotype}/metadata.tsv
+    prepared_sequences  = results/{serotype}/{gene}/aligned.fasta
+    tree                = results/{serotype}/{gene}/tree.nwk
 OUTPUTS:
-    node_data = results/*.json
+    node_data = results/{serotype}/{gene}/*.json
     There are no required outputs for this part of the workflow as it depends
     on which annotations are created. All outputs are expected to be node data
     JSON files that can be fed into `augur export`.
@@ -67,7 +67,7 @@ rule traits:
     """
     input:
         tree = "results/{serotype}/{gene}/tree.nwk",
-        metadata = "data/metadata_{serotype}.tsv"
+        metadata = "results/{serotype}/metadata.tsv",
     output:
         node_data = "results/{serotype}/{gene}/traits.json",
     benchmark:

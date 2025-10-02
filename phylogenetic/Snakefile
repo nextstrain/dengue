@@ -15,6 +15,10 @@ rule all:
         auspice_json = expand("auspice/dengue_{serotype}_{gene}.json", serotype=serotypes, gene=genes),
         tip_frequencies_json= expand("auspice/dengue_{serotype}_{gene}_tip-frequencies.json", serotype=serotypes, gene=genes)
 
+
+# remote_files.smk must be before merge_inputs.smk
+include: "../shared/vendored/snakemake/remote_files.smk"
+include: "rules/merge_inputs.smk"
 include: "rules/prepare_sequences.smk"
 include: "rules/prepare_sequences_E.smk"
 include: "rules/construct_phylogeny.smk"
