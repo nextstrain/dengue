@@ -1,7 +1,10 @@
 configfile: "defaults/config_dengue.yaml"
 
-serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
-genes = ['genome', 'E']
+include: "../shared/vendored/snakemake/config.smk"
+include: "rules/config.smk"
+
+serotypes = config["serotypes"]
+genes = config["genes"]
 
 wildcard_constraints:
     serotype = "|".join(serotypes),
