@@ -4,6 +4,8 @@ We use this CHANGELOG to document breaking changes, new features, bug fixes, and
 
 ## 2025
 
+* 02 October 2025: phylogenetic - new required config params `serotypes` and `genes`
+  to configure which builds to run. [PR #117][]
 * 12 June 2025: **Breaking change** phylogenetic - use manually curated `defaults/colors.tsv`
   for lineage colorings. [PR #109][]
 * 22 May 2025: Add `benchmark` directives to all workflows. Benchmarks are output
@@ -49,6 +51,7 @@ We use this CHANGELOG to document breaking changes, new features, bug fixes, and
 [PR #105]: https://github.com/nextstrain/dengue/pull/105
 [PR #108]: https://github.com/nextstrain/dengue/pull/108
 [PR #109]: https://github.com/nextstrain/dengue/pull/109
+[PR #117]: https://github.com/nextstrain/dengue/pull/117
 
 ## 2024
 
