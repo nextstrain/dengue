@@ -1,5 +1,8 @@
 configfile: "defaults/config_dengue.yaml"
 
+include: "../shared/vendored/snakemake/config.smk"
+include: "rules/config.smk"
+
 serotypes = config["serotypes"]
 genes = config["genes"]
 
