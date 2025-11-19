@@ -29,9 +29,9 @@ def format_field_map(field_map: dict[str, str]) -> str:
 rule curate:
     input:
         sequences_ndjson="data/ncbi.ndjson",
-        geolocation_rules=config["curate"]["local_geolocation_rules"],
-        annotations=config["curate"]["annotations"],
-        manual_mapping="defaults/host_hostgenus_hosttype_map.tsv",
+        geolocation_rules=resolve_config_path(config["curate"]["local_geolocation_rules"]),
+        annotations=resolve_config_path(config["curate"]["annotations"]),
+        manual_mapping=resolve_config_path("host_hostgenus_hosttype_map.tsv"),
     output:
         metadata="data/all_metadata_curated.tsv",
         sequences="results/sequences_all.fasta",
@@ -80,9 +80,9 @@ rule curate:
                 --abbr-authors-field {params.abbr_authors_field} \
             | augur curate apply-geolocation-rules \
                 --geolocation-rules {input.geolocation_rules} \
-            | ./scripts/infer-dengue-serotype.py \
+            | {workflow.basedir}/scripts/infer-dengue-serotype.py \
                 --out-col {params.serotype_field} \
-            | ./scripts/transform-new-fields \
+            | {workflow.basedir}/scripts/transform-new-fields \
                 --map-tsv {input.manual_mapping} \
                 --map-id host \
                 --metadata-id host \
