@@ -33,7 +33,7 @@ ncbi_datasets_fields:
 curate:
   # The path to the local geolocation rules within the pathogen repo
   # The path should be relative to the ingest directory.
-  local_geolocation_rules: "defaults/geolocation-rules.tsv"
+  local_geolocation_rules: "geolocation-rules.tsv"
   # List of field names to change where the key is the original field name and the value is the new field name
   # The original field names should match the ncbi_datasets_fields provided above.
   # This is the first step in the pipeline, so any references to field names in the configs below should use the new field names
@@ -86,7 +86,7 @@ curate:
   abbr_authors_field: "authors"
   # Path to the manual annotations file
   # The path should be relative to the ingest directory
-  annotations: "defaults/annotations.tsv"
+  annotations: "annotations.tsv"
   # Serotype field name inferred from NCBI Genbank annotation
   serotype_field: "serotype_genbank"
   # The ID field in the metadata to use to merge the manual annotations
