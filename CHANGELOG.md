@@ -4,6 +4,7 @@ We use this CHANGELOG to document breaking changes, new features, bug fixes, and
 
 ## 2025
 
+* 16 December 2025: phylogenetic - Update the refine configuration to allow a fixed clock rate, preventing errors from negative rate estimates. [PR #123][]
 * 02 October 2025: **Breaking change** phylogenetic - Major update to the configuration of inputs.
   See the configuration docs in the [phylogenetic/README.md](phylogenetic/README.md)
   for more details [PR #118][]
@@ -56,6 +57,7 @@ We use this CHANGELOG to document breaking changes, new features, bug fixes, and
 [PR #109]: https://github.com/nextstrain/dengue/pull/109
 [PR #117]: https://github.com/nextstrain/dengue/pull/117
 [PR #118]: https://github.com/nextstrain/dengue/pull/118
+[PR #123]: https://github.com/nextstrain/dengue/pull/123
 
 ## 2024
 
