@@ -41,8 +41,8 @@ def _clock_rate_params(wildcards):
 
     else leave blank
     """
-    clock_rate = config.get('refine', {}).get('clock_rate', {}).get(wildcards.serotype, {}).get(wildcards.gene, "")
-    if clock_rate !="":
+    clock_rate = config.get('refine', {}).get('clock_rate', {}).get(wildcards.serotype, {}).get(wildcards.gene, None)
+    if clock_rate is not None:
         return f' --clock-rate {clock_rate} '
     else:
         return ""
