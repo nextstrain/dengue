@@ -10,15 +10,13 @@
   "attributes": {
     "name": "Dengue virus DENV4 genotypes",
     "reference accession": "NC_002640",
-    "reference name": "NC_002640"
+    "reference name": "NC_002640",
+    "experimental": true
   },
   "compatibility": {
     "cli": "3.0.0-alpha.0",
     "web": "3.0.0-alpha.0"
   },
-  "deprecated": false,
-  "enabled": true,
-  "experimental": true,
   "files": {
     "changelog": "CHANGELOG.md",
     "examples": "sequences.fasta",
