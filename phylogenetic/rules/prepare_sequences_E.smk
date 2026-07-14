@@ -20,7 +20,7 @@ rule generate_E_reference_files:
     Generating reference files for the E gene
     """
     input:
-        reference = "defaults/{serotype}/reference.gb",
+        reference = resolve_config_path("{serotype}/reference.gb"),
     output:
         fasta = "results/defaults/reference_{serotype}_E.fasta",
         genbank = "results/defaults/reference_{serotype}_E.gb",
@@ -30,7 +30,7 @@ rule generate_E_reference_files:
         gene = "E",
     shell:
         """
-        python3 scripts/newreference.py \
+        python3 {workflow.basedir}/scripts/newreference.py \
             --reference {input.reference} \
             --output-fasta {output.fasta} \
             --output-genbank {output.genbank} \
