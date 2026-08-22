@@ -4,10 +4,13 @@ min_version(
     "7.7.0"
 )  # Snakemake 7.7.0 introduced `retries` directive used in fetch-sequences
 
-configfile: "defaults/config.yaml"
+# Utility functions shared across all workflows.
+include: "../shared/vendored/snakemake/config.smk"
+
+# Use default configuration values. Extend with Snakemake's --configfile/--config options.
+configfile: os.path.join(workflow.basedir, "defaults/config.yaml")
 
 serotypes = ['all', 'denv1', 'denv2', 'denv3', 'denv4']
-
 
 rule all:
     input:
@@ -23,4 +26,10 @@ include: "rules/nextclade.smk"
 if "custom_rules" in config:
     for rule_file in config["custom_rules"]:
 
-        include: rule_file
+        # Relative custom rule paths in the config are relative to the analysis
+        # directory (i.e. the current working directory, or workdir, usually
+        # given by --directory), but the "include" directive treats relative
+        # paths as relative to the workflow (e.g. workflow.current_basedir).
+        # Convert to an absolute path based on the analysis/current directory
+        # to avoid this mismatch of expectations.
+        include: os.path.join(os.getcwd(), rule_file)

@@ -23,17 +23,17 @@ import json
 
 rule colors:
     input:
-        color_schemes = "defaults/color_schemes.tsv",
-        color_orderings = "defaults/color_orderings.tsv",
+        color_schemes = resolve_config_path("color_schemes.tsv"),
+        color_orderings = resolve_config_path("color_orderings.tsv"),
         metadata = "results/{serotype}/metadata.tsv",
-        manual_colors = "defaults/colors.tsv"
+        manual_colors = resolve_config_path("colors.tsv")
     output:
         colors = "results/{serotype}/colors.tsv"
     benchmark:
         "benchmarks/{serotype}/colors.txt"
     shell:
         """
-        python3 scripts/assign-colors.py \
+        python3 {workflow.basedir}/scripts/assign-colors.py \
             --color-schemes {input.color_schemes} \
             --ordering {input.color_orderings} \
             --metadata {input.metadata} \
@@ -180,7 +180,7 @@ rule export:
         clades = lambda wildcard: "results/{serotype}/{gene}/clades.json" if wildcard.gene in ['genome'] else [],
         nt_muts = "results/{serotype}/{gene}/nt-muts.json",
         aa_muts = "results/{serotype}/{gene}/aa-muts.json",
-        description = config["export"]["description"],
+        description = resolve_config_path(config["export"]["description"]),
         auspice_config = "results/defaults/{serotype}/{gene}/auspice_config.json",
         colors = "results/{serotype}/colors.tsv",
     output:
