@@ -31,8 +31,8 @@ rule filter:
             if wildcard.gene in ['genome']
             else "results/{serotype}/{gene}/sequences.fasta"),
         metadata = "results/{serotype}/metadata.tsv",
-        exclude = config["filter"]["exclude"],
-        include = config["filter"]["include"],
+        exclude = resolve_config_path(config["filter"]["exclude"]),
+        include = resolve_config_path(config["filter"]["include"]),
     output:
         sequences = "results/{serotype}/{gene}/filtered.fasta"
     benchmark:

@@ -46,7 +46,7 @@ rule translate:
     input:
         tree = "results/{serotype}/{gene}/tree.nwk",
         node_data = "results/{serotype}/{gene}/nt-muts.json",
-        reference = lambda wildcard: "defaults/{serotype}/reference.gb" if wildcard.gene in ['genome'] else "results/defaults/reference_{serotype}_{gene}.gb"
+        reference = lambda wildcard: resolve_config_path("{serotype}/reference.gb") if wildcard.gene in ['genome'] else "results/defaults/reference_{serotype}_{gene}.gb"
     output:
         node_data = "results/{serotype}/{gene}/aa-muts.json"
     benchmark:
@@ -94,7 +94,7 @@ rule clades:
         tree = "results/{serotype}/genome/tree.nwk",
         nt_muts = "results/{serotype}/genome/nt-muts.json",
         aa_muts = "results/{serotype}/genome/aa-muts.json",
-        clade_defs = lambda wildcards: config['clades']['clade_definitions'][wildcards.serotype],
+        clade_defs = lambda wildcards: resolve_config_path(config['clades']['clade_definitions'][wildcards.serotype]),
     output:
         clades = "results/{serotype}/genome/clades.json"
     benchmark:
